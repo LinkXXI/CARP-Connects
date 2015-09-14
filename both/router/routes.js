@@ -5,3 +5,11 @@ Router.route('/',{
         Meteor.subscribe("Events")
     }
 });
+
+Router.route('/login', {
+    name: "Login",
+    template: "login",
+    waitOn:function(){
+        return [];
+    }
+});

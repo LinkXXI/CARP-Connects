@@ -1,4 +1,8 @@
 <template name="master">
-    {{>header}}
+    {{#if isLoginPage}}
+
+    {{else}}
+        {{>header}}
+    {{/if}}
     {{>yield}}
 </template>
