@@ -1,0 +1,33 @@
+<template name="incomplete">
+    <nav>
+        <div align="center" class="nav-wrapper blue lighten-1">
+            <a class="brand-logo center" href="#">CARP Connect</a>
+        </div>
+    </nav>
+    <div class="container">
+        <h2>Your Profile is incomplete!</h2>
+
+        <p>In order for you to start using CARP Connects, you will need to complete the following steps</p>
+
+        <h4>Email Validation</h4>
+        <p>
+            {{#if emailValidated}}
+                <input type="checkbox" disabled /> <a href="#">Resend Validation Email</a>
+            {{else}}
+
+            {{/if}}
+        </p>
+
+        <h4>Invitation Code</h4>
+        <p>
+            <input type="checkbox" disabled {{isInviteCompleted}} />
+            <input type="password"  id="invite-code"/>
+            <label for="invite-code">Invitation Code</label>
+        </p>
+
+        <h4>Google Integration</h4>
+        <p>
+            <button class="btn">Link Google Account!</button>
+        </p>
+    </div>
+</template>

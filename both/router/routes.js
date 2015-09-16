@@ -1,7 +1,7 @@
-Router.route('/',{
+Router.route('/', {
     name: 'Index',
     template: 'index',
-    waitOn:function(){
+    waitOn: function () {
         Meteor.subscribe("Events")
     }
 });
@@ -9,7 +9,18 @@ Router.route('/',{
 Router.route('/login', {
     name: "Login",
     template: "login",
-    waitOn:function(){
+    waitOn: function () {
         return [];
+    }
+});
+
+Router.route('/incomplete', {
+    name: "Incomplete",
+    template: "incomplete",
+    waitOn: function(){
+        return [];
+    },
+    data: function(){
+        return Meteor.user();
     }
 });
