@@ -38,3 +38,7 @@ Template.login.events({
         $('#signup-modal').openModal();
     }
 });
+
+Template.login.created = function(){
+    verifyEmail();
+};
