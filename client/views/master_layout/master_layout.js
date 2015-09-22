@@ -3,7 +3,18 @@
  */
 Template.master.helpers({
     hideHeader: function () {
-        return Router.current().route.getName() === "Login" ||
-            Router.current().route.getName() === "Incomplete";
+        isRouteToBeHidden();
+    },
+    wrapperClass:function(){
+        /*if(isRouteToBeHidden()){
+         return "class='container'"
+        }else{
+            return "class='container container-offset'";
+        }*/
     }
 });
+
+var isRouteToBeHidden = function (){
+    return Router.current().route.getName() === "Login" ||
+        Router.current().route.getName() === "Incomplete";
+};
