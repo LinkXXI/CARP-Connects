@@ -1,9 +1,20 @@
 Meteor.methods({
     "validateInvitation": function (inviteCode) {
-        if (invitations.find({_id: inviteCode}).count > 0) {
+        var count = invitations.find({
+            _id: inviteCode,
+            //TODO: Add usergroup/permission level to invitation search
+            validFor: { $in: [Meteor.userId(), "Any"]}
+        }).count();
+        if (count > 0) {
             invitations.update({_id: inviteCode}, {
                 $set: {
-                    used:true
+                    used:true,
+                    appliedTo: Meteor.userId()
+                }
+            });
+            Meteor.users.update({_id: Meteor.userId()}, {
+                $set: {
+                    "profile.inviteCode": inviteCode
                 }
             });
             return true;
@@ -40,17 +51,25 @@ Meteor.methods({
                 },
                 firstName: firstName,
                 lastName: lastName,
-                inviteCode: inviteCode,
-                googleLinked: false
+                inviteCode: undefined,
+                googleLinked: true
             }
         });
 
         //NOTE: New user is now logged in.
         if (inviteCode) {
-            var result = Meteor.call("validateInvitation", inviteCode)
+            var result = Meteor.call("validateInvitation", inviteCode);
             if(!result){
                 //TODO: Handle Error
             }
+        }
+    },
+    "resendVerificationEmail": function(){
+        if(Meteor.user()) {
+            Accounts.sendVerificationEmail(Meteor.userId(), Meteor.user().emails[0].address);
+            return true;
+        }else{
+            return false;
         }
     }
 });

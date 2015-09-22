@@ -106,5 +106,13 @@ Meteor.startup(function () {
                 }
             })
         }
+        if(invitations.find().count() == 0){
+            invitations.insert({
+                used: false,
+                generatedBy: "Dev_ENV",
+                appliedTo: undefined,
+                validFor: ["Any"]
+            })
+        }
     }
 });

@@ -1,0 +1,25 @@
+{
+  "User": {
+    "_id": "Meteor Generated",
+    "createdAt": "Meteor generated created date",
+    "services": {
+      "password": "Meteor encrypted password",
+      "resume": "Holds login/session tokens. Sort of like a serverside login cookie."
+    },
+    "emails": [
+      {
+        "address": "email address",
+        "verified": "BOOL, true if verified, false otherwise."
+      }
+    ],
+    "profile":{
+      "permissions":{
+        "role": "User's role"
+      },
+      "firstName": "User First Name",
+      "lastName": "User's Last Name",
+      "inviteCode": "invite code, empty if not valid.",
+      "googleLinked": "placeholder for google auth, true by default ATM"
+    }
+  }
+}

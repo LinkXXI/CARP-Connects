@@ -15,11 +15,13 @@ Router.onBeforeAction(function(){
  * Profile Setup validation/reroute.
  */
 Router.onBeforeAction(function (){
-        var profile = Meteor.user().profile;
-        if(!profile.inviteCode || !profile.googleLinked || !emails[0].verified){
-            Router.go('/incomplete');
-        }else{
-            this.next();
+        if(Meteor.user()) {
+            var profile = Meteor.user().profile;
+            if (!profile.inviteCode || !profile.googleLinked || !Meteor.user().emails[0].verified) {
+                Router.go('/incomplete');
+            } else {
+                this.next();
+            }
         }
     },
     {
