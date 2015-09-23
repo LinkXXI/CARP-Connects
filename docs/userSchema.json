@@ -18,6 +18,8 @@
       },
       "firstName": "User First Name",
       "lastName": "User's Last Name",
+      "biography": "User's biography",
+      "skills": "User's skills, like sql",
       "inviteCode": "invite code, empty if not valid.",
       "googleLinked": "placeholder for google auth, true by default ATM"
     }
