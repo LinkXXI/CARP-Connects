@@ -1,5 +1,10 @@
-@media (min-width: 993px) {
-    .offset-container{
-        margin-left: 240px;
+@media (max-width: 993px) {
+    .offest-container{
+        background-color: red;
     }
+}
+
+
+.offset-container{
+    margin-left: 240px;
 }

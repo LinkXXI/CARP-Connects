@@ -5,73 +5,69 @@
         </div>
     </nav>
     <div class="container">
-        {{#if completed}}
-            <h2>Profile completed!</h2>
-            <button class="btn waves-effect waves-light">Take me inside!</button>
-        {{else}}
-            <h2>Your Profile is incomplete!</h2>
+        {{completed}}
+        <h2>Your Profile is incomplete!</h2>
 
-            <p>In order for you to start using CARP Connects, you will need to complete the following steps</p>
+        <p>In order for you to start using CARP Connects, you will need to complete the following steps</p>
 
-            <h4>Email Validation</h4>
+        <h4>Email Validation</h4>
 
-            <div class="row">
-                {{#if emailValidated}}
-                    <form id="email-form" class="col s12">
-                        <p>
-                            <input type="checkbox" id="email-completed" disabled checked/>
-                            <label for="email-completed">Complete!</label>
-                        </p>
-                    </form>
-                {{else}}
-                    <input type="checkbox" disabled/> <a href="#" id="a-resend-verification">Resend Validation Email</a>
-                {{/if}}
-            </div>
-
-            <h4>Invitation Code</h4>
-
-            <div class="row">
-                {{#if isInviteCompleted}}
-                    <form id="invite-form" class="col s12">
-                        <p>
-                            <input type="checkbox" id="invite-completed" disabled checked/>
-                            <label for="invite-completed">Complete!</label>
-                        </p>
-                    </form>
-                {{else}}
-                    <form id="invite-form">
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <input type="password" id="invite-code"/>
-                                <label for="invite-code">Invitation Code</label>
-                            </div>
-                            <div class="input-field col s2">
-                                <button class="btn waves-effect waves-light" type="submit">Submit</button>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <span class="red-text accent-3" id="invite-code-error">Error Placeholder</span>
-                        </div>
-                    </form>
-                {{/if}}
-            </div>
-
-            <h4>Google Integration</h4>
-
-            <div class="row">
-                {{#if isGoogleSetup}}
-                    <form id="google-form" class="col s12">
-                        <p>
-                            <input type="checkbox" id="google-completed" disabled checked/>
-                            <label for="google-completed">Complete!</label>
-                        </p>
-                    </form>
-                {{else}}
+        <div class="row">
+            {{#if emailValidated}}
+                <form id="email-form" class="col s12">
                     <p>
-                        <button class="btn" id="google-button">Link Google Account!</button>
+                        <input type="checkbox" id="email-completed" disabled checked/>
+                        <label for="email-completed">Complete!</label>
                     </p>
-                {{/if}}
-            </div>
-        {{/if}}
+                </form>
+            {{else}}
+                <input type="checkbox" disabled/> <a href="#" id="a-resend-verification">Resend Validation Email</a>
+            {{/if}}
+        </div>
+
+        <h4>Invitation Code</h4>
+
+        <div class="row">
+            {{#if isInviteCompleted}}
+                <form id="invite-form" class="col s12">
+                    <p>
+                        <input type="checkbox" id="invite-completed" disabled checked/>
+                        <label for="invite-completed">Complete!</label>
+                    </p>
+                </form>
+            {{else}}
+                <form id="invite-form">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input type="password" id="invite-code"/>
+                            <label for="invite-code">Invitation Code</label>
+                        </div>
+                        <div class="input-field col s2">
+                            <button class="btn waves-effect waves-light" type="submit">Submit</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <span class="red-text accent-3" id="invite-code-error">Error Placeholder</span>
+                    </div>
+                </form>
+            {{/if}}
+        </div>
+
+        <h4>Google Integration</h4>
+
+        <div class="row">
+            {{#if isGoogleSetup}}
+                <form id="google-form" class="col s12">
+                    <p>
+                        <input type="checkbox" id="google-completed" disabled checked/>
+                        <label for="google-completed">Complete!</label>
+                    </p>
+                </form>
+            {{else}}
+                <p>
+                    <button class="btn" id="google-button">Link Google Account!</button>
+                </p>
+            {{/if}}
+        </div>
     </div>
 </template>

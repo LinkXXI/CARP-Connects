@@ -29,7 +29,10 @@ Template.login.events({
 
                 }else{
                     $('#signup-modal').closeModal();
-                    Router.go('/');
+                    Meteor.loginWithPassword(email, password, function(){
+                        Router.go('/');
+                    });
+
                 }
             }
         });

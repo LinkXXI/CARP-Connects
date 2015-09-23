@@ -41,11 +41,9 @@ Template.incomplete.events({
 Template.incomplete.helpers({
     completed: function () {
         if (Meteor.user()) {
-            if ((Meteor.user().emails[0].verified && Meteor.user().profile.inviteCode && Meteor.user().profile.googleAccess)) {
+            if ((Meteor.user().emails[0].verified && Meteor.user().profile.inviteCode && Meteor.user().profile.googleLinked)) {
                 Router.go('/');
-                return true;
             }
-            return false;
         }
     },
     emailValidated: function () {
