@@ -14,6 +14,11 @@ Router.route('/login', {
     }
 });
 
+Router.route('/accountmanagement', {
+    name: "AccountManagement",
+    template: "accountManagement"
+});
+
 Router.route('/incomplete', {
     name: "Incomplete",
     template: "incomplete",

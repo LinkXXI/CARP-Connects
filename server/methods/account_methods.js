@@ -71,5 +71,23 @@ Meteor.methods({
         }else{
             return false;
         }
+    },
+    "updateAccount": function(userAttributes) {
+        if(this.user()) {
+            check(userAttributes, {
+                first: String,
+                last: String,
+                bio: String,
+                skills: String
+            });
+            Accounts.update(this.userId(), {$set: userAttributes}, function(error) {
+                if (error) {
+                    return error;
+                }
+            });
+            return true;
+        }else{
+            return false;
+        }
     }
 });
