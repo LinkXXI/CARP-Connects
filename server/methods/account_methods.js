@@ -82,8 +82,7 @@ Meteor.methods({
             });
             Accounts.update(this.userId(), {$set: userAttributes}, function(error) {
                 if (error) {
-                    // display the error to the user
-                    throwError(error.reason);
+                    return error;
                 }
             });
             return true;

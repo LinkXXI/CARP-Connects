@@ -20,12 +20,9 @@ Template.accountManagement.events({
         Meteor.call('updateAccount', userFields, function (err, result) {
             if(err){
                 console.log(err);
-            }else{
-                if(result){
-                    Router.go('/');
-                }else{
-                    throwError(err.reason);
-                }
+                throwError(err.reason);
+            } else {
+                Router.go('/');
             }
         });
     },
