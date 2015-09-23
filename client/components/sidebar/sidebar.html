@@ -1,5 +1,5 @@
 <template name="sidebar">
-    <ul class="side-nav fixed" id="side-nav" style="left: 0px;">
+    <ul class="side-nav fixed" id="side-nav" style="left: 0">
         <li class="logo">
             <a id="logo-container" href="/">
                 <img id="front-page-logo" src="images/logo.png" class="responsive-img">
@@ -7,7 +7,7 @@
         </li>
         <li class="clearfix"></li>
         <li class="{{isActive "Index"}}"><a href="/">Home</a></li>
-        <li class="{{isActive "Account"}}"><a href="account.html">Account Management</a></li>
+        <li class="{{isActive "Account"}}"><a href="{{pathFor 'Account'}}">Account Management</a></li>
         <li class="{{isActive "Calendar"}}"><a href="calendar.html">Calendar</a></li>
         <li class="divider"></li>
         <li class="{{isActive "CreateEvent"}}"><a href="createevent.html">Create New Event</a></li>

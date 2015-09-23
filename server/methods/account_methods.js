@@ -73,14 +73,17 @@ Meteor.methods({
         }
     },
     "updateAccount": function(userAttributes) {
-        if(this.user()) {
+        if(Meteor.user()) {
+            //TODO: meteor add audit-argument-checks
+            /*
             check(userAttributes, {
-                first: String,
-                last: String,
-                bio: String,
-                skills: String
+                "profile.firstName": String,
+                "profile.lastName": String,
+                "profile.biography": String,
+                "profile.skills": String
             });
-            Accounts.update(this.userId(), {$set: userAttributes}, function(error) {
+            */
+            Meteor.users.update(Meteor.userId(), {$set: userAttributes}, function(error) {
                 if (error) {
                     return error;
                 }

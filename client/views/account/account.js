@@ -1,7 +1,7 @@
-Template.accountManagement.helpers({
+Template.account.helpers({
 });
 
-Template.accountManagement.events({
+Template.account.events({
     "click #passchange": function(){
         $('#passchange-modal').openModal();
     },
@@ -11,16 +11,15 @@ Template.accountManagement.events({
     "submit #acctmgmt-form": function (e) {
         e.preventDefault();
         var userFields = {
-            first: $(e.target).find('#firstname-input').val(),
-            last: $(e.target).find('#lastname-input').val(),
-            bio: $(e.target).find('#bio-input').val(),
-            skills: $(e.target).find('#skills-input').val()
+                "profile.firstName": $(e.target).find('#firstname-input').val(),
+                "profile.lastName": $(e.target).find('#lastname-input').val(),
+                "profile.biography": $(e.target).find('#bio-input').val(),
+                "profile.skills": $(e.target).find('#skills-input').val()
         };
-
-        Meteor.call('updateAccount', userFields, function (err, result) {
+        Meteor.call('updateAccount', userFields, function (err) {
             if(err){
                 console.log(err);
-                throwError(err.reason);
+                //throwError(err.reason);
             } else {
                 Router.go('/');
             }
@@ -33,11 +32,14 @@ Template.accountManagement.events({
             new: $(e.target).find('#newpassword').val(),
             confirmNew: $(e.target).find('#new2password').val()
         };
+        //TODO: meteor add audit-argument-checks
+        /*
         check(password, {
             current: String,
             new: String,
             confirmNew: String
         });
+        */
         if (password.new === password.confirmNew) {
             Accounts.changePassword(password.current, password.new, function(err){
                 if(err){

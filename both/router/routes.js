@@ -14,9 +14,9 @@ Router.route('/login', {
     }
 });
 
-Router.route('/accountmanagement', {
-    name: "AccountManagement",
-    template: "accountManagement"
+Router.route('/account', {
+    name: "Account",
+    template: "account"
 });
 
 Router.route('/incomplete', {
