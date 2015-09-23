@@ -3,10 +3,16 @@
  */
 Template.master.helpers({
     hideHeader: function () {
-        isRouteToBeHidden();
+        return Router.current().route.getName() === "Login" ||
+            Router.current().route.getName() === "Incomplete";
     },
     wrapperClass:function(){
-        return isRouteToBeHidden() ? "container":"offset-container";
+        if(Router.current().route.getName() === "Login" ||
+            Router.current().route.getName() === "Incomplete"){
+            return "";
+        }else{
+            return "offset-container";
+        }
     }
 });
 
