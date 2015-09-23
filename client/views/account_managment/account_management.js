@@ -34,7 +34,7 @@ Template.accountManagement.events({
         var password = {
             current:$(e.target).find('#curpassword').val(),
             new: $(e.target).find('#newpassword').val(),
-            confirmNew: $(e.target).find('#newpassword2').val()
+            confirmNew: $(e.target).find('#new2password').val()
         };
         check(password, {
             current: String,
