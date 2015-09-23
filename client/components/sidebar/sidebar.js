@@ -1,3 +1,9 @@
+Template.sidebar.events({
+    'click #logout': function(){
+        Meteor.logout();
+    }
+});
+
 Template.sidebar.helpers({
     isActive: function(routeName){
         if(Router.current().route.getName() === routeName){
@@ -6,7 +12,7 @@ Template.sidebar.helpers({
             return "";
         }
     }
-})
+});
 
 Template.sidebar.rendered = function() {
     $(".button-collapse").sideNav();

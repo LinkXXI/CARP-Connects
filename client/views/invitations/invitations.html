@@ -10,6 +10,7 @@
             <th data-field="validFor">Redeemable By</th>
             <th data-field="appliedTo">Redeemed By</th>
             <th data-field="edit"></th>
+            <th data-field="delete"></th>
         </tr>
         </thead>
         <tbody>
@@ -92,8 +93,9 @@
                 </p>
             </td>
             <td>{{generatedBy}}</td>
-            <td>{{redeemList}}{{redeemEdits}}
-                <button class="btn-floating waves-effect waves-light red" id="addEligible">+</button>
+            <td>
+                {{redeemList}} <span class='green-text'>{{redeemEdits}}</span>
+                <button class="btn-floating waves-effect waves-light red" style="float:right" id="addEligible">+</button>
             </td>
             <td></td>
             <td>
@@ -119,6 +121,13 @@
                     <button class="btn waves-effect waves-light disabled" disabled>Edit</button>
                 {{else}}
                     <button class="btn waves-effect waves-light" id="edit">Edit</button>
+                {{/if}}
+            </td>
+            <td>
+                {{#if appliedTo}}
+                    <button class="btn-floating waves-effect waves-light red disabled" disabled>X</button>
+                {{else}}
+                    <button class="btn-floating waves-effect waves-light red" id="delete">X</button>
                 {{/if}}
             </td>
         </tr>

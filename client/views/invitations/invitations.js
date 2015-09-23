@@ -56,7 +56,7 @@ Template.invitation.helpers({
     redeemList: function () {
         var list = "";
         $.each(this.validFor, function () {
-            list += this + " ";
+            list += this + ", ";
         });
         return list;
     },
@@ -65,8 +65,9 @@ Template.invitation.helpers({
         var edits = Session.get(this._id + "-edits");
         if (edits) {
             $.each(edits.redeemBy, function () {
-                list += "<span class='text-green'>" + this + '</span>' + " ";
+                list += this + ", ";
             });
+            return list;
         }
     },
     userName: function () {
@@ -86,20 +87,25 @@ Template.invitation.events({
         e.preventDefault();
     },
     "click #cancel": function (e) {
-        $('#cancelModal').openModal({
-            complete: function () {
-                if (Session.get('cancel-edit')) {
-                    Session.set('edit-invite', {_id: "none"});
-                    Session.set(this._id + '-edits', undefined);
-                    //TODO: Other cancel important stuff
-                } else {
-                    //Do Nothing
+        var data = this;
+        if(Session.get(this._id + "-edits")) {
+            $('#cancelModal').openModal({
+                complete: function () {
+                    if (Session.get('cancel-edit')) {
+                        Session.set('edit-invite', {_id: "none"});
+                        Session.set(data._id + '-edits', undefined);
+                        //TODO: Other cancel important stuff
+                    } else {
+                        //Do Nothing
 
+                    }
+                    //Unsetting is important!
+                    Session.set('cancel-edit', undefined);
                 }
-                //Unsetting is important!
-                Session.set('cancel-edit', undefined);
-            }
-        });
+            });
+        }else{
+            Session.set('edit-invite', {_id: "none"});
+        }
     },
     "click #edit": function (e) {
         //console.log(e.target.id);

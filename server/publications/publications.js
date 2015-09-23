@@ -3,8 +3,6 @@ Meteor.publish("Events", function () {
 });
 
 Meteor.publish("Invitations", function(){
-    console.log('doing stuff......');
-
    return invitations.find();
 });
 
