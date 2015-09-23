@@ -6,11 +6,7 @@ Template.master.helpers({
         isRouteToBeHidden();
     },
     wrapperClass:function(){
-        /*if(isRouteToBeHidden()){
-         return "class='container'"
-        }else{
-            return "class='container container-offset'";
-        }*/
+        return isRouteToBeHidden() ? "container":"offset-container";
     }
 });
 

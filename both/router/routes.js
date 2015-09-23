@@ -24,3 +24,17 @@ Router.route('/incomplete', {
         return Meteor.user();
     }
 });
+
+Router.route('/invitations', {
+    name:"Invitations",
+    template:"invitations",
+    waitOn: function(){
+        return [
+            Meteor.subscribe("Invitations"),
+            Meteor.subscribe("AllUsers")
+        ]
+    },
+    data: function(){
+        invitations.find();
+    }
+});

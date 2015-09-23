@@ -3,7 +3,7 @@ Meteor.methods({
         var count = invitations.find({
             _id: inviteCode,
             //TODO: Add usergroup/permission level to invitation search
-            validFor: { $in: [Meteor.userId(), "Any"]}
+            validFor: { $in: [Meteor.user().emails[0].address, Meteor.userId(), "Any"]}
         }).count();
         if (count > 0) {
             invitations.update({_id: inviteCode}, {
