@@ -24,11 +24,16 @@ Template.invitations.events({
                 val = {value: addModal.find('select').val(), type: "existing"};
                 break;
             case "New User":
+                var emailEl = addModal.find('#email');
+                var sendEl = addModal.find('sendEmail');
                 val = {
-                    value: addModal.find('#email').val(),
+
+                    value: emailEl.val(),
                     type: "new",
-                    sendInvite: addModal.find('sendEmail').is(":checked")
+                    sendInvite: sendEl.is(":checked")
                 };
+                emailEl.val("");
+                sendEl.atr('checked', false);
                 break;
         }
 
@@ -84,33 +89,27 @@ Template.invitation.helpers({
 
 Template.invitation.events({
     "click #save": function (e) {
+        var context = this;
         e.preventDefault();
+        var edits = Session.get(this._id + '-edits');
+        if(edits){
+            Meteor.call('updateInvitation', context._id, edits.redeemBy, function (err, data) {
+                if(err){
+                    console.log(err);
+                }else{
+                    Session.set(context + '-edits', undefined);
+                    Session.set('edit-invite', {_id: "none"});
+                }
+            })
+        }
     },
     "click #cancel": function (e) {
-        var data = this;
-        if(Session.get(this._id + "-edits")) {
-            $('#cancelModal').openModal({
-                complete: function () {
-                    if (Session.get('cancel-edit')) {
-                        Session.set('edit-invite', {_id: "none"});
-                        Session.set(data._id + '-edits', undefined);
-                        //TODO: Other cancel important stuff
-                    } else {
-                        //Do Nothing
-
-                    }
-                    //Unsetting is important!
-                    Session.set('cancel-edit', undefined);
-                }
-            });
-        }else{
-            Session.set('edit-invite', {_id: "none"});
-        }
+        cancelEdits(this._id);
     },
     "click #edit": function (e) {
         //console.log(e.target.id);
         if (Session.get('edit-invite')._id !== "none") {
-
+            cancelEdits(Session.get('edit-invite')._id,this._id);
         } else {
             Session.set("edit-invite", {_id: this._id})
         }
@@ -124,33 +123,58 @@ Template.invitation.events({
                 addModal.find('select').material_select();
             },
             complete: function () {
-                console.log(data._id);
-                var edits = Session.get(data._id + "-edits");
-                var modalData = Session.get('addUser');
-                //TODO: Modularize!
-                if (edits === undefined) {
-                    Session.set(data._id + "-edits", {redeemBy: [modalData.value]});
-                    switch (modalData.type) {
-                        case "existing":
-                            break;
-                        case "new":
-                            //TODO: Serverside call to send email to user.
-                            break;
+                if (Session.get('addUser')) {
+                    var edits = Session.get(data._id + "-edits");
+                    var modalData = Session.get('addUser');
+                    //TODO: Modularize!
+                    if (edits === undefined) {
+                        Session.set(data._id + "-edits", {redeemBy: [modalData.value]});
+                        switch (modalData.type) {
+                            case "existing":
+                                break;
+                            case "new":
+                                //TODO: Serverside call to send email to user.
+                                break;
+                        }
+                    } else {
+                        edits.redeemBy.push(modalData.value);
+                        Session.set(data._id + "-edits", edits);
+                        switch (modalData.type) {
+                            case "existing":
+                                break;
+                            case "new":
+                                //TODO: Serverside call to send email to user.
+                                break;
+                        }
                     }
-                } else {
-                    edits.redeemBy.push(modalData.value);
-                    Session.set(data._id + "-edits", edits);
-                    switch (modalData.type) {
-                        case "existing":
-                            break;
-                        case "new":
-                            //TODO: Serverside call to send email to user.
-                            break;
-                    }
+                    //data.validFor.push(modalData.value);
+                    Session.set('addUser', undefined);
                 }
-                //data.validFor.push(modalData.value);
-                Session.set('addUser', undefined);
             }
         });
     }
 });
+
+var cancelEdits = function(currentId, nextId){
+    if(Session.get(currentId + "-edits")) {
+        $('#cancelModal').openModal({
+            complete: function () {
+                if (Session.get('cancel-edit')) {
+                    Session.set('edit-invite', {_id: "none"});
+                    Session.set(currentId + '-edits', undefined);
+                    //TODO: Other cancel important stuff
+                    if(nextId){
+                        Session.set('edit-invite', {_id: nextId});
+                    }
+                } else {
+                    //Do Nothing
+
+                }
+                //Unsetting is important!
+                Session.set('cancel-edit', undefined);
+            }
+        });
+    }else{
+        Session.set('edit-invite', {_id: "none"});
+    }
+};
