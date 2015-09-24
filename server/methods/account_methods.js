@@ -1,18 +1,18 @@
 Meteor.methods({
-    "validateInvitation": function (inviteCode) {
+    "validateInvitation": function (inviteCode, applyToId) {
         var count = invitations.find({
             _id: inviteCode,
             //TODO: Add usergroup/permission level to invitation search
             validFor: { $in: [Meteor.user().emails[0].address, Meteor.userId(), "Any"]}
         }).count();
-        if (count > 0) {
+        if (count > 0 || applyToId) { //TODO: Also check if user is admin before continuing
             invitations.update({_id: inviteCode}, {
                 $set: {
                     used:true,
-                    appliedTo: Meteor.userId()
+                    appliedTo: applyToId || Meteor.userId()
                 }
             });
-            Meteor.users.update({_id: Meteor.userId()}, {
+            Meteor.users.update({_id: applyToId || Meteor.userId()}, {
                 $set: {
                     "profile.inviteCode": inviteCode
                 }
@@ -89,5 +89,11 @@ Meteor.methods({
         }else{
             return false;
         }
+    },
+    disableAccount: function (accountId) {
+        Meteor.users.update({_id:accountId}, {$set:{'profile.accountLocked':true}});
+    },
+    enableAccount: function(accountId){
+        Meteor.users.update({_id:accountId},{$set:{'profile.accountLocked':false}});
     }
 });

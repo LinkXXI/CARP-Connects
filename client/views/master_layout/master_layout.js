@@ -4,7 +4,8 @@
 Template.master.helpers({
     hideHeader: function () {
         return Router.current().route.getName() === "Login" ||
-            Router.current().route.getName() === "Incomplete";
+            Router.current().route.getName() === "Incomplete" ||
+            Router.current().route.getName() === "AccountLocked";
     },
     wrapperClass:function(){
         if(Router.current().route.getName() === "Login" ||
@@ -18,5 +19,6 @@ Template.master.helpers({
 
 var isRouteToBeHidden = function (){
     return Router.current().route.getName() === "Login" ||
-        Router.current().route.getName() === "Incomplete";
+        Router.current().route.getName() === "Incomplete"||
+        Router.current().route.getName() === "AccountLocked";
 };

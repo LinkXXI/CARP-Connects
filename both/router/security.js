@@ -1,10 +1,10 @@
 /**
  * Login validation/reroute
  */
-Router.onBeforeAction(function(){
-    if(!Meteor.userId()){
+Router.onBeforeAction(function () {
+    if (!Meteor.userId()) {
         Router.go('/login');
-    }else{
+    } else {
         this.next();
     }
 }, {
@@ -14,8 +14,8 @@ Router.onBeforeAction(function(){
 /**
  * Profile Setup validation/reroute.
  */
-Router.onBeforeAction(function (){
-        if(Meteor.user()) {
+Router.onBeforeAction(function () {
+        if (Meteor.user()) {
             var profile = Meteor.user().profile;
             if (!profile.inviteCode || !profile.googleLinked || !Meteor.user().emails[0].verified) {
                 Router.go('/incomplete');
@@ -25,6 +25,19 @@ Router.onBeforeAction(function (){
         }
     },
     {
-        except: ['Login', 'Incomplete']
+        except: ['Login', 'Incomplete', 'AccountLocked']
     }
 );
+
+Router.onBeforeAction(function () {
+        if (Meteor.user()) {
+            if (Meteor.user().profile.accountLocked) {
+                Router.go('/accountLocked');
+            } else {
+                this.next();
+            }
+        }
+    },
+    {
+        except: ['Login', 'AccountLocked']
+    });
