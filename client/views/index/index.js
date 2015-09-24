@@ -3,7 +3,7 @@
  */
 Template.index.helpers({
     events: function(){
-        console.log(events.find().count())
+        console.log(events.find().count());
         return events.find().fetch();
     }
 });

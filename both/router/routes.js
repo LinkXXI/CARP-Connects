@@ -19,6 +19,21 @@ Router.route('/account', {
     template: "account"
 });
 
+Router.route('/reports', {
+    name: "Reports",
+    template: "reports"
+});
+
+Router.route('/reports/invite', {
+    name: "InviteReport",
+    template: "inviteReport",
+    waitOn: function(){
+        return [
+            Meteor.subscribe("Invitations")
+        ]
+    },
+});
+
 Router.route('/incomplete', {
     name: "Incomplete",
     template: "incomplete",

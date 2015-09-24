@@ -1,0 +1,19 @@
+<template name="reports">
+    <div class="container">
+        <div class="row">
+            <h2>View Reports</h2>
+
+            <form>
+                <div class="row">
+                    <div class="input-field col s4">
+                        <select id="reports">
+                            <option value="" disabled selected>Select a report</option>
+                            <option value="{{pathFor 'InviteReport'}}">Invitation Report</option>
+                        </select>
+                        <label>Report Type</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</template>
