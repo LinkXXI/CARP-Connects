@@ -2,23 +2,10 @@
  * Created by darkl on 9/14/2015.
  */
 Template.master.helpers({
-    hideHeader: function () {
-        return Router.current().route.getName() === "Login" ||
-            Router.current().route.getName() === "Incomplete" ||
-            Router.current().route.getName() === "AccountLocked";
-    },
-    wrapperClass:function(){
-        if(Router.current().route.getName() === "Login" ||
-            Router.current().route.getName() === "Incomplete"){
-            return "";
-        }else{
-            return "offset-container";
-        }
+    loggedIn: function () {
+        return !(Router.current().route.getName() === "Login" ||
+        Router.current().route.getName() === "Incomplete" ||
+        Router.current().route.getName() === "AccountLocked" ||
+        !Meteor.user());
     }
 });
-
-var isRouteToBeHidden = function (){
-    return Router.current().route.getName() === "Login" ||
-        Router.current().route.getName() === "Incomplete"||
-        Router.current().route.getName() === "AccountLocked";
-};

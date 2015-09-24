@@ -1,10 +1,10 @@
 <template name="master">
-    {{#if hideHeader}}
-
-    {{else}}
+    {{#if loggedIn}}
         {{>header}}
-    {{/if}}
-    <div class="{{wrapperClass}}">
+        <main>
+            {{>yield}}
+        </main>
+    {{else}}
         {{>yield}}
-    </div>
+    {{/if}}
 </template>
