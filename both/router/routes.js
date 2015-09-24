@@ -45,6 +45,11 @@ Router.route('/incomplete', {
     }
 });
 
+Router.route('accountLocked', {
+    name:"AccountLocked",
+    template:"accountLocked"
+});
+
 Router.route('/invitations', {
     name:"Invitations",
     template:"invitations",
@@ -56,5 +61,15 @@ Router.route('/invitations', {
     },
     data: function(){
         invitations.find();
+    }
+});
+
+Router.route('/users', {
+    name: "UserManagement",
+    template: "userManagement",
+    waitOn:function(){
+        return [
+               Meteor.subscribe("AllUsers")
+            ]
     }
 });

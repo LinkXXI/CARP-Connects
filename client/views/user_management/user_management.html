@@ -1,0 +1,70 @@
+<template name="userManagement">
+    <h2>User Management</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>User</th>
+            <th>Created On</th>
+            <th>Primary Email</th>
+            <th>Profile Complete</th>
+            <th>Invite Code Applied</th>
+            <th>Options</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each users}}
+            {{>user}}
+        {{/each}}
+        </tbody>
+    </table>
+</template>
+
+<template name="user">
+    <tr>
+        <td><a href="/{{_id}}">{{profile.firstName}} {{profile.lastName}}</a></td>
+        <td>{{createdAt}}</td>
+        <td><a href="mailto:{{primaryEmail}}">{{primaryEmail}}</a></td>
+        <td>
+            <p>
+                <input type="checkbox" id="profileCheck" disabled checked="{{profileComplete}}"/>
+                <label for="profileCheck"></label>
+            </p>
+        </td>
+        <td>
+            <p>
+                <input type="checkbox" id="inviteCheck" disabled checked="{{inviteApplied}}"/>
+                <label for="inviteCheck"></label>
+            </p>
+        </td>
+        <td>
+            <button class="btn waves-effect waves-light" id="userOptions">User Options</button>
+        </td>
+    </tr>
+    <div class="modal">
+        <div class="modal-content">
+            <h4>User Options</h4>
+            <h5>{{profile.firstName}} {{profile.lastName}}</h5>
+            <div class="row">
+                <div class="col s12">
+                    {{#if profile.accountLocked}}
+                        <button class="btn waves-effect waves-light" id="unlockUser">Unlock User</button>
+                    {{else}}
+                        <button class="btn waves-effect waves-light" id="lockUser">Disable User</button>
+                    {{/if}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    {{#if profile.inviteCode}}
+                        User is already invited and validated!
+                    {{else}}
+                        <button class="btn waves-effect waves-light" id="forceInvite">Generate and Apply Invite</button>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+
+        </div>
+    </div>
+</template>
