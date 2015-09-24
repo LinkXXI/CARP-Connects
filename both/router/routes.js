@@ -22,6 +22,14 @@ Router.route('/account', {
     }
 });
 
+Router.route('/account/edit', {
+    name: "AccountEdit",
+    template: "account",
+    data: function() {
+        return Meteor.user();
+    }
+});
+
 Router.route('/account/:userId', {
     name: "AccountById",
     template: "account",
