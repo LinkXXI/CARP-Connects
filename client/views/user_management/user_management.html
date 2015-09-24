@@ -21,7 +21,7 @@
 
 <template name="user">
     <tr>
-        <td><a href="/{{_id}}">{{profile.firstName}} {{profile.lastName}}</a></td>
+        <td><a href="{{pathFor 'Account'}}/{{_id}}">{{profile.firstName}} {{profile.lastName}}</a></td>
         <td>{{createdAt}}</td>
         <td><a href="mailto:{{primaryEmail}}">{{primaryEmail}}</a></td>
         <td>

@@ -16,7 +16,21 @@ Router.route('/login', {
 
 Router.route('/account', {
     name: "Account",
-    template: "account"
+    template: "account",
+    data: function() {
+        return Meteor.user();
+    }
+});
+
+Router.route('/account/:userId', {
+    name: "AccountById",
+    template: "account",
+    waitOn: function() {
+        return Meteor.subscribe('OneUser', this.params.userId);
+    },
+    data: function() {
+        return Meteor.users.findOne({_id:this.params.userId});
+    }
 });
 
 Router.route('/reports', {
@@ -31,7 +45,7 @@ Router.route('/reports/invite', {
         return [
             Meteor.subscribe("Invitations")
         ]
-    },
+    }
 });
 
 Router.route('/incomplete', {
