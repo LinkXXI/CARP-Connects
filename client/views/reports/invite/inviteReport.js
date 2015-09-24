@@ -16,10 +16,6 @@ Template.inviteReport.helpers({
     }
 });
 
-Template.registerHelper('formatDate', function(date) {
-    return moment(date).format('MMMM Do YYYY, h:mm:ss a');
-});
-
 Template.inviteReport.inviteReportChart = function () {
     var seriesData = [];
     var inviteUsedCount = invitations.find({used: true}).count();
