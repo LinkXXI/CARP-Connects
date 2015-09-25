@@ -1,6 +1,6 @@
-<template name="account">
+<template name="accountEdit">
     <div class="container">
-        <h4 class="center">Edit Profile</h4>
+        <h3 class="center">Edit Profile</h3>
 
         <form id="acctmgmt-form">
             {{#with profile}}
@@ -42,14 +42,86 @@
                                 class="mdi-editor-mode-edit right"></i></label>
                     </div>
                 </div>
-                <button class="btn waves-effect waves-light" type="submit">Save<i
-                        class="mdi-content-send right"></i>
-                </button>
-                <button id="passchange" class="btn waves-effect waves-light modal-trigger" type="button"
-                        name="passchange">
-                    Change Password<i class="mdi-action-lock right"></i>
-                </button>
+                <div class="row">
+                    <div id="contact" class="col s12">
+                        <h4>Contact Information</h4>
+                    </div>
+                </div>
             {{/with}}
+            <div class="row">
+                <div class="col s6">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Verified</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#each emails}}
+                            <tr>
+                                <td>
+                                    <input id="email-input-{{@index}}" type="email" value="{{address}}">
+                                </td>
+                                <td>
+                                    {{#if verified}}
+                                        <span>
+                                            <input type="checkbox" id="email-completed-{{@index}}" disabled checked/>
+                                            <label for="email-completed-{{@index}}">Complete!</label>
+                                        </span>
+                                    {{else}}
+                                        <a href="#" class="a-resend-verification" id="email-{{@index}}">Resend
+                                            Validation Email</a>
+                                    {{/if}}
+                                </td>
+                            </tr>
+                        {{/each}}
+                        </tbody>
+                        <tr id="add-email">
+                            <td colspan="2" class="center">
+                                <a href="#" id="a-add-email"
+                                   class="btn waves-effect waves-light">
+                                    <i class="mdi-content-add"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col s6">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Phone</th>
+                            <th>Type</th>
+                            <th>Primary</th>
+                        </tr>
+                        </thead>
+                        {{#each profile.phones}}
+                            <tr>
+                                <td>
+                                    <input id="phone-input-{{@index}}" type="text" value="{{number}}"/>
+                                </td>
+                                <td>
+                                    <select id="phone-type-select">
+                                        <option value="" disabled selected>Choose your option</option>
+                                        {{#each phoneType}}
+                                            <option value="{{this}}" {{isPhoneTypeSelected this ../type}}>{{this}}</option>
+                                        {{/each}}
+                                    </select>
+                                </td>
+                                <td>
+                                    <input name="phone-primary-radiogroup" type="radio"
+                                           id="phone-primary-input-{{@index}}" {{isPrimaryPhone}}/>
+                                    <label for="phone-primary-input-{{@index}}"></label>
+                                </td>
+                            </tr>
+                        {{/each}}
+                    </table>
+                </div>
+            </div>
+            <button class="btn waves-effect waves-light" type="submit">Save<i
+                    class="mdi-content-send right"></i>
+            </button>
         </form>
         <div id="passchange-modal" class="modal">
             <div class="modal-content">

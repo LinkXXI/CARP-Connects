@@ -1,7 +1,7 @@
-Template.account.helpers({
+Template.accountView.helpers({
 });
 
-Template.account.events({
+Template.accountView.events({
     "click #passchange": function(){
         $('#passchange-modal').openModal();
     },

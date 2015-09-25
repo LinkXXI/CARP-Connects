@@ -65,15 +65,16 @@ Meteor.methods({
             }
         }
     },
-    "resendVerificationEmail": function(){
+    "resendVerificationEmail": function(index){
         if(Meteor.user()) {
-            Accounts.sendVerificationEmail(Meteor.userId(), Meteor.user().emails[0].address);
+            index = parseInt(index) || 0;
+            Accounts.sendVerificationEmail(Meteor.userId(), Meteor.user().emails[index].address);
             return true;
         }else{
             return false;
         }
     },
-    "updateAccount": function(userAttributes) {
+    "updateAccount": function(userAttributes, newEmails) {
         if(Meteor.user()) {
             //TODO: meteor add audit-argument-checks
             /*
@@ -84,6 +85,11 @@ Meteor.methods({
                 "profile.skills": String
             });
             */
+            if (newEmails) {
+                for (var i=0;i<newEmails.length;i++) {
+                    Accounts.addEmail(Meteor.userId(), newEmails[i]);
+                }
+            }
             Meteor.users.update(Meteor.userId(), {$set: userAttributes}, function(error) {
                 if (error) {
                     return error;

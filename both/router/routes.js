@@ -16,7 +16,7 @@ Router.route('/login', {
 
 Router.route('/account', {
     name: "Account",
-    template: "account",
+    template: "accountView",
     data: function() {
         return Meteor.user();
     }
@@ -24,7 +24,7 @@ Router.route('/account', {
 
 Router.route('/account/edit', {
     name: "AccountEdit",
-    template: "account",
+    template: "accountEdit",
     data: function() {
         return Meteor.user();
     }
@@ -32,7 +32,7 @@ Router.route('/account/edit', {
 
 Router.route('/account/:userId', {
     name: "AccountById",
-    template: "account",
+    template: "accountView",
     waitOn: function() {
         return Meteor.subscribe('OneUser', this.params.userId);
     },
