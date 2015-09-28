@@ -59,22 +59,7 @@
                         </thead>
                         <tbody>
                         {{#each emails}}
-                            <tr>
-                                <td>
-                                    <input id="email-input-{{@index}}" type="email" value="{{address}}">
-                                </td>
-                                <td>
-                                    {{#if verified}}
-                                        <span>
-                                            <input type="checkbox" id="email-completed-{{@index}}" disabled checked/>
-                                            <label for="email-completed-{{@index}}">Complete!</label>
-                                        </span>
-                                    {{else}}
-                                        <a href="#" class="a-resend-verification" id="email-{{@index}}">Resend
-                                            Validation Email</a>
-                                    {{/if}}
-                                </td>
-                            </tr>
+                            {{>email}}
                         {{/each}}
                         </tbody>
                         <tr id="add-email">
@@ -96,26 +81,19 @@
                             <th>Primary</th>
                         </tr>
                         </thead>
+                        <tbody>
                         {{#each profile.phones}}
-                            <tr>
-                                <td>
-                                    <input id="phone-input-{{@index}}" type="text" value="{{number}}"/>
-                                </td>
-                                <td>
-                                    <select id="phone-type-select">
-                                        <option value="" disabled selected>Choose your option</option>
-                                        {{#each phoneType}}
-                                            <option value="{{this}}" {{isPhoneTypeSelected this ../type}}>{{this}}</option>
-                                        {{/each}}
-                                    </select>
-                                </td>
-                                <td>
-                                    <input name="phone-primary-radiogroup" type="radio"
-                                           id="phone-primary-input-{{@index}}" {{isPrimaryPhone}}/>
-                                    <label for="phone-primary-input-{{@index}}"></label>
-                                </td>
-                            </tr>
+                            {{>phone}}
                         {{/each}}
+                        <tr id="add-phone">
+                            <td colspan="2" class="center">
+                                <a href="#" id="a-add-phone"
+                                   class="btn waves-effect waves-light">
+                                    <i class="mdi-content-add"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -158,4 +136,45 @@
             </div>
         </div>
     </div>
+</template>
+
+<template name="phone">
+    <tr>
+        <td>
+            <input id="phone-input-{{@../index}}" type="text" value="{{number}}"/>
+        </td>
+        <td>
+            <select id="phone-type-select">
+                <option value="" disabled selected>Choose your option</option>
+                <option value="Home">Home</option>
+                <option value="Cell">Cell</option>
+                <option value="Work">Work</option>
+                <option value="Other">Other</option>
+            </select>
+        </td>
+        <td>
+            <input name="phone-primary-radiogroup" type="radio"
+                   id="phone-primary-input-{{@../index}}" {{isPrimaryPhone}}/>
+            <label for="phone-primary-input-{{@../index}}"></label>
+        </td>
+    </tr>
+</template>
+
+<template name="email">
+    <tr>
+        <td>
+            <input id="email-input-{{@../index}}" type="email" value="{{address}}">
+        </td>
+        <td>
+            {{#if verified}}
+                <span>
+                    <input type="checkbox" id="email-completed-{{@../index}}" disabled checked/>
+                    <label for="email-completed-{{@../index}}">Complete!</label>
+                </span>
+            {{else}}
+                <a href="#" class="a-resend-verification" id="email-{{@../index}}">Resend
+                    Validation Email</a>
+            {{/if}}
+        </td>
+    </tr>
 </template>

@@ -74,7 +74,7 @@ Meteor.methods({
             return false;
         }
     },
-    "updateAccount": function(userAttributes, newEmails) {
+    "updateAccount": function(userAttributes, newContactInfo) {
         if(Meteor.user()) {
             //TODO: meteor add audit-argument-checks
             /*
@@ -85,7 +85,8 @@ Meteor.methods({
                 "profile.skills": String
             });
             */
-            if (newEmails) {
+            if (newContactInfo.emails) {
+                var newEmails = newContactInfo.emails;
                 for (var i=0;i<newEmails.length;i++) {
                     Accounts.addEmail(Meteor.userId(), newEmails[i]);
                 }

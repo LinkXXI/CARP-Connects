@@ -3,18 +3,11 @@ Template.accountEdit.rendered = function() {
 };
 
 Template.accountEdit.helpers({
-    "isPhoneTypeSelected": function(option, value) {
-        if (option === value) {
-            return 'selected';
-        } else {
-            return ''
-        }
-    },
+});
+
+Template.phone.helpers({
     "isPrimaryPhone": function () {
         if (this.primary) return "checked";
-    },
-    "phoneType": function() {
-        return Enumeration.phoneType;
     }
 });
 
@@ -35,22 +28,39 @@ Template.accountEdit.events({
         });
     },
     "click #a-add-email": function () {
-        var output = '<tr><td><input type="email" class="new-email"></td><td></td></tr>';
+        var output = Template;
+        $(output).insertBefore("#add-email");
+    },
+    "click #a-add-phone": function () {
+        //TODO: refactor code
+        /*
+        var row = document.createElement("tr");
+        var emailCell = row.appendChild(document.createElement("td"));
+        var emailInput =
+            .addClass("new-phone")
+            .type("email")
+            */
+        var output = '<tr><td><input type="email" class="new-phone"></td><td></td></tr>';
         $(output).insertBefore("#add-email");
     },
     "submit #acctmgmt-form": function (e) {
         e.preventDefault();
+        var phones = [];
+        $(".new-phone").each(function() {
+            phones.push(this.value);
+        });
         var userFields = {
             "profile.firstName": $(e.target).find('#firstname-input').val(),
             "profile.lastName": $(e.target).find('#lastname-input').val(),
             "profile.biography": $(e.target).find('#bio-input').val(),
-            "profile.skills": $(e.target).find('#skills-input').val()
+            "profile.skills": $(e.target).find('#skills-input').val(),
+            "profile.phones": phones
         };
         var emails = [];
         $(".new-email").each(function() {
            emails.push(this.value);
         });
-        Meteor.call('updateAccount', userFields, emails, function (err) {
+        Meteor.call('updateAccount', userFields, function (err) {
             if (err) {
                 console.log(err);
                 //throwError(err.reason);
