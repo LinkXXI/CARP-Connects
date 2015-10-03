@@ -1,0 +1,10 @@
+{
+  "Venue": {
+    "_id": "Meteor Generated",
+    "name": "string - Name of the venue",
+    "description": "string - description",
+    "parkingAvailability": "bool",
+    "publicTransportationAccess": "bool",
+    "address": "id - will point to an Address collection id"
+  }
+}

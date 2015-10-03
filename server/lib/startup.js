@@ -11,7 +11,7 @@ Meteor.startup(function () {
     };
     Accounts.emailTemplates.verifyEmail.text = function(user, url){
         return "Click the link to verify your email. You will be logged in automatically!\n\n" + url;
-    }
+    };
 
    /* Accounts.loginServiceConfiguration.remove({
         service:"google"

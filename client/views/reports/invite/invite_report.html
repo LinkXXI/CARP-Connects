@@ -1,0 +1,27 @@
+<template name="inviteReport">
+    <div class="row">
+        <h2>Invitation Report</h2>
+
+        <p>The data in this report is up to date as of: {{ formatDate timestamp }}</p>
+
+        {{> highchartsHelper chartId="inviteReport" chartObject=inviteReportChart}}
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">Detailed Report</div>
+            <div class="panel-body">
+                <p>
+                    Total Invites Generated: {{inviteCount}}
+                </p>
+
+                <p>
+                    Invites Used: {{inviteUsedCount}}
+                </p>
+
+                <p>
+                    Invites Not Used: {{inviteNotUsedCount}}
+                </p>
+            </div>
+        </div>
+
+    </div>
+</template>

@@ -1,10 +1,14 @@
 @media (max-width: 993px) {
-    .offest-container{
+    .offset-container {
         background-color: red;
     }
 }
 
-
-.offset-container{
+.offset-container {
     margin-left: 240px;
+}
+
+/* a little bit of padding, on the left side of right division */
+main {
+    margin-left: 10px;
 }

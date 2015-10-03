@@ -6,46 +6,10 @@ Meteor.startup(function () {
                 "owner": "Brandon White",
                 "name": "Retirees and Healthy Living",
                 "description": "Showing members how to live healthy",
-                "totalBudget": "2500",
+                "totalBudget": "2500.00",
                 "theme": "Health",
                 "status": "Complete",
                 "dateTime": "2015-04-15T04:00:00",
-                "tasks": [
-                    {
-                        "taskId": "1",
-                        "name": "Hire Caterer",
-                        "description": "Hire a caterer for 50-75 people",
-                        "notes": "In talks with caterer, waiting on an estimate",
-                        "userIdAssignedTo": "1",
-                        "dateTime": "2015-03-10T04:00:00",
-                        "taskType": "Vendor",
-                        "Vendor": "Bobs Food Service",
-                        "budget": "350.00",
-                        "status": "Complete"
-                    },
-                    {
-                        "taskId": "2",
-                        "name": "Book Venue for Event",
-                        "description": "Approximately 100 guests are attending, please book a hall to accommodate this in the Oakville area.",
-                        "userIdAssignedTo": "1",
-                        "dateTime": "2015-04-17T04:00:00",
-                        "taskType": "Vendor",
-                        "Vendor": "Bobs Food Service",
-                        "budget": "1000.00",
-                        "status": "In Progress"
-                    },
-                    {
-                        "taskId": "3",
-                        "name": "Hire a Guest Speaker",
-                        "description": "A Subject Matter Expert (SME) is required in the field of financial planning.",
-                        "userIdAssignedTo": "1",
-                        "dateTime": "2015-04-24T04:00:00",
-                        "taskType": "Vendor",
-                        "Vendor": "Bobs Food Service",
-                        "budget": "200.00",
-                        "status": "Not Started"
-                    }
-                ],
                 "venue": {
                     "venueId": "7",
                     "name": "Radisson Hotel Toronto East",
@@ -69,24 +33,10 @@ Meteor.startup(function () {
                 "owner": "Brandon White",
                 "name": "Community Housing",
                 "description": "Showing support for those around us by providing much needed housing services.",
-                "totalBudget": "2500",
+                "totalBudget": "2500.00",
                 "theme": "Community",
                 "status": "Complete",
                 "dateTime": "2015-04-20T04:00:00",
-                "tasks": [
-                    {
-                        "taskId": "1",
-                        "name": "Hire Caterer",
-                        "description": "Hire a caterer for 50-75 people",
-                        "notes": "In talks with caterer, waiting on an estimate",
-                        "userIdAssignedTo": "1",
-                        "dateTime": "2015-04-15T04:00:00",
-                        "taskType": "Vendor",
-                        "Vendor": "Bobs Food Service",
-                        "budget": "350.00",
-                        "status": "In Progress"
-                    }
-                ],
                 "venue": {
                     "venueId": "6",
                     "name": "Holiday Inn Toronto East",

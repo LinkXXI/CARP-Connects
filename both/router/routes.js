@@ -33,6 +33,14 @@ Router.route('/account/:userId', {
     }
 });
 
+Router.route('/event/create', {
+    name: "CreateEvent",
+    template: "createEvent",
+    waitOn: function () {
+        return Meteor.subscribe("Events")
+    }
+});
+
 Router.route('/reports', {
     name: "Reports",
     template: "reports"
