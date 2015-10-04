@@ -21,6 +21,7 @@ ddp-rate-limiter@1.0.0
 ddp-server@1.2.1
 deps@1.0.9
 diff-sequence@1.0.1
+drewy:datetimepicker@1.0.3
 ecmascript@0.1.4
 ecmascript-collections@0.1.6
 ejson@1.0.7
@@ -60,6 +61,7 @@ npm-bcrypt@0.7.8_2
 npm-mongo@1.4.39_1
 observe-sequence@1.0.7
 ordered-dict@1.0.4
+postrednik:meteor-rangeslider@0.1.0
 promise@0.4.8
 random@1.0.4
 rate-limit@1.0.0

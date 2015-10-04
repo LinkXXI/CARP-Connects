@@ -14,7 +14,8 @@ Meteor.methods({
 
         var user = Meteor.user();
         var event = _.extend(eventAttributes, {
-            owner: user._id
+            owner: user._id,
+            isComplete: false
         });
 
         events.insert(event);

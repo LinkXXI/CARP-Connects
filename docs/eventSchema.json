@@ -6,7 +6,7 @@
     "description": "string - What is the event about",
     "totalBudget": "double - How many dollas we gots",
     "theme": "enum - ? need more info",
-    "status": "enum - need default values for this",
+    "isComplete": "BOOL",
     "dateTime": "Date - datetime of the event",
     "venue": "id - id of the venue"
   }
