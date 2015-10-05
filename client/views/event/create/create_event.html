@@ -2,204 +2,120 @@
 
     <h2>Create New Event</h2>
 
-    <!-- needs cleaning up -->
-
-    <div class="row">
-        <form id="create-event-form" class="col s12">
-            <div class="row">
-                <div class="input-field col s6">
-                    <input id="event-name" type="text" class="validate">
-                    <label for="event-name">Event Name</label>
-                </div>
-                <div class="right input-field col s1">
-                    <a class="btn-floating tooltipped" data-position="bottom" data-delay="50"
-                       data-tooltip="Import Past Event"><i class="mdi-communication-import-export"></i></a>
-                </div>
+    <form id="create-event-form">
+        <div class="row">
+            <div class="input-field col s6">
+                <input type="text" class="validate" id="event-name">
+                <label for="event-name">Event Name</label>
             </div>
-            <div class="row">
-                <div class="input-field col s3">
-                    <input type="text" id="datetimepicker">
-                    <label for="datetime">Date/Time</label>
-                </div>
+            <div class="input-field col s3">
+                <input type="text" class="validate" id="datetime">
+                <label for="datetime">Date/Time</label>
             </div>
-            <div class="row">
-                <div class="input-field col s6">
-                    <textarea id="description" class="materialize-textarea"></textarea>
-                    <label for="description">Description<i class="mdi-editor-mode-edit right"></i></label>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="range-field col s6">
-                    <label for="event-budget">Event Budget ($)</label>
-                    <input type="rangeslide" id="event-budget"/>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="input-field col s3">
-
-                    <select id="theme">
-                        <option value="" disabled selected>Choose an option</option>
-                        {{#each eventTheme}}
-                            <option value="{{this}}" {{isEventThemeSelected this}}>{{this}}</option>
-                        {{/each}}
-                    </select>
-                    <label for="theme">Theme</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s3">
-                    <input id="venue" type="text" class="validate">
-                    <label for="venue">Venue</label>
-                </div>
-            </div>
-            <div class="row">
-                <table id="tasktable" class="striped">
-                    <thead>
-                    <tr>
-                        <th data-field="task">Task</th>
-                        <th data-field="assignedto">Assigned To</th>
-                        <th data-field="budget">Budget</th>
-                        <th data-field="due">Due Date</th>
-                        <th data-field="button"><a href="#modal1"
-                                                   id="addnewtask"
-                                                   class="btn-floating tooltipped right-align modal-trigger"
-                                                   data-position="bottom"
-                                                   data-delay="50"
-                                                   data-tooltip="Add Task"><i class="mdi-content-add"></i></a></th>
-                    </tr>
-                    </thead>
-
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
-            <div class="row">
-                <div class="col s12 center">
-                    <button class="btn waves-effect waves-light" type="submit" name="action">Create Event
-                        <i class="material-icons right"></i>Send
-                    </button>
-                    <a class="waves-effect waves-light btn dynamicWarning"><i
-                            class="mdi-content-save right"></i>Save</a>
-                    <a href="index.html" class="waves-effect waves-light btn "><i
-                            class="mdi-navigation-cancel right"></i>Exit</a>
-                </div>
-            </div>
-        </form>
-
-        <!-- Start Modal Structure -->
-        <div id="modal1" class="modal">
-            <form id="taskform" class="col s12">
-                <div class="modal-content">
-                    <div class="row">
-                        <div class="col s12 center">
-                            <h2>Create Task</h2>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input id="task-name" type="text" class="validate" length="45"
-                                       maxlength="45">
-                                <label for="task-name">Task Name</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s6 m3">
-                                <input type="date" id="due-date" class="datepicker">
-                                <label for="due-date">Due Date</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                            <textarea id="task-description" class="materialize-textarea" length="255"
-                                                      maxlength="255"></textarea>
-                                <label for="task-description">Description<i
-                                        class="mdi-editor-mode-edit right"></i></label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12 m6">
-                                <select id="task-type">
-                                    <option value="" disabled selected>Please choose a task type</option>
-                                    <option value="1">Vendor</option>
-                                    <option value="2">Custom</option>
-                                </select>
-                                <label>Task Type</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s8">
-                                <select id="vendor-name">
-                                    <option value="" disabled selected>Please choose a vendor</option>
-                                    <option value="1">Harry's Food Service</option>
-                                    <option value="2">Express Delivery Service</option>
-                                </select>
-                                <label>Vendor Name</label>
-                            </div>
-                            <div class="input-field col s4">
-                                <a href="addvendor.html" class="btn-floating tooltipped"
-                                   data-position="bottom" data-delay="50" data-tooltip="Add Vendor"><i
-                                        class="mdi-content-add"></i></a>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="range-field col s12">
-                                <label for="task-budget">Task Budget ($)</label>
-                                <input type="range" id="task-budget" value="0" min="0" max="750"/>
-                            </div>
-                        </div>
-                        <div class="row" style="margin-bottom: 0;">
-                            <div class="input-field col s8">
-                                <select id="assignedTo">
-                                    <option value="" disabled selected>Select Volunteer</option>
-                                    <option value="1">Aaron Beehoo</option>
-                                    <option value="2">Kevin Lee</option>
-                                    <option value="3">Sergio Parracho</option>
-                                    <option value="4">Benjamin Krissilas</option>
-                                </select>
-                                <label>Assign to</label>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <div class="row col s12">
-                        <div class="input-field col s6 center">
-                            <button id="addtask" class="waves-effect waves-light btn" type="submit"><i
-                                    class="mdi-content-send right"></i>Add Task
-                            </button>
-                        </div>
-                        <div class="input-field col s6 center">
-                            <button id="canceltask" class="waves-effect waves-light btn" type="button"><i
-                                    class="mdi-navigation-cancel right"></i>Cancel
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-            </form>
-
-        </div>
-        <!-- End Modal Structure -->
-
-    </div>
-
-    <div class="row">
-        <div class="col s12 center">
-            <div class="card-panel green">
-                <span class="white-text">Budget Status</span>
-                <br>
-                <span class="white-text">$</span>
-                <span id="budget-running" class="white-text">0</span>
-                <span class="white-text">/</span>
-                <span class="white-text">$</span>
-                <span id="budget-total" class="white-text">0</span>
+            <div class="right input-field col s1">
+                <a class="btn-floating tooltipped"
+                   data-position="bottom"
+                   data-delay="50"
+                   data-tooltip="Import Past Event">
+                    <i class="mdi-communication-import-export"></i>
+                </a>
             </div>
         </div>
-    </div>
+
+        <div class="row">
+            <div class="range-field col s6">
+                <label for="event-budget">Event Budget ($)</label>
+                <input type="rangeslide" class="validate" id="event-budget">
+            </div>
+            <div class="input-field col s3">
+                <select class="validate" id="theme">
+                    <option value="" disabled selected>Choose an option</option>
+                    {{#each eventTheme}}
+                        <option value="{{this}}" {{isEventThemeSelected this}}>{{this}}</option>
+                    {{/each}}
+                </select>
+                <label for="theme">Theme</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <textarea id="description" class="validate materialize-textarea"></textarea>
+                <label for="description">Description<i class="mdi-editor-mode-edit right"></i></label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s3">
+                <input id="venue" type="text" class="validate">
+                <label for="venue">Venue</label>
+            </div>
+            <div class="input-field col s1">
+                <a id="add-venue-button"
+                   class="btn-floating tooltipped right-align"
+                   data-position="bottom"
+                   data-delay="50"
+                   data-tooltip="Add Venue">
+                    <i class="mdi-content-add"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="row">
+            <table id="tasktable" class="striped">
+                <thead>
+                <tr>
+                    <th data-field="task">Task</th>
+                    <th data-field="assignedto">Assigned To</th>
+                    <th data-field="budget">Budget</th>
+                    <th data-field="due">Due Date</th>
+                    <th data-field="button">
+                        <a id="add-task-button"
+                           class="btn-floating tooltipped right-align"
+                           data-position="bottom"
+                           data-delay="50"
+                           data-tooltip="Add Task">
+                            <i class="mdi-content-add"></i>
+                        </a>
+                    </th>
+                </tr>
+                </thead>
+
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row">
+            <div class="col s12 center">
+                <button type="submit" class="waves-effect waves-light btn" id="create-event-button">
+                    <i class="mdi-content-send right"></i>Create Event
+                </button>
+                <a class="waves-effect waves-light btn dynamicWarning"><i
+                        class="mdi-content-save right"></i>Save</a>
+                <a href="index.html" class="waves-effect waves-light btn"><i
+                        class="mdi-navigation-cancel right"></i>Exit</a>
+            </div>
+
+        </div>
+    </form>
+
+    <!--    <div class="row">
+            <div class="col s12 center">
+                <div class="card-panel green">
+                    <span class="white-text">Budget Status</span>
+                    <br>
+                    <span class="white-text">$</span>
+                    <span id="budget-running" class="white-text">0</span>
+                    <span class="white-text">/</span>
+                    <span class="white-text">$</span>
+                    <span id="budget-total" class="white-text">0</span>
+                </div>
+            </div>
+        </div>-->
+
+    {{> addVenueModal}}
+
+    {{> addTaskModal}}
 
 </template>

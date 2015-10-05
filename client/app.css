@@ -84,3 +84,13 @@ ul.side-nav.fixed li.logo:hover {
 .forcetop{
     z-index: 9001;
 }
+
+.clear:before,
+.clear:after {
+    content: " ";
+    display: table;
+}
+
+.clear:after {
+    clear: both;
+}

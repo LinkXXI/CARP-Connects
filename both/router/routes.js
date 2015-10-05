@@ -37,7 +37,10 @@ Router.route('/event/create', {
     name: "CreateEvent",
     template: "createEvent",
     waitOn: function () {
-        return Meteor.subscribe("Events")
+        return [
+            Meteor.subscribe("Events"),
+            Meteor.subscribe("Addresses")
+        ]
     }
 });
 

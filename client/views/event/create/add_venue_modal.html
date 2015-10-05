@@ -1,0 +1,108 @@
+<template name="addVenueModal">
+    <form id="add-venue-form">
+        <div id="add-venue-modal" class="modal">
+            <div class="modal-content">
+                <h2 class="center">Add Venue</h2>
+
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="venue-name" type="text" class="validate">
+                        <label for="venue-name">Venue Name</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <textarea id="venue-description" class="materialize-textarea"></textarea>
+                        <label for="venue-description">Description</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s6">
+                        Parking Availability
+                        <div class="clear"></div>
+                        <div class="col s3">
+                            <input class="with-gap" name="parking-availability" type="radio"
+                                   id="parking-availability-true"
+                                   value="true"
+                                   required checked>
+                            <label for="parking-availability-true">Yes</label>
+                        </div>
+                        <div class="col s3">
+                            <input class="with-gap" name="parking-availability" type="radio"
+                                   id="parking-availability-false"
+                                   value="false"
+                                   required>
+                            <label for="parking-availability-false">No</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s6">
+                        Public Transportation Access
+                        <div class="clear"></div>
+                        <div class="col s3">
+                            <input class="with-gap" name="public-transportation-access" type="radio"
+                                   id="public-transportation-access-true" value="true" required checked>
+                            <label for="public-transportation-access-true">Yes</label>
+                        </div>
+                        <div class="col s3">
+                            <input class="with-gap" name="public-transportation-access" type="radio"
+                                   id="public-transportation-access-false" value="false" required>
+                            <label for="public-transportation-access-false">No</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="venue-address-line1" type="text" class="validate">
+                        <label for="venue-address-line1">Address Line 1</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="venue-address-line2" type="text" class="validate">
+                        <label for="venue-address-line2">Address Line 2</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="venue-address-line3" type="text" class="validate">
+                        <label for="venue-address-line3">Address Line 3</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="venue-address-city" type="text" class="validate">
+                        <label for="venue-address-city">City</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="venue-address-provState" type="text" class="validate">
+                        <label for="venue-address-provState">Province/State</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="venue-address-postalZip" type="text" class="validate">
+                        <label for="venue-address-postalZip">Postal Code/Zip Code</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="venue-address-country" type="text" class="validate">
+                        <label for="venue-address-country">Country</label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row col s12">
+                    <div class="input-field col s6 center">
+                        <button id="submit-add-venue-button" class="waves-effect waves-light btn" type="submit">
+                            <i class="mdi-content-send right"></i>Add Venue
+                        </button>
+                    </div>
+                    <div class="input-field col s6 center">
+                        <a id="cancel-add-venue-button" class="waves-effect waves-light btn" type="button">
+                            <i class="mdi-navigation-cancel right"></i>Cancel
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</template>

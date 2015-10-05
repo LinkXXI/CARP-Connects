@@ -5,6 +5,14 @@
     "description": "string - description",
     "parkingAvailability": "bool",
     "publicTransportationAccess": "bool",
-    "address": "id - will point to an Address collection id"
+    "address": {
+        "line1": "string - street number and street",
+        "line2": "string - apt or unit number",
+        "line3": "string - extra address info",
+        "city": "string",
+        "provState": "string - should be an enum?",
+        "country": "string - should be an enum?",
+        "postalZip": "string - keep this as a string"
+     }
   }
 }
