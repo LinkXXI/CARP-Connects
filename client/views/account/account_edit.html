@@ -101,6 +101,63 @@
                     class="mdi-content-send right"></i>
             </button>
         </form>
+        <div id="add-phone-modal" class="modal">
+            <div class="modal-content">
+                <h4>Add Phone</h4>
+
+                <form id="add-phone-form">
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <input id="phone-number-new" type="text"/>
+                            <label for="phone-number-new">Number</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <select id="phone-type-new" class="browser-default">
+                                <option value="" disabled selected>Choose your option</option>
+                                {{#each phoneType}}
+                                    <option value="{{this}}">{{this}}</option>
+                                {{/each}}
+                            </select>
+                            <label for="phone-type-new">Type</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <input type="checkbox" id="phone-primary-new"/>
+                            <label for="phone-primary-new">Primary?</label>
+                        </div>
+                    </div>
+                    <button class="btn waves-effect waves-light" type="submit">Save<i
+                            class="mdi-content-send right"></i>
+                    </button>
+                    <button id="add-phone-cancel" class="btn waves-effect waves-light" type="button">Cancel<i
+                            class="mdi-navigation-cancel right"></i>
+                    </button>
+                </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+        <div id="add-email-modal" class="modal">
+            <div class="modal-content">
+                <h4>Add Email</h4>
+
+                <form id="add-email-form">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="email-new" type="email"/>
+                            <label for="email-new">Email</label>
+                        </div>
+                    </div>
+                    <button class="btn waves-effect waves-light" type="submit">Save<i
+                            class="mdi-content-send right"></i>
+                    </button>
+                    <button id="add-email-cancel" class="btn waves-effect waves-light" type="button">Cancel<i
+                            class="mdi-navigation-cancel right"></i>
+                    </button>
+                </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
         <div id="passchange-modal" class="modal">
             <div class="modal-content">
                 <h4>Change Your Password</h4>
@@ -141,38 +198,41 @@
 <template name="phone">
     <tr>
         <td>
-            <input id="phone-input-{{@../index}}" type="text" value="{{number}}"/>
+            <input id="phone-number-{{../@index}}" type="text" value="{{number}}"/>
+            <label for="phone-number-{{../@index}}">Number</label>
         </td>
         <td>
-            <select id="phone-type-select">
+            <select id="phone-type-{{../@index}}" class="browser-default">
                 <option value="" disabled selected>Choose your option</option>
-                <option value="Home">Home</option>
-                <option value="Cell">Cell</option>
-                <option value="Work">Work</option>
-                <option value="Other">Other</option>
+                {{#each phoneType}}
+                    <option value="{{this}}" {{isPhoneTypeSelected this ../type}}>{{this}}</option>
+                {{/each}}
             </select>
+            <label for="phone-type-{{../@index}}">Type</label>
         </td>
         <td>
             <input name="phone-primary-radiogroup" type="radio"
-                   id="phone-primary-input-{{@../index}}" {{isPrimaryPhone}}/>
-            <label for="phone-primary-input-{{@../index}}"></label>
+                   id="phone-primary-{{../@index}}" {{isPrimaryPhone}}/>
+            <label for="phone-primary-{{../@index}}"></label>
         </td>
     </tr>
 </template>
 
+
 <template name="email">
     <tr>
         <td>
-            <input id="email-input-{{@../index}}" type="email" value="{{address}}">
+            <input id="email-input-{{../@index}}" type="email" value="{{address}}">
+            <label for="email-input-{{../@index}}">Email</label>
         </td>
         <td>
             {{#if verified}}
                 <span>
-                    <input type="checkbox" id="email-completed-{{@../index}}" disabled checked/>
-                    <label for="email-completed-{{@../index}}">Complete!</label>
+                    <input type="checkbox" id="email-completed-{{../@index}}" disabled checked/>
+                    <label for="email-completed-{{../@index}}">Complete!</label>
                 </span>
             {{else}}
-                <a href="#" class="a-resend-verification" id="email-{{@../index}}">Resend
+                <a href="#" class="a-resend-verification" id="email-{{../@index}}">Resend
                     Validation Email</a>
             {{/if}}
         </td>
