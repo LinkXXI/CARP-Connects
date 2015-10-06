@@ -1,10 +1,12 @@
 Template.accountView.helpers({});
 
 Template.accountView.events({
-    "click #passchange": function () {
+    "click #passchange": function(e) {
+        e.preventDefault();
         $('#passchange-modal').openModal();
     },
-    "click #passchange-cancel": function () {
+    "click #passchange-cancel": function(e) {
+        e.preventDefault();
         $('#passchange-modal').closeModal();
     },
     "submit #passchange-form": function (e) {

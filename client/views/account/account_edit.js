@@ -15,7 +15,7 @@ Template.phone.helpers({
             return "";
         }
     },
-    "isPrimaryPhone": function () {
+    "isPrimaryPhone": function() {
         if (this.primary) return "checked";
     },
     "phoneType": function() {
@@ -24,19 +24,24 @@ Template.phone.helpers({
 });
 
 Template.accountEdit.events({
-    "click #add-email-cancel": function () {
+    "click #add-email-cancel": function(e) {
+        e.preventDefault();
         $('#add-email-modal').closeModal();
     },
-    "click #remove-email-cancel": function () {
+    "click #remove-email-cancel": function(e) {
+        e.preventDefault();
         $('#remove-email-modal').closeModal();
     },
-    "click #add-phone-cancel": function () {
+    "click #add-phone-cancel": function (e) {
+        e.preventDefault();
         $('#add-phone-modal').closeModal();
     },
-    "click #acctmgmt-cancel": function () {
+    "click #acctmgmt-cancel": function(e) {
+        e.preventDefault();
         Router.go('/account');
     },
-    "click .a-resend-verification": function (e) {
+    "click .a-resend-verification": function(e) {
+        e.preventDefault();
         Meteor.call('resendVerificationEmail', e.target.id.split("email-")[1], function (err, data) {
             if (err || !data) {
                 //TODO: throw error
@@ -45,18 +50,22 @@ Template.accountEdit.events({
             }
         });
     },
-    "click #a-add-email": function () {
+    "click #a-add-email": function(e) {
+        e.preventDefault();
         $('#add-email-modal').openModal();
     },
-    "click #a-remove-email": function () {
+    "click #a-remove-email": function(e) {
+        e.preventDefault();
         if ($("[id^='emailRow-']").length > 1) {
             $('#remove-email-modal').openModal();
         }
     },
-    "click #a-add-phone": function () {
+    "click #a-add-phone": function(e) {
+        e.preventDefault();
         $('#add-phone-modal').openModal();
     },
-    "click #a-remove-phone": function () {
+    "click #a-remove-phone": function(e) {
+        e.preventDefault();
         var i = $("[id^='phoneRow-']").length - 1;
         var $phoneRow = $("#phoneRow-" + i);
         if (i > 0) {
