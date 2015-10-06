@@ -21,7 +21,14 @@
       "biography": "User's biography",
       "skills": "User's skills, like sql",
       "inviteCode": "invite code, empty if not valid.",
-      "googleLinked": "placeholder for google auth, true by default ATM"
+      "googleLinked": "placeholder for google auth, true by default ATM",
+      "phones": [
+        {
+          "number": "phone number",
+          "type": "Work, Home, Cell right now, please update this list to keep up to date, use caps for first letter so we can print directly to template",
+          "primary": "BOOL, true if main phone number used, false otherwise, can only be one main in this array, please verify at code level"
+        }
+      ]
     },
     "accountLocked": "BOOL, true if locked, otherwise false"
   }
