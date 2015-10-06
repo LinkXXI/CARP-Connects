@@ -112,6 +112,23 @@ Meteor.methods({
             return false;
         }
     },
+    "removeEmails": function(email) {
+        if(Meteor.user()) {
+            //TODO: meteor add audit-argument-checks
+            /*
+             check(email, {
+             "emails.address": String,
+             "emails.verified": Boolean
+             });
+             */
+            if (email) {
+                Accounts.removeEmail(Meteor.userId(), email);
+            }
+            return true;
+        } else {
+            return false;
+        }
+    },
     updatePhones: function(phone) {
         if(Meteor.user()) {
             // editable for current user only, meteor.user will suffice, make sure current phone added is only primary number

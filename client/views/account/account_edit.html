@@ -68,6 +68,10 @@
                                    class="btn waves-effect waves-light">
                                     <i class="mdi-content-add"></i>
                                 </a>
+                                <a href="#" id="a-remove-email"
+                                   class="btn waves-effect waves-light">
+                                    <i class="mdi-content-remove"></i>
+                                </a>
                             </td>
                         </tr>
                     </table>
@@ -85,11 +89,15 @@
                         {{#each profile.phones}}
                             {{>phone number=this.number type=this.type primary=this.primary index=@index}}
                         {{/each}}
-                        <tr id="add-phone">
-                            <td colspan="2" class="center">
+                        <tr id="add-remove-phone">
+                            <td colspan="3" class="center">
                                 <a href="#" id="a-add-phone"
                                    class="btn waves-effect waves-light">
                                     <i class="mdi-content-add"></i>
+                                </a>
+                                <a href="#" id="a-remove-phone"
+                                   class="btn waves-effect waves-light">
+                                    <i class="mdi-content-remove"></i>
                                 </a>
                             </td>
                         </tr>
@@ -153,6 +161,33 @@
                             class="mdi-content-send right"></i>
                     </button>
                     <button id="add-email-cancel" class="btn waves-effect waves-light" type="button">Cancel<i
+                            class="mdi-navigation-cancel right"></i>
+                    </button>
+                </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+        <div id="remove-email-modal" class="modal">
+            <div class="modal-content">
+                <h4>Remove Email</h4>
+
+                <form id="remove-email-form">
+                    {{#each emails}}
+                    <div class="row">
+                        <div class="input-field col s2">
+                            <input type="radio" name="remove-email-radiogroup" id="remove-email-{{@index}}" value="{{address}}"/>
+                            <label for="remove-email-{{@index}}"></label>
+                        </div>
+                        <div class="input-field col s10">
+                            {{address}}
+                        </div>
+                    </div>
+                    {{/each}}
+                    <button class="btn waves-effect waves-light" type="submit">Remove<i
+                            class="mdi-content-send right"></i>
+                    </button>
+                    <button id="remove-email-cancel" class="btn waves-effect waves-light" type="button">Cancel<i
                             class="mdi-navigation-cancel right"></i>
                     </button>
                 </form>

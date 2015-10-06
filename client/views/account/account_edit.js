@@ -33,6 +33,9 @@ Template.accountEdit.events({
     "click #add-email-cancel": function () {
         $('#add-email-modal').closeModal();
     },
+    "click #remove-email-cancel": function () {
+        $('#remove-email-modal').closeModal();
+    },
     "click #add-phone-cancel": function () {
         $('#add-phone-modal').closeModal();
     },
@@ -51,16 +54,30 @@ Template.accountEdit.events({
     "click #a-add-email": function () {
         $('#add-email-modal').openModal();
     },
-    "click #a-add-phone": function (event, template) {
+    "click #a-remove-email": function () {
+        if ($("[id^='emailRow-']").length > 1) {
+            $('#remove-email-modal').openModal();
+        }
+    },
+    "click #a-add-phone": function () {
         $('#add-phone-modal').openModal();
+    },
+    "click #add-remove-phone": function (e) {
+        var i = $("[id^='phoneRow-']").length - 1;
+        var $phoneRow = $("#phoneRow-" + i);
+        if (i <= 0) {
+            if ($phoneRow.find('#phone-primary-' + i).is(':checked')) {
+                document.getElementById("phone-primary-" + (i-1)).checked = true;
+            }
+            $phoneRow.remove();
+        }
     },
     "submit #acctmgmt-form": function (e) {
         e.preventDefault();
         var emails = [];
         $(e.target).find("[id^='emailRow-']").each(function() {
             var i = this.id.split("emailRow-")[1];
-            console.log("email i:" + i);
-            emails[parseInt(i)] = {
+            emails[i] = {
                 "address": $(e.target).find('#email-input-' + i).val(),
                 "verified": !!$(e.target).find('#email-completed-' + i).is(':checked')
             };
@@ -68,7 +85,7 @@ Template.accountEdit.events({
         var phones = [];
         $(e.target).find("[id^='phoneRow-']").each(function() {
             var i = this.id.split("phoneRow-")[1];
-            phones[parseInt(i)] = {
+            phones[i] = {
                 "number": $(e.target).find('#phone-number-' + i).val(),
                 "type": $(e.target).find('#phone-type-' + i).val(),
                 "primary": $(e.target).find('#phone-primary-' + i).is(':checked')
@@ -83,7 +100,6 @@ Template.accountEdit.events({
             "emails": emails,
             "profile.phones": phones
         };
-        //TODO: add email and phone when edited
         Meteor.call('updateAccount', userFields, function (err) {
             if (err) {
                 console.log(err);
@@ -115,8 +131,9 @@ Template.accountEdit.events({
             } else {
                 //TODO: Materialize bug, need to update past version 0.96 for this code to work
                 // $('select').material_select();
-                $('#add-phone-modal').closeModal();
-                $('#add-phone-modal').find('form')[0].reset();
+                var $addPhoneModal = $('#add-phone-modal');
+                $addPhoneModal.closeModal();
+                $addPhoneModal.find('form')[0].reset();
             }
         });
     },
@@ -131,8 +148,26 @@ Template.accountEdit.events({
             } else {
                 //TODO: Materialize bug, need to update past version 0.96 for this code to work
                 // $('select').material_select();
-                $('#add-email-modal').closeModal();
-                $('#add-email-modal').find('form')[0].reset();
+                var $addEmailModal = $('#add-email-modal');
+                $addEmailModal.closeModal();
+                $addEmailModal.find('form')[0].reset();
+            }
+        });
+    },
+    "submit #remove-email-form": function (e) {
+        e.preventDefault();
+        var email = $(e.target).find("input[type=radio]:checked").val();
+
+        Meteor.call('removeEmails', email, function (err) {
+            if (err) {
+                console.log(err);
+                //throwError(err.reason);
+            } else {
+                //TODO: Materialize bug, need to update past version 0.96 for this code to work
+                // $('select').material_select();
+                var $removeEmailModal = $('#remove-email-modal');
+                $removeEmailModal.closeModal();
+                $removeEmailModal.find('form')[0].reset();
             }
         });
     },
@@ -156,8 +191,9 @@ Template.accountEdit.events({
                 if (err) {
                     throwError(err.reason);
                 } else {
-                    $('#passchange-modal').closeModal();
-                    $('#passchange-modal').find('form')[0].reset();
+                    var $passchangeModal = $('#passchange-modal');
+                    $passchangeModal.closeModal();
+                    $passchangeModal.find('form')[0].reset();
                 }
             });
         } else {
