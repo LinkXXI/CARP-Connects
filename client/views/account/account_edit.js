@@ -62,10 +62,10 @@ Template.accountEdit.events({
     "click #a-add-phone": function () {
         $('#add-phone-modal').openModal();
     },
-    "click #add-remove-phone": function (e) {
+    "click #a-remove-phone": function () {
         var i = $("[id^='phoneRow-']").length - 1;
         var $phoneRow = $("#phoneRow-" + i);
-        if (i <= 0) {
+        if (i > 0) {
             if ($phoneRow.find('#phone-primary-' + i).is(':checked')) {
                 document.getElementById("phone-primary-" + (i-1)).checked = true;
             }
