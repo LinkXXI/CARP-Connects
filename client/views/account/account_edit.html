@@ -49,7 +49,7 @@
                 </div>
             {{/with}}
             <div class="row">
-                <div class="col s6">
+                <div class="col s12 m6">
                     <table>
                         <thead>
                         <tr>
@@ -59,7 +59,7 @@
                         </thead>
                         <tbody>
                         {{#each emails}}
-                            {{>email}}
+                            {{>email address=this.address verified=this.verified index=@index}}
                         {{/each}}
                         </tbody>
                         <tr id="add-email">
@@ -72,7 +72,7 @@
                         </tr>
                     </table>
                 </div>
-                <div class="col s6">
+                <div class="col s12 m6">
                     <table>
                         <thead>
                         <tr>
@@ -83,7 +83,7 @@
                         </thead>
                         <tbody>
                         {{#each profile.phones}}
-                            {{>phone}}
+                            {{>phone number=this.number type=this.type primary=this.primary index=@index}}
                         {{/each}}
                         <tr id="add-phone">
                             <td colspan="2" class="center">
@@ -99,6 +99,9 @@
             </div>
             <button class="btn waves-effect waves-light" type="submit">Save<i
                     class="mdi-content-send right"></i>
+            </button>
+            <button id="acctmgmt-cancel" class="btn waves-effect waves-light" type="button">Cancel<i
+                    class="mdi-navigation-cancel right"></i>
             </button>
         </form>
         <div id="add-phone-modal" class="modal">
@@ -118,7 +121,6 @@
                                     <option value="{{this}}">{{this}}</option>
                                 {{/each}}
                             </select>
-                            <label for="phone-type-new">Type</label>
                         </div>
                         <div class="input-field col s4">
                             <input type="checkbox" id="phone-primary-new"/>
@@ -196,43 +198,40 @@
 </template>
 
 <template name="phone">
-    <tr>
+    <tr id="phoneRow-{{index}}">
         <td>
-            <input id="phone-number-{{../@index}}" type="text" value="{{number}}"/>
-            <label for="phone-number-{{../@index}}">Number</label>
+            <input id="phone-number-{{index}}" type="text" value="{{number}}"/>
         </td>
         <td>
-            <select id="phone-type-{{../@index}}" class="browser-default">
+            <select id="phone-type-{{index}}" class="browser-default">
                 <option value="" disabled selected>Choose your option</option>
                 {{#each phoneType}}
                     <option value="{{this}}" {{isPhoneTypeSelected this ../type}}>{{this}}</option>
                 {{/each}}
             </select>
-            <label for="phone-type-{{../@index}}">Type</label>
         </td>
         <td>
             <input name="phone-primary-radiogroup" type="radio"
-                   id="phone-primary-{{../@index}}" {{isPrimaryPhone}}/>
-            <label for="phone-primary-{{../@index}}"></label>
+                   id="phone-primary-{{index}}" {{isPrimaryPhone}}/>
+            <label for="phone-primary-{{index}}"></label>
         </td>
     </tr>
 </template>
 
-
 <template name="email">
-    <tr>
+    <tr id="emailRow-{{index}}">
         <td>
-            <input id="email-input-{{../@index}}" type="email" value="{{address}}">
-            <label for="email-input-{{../@index}}">Email</label>
+            <input id="email-input-{{index}}" type="email" value="{{address}}">
+
         </td>
         <td>
             {{#if verified}}
                 <span>
-                    <input type="checkbox" id="email-completed-{{../@index}}" disabled checked/>
-                    <label for="email-completed-{{../@index}}">Complete!</label>
+                    <input type="checkbox" id="email-completed-{{index}}" disabled checked/>
+                    <label for="email-completed-{{index}}">Complete!</label>
                 </span>
             {{else}}
-                <a href="#" class="a-resend-verification" id="email-{{../@index}}">Resend
+                <a href="#" class="a-resend-verification" id="email-{{index}}">Resend
                     Validation Email</a>
             {{/if}}
         </td>

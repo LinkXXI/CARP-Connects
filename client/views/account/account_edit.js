@@ -36,6 +36,9 @@ Template.accountEdit.events({
     "click #add-phone-cancel": function () {
         $('#add-phone-modal').closeModal();
     },
+    "click #acctmgmt-cancel": function () {
+        Router.go('/account');
+    },
     "click .a-resend-verification": function (e) {
         Meteor.call('resendVerificationEmail', e.target.id.split("email-")[1], function (err, data) {
             if (err || !data) {
@@ -53,11 +56,32 @@ Template.accountEdit.events({
     },
     "submit #acctmgmt-form": function (e) {
         e.preventDefault();
+        var emails = [];
+        $(e.target).find("[id^='emailRow-']").each(function() {
+            var i = this.id.split("emailRow-")[1];
+            console.log("email i:" + i);
+            emails[parseInt(i)] = {
+                "address": $(e.target).find('#email-input-' + i).val(),
+                "verified": !!$(e.target).find('#email-completed-' + i).is(':checked')
+            };
+        });
+        var phones = [];
+        $(e.target).find("[id^='phoneRow-']").each(function() {
+            var i = this.id.split("phoneRow-")[1];
+            phones[parseInt(i)] = {
+                "number": $(e.target).find('#phone-number-' + i).val(),
+                "type": $(e.target).find('#phone-type-' + i).val(),
+                "primary": $(e.target).find('#phone-primary-' + i).is(':checked')
+            };
+        });
+
         var userFields = {
             "profile.firstName": $(e.target).find('#firstname-input').val(),
             "profile.lastName": $(e.target).find('#lastname-input').val(),
             "profile.biography": $(e.target).find('#bio-input').val(),
-            "profile.skills": $(e.target).find('#skills-input').val()
+            "profile.skills": $(e.target).find('#skills-input').val(),
+            "emails": emails,
+            "profile.phones": phones
         };
         //TODO: add email and phone when edited
         Meteor.call('updateAccount', userFields, function (err) {
@@ -92,6 +116,7 @@ Template.accountEdit.events({
                 //TODO: Materialize bug, need to update past version 0.96 for this code to work
                 // $('select').material_select();
                 $('#add-phone-modal').closeModal();
+                $('#add-phone-modal').find('form')[0].reset();
             }
         });
     },
@@ -107,6 +132,7 @@ Template.accountEdit.events({
                 //TODO: Materialize bug, need to update past version 0.96 for this code to work
                 // $('select').material_select();
                 $('#add-email-modal').closeModal();
+                $('#add-email-modal').find('form')[0].reset();
             }
         });
     },
@@ -131,6 +157,7 @@ Template.accountEdit.events({
                     throwError(err.reason);
                 } else {
                     $('#passchange-modal').closeModal();
+                    $('#passchange-modal').find('form')[0].reset();
                 }
             });
         } else {
