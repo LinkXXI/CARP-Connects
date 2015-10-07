@@ -1,0 +1,240 @@
+<template name="accountEdit">
+    <div class="container">
+        <h3 class="center">Edit Profile</h3>
+
+        <form id="acctmgmt-form">
+            {{#with profile}}
+                <div class="row">
+                    <div class="col s2">
+                        <img src="/images/profile.jpg" alt="" class="circle responsive-img">
+                        <!-- notice the "circle" class -->
+                    </div>
+                    <div id="name" class="col s10 right">
+                        <div class="row">
+                            <div id="firstname" class="input-field col s12">
+                                <input id="firstname-input" type="text" value="{{firstName}}">
+                                <label class="active" for="firstname-input">First
+                                    Name</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div id="lastname" class="input-field col s12">
+                                <input id="lastname-input" type="text" value="{{lastName}}">
+                                <label class="active" for="lastname-input">Last
+                                    Name</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="bio" class="input-field col s12">
+                                <textarea id="bio-input" class="materialize-textarea" length="255"
+                                          maxlength="255">{{biography}}</textarea>
+                        <label class="active" for="bio-input">Biography<i
+                                class="mdi-editor-mode-edit right"></i></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="skills" class="input-field col s12">
+                                <textarea id="skills-input" class="materialize-textarea" length="255"
+                                          maxlength="255">{{skills}}</textarea>
+                        <label class="active" for="skills-input">Skills<i
+                                class="mdi-editor-mode-edit right"></i></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="contact" class="col s12">
+                        <h4>Contact Information</h4>
+                    </div>
+                </div>
+            {{/with}}
+            <div class="row">
+                <div class="col s12 m6">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Verified</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#each emails}}
+                            {{>email address=this.address verified=this.verified index=@index}}
+                        {{/each}}
+                        </tbody>
+                        <tr id="add-email">
+                            <td colspan="2" class="center">
+                                <a href="#" id="a-add-email"
+                                   class="btn waves-effect waves-light">
+                                    <i class="mdi-content-add"></i>
+                                </a>
+                                <a href="#" id="a-remove-email"
+                                   class="btn waves-effect waves-light">
+                                    <i class="mdi-content-remove"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col s12 m6">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Phone</th>
+                            <th>Type</th>
+                            <th>Primary</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#each profile.phones}}
+                            {{>phone number=this.number type=this.type primary=this.primary index=@index}}
+                        {{/each}}
+                        <tr id="add-remove-phone">
+                            <td colspan="3" class="center">
+                                <a href="#" id="a-add-phone"
+                                   class="btn waves-effect waves-light">
+                                    <i class="mdi-content-add"></i>
+                                </a>
+                                <a href="#" id="a-remove-phone"
+                                   class="btn waves-effect waves-light">
+                                    <i class="mdi-content-remove"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <button class="btn waves-effect waves-light" type="submit">Save<i
+                    class="mdi-content-send right"></i>
+            </button>
+            <button id="acctmgmt-cancel" class="btn waves-effect waves-light" type="button">Cancel<i
+                    class="mdi-navigation-cancel right"></i>
+            </button>
+        </form>
+        <div id="add-phone-modal" class="modal">
+            <div class="modal-content">
+                <h4>Add Phone</h4>
+
+                <form id="add-phone-form">
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <input id="phone-number-new" type="text"/>
+                            <label for="phone-number-new">Number</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <select id="phone-type-new" class="browser-default">
+                                <option value="" disabled selected>Choose your option</option>
+                                {{#each phoneType}}
+                                    <option value="{{this}}">{{this}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <div class="input-field col s4">
+                            <input type="checkbox" id="phone-primary-new"/>
+                            <label for="phone-primary-new">Primary?</label>
+                        </div>
+                    </div>
+                    <button class="btn waves-effect waves-light" type="submit">Save<i
+                            class="mdi-content-send right"></i>
+                    </button>
+                    <button id="add-phone-cancel" class="btn waves-effect waves-light" type="button">Cancel<i
+                            class="mdi-navigation-cancel right"></i>
+                    </button>
+                </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+        <div id="add-email-modal" class="modal">
+            <div class="modal-content">
+                <h4>Add Email</h4>
+
+                <form id="add-email-form">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="email-new" type="email"/>
+                            <label for="email-new">Email</label>
+                        </div>
+                    </div>
+                    <button class="btn waves-effect waves-light" type="submit">Save<i
+                            class="mdi-content-send right"></i>
+                    </button>
+                    <button id="add-email-cancel" class="btn waves-effect waves-light" type="button">Cancel<i
+                            class="mdi-navigation-cancel right"></i>
+                    </button>
+                </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+        <div id="remove-email-modal" class="modal">
+            <div class="modal-content">
+                <h4>Remove Email</h4>
+
+                <form id="remove-email-form">
+                    {{#each emails}}
+                    <div class="row">
+                        <div class="input-field col s2">
+                            <input type="radio" name="remove-email-radiogroup" id="remove-email-{{@index}}" value="{{address}}"/>
+                            <label for="remove-email-{{@index}}"></label>
+                        </div>
+                        <div class="input-field col s10">
+                            {{address}}
+                        </div>
+                    </div>
+                    {{/each}}
+                    <button class="btn waves-effect waves-light" type="submit">Remove<i
+                            class="mdi-content-send right"></i>
+                    </button>
+                    <button id="remove-email-cancel" class="btn waves-effect waves-light" type="button">Cancel<i
+                            class="mdi-navigation-cancel right"></i>
+                    </button>
+                </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="phone">
+    <tr id="phoneRow-{{index}}">
+        <td>
+            <input id="phone-number-{{index}}" type="text" value="{{number}}"/>
+        </td>
+        <td>
+            <select id="phone-type-{{index}}" class="browser-default">
+                <option value="" disabled selected>Choose your option</option>
+                {{#each phoneType}}
+                    <option value="{{this}}" {{isPhoneTypeSelected this ../type}}>{{this}}</option>
+                {{/each}}
+            </select>
+        </td>
+        <td>
+            <input name="phone-primary-radiogroup" type="radio"
+                   id="phone-primary-{{index}}" {{isPrimaryPhone}}/>
+            <label for="phone-primary-{{index}}"></label>
+        </td>
+    </tr>
+</template>
+
+<template name="email">
+    <tr id="emailRow-{{index}}">
+        <td>
+            <input id="email-input-{{index}}" type="email" value="{{address}}">
+
+        </td>
+        <td>
+            {{#if verified}}
+                <span>
+                    <input type="checkbox" id="email-completed-{{index}}" disabled checked/>
+                    <label for="email-completed-{{index}}">Complete!</label>
+                </span>
+            {{else}}
+                <a href="#" class="a-resend-verification" id="email-{{index}}">Resend
+                    Validation Email</a>
+            {{/if}}
+        </td>
+    </tr>
+</template>

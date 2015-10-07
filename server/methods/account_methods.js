@@ -65,9 +65,10 @@ Meteor.methods({
             }
         }
     },
-    "resendVerificationEmail": function(){
+    "resendVerificationEmail": function(index){
         if(Meteor.user()) {
-            Accounts.sendVerificationEmail(Meteor.userId(), Meteor.user().emails[0].address);
+            index = parseInt(index) || 0;
+            Accounts.sendVerificationEmail(Meteor.userId(), Meteor.user().emails[index].address);
             return true;
         }else{
             return false;
@@ -77,20 +78,74 @@ Meteor.methods({
         if(Meteor.user()) {
             //TODO: meteor add audit-argument-checks
             /*
-            check(userAttributes, {
-                "profile.firstName": String,
-                "profile.lastName": String,
-                "profile.biography": String,
-                "profile.skills": String
-            });
-            */
+             check(userAttributes, {
+             "profile.firstName": String,
+             "profile.lastName": String,
+             "profile.biography": String,
+             "profile.skills": String
+             });
+             */
             Meteor.users.update(Meteor.userId(), {$set: userAttributes}, function(error) {
                 if (error) {
                     return error;
                 }
             });
             return true;
-        }else{
+        } else {
+            return false;
+        }
+    },
+    "updateEmails": function(email) {
+        if(Meteor.user()) {
+            //TODO: meteor add audit-argument-checks
+            /*
+             check(email, {
+                 "emails.address": String,
+                 "emails.verified": Boolean
+             });
+             */
+            if (email) {
+                Accounts.addEmail(Meteor.userId(), email);
+            }
+            return true;
+        } else {
+            return false;
+        }
+    },
+    "removeEmails": function(email) {
+        if(Meteor.user()) {
+            //TODO: meteor add audit-argument-checks
+            /*
+             check(email, {
+             "emails.address": String,
+             "emails.verified": Boolean
+             });
+             */
+            if (email) {
+                Accounts.removeEmail(Meteor.userId(), email);
+            }
+            return true;
+        } else {
+            return false;
+        }
+    },
+    updatePhones: function(phone) {
+        if(Meteor.user()) {
+            // editable for current user only, meteor.user will suffice, make sure current phone added is only primary number
+            if (phone.primary) {
+                Meteor.users.update({_id:Meteor.userId(), "profile.phones.primary" : true}, {$set: {"profile.phones.$.primary" : false}}, function(error) {
+                    if (error) {
+                        return error;
+                    }
+                });
+            }
+            Meteor.users.update(Meteor.userId(), {$push: {"profile.phones":phone}}, function(error) {
+                if (error) {
+                    return error;
+                }
+            });
+            return true;
+        } else {
             return false;
         }
     },

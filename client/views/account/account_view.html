@@ -1,0 +1,125 @@
+<template name="accountView">
+    <div class="container">
+        {{#with profile}}
+            <div class="row"></div>
+            <div class="row">
+                <div class="col s2">
+                    <img src="/images/profile.jpg" alt="" class="circle responsive-img">
+                    <!-- notice the "circle" class -->
+                </div>
+                <div id="name" class="col s10 right">
+                    <div class="row">
+                        <div class="col s12">
+                            <h3>{{firstName}} {{lastName}}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <h5>Biography</h5>
+
+                    <p>{{biography}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <h5>Skills</h5>
+
+                    <p>{{skills}}</p>
+                </div>
+            </div>
+        {{/with}}
+        <h4>Contact Information</h4>
+
+        <div class="row">
+            <div class="col s12 m6">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Email</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each emails}}
+                        {{#if verified}}
+                            <tr>
+                                <td>{{address}}</td>
+                            </tr>
+                        {{/if}}
+                    {{/each}}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col s12 m6">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Phone</th>
+                        <th>Type</th>
+                        <th>Primary</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each profile.phones}}
+                        <tr>
+                            <td>{{number}}</td>
+                            <td>{{type}}</td>
+                            {{#if primary}}
+                                <td>
+                                    <input type="checkbox" id="phone-primary-{{@index}}" checked disabled/>
+                                    <label for="phone-primary-{{@index}}"></label>
+                                </td>
+                            {{/if}}
+                        </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {{#if currentUser}}<a href="{{pathFor 'AccountEdit'}}" class="btn waves-effect waves-light" type="submit">Edit<i
+                class="mdi-editor-mode-edit right"></i>
+        </a>
+            <button id="passchange" class="btn waves-effect waves-light modal-trigger" type="button"
+                    name="passchange">
+                Change Password<i class="mdi-action-lock right"></i>
+            </button>
+        {{/if}}
+        {{#if currentUser}}
+            <div id="passchange-modal" class="modal">
+                <div class="modal-content">
+                    <h4>Change Your Password</h4>
+
+                    <form id="passchange-form">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="curpassword" type="password">
+                                <label for="curpassword">Current Password</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="newpassword" type="password">
+                                <label for="newpassword">New Password</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="new2password" type="password">
+                                <label for="new2password">Confirm New Password</label>
+                            </div>
+                        </div>
+                        <button class="btn waves-effect waves-light" type="submit">Save<i
+                                class="mdi-content-send right"></i>
+                        </button>
+                        <button id="passchange-cancel" class="btn waves-effect waves-light" type="button">Cancel<i
+                                class="mdi-navigation-cancel right"></i>
+                        </button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        {{/if}}
+    </div>
+</template>
