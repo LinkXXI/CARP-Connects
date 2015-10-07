@@ -3,7 +3,7 @@ Template.accountEdit.rendered = function() {
 
 Template.accountEdit.helpers({
     "phoneType": function() {
-        return Constant.phoneType;
+        return Enumeration.phoneType;
     }
 });
 
@@ -19,7 +19,7 @@ Template.phone.helpers({
         if (this.primary) return "checked";
     },
     "phoneType": function() {
-        return Constant.phoneType;
+        return Enumeration.phoneType;
     }
 });
 
