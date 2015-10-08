@@ -1,9 +1,10 @@
 /**
  * Created by darkl on 9/9/2015.
  */
+Template.index.rendered = function () {
+};
 Template.index.helpers({
-    events: function(){
-        console.log(events.find().count());
-        return events.find().fetch();
+    "calendarEvents": function() {
+        return this.fetch();
     }
 });

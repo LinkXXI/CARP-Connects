@@ -50,5 +50,6 @@ Template.addVenueModal.events({
                 //$(this)[0].reset();
             }
         });
+        $('#add-venue-modal').closeModal();
     }
 });
