@@ -1,4 +1,6 @@
 Template.accountEdit.rendered = function() {
+    //TODO: update profile.phones/emails to use Meteor.user() session set here
+    //Session.set("user", Meteor.user());
 };
 
 Template.accountEdit.helpers({
@@ -65,6 +67,7 @@ Template.accountEdit.events({
         $('#add-phone-modal').openModal();
     },
     "click #a-remove-phone": function(e) {
+        //TODO: Optimization - update all dom manipulation to use session
         e.preventDefault();
         var i = $("[id^='phoneRow-']").length - 1;
         var $phoneRow = $("#phoneRow-" + i);
@@ -76,6 +79,7 @@ Template.accountEdit.events({
         }
     },
     "submit #acctmgmt-form": function (e) {
+        //TODO: Optimization - update all dom manipulation to use session
         e.preventDefault();
         var emails = [];
         $(e.target).find("[id^='emailRow-']").each(function() {

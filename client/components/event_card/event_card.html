@@ -3,7 +3,7 @@
         <div class="card-image">
            <!-- TODO: Add Google Map or image or something -->
             <span class="card-title right-align"></span></div>
-        <a href="{{pathFor "Event"}}/{{_id}}">
+        <a href="{{pathFor "EventView"}}" class="hyperlink-no-style">
         <div class="card-content">
             <h5>{{name}}</h5>
 
@@ -13,8 +13,8 @@
         </div>
         </a>
         <div class="card-action">
-            <a href="{{pathFor "Event"}}/{{_id}}/work">Work on Event</a>
-            <a href="{{pathFor "Event"}}/{{_id}}/publish">Publish Event</a>
+            <a href="{{pathFor "EventWork"}}">Work on Event</a>
+            <a href="{{pathFor "EventPublish"}}">Publish Event</a>
         </div>
     </div>
 </template>

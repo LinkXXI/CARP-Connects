@@ -44,7 +44,18 @@ Router.route('/account/:userId', {
     }
 });
 
-Router.route('/event/:_id', {
+Router.route('/calendar', {
+    name: "Calendar",
+    template: "calendar",
+    waitOn: function () {
+        Meteor.subscribe("Events")
+    },
+    data: function() {
+        return events.find().fetch();
+    }
+});
+
+Router.route('/events/:_id', {
     name: "EventView",
     template: "eventView",
     waitOn: function() {
@@ -54,7 +65,8 @@ Router.route('/event/:_id', {
         return events.findOne({_id:this.params._id});
     }
 });
-Router.route('/event/:_id/work', {
+
+Router.route('/events/:_id/work', {
     name: "EventWork",
     template: "eventWork",
     waitOn: function() {
@@ -64,7 +76,8 @@ Router.route('/event/:_id/work', {
         return events.findOne({_id:this.params._id});
     }
 });
-Router.route('/event/:_id/publish', {
+
+Router.route('/events/:_id/publish', {
     name: "EventPublish",
     template: "eventPublish",
     waitOn: function() {
@@ -75,7 +88,7 @@ Router.route('/event/:_id/publish', {
     }
 });
 
-Router.route('/event/create', {
+Router.route('/events/create', {
     name: "CreateEvent",
     template: "createEvent",
     waitOn: function () {

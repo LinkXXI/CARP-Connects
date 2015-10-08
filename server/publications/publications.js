@@ -15,11 +15,11 @@ Meteor.publish("AllUsers", function(){
 });
 Meteor.publish("OneUser", function (userId) {
     //TODO: meteor add audit-argument-checks
-    //check(postId, String);
+    //check(userId, String);
     return Meteor.users.find({_id: userId});
 });
 Meteor.publish("OneEvent", function (eventId) {
     //TODO: meteor add audit-argument-checks
-    //check(postId, String);
-    return event.find({_id: eventId});
+    //check(eventId, String);
+    return events.find({_id: eventId});
 });

@@ -9,7 +9,7 @@ Meteor.startup(function () {
                 "totalBudget": "2500.00",
                 "theme": "Health",
                 "status": "Complete",
-                "dateTime": "2015-04-15T04:00:00",
+                "dateTime": "2015-10-15T04:00:00",
                 "venue": {
                     "venueId": "7",
                     "name": "Radisson Hotel Toronto East",
@@ -36,7 +36,7 @@ Meteor.startup(function () {
                 "totalBudget": "2500.00",
                 "theme": "Community",
                 "status": "Complete",
-                "dateTime": "2015-04-20T04:00:00",
+                "dateTime": "2015-10-20T04:00:00",
                 "venue": {
                     "venueId": "6",
                     "name": "Holiday Inn Toronto East",
