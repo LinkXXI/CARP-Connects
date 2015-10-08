@@ -1,10 +1,16 @@
-Template.accountView.helpers({});
+Template.accountView.helpers({
+    "loggedIn": function() {
+        return Meteor.userId() === this._id;
+    }
+});
 
 Template.accountView.events({
-    "click #passchange": function () {
+    "click #passchange": function(e) {
+        e.preventDefault();
         $('#passchange-modal').openModal();
     },
-    "click #passchange-cancel": function () {
+    "click #passchange-cancel": function(e) {
+        e.preventDefault();
         $('#passchange-modal').closeModal();
     },
     "submit #passchange-form": function (e) {
