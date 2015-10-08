@@ -2,7 +2,7 @@ Router.route('/', {
     name: 'Index',
     template: 'index',
     waitOn: function () {
-        Meteor.subscribe("Events")
+        return Meteor.subscribe('Events');
     },
     data: function() {
         return events.find();
@@ -48,7 +48,7 @@ Router.route('/calendar', {
     name: "Calendar",
     template: "calendar",
     waitOn: function () {
-        Meteor.subscribe("Events")
+        return Meteor.subscribe('Events');
     },
     data: function() {
         return events.find().fetch();

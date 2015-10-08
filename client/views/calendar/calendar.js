@@ -1,13 +1,14 @@
 /**
  * Created by Benjamin on 10/7/2015.
  */
-
-Tracker.autorun(function(events){
+/*
+Tracker.autorun(function(){
     var eventsFetched = events.find().fetch();
     if (eventsFetched) {
         Session.set("eventsFetched", eventsFetched)
     }
 });
+*/
 
 function mapCalendarEvents(eventsArr) {
     var calendarEvents = [];
@@ -27,7 +28,7 @@ function mapCalendarEvents(eventsArr) {
                         start: task.dateTime,
                         //TODO: add task path url when tasks are implemented
                         //url: Router.routes.Task.path({_id:task._id}),
-                        color: "#99CCFF",
+                        color: "#99CC99",
                         allDay: false
                     });
                 });
@@ -38,24 +39,11 @@ function mapCalendarEvents(eventsArr) {
     return calendarEvents;
 }
 
-Template.calendar.rendered = function () {
- /*   console.log(events.find().fetch());
-    var calendarEvents = mapCalendarEvents(this.data);
-    var calendarDep = new Tracker.Dependency();
-    var getCalendarEvents = function() {
-        calendarDep.depend()
-        return calendarEvents;
-    }
-
-    $("#calendar").fullCalendar('addEventSource', getCalendarEvents());
-*/
-};
-
 Template.calendar.helpers({
     options: function () {
         return {
             id: "calendar",
-            events: mapCalendarEvents(Session.get("eventsFetched"))
+            events: mapCalendarEvents(this)
         };
     }
 });

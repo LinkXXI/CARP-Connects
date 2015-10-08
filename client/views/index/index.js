@@ -4,4 +4,7 @@
 Template.index.rendered = function () {
 };
 Template.index.helpers({
+    "calendarEvents": function() {
+        return this.fetch();
+    }
 });
