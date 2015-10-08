@@ -1,0 +1,31 @@
+<template name="taskReport">
+    <div class="row">
+        <h2>Task Report</h2>
+
+        <p>The data in this report is up to date as of: {{ formatDate timestamp }}</p>
+
+        {{> highchartsHelper chartId="taskReport" chartObject=taskReportChart}}
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">Detailed Report</div>
+            <div class="panel-body">
+                <p>
+                    Total Tasks: {{allTaskCount}}
+                </p>
+
+                <p>
+                    Tasks Not Started: {{notStartedTaskCount}}
+                </p>
+
+                <p>
+                    Tasks In Progress: {{inProgressTaskCount}}
+                </p>
+
+                <p>
+                    Completed Tasks: {{completeTaskCount}}
+                </p>
+            </div>
+        </div>
+
+    </div>
+</template>

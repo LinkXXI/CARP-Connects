@@ -70,6 +70,16 @@ Router.route('/reports/invite', {
     }
 });
 
+Router.route('/reports/task', {
+    name: "TaskReport",
+    template: "taskReport",
+    waitOn: function(){
+        return [
+            Meteor.subscribe("Events")
+        ]
+    }
+});
+
 Router.route('/incomplete', {
     name: "Incomplete",
     template: "incomplete",
