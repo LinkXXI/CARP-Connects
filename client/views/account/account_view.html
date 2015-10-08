@@ -15,20 +15,24 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col s12">
-                    <h5>Biography</h5>
+            {{#if biography}}
+                <div class="row">
+                    <div class="col s12">
+                        <h5>Biography</h5>
 
-                    <p>{{biography}}</p>
+                        <p>{{biography}}</p>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col s12">
-                    <h5>Skills</h5>
+            {{/if}}
+            {{#if skills}}
+                <div class="row">
+                    <div class="col s12">
+                        <h5>Skills</h5>
 
-                    <p>{{skills}}</p>
+                        <p>{{skills}}</p>
+                    </div>
                 </div>
-            </div>
+            {{/if}}
         {{/with}}
         <h4>Contact Information</h4>
 
@@ -51,41 +55,42 @@
                     </tbody>
                 </table>
             </div>
-            <div class="col s12 m6">
-                <table>
-                    <thead>
-                    <tr>
-                        <th>Phone</th>
-                        <th>Type</th>
-                        <th>Primary</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {{#each profile.phones}}
+            {{#if profile.phones}}
+                <div class="col s12 m6">
+                    <table>
+                        <thead>
                         <tr>
-                            <td>{{number}}</td>
-                            <td>{{type}}</td>
-                            {{#if primary}}
-                                <td>
-                                    <input type="checkbox" id="phone-primary-{{@index}}" checked disabled/>
-                                    <label for="phone-primary-{{@index}}"></label>
-                                </td>
-                            {{/if}}
+                            <th>Phone</th>
+                            <th>Type</th>
+                            <th>Primary</th>
                         </tr>
-                    {{/each}}
-                    </tbody>
-                </table>
-            </div>
+                        </thead>
+                        <tbody>
+                        {{#each profile.phones}}
+                            <tr>
+                                <td>{{number}}</td>
+                                <td>{{type}}</td>
+                                {{#if primary}}
+                                    <td>
+                                        <input type="checkbox" id="phone-primary-{{@index}}" checked disabled/>
+                                        <label for="phone-primary-{{@index}}"></label>
+                                    </td>
+                                {{/if}}
+                            </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            {{/if}}
         </div>
-        {{#if currentUser}}<a href="{{pathFor 'AccountEdit'}}" class="btn waves-effect waves-light" type="submit">Edit<i
-                class="mdi-editor-mode-edit right"></i>
-        </a>
+        {{#if loggedIn}}
+            <a href="{{pathFor 'AccountEdit'}}" class="btn waves-effect waves-light" type="submit">Edit<i
+                    class="mdi-editor-mode-edit right"></i>
+            </a>
             <button id="passchange" class="btn waves-effect waves-light modal-trigger" type="button"
                     name="passchange">
                 Change Password<i class="mdi-action-lock right"></i>
             </button>
-        {{/if}}
-        {{#if currentUser}}
             <div id="passchange-modal" class="modal">
                 <div class="modal-content">
                     <h4>Change Your Password</h4>

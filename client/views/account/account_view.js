@@ -1,4 +1,8 @@
-Template.accountView.helpers({});
+Template.accountView.helpers({
+    "loggedIn": function() {
+        return Meteor.userId() === this._id;
+    }
+});
 
 Template.accountView.events({
     "click #passchange": function(e) {
