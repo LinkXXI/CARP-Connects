@@ -91,7 +91,7 @@ Router.route('/events/:_id/publish', {
     }
 });
 
-Router.route('/events/create', {
+Router.route('/event/create', {
     name: "CreateEvent",
     template: "createEvent",
     waitOn: function () {
