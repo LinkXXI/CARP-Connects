@@ -46,7 +46,14 @@ Template.createEvent.events({
     "click #cancel-add-venue-button": function (e) {
         var modal = $('#add-venue-modal');
         modal.closeModal();
-        modal.find('form')[0].reset();
+        modal
+            .find("input,textarea,select")
+            .val('')
+            .end()
+            .find("input[type=checkbox], input[type=radio]")
+            .prop("checked", "")
+            .end();
+        //$(this)[0].reset();
     },
     "click #add-task-button": function (e) {
         $('#add-task-modal').openModal();
@@ -54,12 +61,18 @@ Template.createEvent.events({
     "click #cancel-add-task-button": function (e) {
         var modal = $('#add-task-modal');
         modal.closeModal();
-        modal.find('form')[0].reset();
+        modal
+            .find("input,textarea,select")
+            .val('')
+            .end()
+            .find("input[type=checkbox], input[type=radio]")
+            .prop("checked", "")
+            .end();
+        //$(this)[0].reset();
     },
     "submit #create-event-form": function (e) {
         e.preventDefault();
         var tasks = Session.get('tasks') != undefined ? Session.get('tasks'): new Array();
-        delete Session.keys['foo'];
         var event = {
             name: $(e.target).find('#event-name').val(),
             dateTime: $(e.target).find('#datetime').val(),
@@ -69,6 +82,7 @@ Template.createEvent.events({
             venue: $(e.target).find('#venue').val(),
             tasks: tasks
         };
+        delete Session.keys['tasks'];
         Meteor.call('eventInsert', event, function (error, result) {
             // display the error to the user and abort
             if (error)

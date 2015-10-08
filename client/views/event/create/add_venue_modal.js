@@ -40,7 +40,14 @@ Template.addVenueModal.events({
             else {
                 var modal = $('#add-venue-modal');
                 modal.closeModal();
-                modal.find('form')[0].reset();
+                modal
+                    .find("input,textarea,select")
+                    .val('')
+                    .end()
+                    .find("input[type=checkbox], input[type=radio]")
+                    .prop("checked", "")
+                    .end();
+                //$(this)[0].reset();
             }
         });
     }
