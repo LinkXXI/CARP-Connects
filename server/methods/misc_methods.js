@@ -14,7 +14,8 @@ Meteor.methods({
                 $push: {
                     validFor: {
                         $each: validFor
-                    }
+                    },
+                    validFor: "Any"
                 }
             });
     }

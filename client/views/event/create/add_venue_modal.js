@@ -2,8 +2,19 @@
  * Created by Sergio on 10/4/2015.
  */
 Template.addVenueModal.events({
+    "click #cancel-add-venue-button": function (e) {
+        var modal = $('#add-venue-modal');
+        modal.closeModal();
+        modal
+            .find("input,textarea,select")
+            .val('')
+            .end()
+            .find("input[type=checkbox], input[type=radio]")
+            .prop("checked", "")
+            .end();
+        //$(this)[0].reset();
+    },
     "submit #add-venue-form": function (e) {
-
         e.preventDefault();
         var address = {
             line1: $(e.target).find('#venue-address-line1').val(),
@@ -27,9 +38,10 @@ Template.addVenueModal.events({
                 return throwError(error.reason);
             // show this result but route anyway
             else {
-                $('#add-venue-modal').closeModal();
+                var modal = $('#add-venue-modal');
+                modal.closeModal();
+                modal.find('form')[0].reset();
             }
         });
-
     }
 });

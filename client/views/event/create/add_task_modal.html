@@ -5,15 +5,13 @@
                 <h2 class="center">Add Task</h2>
 
                 <div class="row">
-                    <div class="input-field col s12">
+                    <div class="input-field col s6">
                         <input id="task-name" type="text" class="validate">
                         <label for="task-name">Task Name</label>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s6 m3">
-                        <input type="date" id="due-date" class="datepicker">
-                        <label for="due-date">Due Date</label>
+                    <div class="input-field col s6">
+                        <input type="text" class="validate" id="task-datetime" required>
+                        <label for="task-datetime">Due Date/Time</label>
                     </div>
                 </div>
                 <div class="row">
@@ -22,7 +20,7 @@
                         <label for="task-description">Description<i class="mdi-editor-mode-edit right"></i></label>
                     </div>
                 </div>
-                <div class="row">
+<!--                <div class="row">
                     <div class="col s12 m6">
                         <label>Task Type</label>
                         <select class="browser-default" id="task-type">
@@ -41,8 +39,8 @@
                             <option value="1">Harry's Food Service</option>
                             <option value="2">Express Delivery Service</option>
                         </select>
-                    </div>
-                    <div class="input-field col s4">
+                    </div>-->
+<!--                    <div class="input-field col s4">
                         <a href="addvendor.html"
                            class="btn-floating tooltipped"
                            data-position="bottom"
@@ -51,22 +49,30 @@
                             <i class="mdi-content-add"></i>
                         </a>
                     </div>
-                </div>
+                </div>-->
                 <div class="row">
                     <div class="range-field col s12">
                         <label for="task-budget">Task Budget ($)</label>
-                        <input type="range" id="task-budget" value="0" min="0" max="750"/>
+                        <input type="rangeslide" class="validate" id="task-budget">
                     </div>
                 </div>
-                <div class="row" style="margin-bottom: 0;">
-                    <div class="col s8">
-                        <label>Assign to</label>
-                        <select class="browser-default" id="assignedTo">
-                            <option value="" disabled selected>Select Volunteer</option>
-                            <option value="1">Aaron Beehoo</option>
-                            <option value="2">Kevin Lee</option>
-                            <option value="3">Sergio Parracho</option>
-                            <option value="4">Benjamin Krissilas</option>
+                <div class="row">
+                    <div class="col s6">
+                        <label for="task-assigned-to">Assign to</label>
+                        <select class="browser-default" id="task-assigned-to" required>
+                            <option value="" disabled selected>Choose an assignee</option>
+                            {{#each users}}
+                                <option value="{{this._id}}">{{this.profile.firstName}} {{this.profile.lastName}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="col s6">
+                        <label for="task-status">Task Status</label>
+                        <select class="validate browser-default" id="task-status" required>
+                            <option value="" disabled selected>Choose an option</option>
+                            {{#each taskStatus}}
+                                <option value="{{this}}">{{this}}</option>
+                            {{/each}}
                         </select>
                     </div>
                 </div>

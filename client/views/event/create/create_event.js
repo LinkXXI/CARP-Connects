@@ -8,7 +8,9 @@ Template.createEvent.rendered = function () {
         type: "single",
         min: 0,
         max: 5000,
-        grid: true
+        grid: true,
+        prefix: "$",
+        step: 25
     });
 
     $("#event-budget").change(function () {
@@ -28,6 +30,12 @@ Template.createEvent.helpers({
         } else {
             return ''
         }
+    },
+    "venues": function() {
+        return venues.find({}, {sort: {name: 1}});
+    },
+    "tasks": function () {
+        return Session.get('tasks');
     }
 });
 
@@ -39,7 +47,6 @@ Template.createEvent.events({
         var modal = $('#add-venue-modal');
         modal.closeModal();
         modal.find('form')[0].reset();
-        newVenuesDep.changed();
     },
     "click #add-task-button": function (e) {
         $('#add-task-modal').openModal();
@@ -48,17 +55,19 @@ Template.createEvent.events({
         var modal = $('#add-task-modal');
         modal.closeModal();
         modal.find('form')[0].reset();
-        newVenuesDep.changed();
     },
     "submit #create-event-form": function (e) {
         e.preventDefault();
+        var tasks = Session.get('tasks') != undefined ? Session.get('tasks'): new Array();
+        delete Session.keys['foo'];
         var event = {
             name: $(e.target).find('#event-name').val(),
             dateTime: $(e.target).find('#datetime').val(),
             description: $(e.target).find('#description').val(),
             totalBudget: $(e.target).find('#event-budget').val(),
             theme: $(e.target).find('#theme option:selected').text(),
-            venue: $(e.target).find('#venue').val()
+            venue: $(e.target).find('#venue').val(),
+            tasks: tasks
         };
         Meteor.call('eventInsert', event, function (error, result) {
             // display the error to the user and abort
@@ -70,10 +79,6 @@ Template.createEvent.events({
     }
 });
 
-var newVenuesDep = new Tracker.Dependency();
-Template.createEvent.venues = function() {
-    newVenuesDep.depend();
-    return venues.find({}, {sort:{name:1}});
-}
+
 
 

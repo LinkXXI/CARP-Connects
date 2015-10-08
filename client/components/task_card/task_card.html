@@ -1,0 +1,34 @@
+<template name="taskCard">
+    <div class="row">
+        <div class="card-panel {{getStatus}} col s10">
+            <div class="col s7">
+                <h5>{{name}}</h5>
+                <span>{{description}}</span>
+            </div>
+            <div class="col s4">
+                <ul class="left-align">
+                    <li><b>Budget: </b>{{formatCurrency budget}}</li>
+                    <li><b>Due: </b>{{dateTime}}</li>
+                    <li><b>Status: </b>{{status}}</li>
+                </ul>
+            </div>
+
+            <!--            <div class="col s1 right-align" style="padding-left:0.75rem;padding-right:0;">
+                            <a class="btn-flat tooltipped"
+                               data-position="bottom"
+                               style="padding:0;margin:0;"
+                               data-delay="50"
+                               data-tooltip="Delete Task">
+                                <i class="mdi-content-clear"></i>
+                            </a>
+                            <br>
+                            <a href="worktask.html?eventId=5&amp;taskId=1"
+                               class="btn-flat tooltipped" style="padding:0;margin:0;"
+                               data-position="bottom" data-delay="50"
+                               data-tooltip="Edit Task">
+                                <i class="mdi-editor-mode-edit"></i>
+                            </a>
+                        </div>-->
+        </div>
+    </div>
+</template>

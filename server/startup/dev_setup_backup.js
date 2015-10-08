@@ -12,7 +12,6 @@
 //                "dateTime": "2015-04-15T04:00:00",
 //                "tasks": [
 //                    {
-//                        "taskId": "1",
 //                        "name": "Hire Caterer",
 //                        "description": "Hire a caterer for 50-75 people",
 //                        "notes": "In talks with caterer, waiting on an estimate",
@@ -24,7 +23,6 @@
 //                        "status": "Complete"
 //                    },
 //                    {
-//                        "taskId": "2",
 //                        "name": "Book Venue for Event",
 //                        "description": "Approximately 100 guests are attending, please book a hall to accommodate this in the Oakville area.",
 //                        "userIdAssignedTo": "1",
@@ -35,7 +33,6 @@
 //                        "status": "In Progress"
 //                    },
 //                    {
-//                        "taskId": "3",
 //                        "name": "Hire a Guest Speaker",
 //                        "description": "A Subject Matter Expert (SME) is required in the field of financial planning.",
 //                        "userIdAssignedTo": "1",
@@ -75,7 +72,6 @@
 //                "dateTime": "2015-04-20T04:00:00",
 //                "tasks": [
 //                    {
-//                        "taskId": "1",
 //                        "name": "Hire Caterer",
 //                        "description": "Hire a caterer for 50-75 people",
 //                        "notes": "In talks with caterer, waiting on an estimate",
