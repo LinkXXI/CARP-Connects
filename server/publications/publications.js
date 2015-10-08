@@ -6,10 +6,6 @@ Meteor.publish("Venues", function () {
     return venues.find({});
 });
 
-Meteor.publish("Addresses", function () {
-    return addresses.find({});
-});
-
 Meteor.publish("Invitations", function(){
    return invitations.find();
 });

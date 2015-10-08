@@ -3,8 +3,8 @@
     "_id": "Meteor Generated",
     "name": "string - Name of the venue",
     "description": "string - description",
-    "parkingAvailability": "bool",
-    "publicTransportationAccess": "bool",
+    "hasParkingAvailability": "bool",
+    "hasPublicTransportationAccess": "bool",
     "address": {
         "line1": "string - street number and street",
         "line2": "string - apt or unit number",
