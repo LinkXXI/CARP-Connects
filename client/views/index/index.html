@@ -1,5 +1,12 @@
 <template name="index">
-    {{#each events}}
-        {{>eventCard}}
-    {{/each}}
+    <div class="row">
+        <div class="col s12 m7 l8" id="card-content">
+            {{#each this}}
+                {{>eventCard}}
+            {{/each}}
+        </div>
+        <div class="col s12 m5 l4">
+            {{> calendar}}
+        </div>
+    </div>
 </template>

@@ -3,6 +3,9 @@ Router.route('/', {
     template: 'index',
     waitOn: function () {
         Meteor.subscribe("Events")
+    },
+    data: function() {
+        return events.find();
     }
 });
 
@@ -38,6 +41,37 @@ Router.route('/account/:userId', {
     },
     data: function() {
         return Meteor.users.findOne({_id:this.params.userId});
+    }
+});
+
+Router.route('/event/:_id', {
+    name: "EventView",
+    template: "eventView",
+    waitOn: function() {
+        return Meteor.subscribe('OneEvent', this.params._id);
+    },
+    data: function() {
+        return events.findOne({_id:this.params._id});
+    }
+});
+Router.route('/event/:_id/work', {
+    name: "EventWork",
+    template: "eventWork",
+    waitOn: function() {
+        return Meteor.subscribe('OneEvent', this.params._id);
+    },
+    data: function() {
+        return events.findOne({_id:this.params._id});
+    }
+});
+Router.route('/event/:_id/publish', {
+    name: "EventPublish",
+    template: "eventPublish",
+    waitOn: function() {
+        return Meteor.subscribe('OneEvent', this.params._id);
+    },
+    data: function() {
+        return events.findOne({_id:this.params._id});
     }
 });
 

@@ -3,6 +3,7 @@
  */
 Template.addVenueModal.events({
     "submit #add-venue-form": function (e) {
+
         e.preventDefault();
         var address = {
             line1: $(e.target).find('#venue-address-line1').val(),
@@ -16,8 +17,8 @@ Template.addVenueModal.events({
         var venue = {
             name: $(e.target).find('#venue-name').val(),
             description: $(e.target).find('#venue-description').val(),
-            parkingAvailability: $(e.target).find('input:radio[name=parking-availability]:checked').val(),
-            publicTransportationAccess: $(e.target).find('input:radio[name=public-transportation-access]:checked').val(),
+            hasParkingAvailability: $(e.target).find('input:radio[name=parking-availability]:checked').val(),
+            hasPublicTransportationAccess: $(e.target).find('input:radio[name=public-transportation-access]:checked').val(),
             address: address
         };
         Meteor.call('venueInsert', venue, function (error, result) {
@@ -25,7 +26,10 @@ Template.addVenueModal.events({
             if (error)
                 return throwError(error.reason);
             // show this result but route anyway
+            else {
+                $('#add-venue-modal').closeModal();
+            }
         });
-        $('#add-venue-modal').closeModal();
+
     }
 });

@@ -6,10 +6,6 @@ Meteor.publish("Venues", function () {
     return venues.find({});
 });
 
-Meteor.publish("Addresses", function () {
-    return addresses.find({});
-});
-
 Meteor.publish("Invitations", function(){
    return invitations.find();
 });
@@ -21,4 +17,9 @@ Meteor.publish("OneUser", function (userId) {
     //TODO: meteor add audit-argument-checks
     //check(postId, String);
     return Meteor.users.find({_id: userId});
+});
+Meteor.publish("OneEvent", function (eventId) {
+    //TODO: meteor add audit-argument-checks
+    //check(postId, String);
+    return event.find({_id: eventId});
 });

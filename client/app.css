@@ -94,3 +94,10 @@ ul.side-nav.fixed li.logo:hover {
 .clear:after {
     clear: both;
 }
+
+.header {
+    font-size: 2.5em;
+    font-face: bold;
+    margin: 0;
+    padding: 0;
+}

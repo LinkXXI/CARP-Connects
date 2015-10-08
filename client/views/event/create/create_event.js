@@ -2,8 +2,6 @@
  * Created by Sergio on 10/3/2015.
  */
 Template.createEvent.rendered = function () {
-    $('select').material_select();
-
     $('#datetime').datetimepicker();
 
     $('#event-budget').ionRangeSlider({
@@ -24,7 +22,7 @@ Template.createEvent.helpers({
     "eventTheme": function () {
         return Enumeration.eventThemes;
     },
-    "isEventThemeSelected": function (option, value) {
+    "isOptionSelected": function (option, value) {
         if (option === value) {
             return 'selected';
         } else {
@@ -38,13 +36,19 @@ Template.createEvent.events({
         $('#add-venue-modal').openModal();
     },
     "click #cancel-add-venue-button": function (e) {
-        $('#add-venue-modal').closeModal();
+        var modal = $('#add-venue-modal');
+        modal.closeModal();
+        modal.find('form')[0].reset();
+        newVenuesDep.changed();
     },
     "click #add-task-button": function (e) {
         $('#add-task-modal').openModal();
     },
     "click #cancel-add-task-button": function (e) {
-        $('#add-task-modal').closeModal();
+        var modal = $('#add-task-modal');
+        modal.closeModal();
+        modal.find('form')[0].reset();
+        newVenuesDep.changed();
     },
     "submit #create-event-form": function (e) {
         e.preventDefault();
@@ -65,5 +69,11 @@ Template.createEvent.events({
         });
     }
 });
+
+var newVenuesDep = new Tracker.Dependency();
+Template.createEvent.venues = function() {
+    newVenuesDep.depend();
+    return venues.find({}, {sort:{name:1}});
+}
 
 

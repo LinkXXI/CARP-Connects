@@ -1,6 +1,6 @@
 <template name="addTaskModal">
     <form id="add-task-form">
-        <div id="add-task-modal" class="modal">
+        <div id="add-task-modal" class="modal modal-fixed-footer">
             <div class="modal-content">
                 <h2 class="center">Add Task</h2>
 
@@ -23,23 +23,24 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s12 m6">
-                        <select id="task-type">
+                    <div class="col s12 m6">
+                        <label>Task Type</label>
+                        <select class="browser-default" id="task-type">
                             <option value="" disabled selected>Please choose a task type</option>
                             <option value="1">Vendor</option>
                             <option value="2">Custom</option>
                         </select>
-                        <label>Task Type</label>
+
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s8">
-                        <select id="vendor-name">
+                    <div class="col s8">
+                        <label>Vendor Name</label>
+                        <select class="browser-default" id="vendor-name">
                             <option value="" disabled selected>Please choose a vendor</option>
                             <option value="1">Harry's Food Service</option>
                             <option value="2">Express Delivery Service</option>
                         </select>
-                        <label>Vendor Name</label>
                     </div>
                     <div class="input-field col s4">
                         <a href="addvendor.html"
@@ -58,26 +59,26 @@
                     </div>
                 </div>
                 <div class="row" style="margin-bottom: 0;">
-                    <div class="input-field col s8">
-                        <select id="assignedTo">
+                    <div class="col s8">
+                        <label>Assign to</label>
+                        <select class="browser-default" id="assignedTo">
                             <option value="" disabled selected>Select Volunteer</option>
                             <option value="1">Aaron Beehoo</option>
                             <option value="2">Kevin Lee</option>
                             <option value="3">Sergio Parracho</option>
                             <option value="4">Benjamin Krissilas</option>
                         </select>
-                        <label>Assign to</label>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <div class="row col s12">
-                    <div class="input-field col s6 center">
+                    <div class="col s6 center">
                         <button id="submit-add-task-button" class="waves-effect waves-light btn" type="submit">
                             <i class="mdi-content-send right"></i>Add Task
                         </button>
                     </div>
-                    <div class="input-field col s6 center">
+                    <div class="col s6 center">
                         <a id="cancel-add-task-button" class="waves-effect waves-light btn" type="button">
                             <i class="mdi-navigation-cancel right"></i>Cancel
                         </a>
