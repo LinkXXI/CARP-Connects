@@ -1,7 +1,7 @@
 /**
  * Created by Sergio on 10/3/2015.
  */
-Template.createEvent.rendered = function () {
+Template.eventCreate.rendered = function () {
     $('#datetime').datetimepicker();
 
     $('#event-budget').ionRangeSlider({
@@ -20,7 +20,7 @@ Template.createEvent.rendered = function () {
     $('.tooltipped').tooltip({delay: 50});
 };
 
-Template.createEvent.helpers({
+Template.eventCreate.helpers({
     "eventTheme": function () {
         return Enumeration.eventThemes;
     },
@@ -39,21 +39,14 @@ Template.createEvent.helpers({
     }
 });
 
-Template.createEvent.events({
+Template.eventCreate.events({
     "click #add-venue-button": function (e) {
         $('#add-venue-modal').openModal();
     },
     "click #cancel-add-venue-button": function (e) {
         var modal = $('#add-venue-modal');
         modal.closeModal();
-        modal
-            .find("input,textarea,select")
-            .val('')
-            .end()
-            .find("input[type=checkbox], input[type=radio]")
-            .prop("checked", "")
-            .end();
-        //$(this)[0].reset();
+        modal.find('form')[0].reset();
     },
     "click #add-task-button": function (e) {
         $('#add-task-modal').openModal();
@@ -61,14 +54,7 @@ Template.createEvent.events({
     "click #cancel-add-task-button": function (e) {
         var modal = $('#add-task-modal');
         modal.closeModal();
-        modal
-            .find("input,textarea,select")
-            .val('')
-            .end()
-            .find("input[type=checkbox], input[type=radio]")
-            .prop("checked", "")
-            .end();
-        //$(this)[0].reset();
+        modal.find('form')[0].reset();
     },
     "submit #create-event-form": function (e) {
         e.preventDefault();

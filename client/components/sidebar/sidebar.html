@@ -10,14 +10,14 @@
         <li class="{{isActive "Account"}}"><a href="{{pathFor 'Account'}}">Account Management</a></li>
         <li class="{{isActive "Calendar"}}"><a href="{{pathFor 'Calendar'}}">Calendar</a></li>
         <li class="divider"></li>
-        <li class="{{isActive "CreateEvent"}}"><a href="{{pathFor 'CreateEvent'}}">Create New Event</a></li>
+        <li class="{{isActive "EventCreate"}}"><a href="{{pathFor 'EventCreate'}}">Create New Event</a></li>
         <li class="{{isActive "PastEvents"}}"><a href="pastevents.html">View Past Events</a></li>
         <li class="divider"></li>
         <li><a href="" id="logout">Log Out</a></li>
         <li class="divider"></li>
         <li class="logo teal-text darken-4">Administration</li>
-        <li class="{{isActive "Invitations"}}"><a href="/invitations">Invitations</a></li>
+        <li class="{{isActive "Invitations"}}"><a href="{{pathFor 'Invitations'}}">Invitations</a></li>
         <li class="{{isActive "Reports"}}"><a href="{{pathFor 'Reports'}}">Reports</a></li>
-        <li class="{{isActive "UserManagement"}}"><a href="/users">User Management</a></li>
+        <li class="{{isActive "UserManagement"}}"><a href="{{pathFor 'UserManagement'}}">User Management</a></li>
     </ul>
 </template>
