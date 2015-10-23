@@ -92,8 +92,8 @@ Router.route('/events/:_id/publish', {
 });
 
 Router.route('/event/create', {
-    name: "CreateEvent",
-    template: "createEvent",
+    name: "EventCreate",
+    template: "eventCreate",
     waitOn: function () {
         return [
             Meteor.subscribe("Events"),

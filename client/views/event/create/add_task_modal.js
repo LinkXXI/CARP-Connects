@@ -18,14 +18,7 @@ Template.addTaskModal.events({
     "click #cancel-add-task-button": function (e) {
         var modal = $('#add-task-modal');
         modal.closeModal();
-        modal
-            .find("input,textarea,select")
-            .val('')
-            .end()
-            .find("input[type=checkbox], input[type=radio]")
-            .prop("checked", "")
-            .end();
-        //$(this)[0].reset();
+        modal.find('form')[0].reset();
     },
     "submit #add-task-form": function (e) {
         e.preventDefault();
@@ -42,14 +35,7 @@ Template.addTaskModal.events({
         Session.set('tasks', tasks);
         var modal = $('#add-task-modal');
         modal.closeModal();
-        modal
-            .find("input,textarea,select")
-            .val('')
-            .end()
-            .find("input[type=checkbox], input[type=radio]")
-            .prop("checked", "")
-            .end();
-        //$(this)[0].reset();
+        modal.find('form')[0].reset();
     }
 });
 
