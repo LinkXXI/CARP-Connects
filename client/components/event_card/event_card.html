@@ -1,19 +1,24 @@
 <template name="eventCard">
     <div class="card">
         <div class="card-image">
-            <!--<iframe {{mapAttributes}}></iframe>-->
-           <!-- TODO: Add Google Map or image or something -->
-            <span class="card-title right-align"></span></div>
-        <a href="{{pathFor "EventView"}}" class="hyperlink-no-style">
-        <div class="card-content">
-            <h5>{{name}}</h5>
-
-            <p>Date: {{formatDate dateTime}}</p>
-
-            <!-- TODO: Find out how to link the venue and insert the name here -->
-            <p>Description: {{description}}</p>
+            <iframe {{mapAttributes}}></iframe>
+            <!-- TODO: Add Google Map or image or something -->
+            <span class="card-title right-align"></span>
         </div>
+        <a href="{{pathFor "EventView"}}" class="hyperlink-no-style">
+            <div class="card-content">
+                <h5>{{name}}</h5>
+
+                <p><b>Date:</b> {{formatDate dateTime}}</p>
+
+                <p><b>Location:</b> {{venue.name}}, {{venue.address.city}}, {{venue.address.provinceState}}</p>
+
+                <!-- TODO: Find out how to link the venue and insert the name here -->
+                <p><b>Description:</b> {{description}}</p>
+
+            </div>
         </a>
+
         <div class="card-action">
             <a href="{{pathFor "EventWork"}}">Work on Event</a>
             <a href="{{pathFor "EventPublish"}}">Publish Event</a>

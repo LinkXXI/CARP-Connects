@@ -12,5 +12,8 @@ Template.eventCard.helpers({
             encodeURIComponent(venue.address.country.trim()) +
             "'&key=AIzaSyDez5ZF6K_UOr8izzd4PkXyWpAzG1dwTJQ"
         }
+    },
+    venue: function () {
+        return venues.findOne({_id: this.venue});
     }
 });
