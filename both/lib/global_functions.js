@@ -4,3 +4,7 @@
 formatDateShort = function(date){
     return moment(date).format('MMM Do YYYY, h:mm a');
 };
+
+formatCurrency = function(amount){
+    return "$" + parseFloat(amount).toFixed(2);
+};

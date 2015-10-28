@@ -9,7 +9,7 @@ Template.eventViewAll.helpers({
     allEvents: function () {
         return events.find({});
     },
-    tableSettings: function (allEvents) {
+    tableSettings: function () {
         return {
             rowsPerPage: 10,
             filters: ['filterStatus'],
@@ -33,14 +33,18 @@ Template.eventViewAll.helpers({
                 {
                     key: 'dateTime',
                     label: 'Date',
-                    fn: function (value) {
+                    fn: function (date) {
                         // this is a call to a global function in /both/lib/global_functions.js
-                        return formatDateShort(value);
+                        return formatDateShort(date);
                     }
                 },
                 {
                     key: 'totalBudget',
-                    label: 'Budget'
+                    label: 'Budget',
+                    fn: function (amount) {
+                        // this is a call to a global function in /both/lib/global_functions.js
+                        return formatCurrency(amount);
+                    }
                 },
 /*                {
                     key: 'owner',
