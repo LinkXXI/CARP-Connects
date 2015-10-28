@@ -1,4 +1,11 @@
 /* separated to figure out the spacing */
+#filter {
+    padding: 0;
+    margin: 0;
+    position: relative;
+    top: -75px;
+}
+
 #filter-status-form {
     border: 1px solid grey;
     padding: 0;

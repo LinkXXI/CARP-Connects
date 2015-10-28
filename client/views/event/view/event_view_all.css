@@ -1,2 +1,17 @@
+#event-table {
+    position: relative;
+}
+
 .reactive-table {
+    padding: 0;
+    margin: 0;
+    position: relative;
+    top: -65px;
+}
+
+.reactive-table-navigation {
+    padding: 0;
+    margin: 0;
+    position: relative;
+    top: -65px;
 }

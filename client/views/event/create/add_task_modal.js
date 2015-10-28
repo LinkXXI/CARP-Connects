@@ -4,14 +4,14 @@
 Template.addTaskModal.rendered = function () {
     $('#task-datetime').datetimepicker();
 
-    $('#task-budget').ionRangeSlider({
+/*    $('#task-budget').ionRangeSlider({
         type: "single",
         min: 0,
         max: 750,
         grid: true,
         prefix: "$",
         step: 10
-    });
+    });*/
 };
 
 Template.addTaskModal.events({

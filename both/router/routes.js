@@ -73,10 +73,7 @@ Router.route('/events', {
     name: 'EventViewAll',
     template: 'eventViewAll',
     waitOn: function () {
-        return [
-            Meteor.subscribe('Events'),
-            Meteor.subscribe('Venues')
-        ]
+        return Meteor.subscribe('Events');
     },
     data: function () {
     events.find();

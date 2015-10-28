@@ -4,14 +4,14 @@
 Template.eventCreate.rendered = function () {
     $('#datetime').datetimepicker();
 
-    $('#event-budget').ionRangeSlider({
+/*    $('#event-budget').ionRangeSlider({
         type: "single",
         min: 0,
         max: 5000,
         grid: true,
         prefix: "$",
         step: 25
-    });
+    });*/
 
     $("#event-budget").change(function () {
         $("#budget-total").html($("#event-budget").val());
