@@ -1,0 +1,21 @@
+/* separated to figure out the spacing */
+#filter-status-form {
+    border: 1px solid grey;
+    padding: 0;
+    margin: 0;
+}
+
+#filter-status-form .row {
+    padding: 0;
+    margin: 0;
+}
+
+#filter-status-form .row .input-field {
+    padding: 0;
+    margin: 0;
+}
+
+#filter-status-form .row .input-field input {
+    padding: 0;
+    margin: 0;
+}

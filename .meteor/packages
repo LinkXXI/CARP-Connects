@@ -27,3 +27,4 @@ materialize:materialize@=0.97.0
 maazalik:highcharts
 drewy:datetimepicker
 postrednik:meteor-rangeslider
+aslagle:reactive-table

@@ -1,0 +1,9 @@
+<template name="eventViewAll">
+
+    <h2>View Events</h2>
+
+    {{> filterStatus}}
+
+    {{> reactiveTable collection=allEvents settings=tableSettings}}
+
+</template>
