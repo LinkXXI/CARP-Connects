@@ -1,12 +1,17 @@
 /**
  * Created by Sergio on 10/27/2015.
  */
+Template.filterStatus.rendered = function () {
+    // needed to active tool tips after reactive table re-initializes
+    $('.tooltipped').tooltip({delay: 50});
+};
+
 Template.filterStatus.created = function() {
     this.filter = new ReactiveTable.Filter('filterStatus', ['status']);
 };
 
 Template.filterStatus.events({
-    "change" : function(event, template) {
+    'change input' : function(event, template) {
         var radioText = $('input:checked').next().text().toLowerCase();
         //console.log(radioText);
         if(radioText != 'all'){
@@ -14,5 +19,9 @@ Template.filterStatus.events({
         } else {
             template.filter.set("");
         }
+        // needed to active tool tips after reactive table re-initializes
+        Meteor.setTimeout(function() {
+            $('.tooltipped').tooltip({delay: 50})
+        }, 200);
     }
 });

@@ -1,9 +1,24 @@
 /**
  * Created by Sergio on 10/27/2015.
  */
-Template.eventViewAll.rendered = function () {
-    $('.tooltipped').tooltip({delay: 50});
-};
+Template.eventViewAll.events({
+    // needed to active tool tips after reactive table re-initializes
+    'change .form-control': function () {
+        Meteor.setTimeout(function() {
+            $('.tooltipped').tooltip({delay: 50})
+        }, 200);
+    },
+    'click table': function () {
+        Meteor.setTimeout(function() {
+            $('.tooltipped').tooltip({delay: 50})
+        }, 200);
+    },
+    'click .reactive-table-navigation': function () {
+        Meteor.setTimeout(function() {
+            $('.tooltipped').tooltip({delay: 50})
+        }, 200);
+    }
+});
 
 Template.eventViewAll.helpers({
     allEvents: function () {
@@ -46,22 +61,22 @@ Template.eventViewAll.helpers({
                         return formatCurrency(amount);
                     }
                 },
-/*                {
-                    key: 'owner',
-                    label: 'Owner',
-                    fn: function (value) {
-                        route = Router.routes.AccountById.path({userId: value});
-                        return new Spacebars.SafeString('<a href="' + route + '">' + value + '</a>');
-                    }
-                },*/
+                /*                {
+                 key: 'owner',
+                 label: 'Owner',
+                 fn: function (value) {
+                 route = Router.routes.AccountById.path({userId: value});
+                 return new Spacebars.SafeString('<a href="' + route + '">' + value + '</a>');
+                 }
+                 },*/
                 {
                     key: 'description',
                     label: 'Description'
                 },
-/*                {
-                    key: 'theme',
-                    label: 'Theme'
-                },*/
+                /*                {
+                 key: 'theme',
+                 label: 'Theme'
+                 },*/
                 {
                     key: 'status',
                     label: 'Status'

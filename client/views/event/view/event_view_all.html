@@ -3,9 +3,8 @@
     <h2>View Events</h2>
 
     <div id="event-table">
-    {{> filterStatus}}
-
-    {{> reactiveTable collection=allEvents settings=tableSettings class="table bordered striped highlight responsive-table"}}
+        {{> filterStatus}}
+        {{> reactiveTable collection=allEvents settings=tableSettings class="table bordered striped highlight responsive-table"}}
     </div>
 
 </template>
