@@ -41,7 +41,7 @@ Template.eventCreate.helpers({
 
 Template.eventCreate.events({
     "click #add-venue-button": function (e) {
-        $('#add-venue-modal').openModal();
+        $('#add-vendor-modal').openModal();
     },
     "click #cancel-add-venue-button": function (e) {
         var modal = $('#add-venue-modal');
@@ -49,6 +49,8 @@ Template.eventCreate.events({
         modal.find('form')[0].reset();
     },
     "click #add-task-button": function (e) {
+        // reset so the vendor input box doesn't display
+        Session.set('isVendorTask', false);
         $('#add-task-modal').openModal();
     },
     "click #cancel-add-task-button": function (e) {

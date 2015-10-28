@@ -1,5 +1,39 @@
 Meteor.startup(function () {
     if (process.env.NODE_ENV === "development") {
+        if (vendors.find().count() == 0) {
+            vendors.insert({
+                "_id": "1",
+                "name": "John's Food Service",
+                "contactPerson": "John Smith",
+                "contactNumber": "416-967-1111",
+                "contactEmail": "john@johnsfoodservice.ca",
+                "address": {
+                    "line1": "111 Yonge St.",
+                    "line2": "Apt. 2511",
+                    "line3": "",
+                    "city": "Toronto",
+                    "provinceState": "Ontario",
+                    "country": "Canada",
+                    "postalZipCode": "M2M 3L7"
+                }
+            });
+            vendors.insert({
+                "_id": "2",
+                "name": "Staples Canada",
+                "contactPerson": "Liz Doe",
+                "contactNumber": "416-555-1234",
+                "contactEmail": "liz.doe@staples.ca",
+                "address": {
+                    "line1": "2500 Hurontario St.",
+                    "line2": "Unit 14",
+                    "line3": "",
+                    "city": "Mississauga",
+                    "provinceState": "Ontario",
+                    "country": "Canada",
+                    "postalZipCode": "L2M 3L7"
+                }
+            });
+        }
         if (venues.find().count() == 0) {
             venues.insert({
                 "_id": "1",
@@ -8,7 +42,6 @@ Meteor.startup(function () {
                 "hasParkingAvailability": "true",
                 "hasPublicTransportationAccess": "true",
                 "address": {
-                    "addressId": "7",
                     "line1": "55 Hallcrown Place",
                     "line2": "",
                     "line3": "",
@@ -25,7 +58,6 @@ Meteor.startup(function () {
                 "hasParkingAvailability": "true",
                 "hasPublicTransportationAccess": "true",
                 "address": {
-                    "addressId": "6",
                     "line1": "50 Estate Dr.",
                     "line2": "",
                     "line3": "",

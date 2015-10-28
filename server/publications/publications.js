@@ -2,6 +2,10 @@ Meteor.publish("Events", function () {
     return events.find({});
 });
 
+Meteor.publish("Vendors", function () {
+    return vendors.find({});
+});
+
 Meteor.publish("Venues", function () {
     return venues.find({});
 });

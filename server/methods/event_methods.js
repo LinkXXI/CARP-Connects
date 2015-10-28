@@ -10,10 +10,10 @@ Meteor.methods({
         });
         return events.insert(event);
     },
-    addressInsert: function (address) {
-        return addresses.insert(address);
-    },
     venueInsert: function (venue) {
         venues.insert(venue);
+    },
+    vendorInsert: function (vendor) {
+        vendors.insert(vendor);
     }
 });

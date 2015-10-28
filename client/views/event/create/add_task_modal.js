@@ -15,17 +15,19 @@ Template.addTaskModal.rendered = function () {
 };
 
 Template.addTaskModal.events({
-    "click #cancel-add-task-button": function (e) {
+    'click #cancel-add-task-button': function (e) {
         var modal = $('#add-task-modal');
         modal.closeModal();
         modal.find('form')[0].reset();
     },
-    "submit #add-task-form": function (e) {
+    'submit #add-task-form': function (e) {
         e.preventDefault();
         var task = {
             name: $(e.target).find('#task-name').val(),
             dateTime: $(e.target).find('#task-datetime').val(),
             description: $(e.target).find('#task-description').val(),
+            taskType: $(e.target).find('#task-type option:selected').text(),
+            vendor: $(e.target).find('#vendor-name').val(),
             budget: $(e.target).find('#task-budget').val(),
             userIdAssignedTo: $(e.target).find('#task-assigned-to').val(),
             status: $(e.target).find('#task-status option:selected').text()
@@ -36,14 +38,31 @@ Template.addTaskModal.events({
         var modal = $('#add-task-modal');
         modal.closeModal();
         modal.find('form')[0].reset();
+    },
+    'change #task-type': function (e) {
+        var isVendorTask = $(e.target).find('option:selected').val() === 'vendor';
+        Session.set('isVendorTask', isVendorTask);
+        //re-init tooltip for Add Vendor button
+        Meteor.setTimeout(function() {
+            $('.tooltipped').tooltip({delay: 50})
+        }, 200);
+    },
+    "click #add-vendor-button": function (e) {
+        $('#add-vendor-modal').openModal();
     }
 });
 
 Template.addTaskModal.helpers({
-    "taskStatus": function () {
+    'taskStatus': function () {
         return Enumeration.taskStatus;
     },
-    "users": function () {
+    'users': function () {
         return Meteor.users.find({}, {sort: {name: 1}});
+    },
+    'isVendorTask': function () {
+        return Session.get('isVendorTask');
+    },
+    "vendors": function() {
+        return vendors.find({}, {sort: {name: 1}});
     }
 });

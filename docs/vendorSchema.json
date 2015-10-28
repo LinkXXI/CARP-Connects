@@ -1,0 +1,18 @@
+{
+  "Vendor": {
+    "_id": "Meteor Generated",
+    "name": "string - vendor name",
+    "contactPerson": "string - contact person",
+    "contactNumber": "string - contact number",
+    "contactEmail": "string - contact email",
+    "address": {
+      "line1": "string - street number and street",
+      "line2": "string - apt or unit number",
+      "line3": "string - extra address info",
+      "city": "string",
+      "provState": "string - should be an enum?",
+      "country": "string - should be an enum?",
+      "postalZip": "string - keep this as a string"
+    }
+  }
+}

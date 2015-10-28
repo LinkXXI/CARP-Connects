@@ -1,0 +1,84 @@
+<template name="addVendorModal">
+    <div id="add-vendor-modal" class="modal modal-fixed-footer">
+        <form id="add-vendor-form">
+            <div class="modal-content">
+                <h2 class="center">Add Vendor</h2>
+
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="vendor-name" type="text" class="validate" required>
+                        <label for="vendor-name">Vendor Name</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="vendor-contact-person" type="text" class="validate">
+                        <label for="vendor-contact-person">Contact Person</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="vendor-contact-number" type="text" class="validate">
+                        <label for="vendor-contact-number">Contact Phone Number</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="vendor-contact-email" type="text" class="validate">
+                        <label for="vendor-contact-email">Contact Email</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="vendor-address-line1" type="text" class="validate">
+                        <label for="vendor-address-line1">Address Line 1</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="vendor-address-line2" type="text" class="validate">
+                        <label for="vendor-address-line2">Address Line 2</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="vendor-address-line3" type="text" class="validate">
+                        <label for="vendor-address-line3">Address Line 3</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="vendor-address-city" type="text" class="validate">
+                        <label for="vendor-address-city">City</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="vendor-address-provState" type="text" class="validate">
+                        <label for="vendor-address-provState">Province/State</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="vendor-address-postalZip" type="text" class="validate">
+                        <label for="vendor-address-postalZip">Postal Code/Zip Code</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="vendor-address-country" type="text" class="validate">
+                        <label for="vendor-address-country">Country</label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row col s12">
+                    <div class="col s6 center">
+                        <button id="submit-add-vendor-button" class="waves-effect waves-light btn" type="submit">
+                            <i class="mdi-content-send right"></i>Add Vendor
+                        </button>
+                    </div>
+                    <div class="col s6 center">
+                        <a id="cancel-add-vendor-button" class="waves-effect waves-light btn" type="button">
+                            <i class="mdi-navigation-cancel right"></i>Cancel
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</template>

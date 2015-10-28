@@ -21,31 +21,34 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col s6">
+                    <div class="col s5">
                         <label>Task Type</label>
                         <select class="browser-default" id="task-type">
                             <option value="" disabled selected>Please choose a task type</option>
-                            <option value="1">Vendor</option>
-                            <option value="2">Custom</option>
+                            <option value="vendor">Vendor</option>
+                            <option value="custom">Custom</option>
                         </select>
                     </div>
-                    <div class="col s6">
-                        <label>Vendor Name</label>
-                        <select class="browser-default" id="vendor-name">
-                            <option value="" disabled selected>Please choose a vendor</option>
-                            <option value="1">Harry's Food Service</option>
-                            <option value="2">Express Delivery Service</option>
-                        </select>
-                    </div>
-                    <div class="input-field col s4">
-                        <a href="addvendor.html"
-                           class="btn-floating tooltipped"
-                           data-position="bottom"
-                           data-delay="50"
-                           data-tooltip="Add Vendor">
-                            <i class="mdi-content-add"></i>
-                        </a>
-                    </div>
+                    {{#if isVendorTask}}
+                        <div class="col s5">
+                            <label>Vendor Name</label>
+                            <select class="browser-default" id="vendor-name">
+                                <option value="" disabled selected>Please choose a vendor</option>
+                                {{#each vendors}}
+                                    <option value="{{this._id}}">{{this.name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <div class="input-field col s2">
+                            <a id="add-vendor-button"
+                               class="btn-floating tooltipped"
+                               data-position="bottom"
+                               data-delay="50"
+                               data-tooltip="Add Vendor">
+                                <i class="mdi-content-add"></i>
+                            </a>
+                        </div>
+                    {{/if}}
                 </div>
                 <div class="row">
                     <div class="input-field col s3">
@@ -90,4 +93,7 @@
             </div>
         </form>
     </div>
+
+    {{> addVendorModal}}
+
 </template>

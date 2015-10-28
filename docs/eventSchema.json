@@ -8,6 +8,17 @@
     "theme": "enum - ? need more info",
     "isComplete": "BOOL",
     "dateTime": "Date - datetime of the event",
+    "tasks": {
+      "name": "string - task name",
+      "description": "string",
+      "notes": "string - extra info",
+      "userIdAssignedTo": "string",
+      "dateTime": "string",
+      "taskType": "string - vendor or custom",
+      "vendor": "string - id pointing to vendor collection doc",
+      "budget": "double",
+      "status": "string - complete, in progrss, not started"
+    },
     "venue": "id - id of the venue"
   }
 }
