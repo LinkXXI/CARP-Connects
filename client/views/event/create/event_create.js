@@ -41,7 +41,7 @@ Template.eventCreate.helpers({
 
 Template.eventCreate.events({
     "click #add-venue-button": function (e) {
-        $('#add-vendor-modal').openModal();
+        $('#add-venue-modal').openModal();
     },
     "click #cancel-add-venue-button": function (e) {
         var modal = $('#add-venue-modal');
