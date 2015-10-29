@@ -12,11 +12,11 @@ Template.addVendorModal.events({
         var address = {
             line1: $(e.target).find('#venue-address-line1').val(),
             line2: $(e.target).find('#venue-address-line2').val(),
-            line3: $(e.target).find('#venue-address-line1').val(),
+            line3: $(e.target).find('#venue-address-line3').val(),
             city: $(e.target).find('#venue-address-city').val(),
-            provState: $(e.target).find('#venue-address-provState').val(),
+            provinceState: $(e.target).find('#venue-address-provState').val(),
             country: $(e.target).find('#venue-address-country').val(),
-            postalZip: $(e.target).find('#venue-address-postalZip').val()
+            postalZipCode: $(e.target).find('#venue-address-postalZip').val()
         };
         var vendor = {
             name: $(e.target).find('#vendor-name').val(),

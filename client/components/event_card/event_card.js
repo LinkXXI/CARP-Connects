@@ -6,6 +6,7 @@ Template.eventCard.helpers({
             style: "border:0",
             src: "https://www.google.com/maps/embed/v1/place?q='" +
             encodeURIComponent(venue.name.trim()) +
+            encodeURIComponent(venue.address.line1.trim()) + ',' +
             encodeURIComponent(venue.address.city.trim()) + ',' +
             encodeURIComponent(venue.address.provinceState.trim()) + ',' +
             encodeURIComponent(venue.address.postalZipCode.trim()) + ',' +
