@@ -58,6 +58,17 @@ Router.route('/calendar', {
     }
 });
 
+Router.route('/events', {
+    name: 'Event',
+    template: 'eventViewAll',
+    waitOn: function () {
+        return Meteor.subscribe('Events');
+    },
+    data: function () {
+        events.find();
+    }
+});
+
 Router.route('/events/create', {
     name: 'EventCreate',
     template: 'eventCreate',
@@ -67,28 +78,6 @@ Router.route('/events/create', {
             Meteor.subscribe('Vendors'),
             Meteor.subscribe('Venues')
         ]
-    }
-});
-
-Router.route('/events', {
-    name: 'EventViewAll',
-    template: 'eventViewAll',
-    waitOn: function () {
-        return Meteor.subscribe('Events');
-    },
-    data: function () {
-    events.find();
-}
-});
-
-Router.route('/events/:_id', {
-    name: 'EventView',
-    template: 'eventView',
-    waitOn: function () {
-        return Meteor.subscribe('OneEvent', this.params._id);
-    },
-    data: function () {
-        return events.findOne({_id: this.params._id});
     }
 });
 
@@ -108,6 +97,21 @@ Router.route('/events/:_id/publish', {
     template: 'eventPublish',
     waitOn: function () {
         return Meteor.subscribe('OneEvent', this.params._id);
+    },
+    data: function () {
+        return events.findOne({_id: this.params._id});
+    }
+});
+
+Router.route('/events/:_id', {
+    name: 'EventView',
+    template: 'eventView',
+    waitOn: function () {
+        return [
+            Meteor.subscribe('OneEvent', this.params._id),
+            Meteor.subscribe('Venues'),
+            Meteor.subscribe('Vendors')
+        ];
     },
     data: function () {
         return events.findOne({_id: this.params._id});

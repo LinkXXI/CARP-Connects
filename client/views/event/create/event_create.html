@@ -83,7 +83,6 @@
                 </a>
             </div>
         </div>
-
         <div class="row">
             {{#each tasks}}
                 {{> taskCard}}
@@ -96,8 +95,9 @@
                 </button>
                 <!--                <a class="waves-effect waves-light btn dynamicWarning"><i
                                         class="mdi-content-save right"></i>Save</a>-->
-                <a href="{{pathFor 'Index'}}" class="waves-effect waves-light btn"><i
-                        class="mdi-navigation-cancel right"></i>Exit</a>
+                <a href="{{pathFor 'Index'}}" class="waves-effect waves-light btn">
+                    <i class="mdi-navigation-cancel right"></i>Exit
+                </a>
             </div>
         </div>
 

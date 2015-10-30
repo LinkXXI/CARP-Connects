@@ -24,13 +24,6 @@ Template.eventCreate.helpers({
     "eventTheme": function () {
         return Enumeration.eventThemes;
     },
-    "isOptionSelected": function (option, value) {
-        if (option === value) {
-            return 'selected';
-        } else {
-            return ''
-        }
-    },
     "venues": function() {
         return venues.find({}, {sort: {name: 1}});
     },

@@ -5,6 +5,27 @@ Template.registerHelper('formatDate', function(date) {
     return moment(date).format('MMMM Do YYYY, h:mm:ss a');
 });
 
+Template.registerHelper('formatDateMDYT', function(date) {
+    return moment(date).format('D/M/YYYY h:mm a');
+});
+
 Template.registerHelper('formatCurrency', function(amount) {
     return "$" + parseFloat(amount).toFixed(2);
 });
+
+Template.registerHelper('isOptionSelected', function(option, value) {
+    if (option === value) {
+        return {selected: true};
+    } else {
+        return "";
+    }
+});
+
+Template.registerHelper('isOptionSelectedReadOnly', function(option, value) {
+    if (option === value) {
+        return {selected: true};
+    } else {
+        return {disabled: true};
+    }
+});
+
