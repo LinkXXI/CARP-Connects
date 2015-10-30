@@ -59,7 +59,7 @@ Router.route('/calendar', {
 });
 
 Router.route('/events', {
-    name: 'Event',
+    name: 'Events',
     template: 'eventViewAll',
     waitOn: function () {
         return Meteor.subscribe('Events');
