@@ -9,6 +9,10 @@ formatDateMDYT = function(date){
     return moment(date).format('D/M/YYYY h:mm a');
 };
 
+formatDateTable = function(date){
+    return moment(date).format('YYYY/MM/DD hh:mm a');
+};
+
 formatDateDefault = function(date){
     return moment(date).format('YYYY-MM-DDTHH:mm:ss');
 };

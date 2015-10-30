@@ -50,7 +50,7 @@ Template.eventViewAll.helpers({
                     label: 'Date',
                     fn: function (date) {
                         // this is a call to a global function in /both/lib/global_functions.js
-                        return formatDateShort(date);
+                        return formatDateTable(date);
                     }
                 },
                 {
