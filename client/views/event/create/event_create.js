@@ -54,9 +54,10 @@ Template.eventCreate.events({
     "submit #create-event-form": function (e) {
         e.preventDefault();
         var tasks = Session.get('tasks') != undefined ? Session.get('tasks'): new Array();
+        var dateTime = $(e.target).find('#datetime').val();
         var event = {
             name: $(e.target).find('#event-name').val(),
-            dateTime: $(e.target).find('#datetime').val(),
+            dateTime: formatDateDefault(dateTime),
             description: $(e.target).find('#description').val(),
             totalBudget: $(e.target).find('#event-budget').val(),
             theme: $(e.target).find('#theme option:selected').text(),

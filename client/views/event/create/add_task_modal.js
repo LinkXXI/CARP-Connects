@@ -22,9 +22,10 @@ Template.addTaskModal.events({
     },
     'submit #add-task-form': function (e) {
         e.preventDefault();
+        var dateTime = $(e.target).find('#task-datetime').val();
         var task = {
             name: $(e.target).find('#task-name').val(),
-            dateTime: $(e.target).find('#task-datetime').val(),
+            dateTime: formatDateDefault(dateTime),
             description: $(e.target).find('#task-description').val(),
             taskType: $(e.target).find('#task-type option:selected').text(),
             vendor: $(e.target).find('#vendor-name').val(),

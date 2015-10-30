@@ -9,6 +9,10 @@ formatDateMDYT = function(date){
     return moment(date).format('D/M/YYYY h:mm a');
 };
 
+formatDateDefault = function(date){
+    return moment(date).format('YYYY-MM-DDTHH:mm:ss');
+};
+
 formatCurrency = function(amount){
     return "$" + parseFloat(amount).toFixed(2);
 };
