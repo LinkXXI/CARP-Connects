@@ -6,7 +6,7 @@
     "description": "string - What is the event about",
     "totalBudget": "double - How many dollas we gots",
     "theme": "enum - ? need more info",
-    "isComplete": "BOOL",
+    "status": "string - completed or incomplete", // giving me headached with filtering if complete and incomplete, matching exact work
     "dateTime": "Date - datetime of the event",
     "tasks": {
       "name": "string - task name",
@@ -17,7 +17,7 @@
       "taskType": "string - vendor or custom",
       "vendor": "string - id pointing to vendor collection doc",
       "budget": "double",
-      "status": "string - complete, in progrss, not started"
+      "status": "string - complete, in progress, not started",
     },
     "venue": "id - id of the venue"
   }

@@ -75,7 +75,7 @@ Meteor.startup(function () {
                 "description": "Showing members how to live healthy",
                 "totalBudget": "2500.00",
                 "theme": "Health",
-                "status": "Complete",
+                "status": "complete",
                 "dateTime": "2015-10-15T04:00:00",
                 "tasks": [
                     {
@@ -118,7 +118,7 @@ Meteor.startup(function () {
                 "description": "Showing support for those around us by providing much needed housing services.",
                 "totalBudget": "2500.00",
                 "theme": "Community",
-                "status": "Complete",
+                "status": "complete",
                 "dateTime": "2015-10-20T04:00:00",
                 "tasks": [
                     {

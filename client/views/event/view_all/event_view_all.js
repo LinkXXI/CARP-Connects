@@ -4,17 +4,17 @@
 Template.eventViewAll.events({
     // needed to active tool tips after reactive table re-initializes
     'change .form-control': function () {
-        Meteor.setTimeout(function() {
+        Meteor.setTimeout(function () {
             $('.tooltipped').tooltip({delay: 50})
         }, 200);
     },
     'click table': function () {
-        Meteor.setTimeout(function() {
+        Meteor.setTimeout(function () {
             $('.tooltipped').tooltip({delay: 50})
         }, 200);
     },
     'click .reactive-table-navigation': function () {
-        Meteor.setTimeout(function() {
+        Meteor.setTimeout(function () {
             $('.tooltipped').tooltip({delay: 50})
         }, 200);
     }
@@ -79,7 +79,10 @@ Template.eventViewAll.helpers({
                  },*/
                 {
                     key: 'status',
-                    label: 'Status'
+                    label: 'Status',
+                    fn: function (value) {
+                        return value.charAt(0).toUpperCase() + value.slice(1);
+                    }
                 }
             ]
         };
