@@ -81,11 +81,15 @@ Router.route('/events/create', {
     }
 });
 
-Router.route('/events/:_id/work', {
-    name: 'EventWork',
-    template: 'eventWork',
+Router.route('/events/:_id/edit', {
+    name: 'EventEdit',
+    template: 'eventEdit',
     waitOn: function () {
-        return Meteor.subscribe('OneEvent', this.params._id);
+        return [
+            Meteor.subscribe('OneEvent', this.params._id),
+            Meteor.subscribe('Vendors'),
+            Meteor.subscribe('Venues')
+        ];
     },
     data: function () {
         return events.findOne({_id: this.params._id});

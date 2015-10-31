@@ -43,9 +43,5 @@ Template.eventView.events({
         var modal = $('#add-task-modal');
         modal.closeModal();
         modal.find('form')[0].reset();
-    },
-    "submit #view-event-form": function (e) {
-        e.preventDefault();
-        Router.go('EventWork', this._id);
     }
 });

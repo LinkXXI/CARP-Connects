@@ -10,6 +10,13 @@ Meteor.methods({
         });
         return events.insert(event);
     },
+    eventUpdate: function (eventId, eventAttributes) {
+        events.update(eventId, {$set: eventAttributes}, function(error) {
+            if (error) {
+                return error;
+            }
+        });
+    },
     venueInsert: function (venue) {
         venues.insert(venue);
     },

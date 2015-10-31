@@ -207,7 +207,7 @@
             <select id="phone-type-{{index}}" class="browser-default">
                 <option value="" disabled selected>Choose your option</option>
                 {{#each phoneType}}
-                    <option value="{{this}}" {{isPhoneTypeSelected this ../type}}>{{this}}</option>
+                    <option value="{{this}}" {{isOptionSelected this ../type}}>{{this}}</option>
                 {{/each}}
             </select>
         </td>
