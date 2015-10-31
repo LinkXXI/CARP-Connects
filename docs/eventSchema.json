@@ -6,7 +6,7 @@
     "description": "string - What is the event about",
     "totalBudget": "double - How many dollas we gots",
     "theme": "enum - ? need more info",
-    "status": "string - completed or incomplete", // giving me headached with filtering if complete and incomplete, matching exact work
+    "status": "string - complete or active",
     "dateTime": "Date - datetime of the event",
     "tasks": {
       "name": "string - task name",

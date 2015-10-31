@@ -64,6 +64,7 @@ Template.eventCreate.events({
             venue: $(e.target).find('#venue').val(),
             tasks: tasks
         };
+        // set the key to undefined first
         delete Session.keys['tasks'];
         Meteor.call('eventInsert', event, function (error, result) {
             // display the error to the user and abort

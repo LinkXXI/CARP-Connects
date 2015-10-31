@@ -12,7 +12,7 @@ Template.filterStatus.created = function() {
 
 Template.filterStatus.events({
     'change input' : function(event, template) {
-        var radioText = $('input:checked').next().text().toLowerCase();
+        var radioText = $('input[name="filterStatus"]:checked').val();
         //console.log(radioText);
         if(radioText != 'all'){
             template.filter.set(radioText);

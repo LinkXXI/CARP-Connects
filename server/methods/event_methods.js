@@ -6,7 +6,7 @@ Meteor.methods({
         var user = Meteor.user();
         var event = _.extend(eventAttributes, {
             owner: user._id,
-            status: "incomplete"
+            status: "active"
         });
         return events.insert(event);
     },

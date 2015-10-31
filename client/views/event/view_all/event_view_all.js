@@ -25,6 +25,7 @@ Template.eventViewAll.helpers({
         return events.find({});
     },
     tableSettings: function () {
+        route = "";
         return {
             rowsPerPage: 10,
             filters: ['filterStatus'],
@@ -34,16 +35,27 @@ Template.eventViewAll.helpers({
                     label: '',
                     fn: function (value) {
                         route = Router.routes.EventView.path({_id: value});
-                        return new Spacebars.SafeString('<a href="'
+                        //parentRow = $('.' + value)();
+                        //console.log(parentRow);
+                        //console.log(parentRow[0].id);
+                        //console.log(parentRow[0].nodeName);
+/*                        return new Spacebars.SafeString('<a href="'
                             + route +
                             '" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View event details">' +
-                            '<i class="mdi-content-forward small"></i></a>');
+                            '<i class="mdi-content-forward small"></i></a>');*/
+                        return '';
                     },
-                    sortable: false
+                    sortable: false,
+                    hidden: false
                 },
                 {
                     key: 'name',
-                    label: 'Event Name'
+                    label: 'Event Name',
+                    fn: function (value) {
+                        return new Spacebars.SafeString('<a href="' + route + '" ' +
+                            'class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View event details">' +
+                            value + '</a>');
+                    }
                 },
                 {
                     key: 'dateTime',
@@ -77,13 +89,13 @@ Template.eventViewAll.helpers({
                  key: 'theme',
                  label: 'Theme'
                  },*/
-                {
+/*                {
                     key: 'status',
                     label: 'Status',
                     fn: function (value) {
                         return value.charAt(0).toUpperCase() + value.slice(1);
                     }
-                }
+                }*/
             ]
         };
     }
