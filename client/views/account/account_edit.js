@@ -10,13 +10,6 @@ Template.accountEdit.helpers({
 });
 
 Template.phone.helpers({
-    "isPhoneTypeSelected": function(option, value) {
-        if (option === value) {
-            return {selected: true};
-        } else {
-            return "";
-        }
-    },
     "isPrimaryPhone": function() {
         if (this.primary) return "checked";
     },
@@ -112,7 +105,7 @@ Template.accountEdit.events({
                 console.log(err);
                 //throwError(err.reason);
             } else {
-                Router.go('/account');
+                Router.go('Account');
             }
         });
     },

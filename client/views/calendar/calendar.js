@@ -17,7 +17,7 @@ function mapCalendarEvents(eventsArr) {
             calendarEvents.push({
                 title: event.name,
                 start: event.dateTime,
-                url: Router.routes.EventWork.path({_id: event._id}),
+                url: Router.routes.EventView.path({_id: event._id}),
                 color: "#99CCFF",
                 allDay: false
             });
