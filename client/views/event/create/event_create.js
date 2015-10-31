@@ -53,7 +53,7 @@ Template.eventCreate.events({
     },
     "submit #create-event-form": function (e) {
         e.preventDefault();
-        var tasks = Session.get('tasks') != undefined ? Session.get('tasks'): new Array();
+        var tasks = Session.get('tasks') != undefined ? Session.get('tasks') : new Array();
         var dateTime = $(e.target).find('#datetime').val();
         var event = {
             name: $(e.target).find('#event-name').val(),
@@ -64,7 +64,8 @@ Template.eventCreate.events({
             venue: $(e.target).find('#venue').val(),
             tasks: tasks
         };
-        // set the key to undefined first
+        // set the key to undefined first to make sure it's really gone
+        Session.set('tasks', undefined);
         delete Session.keys['tasks'];
         Meteor.call('eventInsert', event, function (error, result) {
             // display the error to the user and abort
