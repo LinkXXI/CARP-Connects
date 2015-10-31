@@ -69,7 +69,7 @@ Template.eventEdit.events({
             "dateTime": formatDateDefault(dateTime),
             "description": $(e.target).find('#description').val(),
             "totalBudget": $(e.target).find('#event-budget').val(),
-            "theme": $(e.target).find('#theme option:selected').text(),
+            "theme": $(e.target).find('#theme option:selected').val(),
             "venue": $(e.target).find('#venue').val(),
             "tasks": tasks
         };

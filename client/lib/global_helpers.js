@@ -6,7 +6,7 @@ Template.registerHelper('formatDate', function(date) {
 });
 
 Template.registerHelper('formatDateMDYT', function(date) {
-    return moment(date).format('D/M/YYYY h:mm a');
+    return moment(date).format('M/D/YYYY h:mm a');
 });
 
 Template.registerHelper('formatCurrency', function(amount) {
