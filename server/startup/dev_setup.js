@@ -1,7 +1,9 @@
 Meteor.startup(function () {
     if (process.env.NODE_ENV === "development" || process.env.NODE_ENV === "production") {
+        var vendor1, vendor2;
+        var venue1, venue2;
         if (vendors.find().count() == 0) {
-            vendors.insert({
+            vendor1 = vendors.insert({
                 "name": "John's Food Service",
                 "contactPerson": "John Smith",
                 "contactNumber": "416-967-1111",
@@ -16,7 +18,7 @@ Meteor.startup(function () {
                     "postalZipCode": "M2M 3L7"
                 }
             });
-            vendors.insert({
+            vendor2 = vendors.insert({
                 "name": "Staples Canada",
                 "contactPerson": "Liz Doe",
                 "contactNumber": "416-555-1234",
@@ -33,7 +35,7 @@ Meteor.startup(function () {
             });
         }
         if (venues.find().count() == 0) {
-            venues.insert({
+            venue1 = venues.insert({
                 "name": "Radisson Hotel Toronto East",
                 "description": "Nice venue in Toronto",
                 "hasParkingAvailability": "true",
@@ -48,7 +50,7 @@ Meteor.startup(function () {
                     "postalZipCode": "M2J 4R1"
                 }
             });
-            venues.insert({
+            venue2 = venues.insert({
                 "name": "Holiday Inn Toronto East",
                 "description": "Nice venue in Toronto",
                 "hasParkingAvailability": "true",
@@ -73,7 +75,7 @@ Meteor.startup(function () {
                 "theme": "Health",
                 "status": "complete",
                 "dateTime": "2015-10-15T04:00:00",
-                "venue": "1"
+                "venue": venue1
             });
             var newTasks = [
                 tasks.insert({
@@ -82,8 +84,8 @@ Meteor.startup(function () {
                     "notes": "In talks with caterer, waiting on an estimate",
                     "userIdAssignedTo": "1",
                     "dateTime": "2015-10-10T04:00:00",
-                    "taskType": "Vendor",
-                    "vendor": "Bobs Food Service",
+                    "taskType": "vendor",
+                    "vendor": vendor1,
                     "budget": "350.00",
                     "status": "Complete",
                     "event": event
@@ -93,8 +95,8 @@ Meteor.startup(function () {
                     "description": "Approximately 100 guests are attending, please book a hall to accommodate this in the Oakville area.",
                     "userIdAssignedTo": "1",
                     "dateTime": "2015-10-17T04:00:00",
-                    "taskType": "Vendor",
-                    "vendor": "Bobs Food Service",
+                    "taskType": "custom",
+                    "vendor": "",
                     "budget": "1000.00",
                     "status": "In Progress",
                     "event": event
@@ -104,8 +106,8 @@ Meteor.startup(function () {
                     "description": "A Subject Matter Expert (SME) is required in the field of financial planning.",
                     "userIdAssignedTo": "1",
                     "dateTime": "2015-10-24T04:00:00",
-                    "taskType": "Vendor",
-                    "vendor": "Bobs Food Service",
+                    "taskType": "vendor",
+                    "vendor": vendor2,
                     "budget": "200.00",
                     "status": "Not Started",
                     "event": event
@@ -124,7 +126,7 @@ Meteor.startup(function () {
                 "theme": "Community",
                 "status": "complete",
                 "dateTime": "2015-10-20T04:00:00",
-                "venue": "2"
+                "venue": venue2
             });
             newTasks = [
                 tasks.insert({
@@ -133,8 +135,8 @@ Meteor.startup(function () {
                     "notes": "In talks with caterer, waiting on an estimate",
                     "userIdAssignedTo": "1",
                     "dateTime": "2015-10-15T04:00:00",
-                    "taskType": "Vendor",
-                    "vendor": "Bobs Food Service",
+                    "taskType": "vendor",
+                    "vendor": vendor1,
                     "budget": "350.00",
                     "status": "In Progress",
                     "event": event
