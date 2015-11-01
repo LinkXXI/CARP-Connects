@@ -4,6 +4,7 @@ Router.route('/', {
     waitOn: function () {
         return [
             Meteor.subscribe('Events'),
+            Meteor.subscribe('Tasks'),
             Meteor.subscribe('Venues')
         ]
     },
@@ -51,7 +52,10 @@ Router.route('/calendar', {
     name: 'Calendar',
     template: 'calendar',
     waitOn: function () {
-        return Meteor.subscribe('Events');
+        return [
+            Meteor.subscribe('Events'),
+            Meteor.subscribe('Tasks')
+        ];
     },
     data: function () {
         return events.find().fetch();
@@ -62,7 +66,9 @@ Router.route('/events', {
     name: 'Events',
     template: 'eventViewAll',
     waitOn: function () {
-        return Meteor.subscribe('Events');
+        return [
+            Meteor.subscribe('Events')
+        ];
     },
     data: function () {
         events.find();
@@ -74,8 +80,6 @@ Router.route('/events/create', {
     template: 'eventCreate',
     waitOn: function () {
         return [
-            Meteor.subscribe('Events'),
-            Meteor.subscribe('Tasks'),
             Meteor.subscribe('Vendors'),
             Meteor.subscribe('Venues')
         ]
@@ -88,6 +92,7 @@ Router.route('/events/:_id/edit', {
     waitOn: function () {
         return [
             Meteor.subscribe('OneEvent', this.params._id),
+            Meteor.subscribe('TasksByEvent', this.params._id),
             Meteor.subscribe('Vendors'),
             Meteor.subscribe('Venues')
         ];
@@ -101,7 +106,10 @@ Router.route('/events/:_id/publish', {
     name: 'EventPublish',
     template: 'eventPublish',
     waitOn: function () {
-        return Meteor.subscribe('OneEvent', this.params._id);
+        return [
+            Meteor.subscribe('OneEvent', this.params._id),
+            Meteor.subscribe('TasksByEvent', this.params._id)
+        ];
     },
     data: function () {
         return events.findOne({_id: this.params._id});
@@ -114,6 +122,7 @@ Router.route('/events/:_id', {
     waitOn: function () {
         return [
             Meteor.subscribe('OneEvent', this.params._id),
+            Meteor.subscribe('TasksByEvent', this.params._id),
             Meteor.subscribe('Venues'),
             Meteor.subscribe('Vendors')
         ];
@@ -143,7 +152,8 @@ Router.route('/reports/task', {
     template: 'taskReport',
     waitOn: function () {
         return [
-            Meteor.subscribe('Events')
+            Meteor.subscribe('Events'),
+            Meteor.subscribe('Tasks')
         ]
     }
 });

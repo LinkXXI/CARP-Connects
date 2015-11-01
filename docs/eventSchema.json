@@ -1,25 +1,16 @@
 {
   "Event": {
     "_id": "Meteor Generated",
-    "owner": "id - Event owner ID",
+    "owner": "string - Event owner ID",
     "name": "string - Name of the event",
     "description": "string - What is the event about",
     "totalBudget": "double - How many dollas we gots",
     "theme": "enum - ? need more info",
     "status": "string - complete or active",
     "dateTime": "Date - datetime of the event",
-    "tasks": {
-      "_id": "Manually generated with Random.id() but matches Meteor generated style id type",
-      "name": "string - task name",
-      "description": "string",
-      "notes": "string - extra info",
-      "userIdAssignedTo": "string",
-      "dateTime": "string",
-      "taskType": "string - vendor or custom",
-      "vendor": "string - id pointing to vendor collection doc",
-      "budget": "double",
-      "status": "string - complete, in progress, not started",
-    },
-    "venue": "id - id of the venue"
+    "tasks": [
+      "string - id of task, relational to taskSchema"
+    ],
+    "venue": "string - id of the venue"
   }
 }

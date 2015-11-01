@@ -22,7 +22,8 @@ function mapCalendarEvents(eventsArr) {
                 allDay: false
             });
             if (event.tasks) {
-                $.each(event.tasks, function (j, task) {
+                $.each(event.tasks, function (j, taskId) {
+                    var task = tasks.findOne({_id: taskId});
                     calendarEvents.push({
                         title: task.name,
                         start: task.dateTime,

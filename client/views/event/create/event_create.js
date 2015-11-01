@@ -61,13 +61,12 @@ Template.eventCreate.events({
             description: $(e.target).find('#description').val(),
             totalBudget: $(e.target).find('#event-budget').val(),
             theme: $(e.target).find('#theme option:selected').val(),
-            venue: $(e.target).find('#venue').val(),
-            tasks: tasks
+            venue: $(e.target).find('#venue').val()
         };
         // set the key to undefined first to make sure it's really gone
         Session.set('tasks', undefined);
         delete Session.keys['tasks'];
-        Meteor.call('eventInsert', event, function (error, result) {
+        Meteor.call('eventInsert', event, tasks, function (error) {
             // display the error to the user and abort
             if (error)
                 return throwError(error.reason);

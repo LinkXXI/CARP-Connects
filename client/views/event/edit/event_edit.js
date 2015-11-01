@@ -2,8 +2,9 @@
  * Created by Sergio on 10/3/2015.
  */
 Template.eventEdit.onCreated(function () {
-    Session.set('tasks', this.data.tasks);
+    Session.set('tasks', tasks.find().fetch());
 });
+
 Template.eventEdit.onRendered(function () {
     $('#datetime').datetimepicker();
 
@@ -62,18 +63,17 @@ Template.eventEdit.events({
     "submit #edit-event-form": function (e) {
         e.preventDefault();
         var eventId = this._id;
-        var tasks = Session.get('tasks') != undefined ? Session.get('tasks'): this.tasks;
+        var tasks = Session.get('tasks') != undefined ? Session.get('tasks') : tasks.find({}, {sort: {name: 1}}).fetch();
         var dateTime = $(e.target).find('#datetime').val();
         var event = {
-            "name": $(e.target).find('#event-name').val(),
-            "dateTime": formatDateDefault(dateTime),
-            "description": $(e.target).find('#description').val(),
-            "totalBudget": $(e.target).find('#event-budget').val(),
-            "theme": $(e.target).find('#theme option:selected').val(),
-            "venue": $(e.target).find('#venue').val(),
-            "tasks": tasks
+            name: $(e.target).find('#event-name').val(),
+            dateTime: formatDateDefault(dateTime),
+            description: $(e.target).find('#description').val(),
+            totalBudget: $(e.target).find('#event-budget').val(),
+            theme: $(e.target).find('#theme option:selected').val(),
+            venue: $(e.target).find('#venue').val()
         };
-        Meteor.call('eventUpdate', eventId, event, function (error, result) {
+        Meteor.call('eventUpdate', eventId, event, tasks, function (error) {
             // display the error to the user and abort
             if (error)
                 return throwError(error.reason);

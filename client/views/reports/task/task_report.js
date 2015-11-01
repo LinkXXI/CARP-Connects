@@ -3,37 +3,13 @@
  */
 Template.taskReport.helpers({
     notStartedTaskCount: function () {
-        return events.find(
-            {
-                tasks: {
-                    $elemMatch: {
-                        status: "Not Started"
-                    }
-                }
-            }
-        ).count();
+        return tasks.find({status: "Not Started"}).count();
     },
     inProgressTaskCount: function () {
-        return events.find(
-            {
-                tasks: {
-                    $elemMatch: {
-                        status: "In Progress"
-                    }
-                }
-            }
-        ).count();
+        return tasks.find({status: "In Progress"}).count();
     },
     completeTaskCount: function () {
-        return events.find(
-            {
-                tasks: {
-                    $elemMatch: {
-                        status: "Complete"
-                    }
-                }
-            }
-        ).count();
+        return tasks.find({status: "Complete"}).count();
     },
     allTaskCount: function () {
         // very hacky but it works
@@ -61,33 +37,9 @@ Template.taskReport.helpers({
 
 Template.taskReport.taskReportChart = function () {
     var seriesData = [];
-    var notStartedTaskCount = events.find(
-        {
-            tasks: {
-                $elemMatch: {
-                    status: "Not Started"
-                }
-            }
-        }
-    ).count();
-    var inProgressTaskCount = events.find(
-        {
-            tasks: {
-                $elemMatch: {
-                    status: "In Progress"
-                }
-            }
-        }
-    ).count();
-    var completeTaskCount = events.find(
-        {
-            tasks: {
-                $elemMatch: {
-                    status: "Complete"
-                }
-            }
-        }
-    ).count();
+    var notStartedTaskCount = tasks.find({status: "Not Started"}).count();
+    var inProgressTaskCount = tasks.find({status: "In Progress"}).count();
+    var completeTaskCount = tasks.find({status: "Complete"}).count();
     seriesData.push(['Not Started', notStartedTaskCount]);
     seriesData.push(['In Progress', inProgressTaskCount]);
     seriesData.push(['Complete', completeTaskCount]);

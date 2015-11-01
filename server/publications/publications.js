@@ -2,6 +2,14 @@ Meteor.publish("Events", function () {
     return events.find({});
 });
 
+Meteor.publish("Tasks", function () {
+    return tasks.find();
+});
+
+Meteor.publish("TasksByEvent", function (eventId) {
+    return tasks.find({event: eventId}, {sort: {name: 1}});
+});
+
 Meteor.publish("Vendors", function () {
     return vendors.find({});
 });

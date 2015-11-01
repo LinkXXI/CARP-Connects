@@ -24,7 +24,6 @@ Template.addTaskModal.events({
         e.preventDefault();
         var dateTime = $(e.target).find('#task-datetime').val();
         var task = {
-            _id: Random.id(),
             name: $(e.target).find('#task-name').val(),
             dateTime: formatDateDefault(dateTime),
             description: $(e.target).find('#task-description').val(),

@@ -78,17 +78,17 @@ Template.accountEdit.events({
         $(e.target).find("[id^='emailRow-']").each(function() {
             var i = this.id.split("emailRow-")[1];
             emails[i] = {
-                "address": $(e.target).find('#email-input-' + i).val(),
-                "verified": !!$(e.target).find('#email-completed-' + i).is(':checked')
+                address: $(e.target).find('#email-input-' + i).val(),
+                verified: !!$(e.target).find('#email-completed-' + i).is(':checked')
             };
         });
         var phones = [];
         $(e.target).find("[id^='phoneRow-']").each(function() {
             var i = this.id.split("phoneRow-")[1];
             phones[i] = {
-                "number": $(e.target).find('#phone-number-' + i).val(),
-                "type": $(e.target).find('#phone-type-' + i).val(),
-                "primary": $(e.target).find('#phone-primary-' + i).is(':checked')
+                number: $(e.target).find('#phone-number-' + i).val(),
+                type: $(e.target).find('#phone-type-' + i).val(),
+                primary: $(e.target).find('#phone-primary-' + i).is(':checked')
             };
         });
 
@@ -97,7 +97,7 @@ Template.accountEdit.events({
             "profile.lastName": $(e.target).find('#lastname-input').val(),
             "profile.biography": $(e.target).find('#bio-input').val(),
             "profile.skills": $(e.target).find('#skills-input').val(),
-            "emails": emails,
+            emails: emails,
             "profile.phones": phones
         };
         Meteor.call('updateAccount', userFields, function (err) {

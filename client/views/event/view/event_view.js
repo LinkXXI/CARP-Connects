@@ -14,12 +14,15 @@ Template.eventView.helpers({
     "eventTheme": function () {
         return Enumeration.eventThemes;
     },
+    "tasks": function () {
+        return tasks.find().fetch();
+    },
     venue: function () {
         return venues.findOne({_id: this.venue});
     },
     "venues": function() {
         return venues.find({}, {sort: {name: 1}});
-    },
+},
     "vendors": function() {
         return vendors.find({}, {sort: {name: 1}});
     }
