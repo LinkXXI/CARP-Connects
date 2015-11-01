@@ -1,10 +1,12 @@
 <template name="master">
     {{#if loggedIn}}
         {{>header}}
+        {{> sAlert}}
         <main>
             {{>yield}}
         </main>
     {{else}}
+        {{> sAlert}}
         {{>yield}}
     {{/if}}
 </template>

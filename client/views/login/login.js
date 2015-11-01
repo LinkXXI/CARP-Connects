@@ -5,9 +5,10 @@ Template.login.events({
         var password = $(e.target).find('#password').val();
 
         Meteor.loginWithPassword(email, password, function (err) {
-            if(err){
-                console.log(err)
-            }else{
+            if (err) {
+                console.log(err);
+                sAlert.error(LOGIN_ERROR);
+            } else {
                 Router.go('/');
             }
         })
@@ -17,31 +18,32 @@ Template.login.events({
         var first = $(e.target).find('#signup-first-name').val();
         var last = $(e.target).find('#signup-last-name').val();
         var email = $(e.target).find('#signup-email').val();
-        var password= $(e.target).find('#signup-password').val();
-        var confirmPassword= $(e.target).find("#signup-confirm-password").val();
+        var password = $(e.target).find('#signup-password').val();
+        var confirmPassword = $(e.target).find("#signup-confirm-password").val();
         var inviteCode = $(e.target).find('#signup-invite-code').val();
 
-       Meteor.call('setUpAccount', first, last, email, password, confirmPassword, inviteCode, function (err, data) {
-            if(err){
+        Meteor.call('setUpAccount', first, last, email, password, confirmPassword, inviteCode, function (err, data) {
+            if (err) {
                 console.log(err);
-            }else{
-                if(data){
+                sAlert.error(SIGNUP_ERROR);
+            } else {
+                if (data) {
 
-                }else{
+                } else {
                     $('#signup-modal').closeModal();
-                    Meteor.loginWithPassword(email, password, function(){
+                    Meteor.loginWithPassword(email, password, function () {
                         Router.go('/');
+                        sAlert.success(SIGNUP_SUCCESS);
                     });
-
                 }
             }
         });
     },
-    "click #signup": function(){
+    "click #signup": function () {
         $('#signup-modal').openModal();
     }
 });
 
-Template.login.created = function(){
+Template.login.created = function () {
     verifyEmail();
 };

@@ -44,6 +44,14 @@ iron:middleware-stack@1.0.11
 iron:router@1.0.12
 iron:url@1.0.11
 jquery@1.11.4
+juliancwirko:s-alert@3.1.1
+juliancwirko:s-alert-bouncyflip@3.1.0
+juliancwirko:s-alert-flip@3.1.0
+juliancwirko:s-alert-genie@3.1.0
+juliancwirko:s-alert-jelly@3.1.0
+juliancwirko:s-alert-scale@3.1.0
+juliancwirko:s-alert-slide@3.1.0
+juliancwirko:s-alert-stackslide@3.1.0
 launch-screen@1.0.4
 livedata@1.0.15
 localstorage@1.0.5

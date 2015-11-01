@@ -68,8 +68,13 @@ Template.eventCreate.events({
         delete Session.keys['tasks'];
         Meteor.call('eventInsert', event, tasks, function (error) {
             // display the error to the user and abort
-            if (error)
+            if (error) {
+                sAlert.error(EVENT_INSERT_ERROR);
                 return throwError(error.reason);
+            }
+            else {
+                sAlert.success(EVENT_INSERT_SUCCESS);
+            }
             // show this result but route anyway
             Router.go('/');
         });

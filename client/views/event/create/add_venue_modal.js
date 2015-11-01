@@ -27,13 +27,16 @@ Template.addVenueModal.events({
         };
         Meteor.call('venueInsert', venue, function (error, result) {
             // display the error to the user and abort
-            if (error)
+            if (error) {
+                sAlert.error(VENUE_INSERT_ERROR);
                 return throwError(error.reason);
+            }
             // show this result but route anyway
             else {
                 var modal = $('#add-venue-modal');
                 modal.closeModal();
                 modal.find('form')[0].reset();
+                sAlert.success(VENUE_INSERT_SUCCESS);
             }
         });
         $('#add-venue-modal').closeModal();

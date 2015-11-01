@@ -1,6 +1,7 @@
 Template.sidebar.events({
     'click #logout': function(){
         Meteor.logout();
+        sAlert.info(LOGOUT);
     }
 });
 

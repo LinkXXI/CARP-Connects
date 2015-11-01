@@ -39,6 +39,8 @@ Template.addTaskModal.events({
         var modal = $('#add-task-modal');
         modal.closeModal();
         modal.find('form')[0].reset();
+
+        sAlert.success(TASK_CREATED_SUCCESS);
     },
     'change #task-type': function (e) {
         var isVendorTask = $(e.target).find('option:selected').val() === 'vendor';

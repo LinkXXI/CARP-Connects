@@ -27,13 +27,16 @@ Template.addVendorModal.events({
         };
         Meteor.call('vendorInsert', vendor, function (error, result) {
             // display the error to the user and abort
-            if (error)
+            if (error) {
+                sAlert.error(VENDOR_INSERT_ERROR);
                 return throwError(error.reason);
+            }
             // show this result but route anyway
             else {
                 var modal = $('#add-vendor-modal');
                 modal.closeModal();
                 modal.find('form')[0].reset();
+                sAlert.success(VENDOR_INSERT_SUCCESS);
             }
         });
         $('#add-vendor-modal').closeModal();
