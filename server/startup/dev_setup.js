@@ -2,7 +2,6 @@ Meteor.startup(function () {
     if (process.env.NODE_ENV === "development" || process.env.NODE_ENV === "production") {
         if (vendors.find().count() == 0) {
             vendors.insert({
-                "_id": "1",
                 "name": "John's Food Service",
                 "contactPerson": "John Smith",
                 "contactNumber": "416-967-1111",
@@ -18,7 +17,6 @@ Meteor.startup(function () {
                 }
             });
             vendors.insert({
-                "_id": "2",
                 "name": "Staples Canada",
                 "contactPerson": "Liz Doe",
                 "contactNumber": "416-555-1234",
@@ -36,7 +34,6 @@ Meteor.startup(function () {
         }
         if (venues.find().count() == 0) {
             venues.insert({
-                "_id": "1",
                 "name": "Radisson Hotel Toronto East",
                 "description": "Nice venue in Toronto",
                 "hasParkingAvailability": "true",
@@ -52,7 +49,6 @@ Meteor.startup(function () {
                 }
             });
             venues.insert({
-                "_id": "2",
                 "name": "Holiday Inn Toronto East",
                 "description": "Nice venue in Toronto",
                 "hasParkingAvailability": "true",
