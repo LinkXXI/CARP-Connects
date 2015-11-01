@@ -27,11 +27,11 @@ Template.addTaskModal.events({
             name: $(e.target).find('#task-name').val(),
             dateTime: formatDateDefault(dateTime),
             description: $(e.target).find('#task-description').val(),
-            taskType: $(e.target).find('#task-type option:selected').text(),
+            taskType: $(e.target).find('#task-type option:selected').val(),
             vendor: $(e.target).find('#vendor-name').val(),
             budget: $(e.target).find('#task-budget').val(),
             userIdAssignedTo: $(e.target).find('#task-assigned-to').val(),
-            status: $(e.target).find('#task-status option:selected').text()
+            status: $(e.target).find('#task-status option:selected').val()
         };
         var tasks = Session.get('tasks') != undefined ? Session.get('tasks') : new Array();
         tasks.push(task);
