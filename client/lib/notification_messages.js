@@ -11,3 +11,10 @@ LOGIN_ERROR = "You have entered the wrong username/password combination, please 
 LOGOUT = "You have been logged out.";
 SIGNUP_SUCCESS = "You have successfully signed up for an account.";
 SIGNUP_ERROR = "There was an error signing up, please try again later.";
+
+ACCOUNT_EDIT_NO_PERMISSION_ERROR = "You do not have the required permission to edit this account.";
+ACCOUNT_FORGOT_PASSWORD_ERROR = "Forgot password did not work properly.";
+ACCOUNT_FORGOT_PASSWORD_SUCCESS = "Forgot password email sent.";
+ACCOUNT_FORGOT_PASSWORD_EMAIL_NO_MATCH = "Email could not be confirmed.";
+ACCOUNT_CHANGE_PASSWORD_ERROR = "Password was not changed properly.";
+ACCOUNT_CHANGE_PASSWORD_NO_MATCH = "Passwords do not match.";

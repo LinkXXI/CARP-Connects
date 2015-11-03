@@ -131,7 +131,7 @@
                             </select>
                         </div>
                         <div class="input-field col s4">
-                            <input type="checkbox" id="phone-primary-new"/>
+                            <input type="checkbox" id="phone-primary-new" {{isOnlyPhone}}/>
                             <label for="phone-primary-new">Primary?</label>
                         </div>
                     </div>
@@ -223,7 +223,7 @@
     <tr id="emailRow-{{index}}">
         <td>
             <input id="email-input-{{index}}" type="email" value="{{address}}">
-
+            <label for="email-input-{{index}}"></label>
         </td>
         <td>
             {{#if verified}}

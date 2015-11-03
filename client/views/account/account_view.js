@@ -1,6 +1,7 @@
 Template.accountView.helpers({
-    "loggedIn": function() {
-        return Meteor.userId() === this._id;
+    "editAllowed": function() {
+        var role = Meteor.user().profile.permissions.role;
+        return Meteor.userId() === this._id || role === "admin";
     }
 });
 
@@ -31,7 +32,7 @@ Template.accountView.events({
         if (password.new === password.confirmNew) {
             Accounts.changePassword(password.current, password.new, function (err) {
                 if (err) {
-                    throwError(err.reason);
+                    sAlert.error(ACCOUNT_CHANGE_PASSWORD_ERROR);
                 } else {
                     var $passchangeModal = $('#passchange-modal');
                     $passchangeModal.closeModal();
@@ -39,7 +40,53 @@ Template.accountView.events({
                 }
             });
         } else {
-            throwError("Passwords don't match.");
+            sAlert.error(ACCOUNT_CHANGE_PASSWORD_NO_MATCH);
+        }
+    },
+    "click #passreset": function(e) {
+        e.preventDefault();
+        $('#passreset-modal').openModal();
+    },
+    "click #passreset-cancel": function(e) {
+        e.preventDefault();
+        $('#passreset-modal').closeModal();
+    },
+    "submit #passreset-form": function (e) {
+        e.preventDefault();
+        var emailConfirm = {
+            address: $(e.target).find('#email').val(),
+            valid: false
+        };
+        var emails = this.emails;
+        for (var i=0; i<emails.length;i++) {
+            if (emailConfirm.address === emails[i].address) {
+                emailConfirm.valid = true;
+                break;
+            }
+        }
+        //TODO: meteor add audit-argument-checks
+        /*
+         check(emailConfirm, {
+         address: String
+         });
+         */
+
+        if (emailConfirm.valid) {
+            Accounts.forgotPassword(emailConfirm.address, function (err) {
+                var $passresetModal = $('#passreset-modal');
+                $passresetModal.closeModal();
+                $passresetModal.find('form')[0].reset();
+                if (err) {
+                    sAlert.error(ACCOUNT_FORGOT_PASSWORD_ERROR);
+                } else {
+                    sAlert.success(ACCOUNT_FORGOT_PASSWORD_SUCCESS);
+                }
+            });
+        } else {
+            var $passresetModal = $('#passreset-modal');
+            $passresetModal.closeModal();
+            $passresetModal.find('form')[0].reset();
+            sAlert.error(ACCOUNT_FORGOT_PASSWORD_EMAIL_NO_MATCH);
         }
     }
 });

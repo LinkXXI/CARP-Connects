@@ -6,6 +6,14 @@ Template.accountEdit.rendered = function() {
 Template.accountEdit.helpers({
     "phoneType": function() {
         return Enumeration.phoneType;
+    },
+    "isOnlyPhone": function() {
+        if (this.profile.phones) {
+            if (this.profile.phones.length > 0) {
+                return;
+            }
+        }
+        return {checked: "checked", disabled: "disabled"};
     }
 });
 
@@ -33,7 +41,7 @@ Template.accountEdit.events({
     },
     "click #acctmgmt-cancel": function(e) {
         e.preventDefault();
-        Router.go('/account');
+        Router.go('AccountView', {_id: this._id});
     },
     "click .a-resend-verification": function(e) {
         e.preventDefault();
@@ -74,6 +82,7 @@ Template.accountEdit.events({
     "submit #acctmgmt-form": function (e) {
         //TODO: Optimization - update all dom manipulation to use session
         e.preventDefault();
+        var userId = this._id;
         var emails = [];
         $(e.target).find("[id^='emailRow-']").each(function() {
             var i = this.id.split("emailRow-")[1];
@@ -100,7 +109,7 @@ Template.accountEdit.events({
             emails: emails,
             "profile.phones": phones
         };
-        Meteor.call('updateAccount', userFields, function (err) {
+        Meteor.call('updateAccount', userId, userFields, function (err) {
             if (err) {
                 console.log(err);
                 //throwError(err.reason);

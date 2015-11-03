@@ -74,8 +74,8 @@ Meteor.methods({
             return false;
         }
     },
-    "updateAccount": function(userAttributes) {
-        if(Meteor.user()) {
+    "updateAccount": function(userId, userAttributes) {
+        if(userId) {
             //TODO: meteor add audit-argument-checks
             /*
              check(userAttributes, {
@@ -85,7 +85,7 @@ Meteor.methods({
              "profile.skills": String
              });
              */
-            Meteor.users.update(Meteor.userId(), {$set: userAttributes}, function(error) {
+            Meteor.users.update(userId, {$set: userAttributes}, function(error) {
                 if (error) {
                     return error;
                 }

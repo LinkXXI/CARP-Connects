@@ -29,22 +29,34 @@ Router.route('/account', {
     }
 });
 
-Router.route('/account/edit', {
+Router.route('/account/:_id/edit', {
     name: 'AccountEdit',
     template: 'accountEdit',
+    waitOn: function () {
+        return Meteor.subscribe('OneUser', this.params._id);
+    },
     data: function () {
-        return Meteor.user();
+        return Meteor.users.findOne({_id: this.params._id});
+    },
+    onBeforeAction: function () {
+        var role = Meteor.user().profile.permissions.role;
+        if (Meteor.userId() === this.params._id || role === "admin") {
+            this.next();
+        } else {
+            sAlert.error(ACCOUNT_EDIT_NO_PERMISSION_ERROR);
+            Router.go('/');
+        }
     }
 });
 
-Router.route('/account/:userId', {
-    name: 'AccountById',
+Router.route('/account/:_id', {
+    name: 'AccountView',
     template: 'accountView',
     waitOn: function () {
-        return Meteor.subscribe('OneUser', this.params.userId);
+        return Meteor.subscribe('OneUser', this.params._id);
     },
     data: function () {
-        return Meteor.users.findOne({_id: this.params.userId});
+       return Meteor.users.findOne({_id: this.params._id});
     }
 });
 

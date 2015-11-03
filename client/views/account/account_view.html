@@ -83,48 +83,77 @@
                 </div>
             {{/if}}
         </div>
-        {{#if loggedIn}}
+        {{#if editAllowed}}
             <a href="{{pathFor 'AccountEdit'}}" class="btn waves-effect waves-light" type="submit">Edit<i
                     class="mdi-editor-mode-edit right"></i>
             </a>
-            <button id="passchange" class="btn waves-effect waves-light modal-trigger" type="button"
-                    name="passchange">
-                Change Password<i class="mdi-action-lock right"></i>
-            </button>
-            <div id="passchange-modal" class="modal">
-                <div class="modal-content">
-                    <h4>Change Your Password</h4>
+            {{#if currentUser}}
+                <button id="passchange" class="btn waves-effect waves-light modal-trigger" type="button"
+                        name="passchange">
+                    Change Password<i class="mdi-action-lock right"></i>
+                </button>
+                <div id="passchange-modal" class="modal">
+                    <div class="modal-content">
+                        <h4>Change Your Password</h4>
 
-                    <form id="passchange-form">
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input id="curpassword" type="password">
-                                <label for="curpassword">Current Password</label>
+                        <form id="passchange-form">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="curpassword" type="password">
+                                    <label for="curpassword">Current Password</label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input id="newpassword" type="password">
-                                <label for="newpassword">New Password</label>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="newpassword" type="password">
+                                    <label for="newpassword">New Password</label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input id="new2password" type="password">
-                                <label for="new2password">Confirm New Password</label>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="new2password" type="password">
+                                    <label for="new2password">Confirm New Password</label>
+                                </div>
                             </div>
-                        </div>
-                        <button class="btn waves-effect waves-light" type="submit">Save<i
-                                class="mdi-content-send right"></i>
-                        </button>
-                        <button id="passchange-cancel" class="btn waves-effect waves-light" type="button">Cancel<i
-                                class="mdi-navigation-cancel right"></i>
-                        </button>
-                    </form>
+                            <button class="btn waves-effect waves-light" type="submit">Save<i
+                                    class="mdi-content-send right"></i>
+                            </button>
+                            <button id="passchange-cancel" class="btn waves-effect waves-light" type="button">Cancel<i
+                                    class="mdi-navigation-cancel right"></i>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
                 </div>
-                <div class="modal-footer">
+            {{else}}
+                <button id="passreset" class="btn waves-effect waves-light modal-trigger" type="button"
+                        name="passreset">
+                    Forgot Password<i class="mdi-action-lock right"></i>
+                </button>
+                <div id="passreset-modal" class="modal">
+                    <div class="modal-content">
+                        <h4>Would you like to reset your password?</h4>
+
+                        <form id="passreset-form">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="email" type="email">
+                                    <label for="email">Email (for confirmation)</label>
+                                </div>
+                            </div>
+                            <button class="btn waves-effect waves-light" type="submit">Send Email<i
+                                    class="mdi-content-send right"></i>
+                            </button>
+                            <button id="passreset-cancel" class="btn waves-effect waves-light" type="button">Cancel<i
+                                    class="mdi-navigation-cancel right"></i>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
                 </div>
-            </div>
+            {{/if}}
         {{/if}}
     </div>
 </template>
