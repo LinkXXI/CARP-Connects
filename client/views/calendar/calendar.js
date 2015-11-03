@@ -14,6 +14,7 @@ function mapCalendarEvents(eventsArr) {
     var calendarEvents = [];
     if (eventsArr) {
         $.each(eventsArr, function (i, event) {
+            var eventTasks = tasks.find({event: event._id}).fetch();
             calendarEvents.push({
                 title: event.name,
                 start: event.dateTime,
@@ -21,9 +22,8 @@ function mapCalendarEvents(eventsArr) {
                 color: "#99CCFF",
                 allDay: false
             });
-            if (event.tasks) {
-                $.each(event.tasks, function (j, taskId) {
-                    var task = tasks.findOne({_id: taskId});
+            if (eventTasks.length > 0) {
+                $.each(eventTasks, function (j, task) {
                     calendarEvents.push({
                         title: task.name,
                         start: task.dateTime,
