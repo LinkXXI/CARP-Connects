@@ -8,9 +8,6 @@
     "theme": "enum - ? need more info",
     "status": "string - complete or active",
     "dateTime": "Date - datetime of the event",
-    "tasks": [
-      "string - id of task, relational to taskSchema"
-    ],
     "venue": "string - id of the venue"
   }
 }
