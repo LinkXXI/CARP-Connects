@@ -87,7 +87,7 @@
             <a href="{{pathFor 'AccountEdit'}}" class="btn waves-effect waves-light" type="submit">Edit<i
                     class="mdi-editor-mode-edit right"></i>
             </a>
-            {{#if currentUser}}
+            {{#if changePassword}}
                 <button id="passchange" class="btn waves-effect waves-light modal-trigger" type="button"
                         name="passchange">
                     Change Password<i class="mdi-action-lock right"></i>
@@ -126,34 +126,33 @@
                     <div class="modal-footer">
                     </div>
                 </div>
-            {{else}}
-                <button id="passreset" class="btn waves-effect waves-light modal-trigger" type="button"
-                        name="passreset">
-                    Forgot Password<i class="mdi-action-lock right"></i>
-                </button>
-                <div id="passreset-modal" class="modal">
-                    <div class="modal-content">
-                        <h4>Would you like to reset your password?</h4>
-
-                        <form id="passreset-form">
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input id="email" type="email">
-                                    <label for="email">Email (for confirmation)</label>
-                                </div>
-                            </div>
-                            <button class="btn waves-effect waves-light" type="submit">Send Email<i
-                                    class="mdi-content-send right"></i>
-                            </button>
-                            <button id="passreset-cancel" class="btn waves-effect waves-light" type="button">Cancel<i
-                                    class="mdi-navigation-cancel right"></i>
-                            </button>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                    </div>
-                </div>
             {{/if}}
+            <button id="passreset" class="btn waves-effect waves-light modal-trigger" type="button"
+                    name="passreset">
+                Forgot Password<i class="mdi-action-lock right"></i>
+            </button>
+            <div id="passreset-modal" class="modal">
+                <div class="modal-content">
+                    <h4>Reset password for {{profile.firstName}} {{profile.lastName}}?</h4>
+
+                    <form id="passreset-form">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="email" type="email">
+                                <label for="email">Email (for confirmation)</label>
+                            </div>
+                        </div>
+                        <button class="btn waves-effect waves-light" type="submit">Send Email<i
+                                class="mdi-content-send right"></i>
+                        </button>
+                        <button id="passreset-cancel" class="btn waves-effect waves-light" type="button">Cancel<i
+                                class="mdi-navigation-cancel right"></i>
+                        </button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
         {{/if}}
     </div>
 </template>
