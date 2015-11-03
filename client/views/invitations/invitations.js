@@ -10,6 +10,27 @@ Template.invitations.events({
 
             }
         });
+    },
+    'click #add-add': function () {
+        var addModal = $('#addModal');
+
+        var val;
+
+        switch (addModal.find('.active').html()) {
+            case "Existing User":
+               // val = {value: addModal.find('select').val(), type: "existing"};
+                Meteor.call("createInviteForUser", addModal.find('select').val(), false, function(err, data){
+                    
+                });
+                break;
+            case "New User":
+                var emailEl = addModal.find('#email');
+                var sendEl = addModal.find('sendEmail');
+                Meteor.cal("createInviteForEmail", emailEL.val(), sendEl.val(), function (err, data) {
+                    
+                })
+                break;
+        }
     }
 });
 
