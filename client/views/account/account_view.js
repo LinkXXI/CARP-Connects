@@ -1,7 +1,7 @@
 Template.accountView.helpers({
     "editAllowed": function() {
         var role = Meteor.user().profile.permissions.role;
-        return Meteor.userId() === this._id || role === "admin";
+        return Meteor.userId() === this._id || role === "Administrator";
     },
     "changePassword": function() {
         return Meteor.userId() === this._id; //allow password change since user profile is for current user
