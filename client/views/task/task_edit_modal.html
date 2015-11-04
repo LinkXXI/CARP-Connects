@@ -1,17 +1,20 @@
 <template name="taskEditModal">
-        <div id="edit-task-modal" class="modal modal-fixed-footer">
+    <div id="edit-task-modal" class="modal modal-fixed-footer">
+        {{#with task}}
             <form id="edit-task-form">
-                <input id="edit-task-id" type="hidden" class="validate" value="{{taskToEdit._id}}" required>
+                <input id="edit-task-id" type="hidden" class="validate" value="{{_id}}" required>
+
                 <div class="modal-content">
                     <h2 class="center">Edit Task</h2>
 
                     <div class="row">
                         <div class="input-field col s6">
-                            <input id="edit-task-name" type="text" class="validate" value="{{taskToEdit.name}}" required>
+                            <input id="edit-task-name" type="text" class="validate" value="{{name}}" required>
                             <label class="active" for="edit-task-name">Task Name</label>
                         </div>
                         <div class="input-field col s6">
-                            <input type="text" class="validate" id="edit-task-datetime" value="{{formatDateMDYT taskToEdit.dateTime}}"
+                            <input type="text" class="validate" id="edit-task-datetime"
+                                   value="{{formatDateMDYT dateTime}}"
                                    required>
                             <label class="active" for="edit-task-datetime">Due Date/Time</label>
                         </div>
@@ -19,8 +22,9 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <textarea id="edit-task-description"
-                                      class="materialize-textarea">{{taskToEdit.description}}</textarea>
-                            <label class="active" for="edit-task-description">Description<i class="mdi-editor-mode-edit right"></i></label>
+                                      class="materialize-textarea">{{description}}</textarea>
+                            <label class="active" for="edit-task-description">Description<i
+                                    class="mdi-editor-mode-edit right"></i></label>
                         </div>
                     </div>
                     <div class="row">
@@ -29,17 +33,17 @@
                             <select class="browser-default" id="edit-task-type" required>
                                 <option value="" disabled selected>Please choose a task type</option>
                                 {{#each taskType}}
-                                    <option value="{{this}}" {{isOptionSelected this taskToEdit.taskType}}>{{this}}</option>
+                                    <option value="{{this}}" {{isOptionSelected this ../taskType}}>{{this}}</option>
                                 {{/each}}
                             </select>
                         </div>
-                        {{#if isVendorTaskEdit}}
+                        {{#if isVendorTask}}
                             <div class="col s5">
                                 <label for="edit-vendor-name">Vendor Name</label>
                                 <select class="browser-default" id="edit-vendor-name">
                                     <option value="" disabled selected>Please choose a vendor</option>
                                     {{#each vendors}}
-                                        <option value="{{this._id}}" {{isOptionSelected this._id taskToEdit.vendor}}>{{this.name}}</option>
+                                        <option value="{{this._id}}" {{isOptionSelected this._id ../vendor}}>{{this.name}}</option>
                                     {{/each}}
                                 </select>
                             </div>
@@ -56,7 +60,8 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s3">
-                            <input id="edit-task-budget" type="text" class="validate" value="{{taskToEdit.budget}}" required>
+                            <input id="edit-task-budget" type="text" class="validate" value="{{budget}}"
+                                   required>
                             <label class="active" for="edit-task-budget">Task Budget ($)</label>
                         </div>
                     </div>
@@ -66,7 +71,7 @@
                             <select class="browser-default" id="edit-task-assigned-to" required>
                                 <option value="" disabled selected>Choose an assignee</option>
                                 {{#each users}}
-                                    <option value="{{this._id}}" {{isOptionSelected this._id taskToEdit.userIdAssignedTo}}>{{this.profile.firstName}} {{this.profile.lastName}}</option>
+                                    <option value="{{this._id}}" {{isOptionSelected this._id ../userIdAssignedTo}}>{{this.profile.firstName}} {{this.profile.lastName}}</option>
                                 {{/each}}
                             </select>
                         </div>
@@ -75,7 +80,7 @@
                             <select class="validate browser-default" id="edit-task-status" required>
                                 <option value="" disabled selected>Choose an option</option>
                                 {{#each taskStatus}}
-                                    <option value="{{this}}" {{isOptionSelected this taskToEdit.status}}>{{this}}</option>
+                                    <option value="{{this}}" {{isOptionSelected this ../status}}>{{this}}</option>
                                 {{/each}}
                             </select>
                         </div>
@@ -96,5 +101,6 @@
                     </div>
                 </div>
             </form>
-        </div>
+        {{/with}}
+    </div>
 </template>

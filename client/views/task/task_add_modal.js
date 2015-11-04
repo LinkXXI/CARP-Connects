@@ -1,18 +1,9 @@
 /**
  * Created by Sergio on 10/8/2015.
  */
-Template.taskAddModal.rendered = function () {
+Template.taskEditModal.onRendered(function () {
     $('#task-datetime').datetimepicker();
-
-/*    $('#task-budget').ionRangeSlider({
-        type: "single",
-        min: 0,
-        max: 750,
-        grid: true,
-        prefix: "$",
-        step: 10
-    });*/
-};
+});
 
 Template.taskAddModal.events({
     'click #cancel-add-task-button': function (e) {

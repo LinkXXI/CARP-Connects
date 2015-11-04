@@ -33,6 +33,16 @@ Meteor.methods({
             }
         }
     },
+    taskDelete: function (taskId) {
+        tasks.remove( {"_id": taskId }, function (error) {
+            if (error) {
+                return error;
+            }
+            else {
+                console.log("deleted: " + taskId);
+            }
+        });
+    },
     venueInsert: function (venue) {
         venues.insert(venue);
     },

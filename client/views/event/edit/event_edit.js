@@ -25,6 +25,8 @@ Template.eventEdit.onDestroyed(function () {
     delete Session.keys['tasks'];
 });
 
+var allTasks;
+
 Template.eventEdit.helpers({
     "eventTheme": function () {
         return Enumeration.eventThemes;
@@ -33,10 +35,26 @@ Template.eventEdit.helpers({
         return venues.find({}, {sort: {name: 1}});
     },
     "tasks": function() {
-        return tasks.find().fetch();
-    },
-    "newTasks": function() {
-        return Session.get('tasks');
+        var dbTasks = tasks.find().fetch();
+        var sessionTasks = Session.get('tasks') != undefined ? Session.get('tasks') : new Array();
+        var mergedTasks = new Array();
+        $.each(dbTasks, function(i, dbTask) {
+            var matched = false;
+            //console.log(dbTask._id);
+            $.each(sessionTasks, function(j, sessionTask) {
+                //console.log(sessionTask._id);
+                if (sessionTask._id === dbTask._id) {
+                    matched = true;
+                    mergedTasks.push(sessionTask);
+                }
+            });
+            if (!matched) {
+                mergedTasks.push(dbTask);
+            }
+        });
+        //console.log(mergedTasks);
+        allTasks = mergedTasks;
+        return mergedTasks;
     }
 });
 
@@ -62,11 +80,7 @@ Template.eventEdit.events({
     "submit #edit-event-form": function (e) {
         e.preventDefault();
         var eventId = this._id;
-        var newTasks = Session.get('tasks') != undefined ? Session.get('tasks') : [];
-        var oldTasks = tasks.find().fetch();
-        for (var i=0;i<newTasks.length;i++) {
-            oldTasks.push(newTasks[i]);
-        }
+        var tasks = allTasks;
         var dateTime = $(e.target).find('#datetime').val();
         var event = {
             name: $(e.target).find('#event-name').val(),
@@ -76,18 +90,21 @@ Template.eventEdit.events({
             theme: $(e.target).find('#theme option:selected').val(),
             venue: $(e.target).find('#venue').val()
         };
-        Meteor.call('eventUpdate', eventId, event, oldTasks, function (error) {
+        Meteor.call('eventUpdate', eventId, event, allTasks, function (error) {
             // display the error to the user and abort
             if (error) {
                 sAlert.error(EVENT_EDIT_ERROR);
                 return throwError(error.reason);
             }
             else {
+                Session.set('tasks', undefined);
+                delete Session.keys['tasks'];
                 sAlert.success(EVENT_EDIT_SUCCESS);
             }
             // show this result but route anyway
             Router.go('EventView', {_id: eventId});
         });
+
     }
 });
 

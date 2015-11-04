@@ -1,9 +1,13 @@
 /**
  * Created by Sergio on 11/3/2015.
  */
-Template.taskEditModal.rendered = function () {
+Template.taskEditModal.onRendered(function () {
     $('#edit-task-datetime').datetimepicker();
-};
+});
+
+Template.taskEditModal.onCreated(function () {
+
+});
 
 Template.taskEditModal.events({
     'click #cancel-edit-task-button': function (e) {
@@ -35,19 +39,10 @@ Template.taskEditModal.events({
             userIdAssignedTo: $(e.target).find('#edit-task-assigned-to').val(),
             status: $(e.target).find('#edit-task-status option:selected').val()
         };
-        var tasks = Session.get('tasks');
-        var position;
-        // remove the old Task from the tasks Array and record it's position
-        $.each(tasks, function(i, val){
-            if (this._id == task._id){
-                tasks.splice(i, 1);
-                position = i;
-                return false;
-            }
-        });
-        // insert the new Task in the same position, we don't want to see task cards changing positions on the screen
-        tasks.splice(position, 0, task);
-        Session.set('tasks', tasks);
+
+        var newTasks = Session.get('tasks') != undefined ? Session.get('tasks') : new Array();
+        newTasks.push(task);
+        Session.set('tasks', newTasks);
         var modal = $('#edit-task-modal');
         modal.closeModal();
 
@@ -68,20 +63,14 @@ Template.taskEditModal.helpers({
     'vendors': function () {
         return vendors.find({}, {sort: {name: 1}});
     },
-    'taskToEdit': function () {
+    task: function() {
         var id = Session.get('taskToEdit');
         if (id) {
-            var tasks = Session.get('tasks');
-            var result = tasks.filter(function (task) {
-                return task._id == id;
-            });
-            var task = result[0];
-            var isVendorTask = task.taskType === "Vendor";
-            Session.set('isVendorTaskEdit', isVendorTask);
-            return task != null ? task : null;
+            var task = tasks.findOne({_id: id});
         }
+        return task;
     },
-    'isVendorTaskEdit': function () {
-        return Session.get('isVendorTaskEdit');
+    isVendorTask: function () {
+        return this.taskType === "Vendor";
     }
 });
