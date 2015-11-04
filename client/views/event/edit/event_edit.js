@@ -1,10 +1,6 @@
 /**
  * Created by Sergio on 10/3/2015.
  */
-Template.eventEdit.onCreated(function () {
-    Session.set('tasks', tasks.find().fetch());
-});
-
 Template.eventEdit.onRendered(function () {
     $('#datetime').datetimepicker();
 

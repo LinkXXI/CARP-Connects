@@ -1,5 +1,6 @@
-Template.eventView.onCreated(function () {
-    Session.set('tasks', tasks.find().fetch());
+Template.eventEdit.onDestroyed(function () {
+    Session.set('tasks', undefined);
+    delete Session.keys['tasks'];
 });
 
 Template.eventView.rendered = function () {
