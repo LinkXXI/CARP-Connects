@@ -5,7 +5,9 @@ VENUE_INSERT_SUCCESS = "A venue was successfully created.";
 VENUE_INSERT_ERROR = "An error occurred creating a venue.";
 VENDOR_INSERT_SUCCESS = "A vendor was successfully created.";
 VENDOR_INSERT_ERROR = "An error occurred creating a vendor.";
+
 TASK_CREATED_SUCCESS = "A task was successfully created.";
+TASK_EDITED_SUCCESS = "This task was successfully edited.";
 
 LOGIN_ERROR = "You have entered the wrong username/password combination, please try again.";
 LOGOUT = "You have been logged out.";

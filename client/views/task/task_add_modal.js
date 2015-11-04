@@ -1,7 +1,7 @@
 /**
  * Created by Sergio on 10/8/2015.
  */
-Template.addTaskModal.rendered = function () {
+Template.taskAddModal.rendered = function () {
     $('#task-datetime').datetimepicker();
 
 /*    $('#task-budget').ionRangeSlider({
@@ -14,7 +14,7 @@ Template.addTaskModal.rendered = function () {
     });*/
 };
 
-Template.addTaskModal.events({
+Template.taskAddModal.events({
     'click #cancel-add-task-button': function (e) {
         var modal = $('#add-task-modal');
         modal.closeModal();
@@ -43,7 +43,7 @@ Template.addTaskModal.events({
         sAlert.success(TASK_CREATED_SUCCESS);
     },
     'change #task-type': function (e) {
-        var isVendorTask = $(e.target).find('option:selected').val() === 'vendor';
+        var isVendorTask = $(e.target).find('option:selected').val() === 'Vendor';
         Session.set('isVendorTask', isVendorTask);
         //re-init tooltip for Add Vendor button
         Meteor.setTimeout(function() {
@@ -55,9 +55,12 @@ Template.addTaskModal.events({
     }
 });
 
-Template.addTaskModal.helpers({
+Template.taskAddModal.helpers({
     'taskStatus': function () {
         return Enumeration.taskStatus;
+    },
+    'taskType': function () {
+        return Enumeration.taskTypes;
     },
     'users': function () {
         return Meteor.users.find({}, {sort: {name: 1}});

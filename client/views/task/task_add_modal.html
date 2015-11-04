@@ -1,4 +1,4 @@
-<template name="addTaskModal">
+<template name="taskAddModal">
     <div id="add-task-modal" class="modal modal-fixed-footer">
         <form id="add-task-form">
             <div class="modal-content">
@@ -6,7 +6,7 @@
 
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="task-name" type="text" class="validate">
+                        <input id="task-name" type="text" class="validate" required>
                         <label for="task-name">Task Name</label>
                     </div>
                     <div class="input-field col s6">
@@ -22,16 +22,17 @@
                 </div>
                 <div class="row">
                     <div class="col s5">
-                        <label>Task Type</label>
+                        <label for="task-type">Task Type</label>
                         <select class="browser-default" id="task-type" required>
                             <option value="" disabled selected>Please choose a task type</option>
-                            <option value="vendor">Vendor</option>
-                            <option value="custom">Custom</option>
+                            {{#each taskType}}
+                                <option value="{{this}}">{{this}}</option>
+                            {{/each}}
                         </select>
                     </div>
                     {{#if isVendorTask}}
                         <div class="col s5">
-                            <label>Vendor Name</label>
+                            <label for="vendor-name">Vendor Name</label>
                             <select class="browser-default" id="vendor-name">
                                 <option value="" disabled selected>Please choose a vendor</option>
                                 {{#each vendors}}

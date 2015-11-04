@@ -14,7 +14,7 @@
     ],
     "profile":{
       "permissions":{
-        "role": "User's role -- incomplete, user, organizer, admin"
+        "role": "User's role -- incomplete, user, organizer, Administrator"
       },
       "firstName": "User First Name",
       "lastName": "User's Last Name",
