@@ -111,11 +111,6 @@ Router.route('/events/:_id/edit', {
     },
     data: function () {
         return events.findOne({_id: this.params._id});
-    },
-    onBeforeAction: function () {
-        Session.set('tasks', undefined);
-        delete Session.keys['tasks'];
-        Session.set('tasks', tasks.find().fetch());
     }
 });
 
@@ -146,11 +141,6 @@ Router.route('/events/:_id', {
     },
     data: function () {
         return events.findOne({_id: this.params._id});
-    },
-    onAfterAction: function () {
-        Session.set('tasks', undefined);
-        delete Session.keys['tasks'];
-        Session.set('tasks', tasks.find().fetch());
     }
 });
 
