@@ -1,8 +1,3 @@
-Template.eventEdit.onDestroyed(function () {
-    Session.set('tasks', undefined);
-    delete Session.keys['tasks'];
-});
-
 Template.eventView.rendered = function () {
 /*    //store the dateTime from the input box in a var
     var dateTime = $('#datetime').val();
@@ -20,7 +15,7 @@ Template.eventView.helpers({
         return Enumeration.eventThemes;
     },
     "tasks": function() {
-        return Session.get('tasks');
+        return tasks.find().fetch();
     },
     venue: function () {
         return venues.findOne({_id: this.venue});

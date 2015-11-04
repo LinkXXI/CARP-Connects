@@ -21,6 +21,15 @@ Template.taskCard.helpers({
         } else {
             return false;
         }
+    },
+    'isVendorTask': function () {
+        return this.taskType === "Vendor";
+    },
+    userIdAssignedTo: function () {
+        return Meteor.users.findOne({_id: this.userIdAssignedTo});
+    },
+    vendor: function () {
+        return vendors.findOne({_id: this.vendor});
     }
 });
 

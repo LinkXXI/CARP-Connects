@@ -1,19 +1,23 @@
 <template name="taskCard">
     <div class="row">
         <div class="card-panel {{getStatus}} col s11">
-            <a class="task-link hyperlink-no-style">
-                <div class="col s6" style="margin-bottom: 1em;">
-                    <h5>{{name}}</h5>
-                    <span>{{description}}</span>
-                </div>
-                <div class="col s4">
-                    <ul class="left-align">
-                        <li><b>Budget: </b>{{formatCurrency budget}}</li>
-                        <li><b>Due: </b>{{formatDate dateTime}}</li>
-                        <li><b>Status: </b>{{status}}</li>
-                    </ul>
-                </div>
-            </a>
+            <div class="col s6" style="margin-bottom: 1em;">
+                <h5>{{name}}</h5>
+                <span>{{description}}</span>
+            </div>
+            <div class="col s4">
+                <ul class="left-align">
+                    <li><b>Budget: </b>{{formatCurrency budget}}</li>
+                    <li><b>Due: </b>{{formatDate dateTime}}</li>
+                    <li><b>Status: </b>{{status}}</li>
+                    <li><b>Assigned
+                        to: </b>{{userIdAssignedTo.profile.firstName}} {{userIdAssignedTo.profile.lastName}}</li>
+                    <li><b>Task Type: </b>{{taskType}}</li>
+                    {{#if isVendorTask}}
+                        <li><b>Vendor: </b>{{vendor.name}}</li>
+                    {{/if}}
+                </ul>
+            </div>
             {{#if isCurrentRoute 'EventEdit'}}
                 <div class="col s1 right" style="padding-right:0;">
                     <a class="delete-task-button btn-flat tooltipped"
