@@ -1,40 +1,39 @@
 <template name="taskCard">
     <div class="row">
         <div class="card-panel {{getStatus}} col s11">
-            <div class="col s7">
-                <h5>{{name}}</h5>
-                <span>{{description}}</span>
-            </div>
-            <div class="col s4">
-                <ul class="left-align">
-                    <li><b>Budget: </b>{{formatCurrency budget}}</li>
-                    <li><b>Due: </b>{{formatDate dateTime}}</li>
-                    <li><b>Status: </b>{{status}}</li>
-                </ul>
-            </div>
+            <a class="task-link hyperlink-no-style">
+                <div class="col s6" style="margin-bottom: 1em;">
+                    <h5>{{name}}</h5>
+                    <span>{{description}}</span>
+                </div>
+                <div class="col s4">
+                    <ul class="left-align">
+                        <li><b>Budget: </b>{{formatCurrency budget}}</li>
+                        <li><b>Due: </b>{{formatDate dateTime}}</li>
+                        <li><b>Status: </b>{{status}}</li>
+                    </ul>
+                </div>
+            </a>
             {{#if isCurrentRoute 'EventEdit'}}
-            <div class="col s1 right-align" style="padding-left:0.75rem;padding-right:0;">
-                <a id="delete-task-button"
-                   class="btn-flat tooltipped"
-                   data-position="bottom"
-                   style="padding:0;margin:0;"
-                   data-delay="50"
-                   data-tooltip="Delete Task"
-                   onclick="return confirm('This will permanently delete this task.  Click OK to confirm, otherwise cancel.');">
-                    <i class="mdi-content-clear"></i>
-                </a>
-                <br>
-                <a id="edit-task-button"
-                   class="btn-flat tooltipped"
-                   data-position="bottom"
-                   style="padding:0;margin:0;"
-                   data-delay="50"
-                   data-tooltip="Edit Task">
-                    <i class="mdi-editor-mode-edit"></i>
-                </a>
-            </div>
+                <div class="col s1 right" style="padding-right:0;">
+                    <a class="delete-task-button btn-flat tooltipped"
+                       data-position="bottom"
+                       style="padding:0;margin:0;"
+                       data-delay="50"
+                       data-tooltip="Delete Task"
+                       onclick="return confirm('This will permanently delete this task.  Click OK to confirm, otherwise cancel.');">
+                        <i class="mdi-content-clear"></i>
+                    </a>
+                    <br>
+                    <a class="edit-task-button btn-flat tooltipped"
+                       data-position="bottom"
+                       style="padding:0;margin:0;"
+                       data-delay="50"
+                       data-tooltip="Edit Task">
+                        <i class="mdi-editor-mode-edit"></i>
+                    </a>
+                </div>
             {{/if}}
         </div>
     </div>
-
 </template>

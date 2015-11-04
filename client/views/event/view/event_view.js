@@ -1,3 +1,7 @@
+Template.eventView.onCreated(function () {
+    Session.set('tasks', tasks.find().fetch());
+});
+
 Template.eventView.rendered = function () {
 /*    //store the dateTime from the input box in a var
     var dateTime = $('#datetime').val();
@@ -14,8 +18,8 @@ Template.eventView.helpers({
     "eventTheme": function () {
         return Enumeration.eventThemes;
     },
-    "tasks": function () {
-        return tasks.find().fetch();
+    "tasks": function() {
+        return Session.get('tasks');
     },
     venue: function () {
         return venues.findOne({_id: this.venue});

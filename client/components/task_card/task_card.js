@@ -25,12 +25,18 @@ Template.taskCard.helpers({
 });
 
 Template.taskCard.events({
-    'click #edit-task-button': function (e) {
+    'click .edit-task-button': function (e) {
         Session.set('taskToEdit', this._id);
         $('#edit-task-modal').openModal();
     },
-    'click #cancel-edit-task-button': function (e) {
-        var modal = $('#edit-task-modal');
-        modal.closeModal();
+    'click .task-link': function (e) {
+        if (Router.current().route.getName() === 'EventEdit') {
+            Session.set('taskToEdit', this._id);
+            $('#edit-task-modal').openModal();
+        } else if (Router.current().route.getName() === 'EventView') {
+            // this will be changed to the view task modal later.
+            Session.set('taskToEdit', this._id);
+            $('#edit-task-modal').openModal();
+        }
     }
 });
