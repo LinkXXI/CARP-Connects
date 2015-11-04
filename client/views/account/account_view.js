@@ -40,6 +40,7 @@ Template.accountView.events({
                     var $passchangeModal = $('#passchange-modal');
                     $passchangeModal.closeModal();
                     $passchangeModal.find('form')[0].reset();
+                    sAlert.success(ACCOUNT_CHANGE_PASSWORD_SUCCESS);
                 }
             });
         } else {

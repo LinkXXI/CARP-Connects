@@ -22,4 +22,5 @@ ACCOUNT_FORGOT_PASSWORD_ERROR = "Forgot password did not work properly.";
 ACCOUNT_FORGOT_PASSWORD_SUCCESS = "Forgot password email sent.";
 ACCOUNT_FORGOT_PASSWORD_EMAIL_NO_MATCH = "Email could not be confirmed.";
 ACCOUNT_CHANGE_PASSWORD_ERROR = "Password was not changed properly.";
+ACCOUNT_CHANGE_PASSWORD_SUCCESS = "Password changed successfully.";
 ACCOUNT_CHANGE_PASSWORD_NO_MATCH = "Passwords do not match.";
