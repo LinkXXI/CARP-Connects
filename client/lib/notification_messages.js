@@ -1,13 +1,16 @@
 //this file exists for easy editing of notification messages
 EVENT_INSERT_SUCCESS = "An event was successfully created.";
 EVENT_INSERT_ERROR = "An error occurred creating an event.";
+EVENT_EDIT_SUCCESS = "Event was successfully edited.";
+EVENT_EDIT_ERROR = "An error occurred editing an event.";
+
 VENUE_INSERT_SUCCESS = "A venue was successfully created.";
 VENUE_INSERT_ERROR = "An error occurred creating a venue.";
 VENDOR_INSERT_SUCCESS = "A vendor was successfully created.";
 VENDOR_INSERT_ERROR = "An error occurred creating a vendor.";
 
 TASK_CREATED_SUCCESS = "A task was successfully created.";
-TASK_EDITED_SUCCESS = "This task was successfully edited.";
+TASK_EDITED_SUCCESS = "Task was successfully edited, please save the event for it to take effect.";
 
 LOGIN_ERROR = "You have entered the wrong username/password combination, please try again.";
 LOGOUT = "You have been logged out.";

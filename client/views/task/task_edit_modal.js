@@ -36,11 +36,18 @@ Template.taskEditModal.events({
             status: $(e.target).find('#edit-task-status option:selected').val()
         };
         var tasks = Session.get('tasks');
-        var newTasks = $.grep(tasks, function(item) {
-            return item._id !== task._id
+        var position;
+        // remove the old Task from the tasks Array and record it's position
+        $.each(tasks, function(i, val){
+            if (this._id == task._id){
+                tasks.splice(i, 1);
+                position = i;
+                return false;
+            }
         });
-        newTasks.push(task);
-        Session.set('tasks', newTasks);
+        // insert the new Task in the same position, we don't want to see task cards changing positions on the screen
+        tasks.splice(position, 0, task);
+        Session.set('tasks', tasks);
         var modal = $('#edit-task-modal');
         modal.closeModal();
 

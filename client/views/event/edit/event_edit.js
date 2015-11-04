@@ -75,8 +75,13 @@ Template.eventEdit.events({
         };
         Meteor.call('eventUpdate', eventId, event, tasks, function (error) {
             // display the error to the user and abort
-            if (error)
+            if (error) {
+                sAlert.error(EVENT_EDIT_ERROR);
                 return throwError(error.reason);
+            }
+            else {
+                sAlert.success(EVENT_EDIT_SUCCESS);
+            }
             // show this result but route anyway
             Router.go('EventView', {_id: eventId});
         });
