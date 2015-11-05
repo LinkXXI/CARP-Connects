@@ -5,3 +5,8 @@
 .pointer {
     cursor: pointer;
 }
+
+.card-panel {
+    position: relative;
+    left: 20px;
+}
