@@ -2,14 +2,14 @@
     <div id="edit-task-modal" class="modal modal-fixed-footer">
         {{#with task}}
             <form id="edit-task-form">
-                <input id="edit-task-id" type="hidden" class="validate" value="{{this._id}}" required>
+                <input id="edit-task-id" type="hidden" class="validate" value="{{_id}}" required>
 
                 <div class="modal-content">
                     <h2 class="center">Edit Task</h2>
 
                     <div class="row">
                         <div class="input-field col s6">
-                            <input id="edit-task-name" type="text" class="validate" value="{{this.name}}" required>
+                            <input id="edit-task-name" type="text" class="validate" value="{{name}}" required>
                             <label class="active" for="edit-task-name">Task Name</label>
                         </div>
                         <div class="input-field col s6">

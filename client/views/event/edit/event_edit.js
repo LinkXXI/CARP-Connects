@@ -45,7 +45,7 @@ Template.eventEdit.helpers({
         var dbTasks = tasks.find().fetch();
         var sessionTasks = Session.get('tasks') != undefined ? Session.get('tasks') : new Array();
         var originalTasks = new Array();
-        var mergedlTasks = new Array();
+        var mergedTasks = new Array();
         // pass unique db task objects to the new merged array.  if the _id matches any session task objects, dont add it
         $.each(dbTasks, function(i, dbTask) {
             var isDupe = false;
