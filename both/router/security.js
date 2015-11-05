@@ -25,7 +25,7 @@ Router.onBeforeAction(function () {
         }
     },
     {
-        except: ['Login', 'Incomplete', 'AccountLocked']
+        except: ['Login', 'Incomplete', 'AccountLocked', 'ApplyInvitation']
     }
 );
 

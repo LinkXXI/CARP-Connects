@@ -6,7 +6,7 @@ Meteor.methods({
             validFor: { $in: [Meteor.user().emails[0].address, Meteor.userId(), "Any"]},
             used: false
         }).count();
-        if (count > 0 || applyToId) { //TODO: Also check if user is admin before continuing
+        if (count > 0 || applyToId){//(applyToId && Meteor.user().profile.role == "Administrator")) { //TODO: Also check if user is admin before continuing
             invitations.update({_id: inviteCode}, {
                 $set: {
                     used:true,

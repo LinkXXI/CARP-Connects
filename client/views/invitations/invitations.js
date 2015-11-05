@@ -28,8 +28,8 @@ Template.invitations.events({
                 break;
             case "New User":
                 var emailEl = addModal.find('#email');
-                var sendEl = addModal.find('sendEmail');
-                Meteor.call("createInviteForEmail", emailEl.val(), sendEl.val(), function (err, data) {
+                var sendEl = addModal.find('#sendEmail');
+                Meteor.call("createInviteForEmail", emailEl.val(), (sendEl.val() === "on"), function (err, data) {
                     
                 });
                 break;
@@ -78,12 +78,14 @@ Template.invitation.events({
         Session.set('idToDelete', this._id);
         $('#deleteModal').openModal();
         //Meteor.call("removeInvitation", this._id);
-    },
-
+    }
 });
 
 Template.invitations.created = function () {
     Session.set('edit-invite', {_id: "none"})
+};
+Template.invitations.destroyed = function (){
+    Session.set('select-init', undefined);
 };
 
 var cancelEdits = function(currentId, nextId){

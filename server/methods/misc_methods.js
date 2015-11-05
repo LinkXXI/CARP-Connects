@@ -38,7 +38,7 @@ Meteor.methods({
             invitationSent: sendMail
         });
         if (sendMail) {
-            sendMail(email);
+            sendInvitationMessage(email);
         }
 
         return inviteId;
@@ -48,8 +48,8 @@ Meteor.methods({
     }
 });
 
-var sendMail = function (address) {
+var sendInvitationMessage = function (address) {
     Email.send("Here is your invitation code for CARP Connects: " + inviteId + "\n\n"
         + "If you have not signed up yet, please coppy the code into the 'ivite' field \n" +
-        "if you have, <a href='" + process.env.ROOT_URL + "/applyInvite/" + inviteId + "'>Click Here</a> to apply it to your account.", address);
+        "if you have, <a href='" + process.env.ROOT_URL + "applyInvite/" + inviteId + "'>Click Here</a> to apply it to your account.", address);
 };
