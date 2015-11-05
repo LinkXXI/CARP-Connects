@@ -41,3 +41,20 @@ Router.onBeforeAction(function () {
     {
         except: ['Login', 'AccountLocked']
     });
+
+/**
+ * Account Management editing validation/reroute
+ */
+Router.onBeforeAction(function () {
+        var role = Meteor.user().profile.permissions.role;
+        if (Meteor.userId() === this.params._id || role === "Administrator") {
+            this.next();
+        } else {
+            sAlert.error(ACCOUNT_EDIT_NO_PERMISSION_ERROR);
+            Router.go('/');
+        }
+    },
+    {
+        only: ['AccountEdit']
+    }
+);
