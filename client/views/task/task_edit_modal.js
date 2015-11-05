@@ -25,7 +25,7 @@ Template.taskEditModal.events({
             $('.tooltipped').tooltip({delay: 50})
         }, 200);
     },
-    "click #add-vendor-button": function (e) {
+    'click #add-vendor-button': function (e) {
         $('#add-vendor-modal').openModal();
     },
     'submit #edit-task-form': function (e) {
@@ -67,7 +67,7 @@ Template.taskEditModal.helpers({
         return Enumeration.taskTypes;
     },
     'users': function () {
-        return Meteor.users.find({}, {sort: {name: 1}});
+        return Meteor.users.find();
     },
     'vendors': function () {
         return vendors.find({}, {sort: {name: 1}});

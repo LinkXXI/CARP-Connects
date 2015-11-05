@@ -94,6 +94,7 @@ Router.route('/events/:_id/edit', {
     template: 'eventEdit',
     waitOn: function () {
         return [
+            Meteor.subscribe('AllUsers'),
             Meteor.subscribe('OneEvent', this.params._id),
             Meteor.subscribe('TasksByEvent', this.params._id),
             Meteor.subscribe('Vendors'),
