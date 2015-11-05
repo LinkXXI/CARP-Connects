@@ -68,7 +68,7 @@ Template.taskEditModal.helpers({
     'task': function() {
         var id = Session.get('taskToEditById');
         //get the tasks from the session
-        var allTasks = Session.get('tasks') == null ? false : Session.get('tasks');
+        var allTasks = Session.get('tasks') == undefined ? false : Session.get('tasks');
         var task;
         // if there's an id to edit and session task is not empty
         // look for the task id in the session first, since that is where newest data is
