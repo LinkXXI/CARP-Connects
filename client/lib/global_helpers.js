@@ -5,6 +5,10 @@ Template.registerHelper('formatDate', function(date) {
     return moment(date).format('MMMM Do YYYY, h:mm:ss a');
 });
 
+Template.registerHelper('formatDateShort', function(date) {
+    return moment(date).format('MMM Do YYYY, h:mm a');
+});
+
 Template.registerHelper('formatDateMDYT', function(date) {
     return moment(date).format('M/D/YYYY h:mm a');
 });
