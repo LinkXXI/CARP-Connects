@@ -41,12 +41,22 @@ Template.taskCard.helpers({
 
 Template.taskCard.events({
     'click .edit-task-button': function (e) {
+        if (this.taskType === "Vendor") {
+            Session.set('isVendorTaskEdit', true);
+        } else {
+            Session.set('isVendorTaskEdit', undefined);
+        }
         Session.set('taskToEditById', undefined);
         Session.set('taskToEditById', this._id);
         $('#edit-task-modal').openModal();
     },
     'click .task-link': function (e) {
         if (Router.current().route.getName() === 'EventEdit') {
+            if (this.taskType === "Vendor") {
+                Session.set('isVendorTaskEdit', true);
+            } else {
+                Session.set('isVendorTaskEdit', undefined);
+            }
             Session.set('taskToEditById', undefined);
             Session.set('taskToEditById', this._id);
             $('#edit-task-modal').openModal();

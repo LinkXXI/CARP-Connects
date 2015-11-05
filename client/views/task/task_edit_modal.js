@@ -3,6 +3,13 @@
  */
 Template.taskEditModal.onRendered(function () {
     $('#edit-task-datetime').datetimepicker();
+
+    var isVendorTask = $('#edit-task-type option:selected').val() === 'Vendor';
+    Session.set('isVendorTaskEdit', isVendorTask);
+    //re-init tooltip for Add Vendor button
+    Meteor.setTimeout(function () {
+        $('.tooltipped').tooltip({delay: 50})
+    }, 200);
 });
 
 Template.taskEditModal.events({
@@ -10,7 +17,7 @@ Template.taskEditModal.events({
         var modal = $('#edit-task-modal');
         modal.closeModal();
     },
-    'change #task-type': function (e) {
+    'change #edit-task-type': function (e) {
         var isVendorTask = $(e.target).find('option:selected').val() === 'Vendor';
         Session.set('isVendorTaskEdit', isVendorTask);
         //re-init tooltip for Add Vendor button
@@ -85,6 +92,7 @@ Template.taskEditModal.helpers({
         return task;
     },
     'isVendorTask': function () {
-        return this.taskType === "Vendor";
+        var isVendorTask = Session.get('isVendorTaskEdit');
+        return isVendorTask;
     }
 });
