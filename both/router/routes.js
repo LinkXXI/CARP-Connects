@@ -37,15 +37,6 @@ Router.route('/account/:_id/edit', {
     },
     data: function () {
         return Meteor.users.findOne({_id: this.params._id});
-    },
-    onBeforeAction: function () {
-        var role = Meteor.user().profile.permissions.role;
-        if (Meteor.userId() === this.params._id || role === "Administrator") {
-            this.next();
-        } else {
-            sAlert.error(ACCOUNT_EDIT_NO_PERMISSION_ERROR);
-            Router.go('/');
-        }
     }
 });
 
@@ -83,7 +74,7 @@ Router.route('/events', {
         ];
     },
     data: function () {
-        events.find();
+        return events.find();
     }
 });
 
