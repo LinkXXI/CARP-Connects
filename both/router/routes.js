@@ -200,6 +200,14 @@ Router.route('/invitations', {
     }
 });
 
+Router.route('/applyInvite/:_id', {
+    name: 'ApplyInvitation',
+    template: 'applyInvite',
+    data: function () {
+        return {_id:this.params._id};
+    }
+});
+
 Router.route('/users', {
     name: 'UserManagement',
     template: 'userManagement',
