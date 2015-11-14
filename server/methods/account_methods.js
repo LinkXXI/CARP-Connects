@@ -1,9 +1,15 @@
 Meteor.methods({
-    "validateInvitation": function (inviteCode, applyToId) {
+    "validateInvitation": function (inviteCode, applyToId, signupMail) {
+        var searchMail;
+        if(Meteor.user()){
+            searchMail = Meteor.user().emails[0].address;
+        }else if(signupMail){
+            searchMail = signupMail;
+        }
         var count = invitations.find({
             _id: inviteCode,
             //TODO: Add usergroup/permission level to invitation search
-            validFor: { $in: [Meteor.user().emails[0].address, Meteor.userId(), "Any"]},
+            validFor: { $in: [searchMail, Meteor.userId(), "Any"]},
             used: false
         }).count();
         if (count > 0 || applyToId){//(applyToId && Meteor.user().profile.role == "Administrator")) { //TODO: Also check if user is admin before continuing
@@ -13,12 +19,20 @@ Meteor.methods({
                     appliedTo: applyToId || Meteor.userId()
                 }
             });
-            Meteor.users.update({_id: applyToId || Meteor.userId()}, {
-                $set: {
-                    "profile.inviteCode": inviteCode
-                }
-            });
-            return true;
+            if(Meteor.user()) {
+                Meteor.users.update({_id: applyToId || Meteor.userId()}, {
+                    $set: {
+                        "profile.inviteCode": inviteCode
+                    }
+                });
+                return true;
+            }else{
+                Meteor.users.update({'emails.address': searchMail}, {
+                    $set: {
+                        "profile.inviteCode": inviteCode
+                    }
+                });
+            }
         }else{
             return false;
         }
@@ -53,13 +67,13 @@ Meteor.methods({
                 firstName: firstName,
                 lastName: lastName,
                 inviteCode: undefined,
-                googleLinked: true
+                googleLinked: false
             }
         });
 
         //NOTE: New user is now logged in.
         if (inviteCode) {
-            var result = Meteor.call("validateInvitation", inviteCode);
+            var result = Meteor.call("validateInvitation", inviteCode, null, email);
             if(!result){
                 //TODO: Handle Error
             }

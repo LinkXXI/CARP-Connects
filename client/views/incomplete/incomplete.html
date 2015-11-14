@@ -46,8 +46,10 @@
                             <button class="btn waves-effect waves-light" type="submit">Submit</button>
                         </div>
                     </div>
-                    <div class="row">
-                        <span class="red-text accent-3" id="invite-code-error">Error Placeholder</span>
+                    <div class="row">`
+                        {{#if error}}
+                            <span class="red-text accent-3" id="invite-code-error">{{error}}</span>
+                        {{/if}}
                     </div>
                 </form>
             {{/if}}

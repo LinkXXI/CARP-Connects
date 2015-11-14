@@ -174,7 +174,7 @@ Router.route('/incomplete', {
     name: 'Incomplete',
     template: 'incomplete',
     waitOn: function () {
-        return [];
+        return [Meteor.subscribe("userAuthToken")];
     },
     data: function () {
         return Meteor.user();

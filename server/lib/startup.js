@@ -18,18 +18,34 @@ Meteor.startup(function () {
             used: false
         });
 
-        if(invitation){
+        if (invitation) {
             return "Click the link to verify your email. You will be logged in automatically!\n\n" + url + "\n\n" +
                 "Your invitation code is: " + invitation._id + "\n" +
                 "<a href='" + process.env.ROOT_URL + "applyInvite/" + invitation._id + "'>Click Here</a> to apply the invite to your account, or enter the above code manually once you log in.";
-        }else{
+        } else {
             return "Click the link to verify your email. You will be logged in automatically!\n\n" + url;
         }
 
     };
 
-    /* Accounts.loginServiceConfiguration.remove({
-     service:"google"
-     });
-     Accounts.loginServiceCon*/
+    AccountsMerge.onMerge = function (winner, loser) {
+        //tet googleLinked to true for user.
+        Meteor.users.update(
+            {_id: winner._id},
+            {$set:{
+                    'profile.googleLinked': true
+                }
+            }
+        );
+    };
+
+    ServiceConfiguration.configurations.upsert(
+        {service: "google"},
+        {
+            $set: {
+                clientId: "609568814212-rrknv9a2chkhulvhirjm9c27e91uehv3.apps.googleusercontent.com",
+                secret: "CmRQapaJC14In14dPN59ntNM"
+            }
+        }
+    )
 });
