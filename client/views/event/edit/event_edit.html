@@ -83,39 +83,31 @@
                 </a>
             </div>
         </div>
-        <div class="row">
-            {{#each tasks}}
-                {{> taskCard}}
-            {{/each}}
-        </div>
+        {{#each tasks}}
+            {{> taskCard}}
+        {{/each}}
+        {{#if hasNewTasks}}
+            <div class="col s6">
+                <span class="header">New or Updated Tasks</span>
+            </div>
+
+            <div class="row">
+                {{#each sessionTasks}}
+                    {{> taskCard}}
+                {{/each}}
+            </div>
+        {{/if}}
         <div class="row">
             <div class="col s12 center">
                 <button type="submit" class="waves-effect waves-light btn" id="create-event-button">
                     <i class="mdi-content-send right"></i>Save
                 </button>
-                <!--                <a class="waves-effect waves-light btn dynamicWarning"><i
-                                        class="mdi-content-save right"></i>Save</a>-->
                 <a href="{{pathFor 'EventView'}}" class="waves-effect waves-light btn">
                     <i class="mdi-navigation-cancel right"></i>Cancel
                 </a>
             </div>
         </div>
-
     </form>
-
-    <!--    <div class="row">
-            <div class="col s12 center">
-                <div class="card-panel green">
-                    <span class="white-text">Budget Status</span>
-                    <br>
-                    <span class="white-text">$</span>
-                    <span id="budget-running" class="white-text">0</span>
-                    <span class="white-text">/</span>
-                    <span class="white-text">$</span>
-                    <span id="budget-total" class="white-text">0</span>
-                </div>
-            </div>
-        </div>-->
 
     {{> addVenueModal}}
 

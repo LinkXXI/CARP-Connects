@@ -93,65 +93,68 @@
                     Change Password<i class="mdi-action-lock right"></i>
                 </button>
                 <div id="passchange-modal" class="modal">
+                    <form id="passchange-form">
                     <div class="modal-content">
-                        <h4>Change Your Password</h4>
-
-                        <form id="passchange-form">
+                        <h4>Change Password</h4>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input id="curpassword" type="password">
+                                    <input id="curpassword" type="password" required>
                                     <label for="curpassword">Current Password</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input id="newpassword" type="password">
+                                    <input id="newpassword" type="password" required>
                                     <label for="newpassword">New Password</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input id="new2password" type="password">
+                                    <input id="new2password" type="password" required>
                                     <label for="new2password">Confirm New Password</label>
                                 </div>
                             </div>
-                            <button class="btn waves-effect waves-light" type="submit">Save<i
-                                    class="mdi-content-send right"></i>
-                            </button>
-                            <button id="passchange-cancel" class="btn waves-effect waves-light" type="button">Cancel<i
-                                    class="mdi-navigation-cancel right"></i>
-                            </button>
-                        </form>
+
                     </div>
                     <div class="modal-footer">
+                        <button class="waves-effect waves-green btn-flat" type="submit">Save<i
+                                class="mdi-content-send right"></i>
+                        </button>
+                        <button class="modal-action modal-close waves-effect waves-light btn-flat" type="button">Cancel<i
+                                class="mdi-navigation-cancel right"></i>
+                        </button>
                     </div>
+                    </form>
                 </div>
             {{/if}}
             <button id="passreset" class="btn waves-effect waves-light modal-trigger" type="button"
                     name="passreset">
                 Forgot Password<i class="mdi-action-lock right"></i>
             </button>
-            <div id="passreset-modal" class="modal">
-                <div class="modal-content">
-                    <h4>Reset password for {{profile.firstName}} {{profile.lastName}}?</h4>
+            <div id="passreset-modal" class="modal bottom-sheet">
+                <form id="passreset-form">
+                    <div class="modal-content">
+                        <h4>Forgot password?</h4>
 
-                    <form id="passreset-form">
+                        <p>
+                            Please enter your email below for confirmation and an email will be sent with instructions.
+                        </p>
+
                         <div class="row">
                             <div class="input-field col s12">
-                                <input id="email" type="email">
-                                <label for="email">Email (for confirmation)</label>
+                                <input id="email" type="email" required>
+                                <label for="email">Email</label>
                             </div>
                         </div>
-                        <button class="btn waves-effect waves-light" type="submit">Send Email<i
-                                class="mdi-content-send right"></i>
-                        </button>
-                        <button id="passreset-cancel" class="btn waves-effect waves-light" type="button">Cancel<i
-                                class="mdi-navigation-cancel right"></i>
-                        </button>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit"
+                                class="waves-effect waves-green btn-flat">Send Email<i
+                                class="mdi-content-send right"></i></button>
+                        <button class="modal-action modal-close waves-effect waves-green btn-flat">Cancel<i
+                                class="mdi-navigation-cancel right"></i></button>
+                    </div>
+                </form>
             </div>
         {{/if}}
     </div>

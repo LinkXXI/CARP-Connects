@@ -4,14 +4,14 @@
 Template.eventEdit.onRendered(function () {
     $('#datetime').datetimepicker();
 
-/*    $('#event-budget').ionRangeSlider({
-        type: "single",
-        min: 0,
-        max: 5000,
-        grid: true,
-        prefix: "$",
-        step: 25
-    });*/
+    /*    $('#event-budget').ionRangeSlider({
+     type: "single",
+     min: 0,
+     max: 5000,
+     grid: true,
+     prefix: "$",
+     step: 25
+     });*/
 
     $("#event-budget").change(function () {
         $("#budget-total").html($("#event-budget").val());
@@ -28,33 +28,48 @@ Template.eventEdit.onDestroyed(function () {
 var allTasks;
 
 Template.eventEdit.helpers({
-    "eventTheme": function () {
+    'eventTheme': function () {
         return Enumeration.eventThemes;
     },
-    "venues": function() {
+    'venues': function () {
         return venues.find({}, {sort: {name: 1}});
     },
-    "tasks": function() {
+    'hasNewTasks': function () {
+        return Session.get('tasks');
+    },
+    'sessionTasks': function () {
+        var sessionTasks = Session.get('tasks') != undefined ? Session.get('tasks') : new Array();
+        return sessionTasks;
+    },
+    'tasks': function () {
         var dbTasks = tasks.find().fetch();
         var sessionTasks = Session.get('tasks') != undefined ? Session.get('tasks') : new Array();
+        var originalTasks = new Array();
         var mergedTasks = new Array();
+        // pass unique db task objects to the new merged array.  if the _id matches any session task objects, dont add it
         $.each(dbTasks, function(i, dbTask) {
-            var matched = false;
-            //console.log(dbTask._id);
+            var isDupe = false;
             $.each(sessionTasks, function(j, sessionTask) {
-                //console.log(sessionTask._id);
-                if (sessionTask._id === dbTask._id) {
-                    matched = true;
-                    mergedTasks.push(sessionTask);
-                }
+               if (dbTask._id === sessionTask._id) {
+                    isDupe = true;
+               }
             });
-            if (!matched) {
-                mergedTasks.push(dbTask);
+            if (!isDupe) {
+                // we only want to push tasks that don't have a matching id in session Tasks
+                originalTasks.push(dbTask);
             }
         });
-        //console.log(mergedTasks);
+        // this copies the originalTasks array to mergedTasks...
+        mergedTasks = originalTasks.slice();
+        // combine the merged task array and the session task array, should now have all unique and updated tasks
+        for (var i = 0; i < sessionTasks.length; i++) {
+            //console.log("session task: + i);");
+            //console.log(sessionTasks[i]);
+            mergedTasks.push(sessionTasks[i]);
+        }
+        // allTasks is passed to the eventUpdate server method call
         allTasks = mergedTasks;
-        return mergedTasks;
+        return originalTasks;
     }
 });
 
@@ -104,7 +119,6 @@ Template.eventEdit.events({
             // show this result but route anyway
             Router.go('EventView', {_id: eventId});
         });
-
     }
 });
 

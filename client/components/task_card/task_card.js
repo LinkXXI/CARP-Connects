@@ -1,6 +1,12 @@
 /**
  * Created by Sergio on 10/8/2015.
  */
+Template.taskCard.onRendered(function () {
+    if (Router.current().route.getName() === 'EventEdit') {
+        $('.task-link').addClass('pointer');
+    }
+});
+
 Template.taskCard.helpers({
     getStatus: function () {
         var color = "light blue";
@@ -35,16 +41,24 @@ Template.taskCard.helpers({
 
 Template.taskCard.events({
     'click .edit-task-button': function (e) {
-        Session.set('taskToEdit', this._id);
+        if (this.taskType === "Vendor") {
+            Session.set('isVendorTaskEdit', true);
+        } else {
+            Session.set('isVendorTaskEdit', undefined);
+        }
+        Session.set('taskToEditById', undefined);
+        Session.set('taskToEditById', this._id);
         $('#edit-task-modal').openModal();
     },
     'click .task-link': function (e) {
         if (Router.current().route.getName() === 'EventEdit') {
-            Session.set('taskToEdit', this._id);
-            $('#edit-task-modal').openModal();
-        } else if (Router.current().route.getName() === 'EventView') {
-            // this will be changed to the view task modal later.
-            Session.set('taskToEdit', this._id);
+            if (this.taskType === "Vendor") {
+                Session.set('isVendorTaskEdit', true);
+            } else {
+                Session.set('isVendorTaskEdit', undefined);
+            }
+            Session.set('taskToEditById', undefined);
+            Session.set('taskToEditById', this._id);
             $('#edit-task-modal').openModal();
         }
     }

@@ -13,12 +13,9 @@ Template.accountView.events({
         e.preventDefault();
         $('#passchange-modal').openModal();
     },
-    "click #passchange-cancel": function(e) {
-        e.preventDefault();
-        $('#passchange-modal').closeModal();
-    },
     "submit #passchange-form": function (e) {
         e.preventDefault();
+        var $passchangeModal = $('#passchange-modal');
         var password = {
             current: $(e.target).find('#curpassword').val(),
             new: $(e.target).find('#newpassword').val(),
@@ -37,26 +34,22 @@ Template.accountView.events({
                 if (err) {
                     sAlert.error(ACCOUNT_CHANGE_PASSWORD_ERROR);
                 } else {
-                    var $passchangeModal = $('#passchange-modal');
-                    $passchangeModal.closeModal();
-                    $passchangeModal.find('form')[0].reset();
                     sAlert.success(ACCOUNT_CHANGE_PASSWORD_SUCCESS);
                 }
             });
         } else {
             sAlert.error(ACCOUNT_CHANGE_PASSWORD_NO_MATCH);
         }
+        $passchangeModal.find('form')[0].reset();
+        $passchangeModal.closeModal();
     },
     "click #passreset": function(e) {
         e.preventDefault();
         $('#passreset-modal').openModal();
     },
-    "click #passreset-cancel": function(e) {
-        e.preventDefault();
-        $('#passreset-modal').closeModal();
-    },
     "submit #passreset-form": function (e) {
         e.preventDefault();
+        var $passresetModal = $('#passreset-modal');
         var emailConfirm = {
             address: $(e.target).find('#email').val(),
             valid: false
@@ -76,10 +69,7 @@ Template.accountView.events({
          */
 
         if (emailConfirm.valid) {
-            Accounts.forgotPassword(emailConfirm.address, function (err) {
-                var $passresetModal = $('#passreset-modal');
-                $passresetModal.closeModal();
-                $passresetModal.find('form')[0].reset();
+            Accounts.forgotPassword({email: emailConfirm.address}, function (err) {
                 if (err) {
                     sAlert.error(ACCOUNT_FORGOT_PASSWORD_ERROR);
                 } else {
@@ -87,10 +77,9 @@ Template.accountView.events({
                 }
             });
         } else {
-            var $passresetModal = $('#passreset-modal');
-            $passresetModal.closeModal();
-            $passresetModal.find('form')[0].reset();
             sAlert.error(ACCOUNT_FORGOT_PASSWORD_EMAIL_NO_MATCH);
         }
+        $passresetModal.find('form')[0].reset();
+        $passresetModal.closeModal();
     }
 });

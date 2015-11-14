@@ -1,0 +1,12 @@
+.hyperlink-no-style {
+    text-decoration: none;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.card-panel {
+    position: relative;
+    left: 20px;
+}
