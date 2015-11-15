@@ -4,9 +4,6 @@
     }
     main {
         padding-left: 240px;
-        /* a little bit of padding, on the left side of right division */
-        margin-left: 10px;
-        margin-right: 10px;
     }
 
     /* Show/Hide scrollbars in sidenav */
@@ -24,6 +21,12 @@
     a.button-collapse {
         cursor: pointer;
     }
+}
+
+main {
+    /* a little bit of padding for content */
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 /* Used for calendar */
