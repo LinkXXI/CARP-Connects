@@ -33,3 +33,9 @@ Template.registerHelper('isOptionSelectedReadOnly', function(option, value) {
     }
 });
 
+Template.registerHelper('hasValueMarkActive', function(value) {
+    if (value) {
+        return {class: "active"};
+    }
+});
+

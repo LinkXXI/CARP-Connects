@@ -13,14 +13,14 @@
                         <div class="row">
                             <div id="firstname" class="input-field col s12">
                                 <input id="firstname-input" type="text" value="{{firstName}}">
-                                <label class="active" for="firstname-input">First
+                                <label {{hasValueMarkActive firstName}} for="firstname-input">First
                                     Name</label>
                             </div>
                         </div>
                         <div class="row">
                             <div id="lastname" class="input-field col s12">
                                 <input id="lastname-input" type="text" value="{{lastName}}">
-                                <label class="active" for="lastname-input">Last
+                                <label {{hasValueMarkActive lastName}} for="lastname-input">Last
                                     Name</label>
                             </div>
                         </div>
@@ -30,7 +30,7 @@
                     <div id="bio" class="input-field col s12">
                                 <textarea id="bio-input" class="materialize-textarea" length="255"
                                           maxlength="255">{{biography}}</textarea>
-                        <label class="active" for="bio-input">Biography<i
+                        <label {{hasValueMarkActive biography}} for="bio-input">Biography<i
                                 class="mdi-editor-mode-edit right"></i></label>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                     <div id="skills" class="input-field col s12">
                                 <textarea id="skills-input" class="materialize-textarea" length="255"
                                           maxlength="255">{{skills}}</textarea>
-                        <label class="active" for="skills-input">Skills<i
+                        <label {{hasValueMarkActive skills}} for="skills-input">Skills<i
                                 class="mdi-editor-mode-edit right"></i></label>
                     </div>
                 </div>
