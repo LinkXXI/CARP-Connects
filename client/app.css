@@ -2,8 +2,11 @@
     .nav-wrapper .brand-logo {
         padding-left: 240px;
     }
-    main{
+    main {
         padding-left: 240px;
+        /* a little bit of padding, on the left side of right division */
+        margin-left: 10px;
+        margin-right: 10px;
     }
 
     /* Show/Hide scrollbars in sidenav */
