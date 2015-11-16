@@ -54,7 +54,7 @@ Meteor.methods({
         //}
 
         if (!firstName || !lastName) {
-            return {result:false,element: (!firstName) ? "fistName":"lastName"};
+            return {result:false,element: (!firstName) ? "firstName":"lastName"};
         }
 
         Accounts.createUser({
@@ -89,7 +89,7 @@ Meteor.methods({
         }
     },
     "updateAccount": function(userId, userAttributes) {
-        if(userId) {
+        if(Meteor.user() && userId) {
             //TODO: meteor add audit-argument-checks
             /*
              check(userAttributes, {
@@ -109,8 +109,8 @@ Meteor.methods({
             return false;
         }
     },
-    "updateEmails": function(email) {
-        if(Meteor.user()) {
+    "updateEmails": function(userId, email) {
+        if(Meteor.user() && userId) {
             //TODO: meteor add audit-argument-checks
             /*
              check(email, {
@@ -119,15 +119,15 @@ Meteor.methods({
              });
              */
             if (email) {
-                Accounts.addEmail(Meteor.userId(), email);
+                Accounts.addEmail(userId, email);
             }
             return true;
         } else {
             return false;
         }
     },
-    "removeEmails": function(email) {
-        if(Meteor.user()) {
+    "removeEmails": function(userId, email) {
+        if(Meteor.user() && userId) {
             //TODO: meteor add audit-argument-checks
             /*
              check(email, {
@@ -136,24 +136,24 @@ Meteor.methods({
              });
              */
             if (email) {
-                Accounts.removeEmail(Meteor.userId(), email);
+                Accounts.removeEmail(userId, email);
             }
             return true;
         } else {
             return false;
         }
     },
-    updatePhones: function(phone) {
-        if(Meteor.user()) {
-            // editable for current user only, meteor.user will suffice, make sure current phone added is only primary number
+    updatePhones: function(userId, phone) {
+        if(Meteor.user() && userId) {
+            // editable for current user and Administrator, make sure current phone added is only primary number
             if (phone.primary) {
-                Meteor.users.update({_id:Meteor.userId(), "profile.phones.primary" : true}, {$set: {"profile.phones.$.primary" : false}}, function(error) {
+                Meteor.users.update({_id:userId, "profile.phones.primary" : true}, {$set: {"profile.phones.$.primary" : false}}, function(error) {
                     if (error) {
                         return error;
                     }
                 });
             }
-            Meteor.users.update(Meteor.userId(), {$push: {"profile.phones":phone}}, function(error) {
+            Meteor.users.update(userId, {$push: {"profile.phones":phone}}, function(error) {
                 if (error) {
                     return error;
                 }

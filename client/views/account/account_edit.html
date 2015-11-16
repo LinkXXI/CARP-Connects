@@ -1,53 +1,50 @@
 <template name="accountEdit">
     <div class="container">
         <h3 class="center">Edit Profile</h3>
-
         <form id="acctmgmt-form">
-            {{#with profile}}
-                <div class="row">
-                    <div class="col s2">
-                        <img src="/images/profile.jpg" alt="" class="circle responsive-img">
-                        <!-- notice the "circle" class -->
-                    </div>
-                    <div id="name" class="col s10 right">
-                        <div class="row">
-                            <div id="firstname" class="input-field col s12">
-                                <input id="firstname-input" type="text" value="{{firstName}}">
-                                <label {{hasValueMarkActive firstName}} for="firstname-input">First
-                                    Name</label>
-                            </div>
+            <div class="row">
+                <div class="col s2">
+                    <img {{profilePicAttr}}>
+                    <!-- notice the "circle" class -->
+                </div>
+                <div id="name" class="col s10 right">
+                    <div class="row">
+                        <div id="firstname" class="input-field col s12">
+                            <input id="firstname-input" type="text" value="{{profile.firstName}}">
+                            <label {{hasValueMarkActive profile.firstName}} for="firstname-input">First
+                                Name</label>
                         </div>
-                        <div class="row">
-                            <div id="lastname" class="input-field col s12">
-                                <input id="lastname-input" type="text" value="{{lastName}}">
-                                <label {{hasValueMarkActive lastName}} for="lastname-input">Last
-                                    Name</label>
-                            </div>
+                    </div>
+                    <div class="row">
+                        <div id="lastname" class="input-field col s12">
+                            <input id="lastname-input" type="text" value="{{profile.lastName}}">
+                            <label {{hasValueMarkActive profile.lastName}} for="lastname-input">Last
+                                Name</label>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div id="bio" class="input-field col s12">
+            </div>
+            <div class="row">
+                <div id="bio" class="input-field col s12">
                                 <textarea id="bio-input" class="materialize-textarea" length="255"
-                                          maxlength="255">{{biography}}</textarea>
-                        <label {{hasValueMarkActive biography}} for="bio-input">Biography<i
-                                class="mdi-editor-mode-edit right"></i></label>
-                    </div>
+                                          maxlength="255">{{profile.biography}}</textarea>
+                    <label {{hasValueMarkActive profile.biography}} for="bio-input">Biography<i
+                            class="mdi-editor-mode-edit right"></i></label>
                 </div>
-                <div class="row">
-                    <div id="skills" class="input-field col s12">
+            </div>
+            <div class="row">
+                <div id="skills" class="input-field col s12">
                                 <textarea id="skills-input" class="materialize-textarea" length="255"
-                                          maxlength="255">{{skills}}</textarea>
-                        <label {{hasValueMarkActive skills}} for="skills-input">Skills<i
-                                class="mdi-editor-mode-edit right"></i></label>
-                    </div>
+                                          maxlength="255">{{profile.skills}}</textarea>
+                    <label {{hasValueMarkActive profile.skills}} for="skills-input">Skills<i
+                            class="mdi-editor-mode-edit right"></i></label>
                 </div>
-                <div class="row">
-                    <div id="contact" class="col s12">
-                        <h4>Contact Information</h4>
-                    </div>
+            </div>
+            <div class="row">
+                <div id="contact" class="col s12">
+                    <h4>Contact Information</h4>
                 </div>
-            {{/with}}
+            </div>
             <div class="row">
                 <div class="col s12 m6">
                     <table>
@@ -174,15 +171,16 @@
 
                 <form id="remove-email-form">
                     {{#each emails}}
-                    <div class="row">
-                        <div class="input-field col s2">
-                            <input type="radio" name="remove-email-radiogroup" id="remove-email-{{@index}}" value="{{address}}"/>
-                            <label for="remove-email-{{@index}}"></label>
+                        <div class="row">
+                            <div class="input-field col s2">
+                                <input type="radio" name="remove-email-radiogroup" id="remove-email-{{@index}}"
+                                       value="{{address}}"/>
+                                <label for="remove-email-{{@index}}"></label>
+                            </div>
+                            <div class="input-field col s10">
+                                {{address}}
+                            </div>
                         </div>
-                        <div class="input-field col s10">
-                            {{address}}
-                        </div>
-                    </div>
                     {{/each}}
                     <button class="btn waves-effect waves-light" type="submit">Remove<i
                             class="mdi-content-send right"></i>

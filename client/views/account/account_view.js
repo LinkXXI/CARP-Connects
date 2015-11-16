@@ -1,10 +1,17 @@
 Template.accountView.helpers({
-    "editAllowed": function() {
+    editAllowed: function() {
         var role = Meteor.user().profile.permissions.role;
         return Meteor.userId() === this._id || role === "Administrator";
     },
-    "changePassword": function() {
+    changePassword: function() {
         return Meteor.userId() === this._id; //allow password change since user profile is for current user
+    },
+    profilePicAttr: function() {
+        return {
+            src: this.services.google.picture,
+            alt: "",
+            class: "circle responsive-img"
+        };
     }
 });
 

@@ -24,8 +24,11 @@ Router.route('/login', {
 Router.route('/account', {
     name: 'Account',
     template: 'accountView',
+    waitOn: function () {
+        return Meteor.subscribe('OneUser', Meteor.userId());
+    },
     data: function () {
-        return Meteor.user();
+        return Meteor.users.findOne({_id: Meteor.userId()});
     }
 });
 

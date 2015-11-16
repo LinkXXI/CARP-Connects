@@ -14,6 +14,13 @@ Template.accountEdit.helpers({
             }
         }
         return {checked: "checked", disabled: "disabled"};
+    },
+    profilePicAttr: function() {
+        return {
+            src: this.services.google.picture,
+            alt: "",
+            class: "circle responsive-img"
+        };
     }
 });
 
@@ -120,6 +127,7 @@ Template.accountEdit.events({
     },
     "submit #add-phone-form": function (e) {
         e.preventDefault();
+        var userId = this._id;
         var phone = {
             number: $(e.target).find('#phone-number-new').val(),
             type: $(e.target).find('#phone-type-new').val(),
@@ -133,7 +141,7 @@ Template.accountEdit.events({
          primary: Boolean
          });
          */
-        Meteor.call('updatePhones', phone, function (err) {
+        Meteor.call('updatePhones', userId, phone, function (err) {
             if (err) {
                 console.log(err);
                 //throwError(err.reason);
@@ -148,9 +156,10 @@ Template.accountEdit.events({
     },
     "submit #add-email-form": function (e) {
         e.preventDefault();
+        var userId = this._id;
         var email = $(e.target).find('#email-new').val();
 
-        Meteor.call('updateEmails', email, function (err) {
+        Meteor.call('updateEmails', userId, email, function (err) {
             if (err) {
                 console.log(err);
                 //throwError(err.reason);
@@ -165,9 +174,10 @@ Template.accountEdit.events({
     },
     "submit #remove-email-form": function (e) {
         e.preventDefault();
+        var userId = this._id;
         var email = $(e.target).find("input[type=radio]:checked").val();
 
-        Meteor.call('removeEmails', email, function (err) {
+        Meteor.call('removeEmails', userId, email, function (err) {
             if (err) {
                 console.log(err);
                 //throwError(err.reason);

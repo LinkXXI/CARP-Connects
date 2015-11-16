@@ -3,7 +3,7 @@ Template.sidebar.events({
         Meteor.logout(function(err) {
             if (err) {
                 console.log(err);
-                sAlert.error(ERROR_UNEXPECTED);
+                sAlert.error(GENERIC_UNEXPECTED_ERROR);
             } else {
                 sAlert.info(LOGOUT);
             }

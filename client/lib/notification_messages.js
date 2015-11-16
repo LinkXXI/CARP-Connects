@@ -1,5 +1,5 @@
 //this file exists for easy editing of notification messages
-ERROR_UNEXPECTED = "An unexpected error has occurred.";
+GENERIC_UNEXPECTED_ERROR = "An unexpected error has occurred.";
 
 EVENT_INSERT_SUCCESS = "An event was successfully created.";
 EVENT_INSERT_ERROR = "An error occurred creating an event.";
