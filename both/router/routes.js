@@ -24,8 +24,11 @@ Router.route('/login', {
 Router.route('/account', {
     name: 'Account',
     template: 'accountView',
+    waitOn: function () {
+        return Meteor.subscribe('OneUser', Meteor.userId());
+    },
     data: function () {
-        return Meteor.user();
+        return Meteor.users.findOne({_id: Meteor.userId()});
     }
 });
 
@@ -70,6 +73,7 @@ Router.route('/events', {
     template: 'eventViewAll',
     waitOn: function () {
         return [
+            Meteor.subscribe('AllUsers'),
             Meteor.subscribe('Events')
         ];
     },
@@ -83,6 +87,9 @@ Router.route('/events/create', {
     template: 'eventCreate',
     waitOn: function () {
         return [
+            Meteor.subscribe('AllUsers'),
+            Meteor.subscribe('PastEvents'),
+            Meteor.subscribe('Tasks'),
             Meteor.subscribe('Vendors'),
             Meteor.subscribe('Venues')
         ]
@@ -125,6 +132,7 @@ Router.route('/events/:_id', {
     template: 'eventView',
     waitOn: function () {
         return [
+            Meteor.subscribe('AllUsers'),
             Meteor.subscribe('OneEvent', this.params._id),
             Meteor.subscribe('TasksByEvent', this.params._id),
             Meteor.subscribe('Venues'),
@@ -166,7 +174,7 @@ Router.route('/incomplete', {
     name: 'Incomplete',
     template: 'incomplete',
     waitOn: function () {
-        return [];
+        return [Meteor.subscribe("userAuthToken")];
     },
     data: function () {
         return Meteor.user();

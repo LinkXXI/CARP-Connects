@@ -50,3 +50,8 @@ var generateErrorModal = function (message) {
 
     return modal;
 };
+
+// setup forget password email link direct
+Accounts.onResetPasswordLink(function(token) {
+    //TODO: Logic for password resetting (new password input form)
+});

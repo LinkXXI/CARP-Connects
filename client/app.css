@@ -2,7 +2,7 @@
     .nav-wrapper .brand-logo {
         padding-left: 240px;
     }
-    main{
+    main {
         padding-left: 240px;
     }
 
@@ -21,6 +21,12 @@
     a.button-collapse {
         cursor: pointer;
     }
+}
+
+main {
+    /* a little bit of padding for content */
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 /* Used for calendar */

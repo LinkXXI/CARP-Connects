@@ -10,6 +10,18 @@ Template.incomplete.events({
                 console.log(error);
             }
         })*/
+        Meteor.signInWithGoogle({
+                requestPermissions: ['email', 'https://www.googleapis.com/auth/drive.file']
+        },
+            function (err, mergedUserId) {
+                if(err){
+                    console.log(err);
+                    return;
+                }
+                console.log("User " + mergedUserId + " has been merged");
+
+            }
+        )
     },
     'submit #invite-form': function(e, template){
         e.preventDefault();

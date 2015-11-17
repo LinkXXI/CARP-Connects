@@ -1,9 +1,15 @@
 Meteor.methods({
-    "validateInvitation": function (inviteCode, applyToId) {
+    "validateInvitation": function (inviteCode, applyToId, signupMail) {
+        var searchMail;
+        if(Meteor.user()){
+            searchMail = Meteor.user().emails[0].address;
+        }else if(signupMail){
+            searchMail = signupMail;
+        }
         var count = invitations.find({
             _id: inviteCode,
             //TODO: Add usergroup/permission level to invitation search
-            validFor: { $in: [Meteor.user().emails[0].address, Meteor.userId(), "Any"]},
+            validFor: { $in: [searchMail, Meteor.userId(), "Any"]},
             used: false
         }).count();
         if (count > 0 || applyToId){//(applyToId && Meteor.user().profile.role == "Administrator")) { //TODO: Also check if user is admin before continuing
@@ -13,12 +19,20 @@ Meteor.methods({
                     appliedTo: applyToId || Meteor.userId()
                 }
             });
-            Meteor.users.update({_id: applyToId || Meteor.userId()}, {
-                $set: {
-                    "profile.inviteCode": inviteCode
-                }
-            });
-            return true;
+            if(Meteor.user()) {
+                Meteor.users.update({_id: applyToId || Meteor.userId()}, {
+                    $set: {
+                        "profile.inviteCode": inviteCode
+                    }
+                });
+                return true;
+            }else{
+                Meteor.users.update({'emails.address': searchMail}, {
+                    $set: {
+                        "profile.inviteCode": inviteCode
+                    }
+                });
+            }
         }else{
             return false;
         }
@@ -40,7 +54,7 @@ Meteor.methods({
         //}
 
         if (!firstName || !lastName) {
-            return {result:false,element: (!firstName) ? "fistName":"lastName"};
+            return {result:false,element: (!firstName) ? "firstName":"lastName"};
         }
 
         Accounts.createUser({
@@ -53,13 +67,13 @@ Meteor.methods({
                 firstName: firstName,
                 lastName: lastName,
                 inviteCode: undefined,
-                googleLinked: true
+                googleLinked: false
             }
         });
 
         //NOTE: New user is now logged in.
         if (inviteCode) {
-            var result = Meteor.call("validateInvitation", inviteCode);
+            var result = Meteor.call("validateInvitation", inviteCode, null, email);
             if(!result){
                 //TODO: Handle Error
             }
@@ -75,7 +89,7 @@ Meteor.methods({
         }
     },
     "updateAccount": function(userId, userAttributes) {
-        if(userId) {
+        if(Meteor.user() && userId) {
             //TODO: meteor add audit-argument-checks
             /*
              check(userAttributes, {
@@ -95,8 +109,8 @@ Meteor.methods({
             return false;
         }
     },
-    "updateEmails": function(email) {
-        if(Meteor.user()) {
+    "updateEmails": function(userId, email) {
+        if(Meteor.user() && userId) {
             //TODO: meteor add audit-argument-checks
             /*
              check(email, {
@@ -105,15 +119,15 @@ Meteor.methods({
              });
              */
             if (email) {
-                Accounts.addEmail(Meteor.userId(), email);
+                Accounts.addEmail(userId, email);
             }
             return true;
         } else {
             return false;
         }
     },
-    "removeEmails": function(email) {
-        if(Meteor.user()) {
+    "removeEmails": function(userId, email) {
+        if(Meteor.user() && userId) {
             //TODO: meteor add audit-argument-checks
             /*
              check(email, {
@@ -122,24 +136,24 @@ Meteor.methods({
              });
              */
             if (email) {
-                Accounts.removeEmail(Meteor.userId(), email);
+                Accounts.removeEmail(userId, email);
             }
             return true;
         } else {
             return false;
         }
     },
-    updatePhones: function(phone) {
-        if(Meteor.user()) {
-            // editable for current user only, meteor.user will suffice, make sure current phone added is only primary number
+    updatePhones: function(userId, phone) {
+        if(Meteor.user() && userId) {
+            // editable for current user and Administrator, make sure current phone added is only primary number
             if (phone.primary) {
-                Meteor.users.update({_id:Meteor.userId(), "profile.phones.primary" : true}, {$set: {"profile.phones.$.primary" : false}}, function(error) {
+                Meteor.users.update({_id:userId, "profile.phones.primary" : true}, {$set: {"profile.phones.$.primary" : false}}, function(error) {
                     if (error) {
                         return error;
                     }
                 });
             }
-            Meteor.users.update(Meteor.userId(), {$push: {"profile.phones":phone}}, function(error) {
+            Meteor.users.update(userId, {$push: {"profile.phones":phone}}, function(error) {
                 if (error) {
                     return error;
                 }

@@ -21,8 +21,8 @@ Template.taskCard.helpers({
         }
         return color;
     },
-    isCurrentRoute: function (routeName) {
-        if (Router.current().route.getName() === routeName) {
+    isEditable: function () {
+        if (Router.current().route.getName() === 'EventEdit' || Session.get('pastEventId') != undefined) {
             return true;
         } else {
             return false;
@@ -48,6 +48,7 @@ Template.taskCard.events({
         }
         Session.set('taskToEditById', undefined);
         Session.set('taskToEditById', this._id);
+        //console.log(this._id);
         $('#edit-task-modal').openModal();
     },
     'click .task-link': function (e) {
