@@ -21,6 +21,17 @@ Router.route('/login', {
     }
 });
 
+Router.route('/login/:token/forgot', {
+    name: 'ForgotPassword',
+    template: 'login',
+    waitOn: function () {
+        return [];
+    },
+    data: function () {
+        return {token: this.params.token};
+    }
+});
+
 Router.route('/account', {
     name: 'Account',
     template: 'accountView',

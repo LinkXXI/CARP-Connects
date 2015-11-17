@@ -85,6 +85,10 @@
                     class="mdi-editor-mode-edit right"></i>
             </a>
             {{#if changePassword}}
+                <button id="passreset" class="btn waves-effect waves-light modal-trigger" type="button"
+                        name="passreset">
+                    Forgot Password<i class="mdi-action-lock right"></i>
+                </button>
                 <button id="passchange" class="btn waves-effect waves-light modal-trigger" type="button"
                         name="passchange">
                     Change Password<i class="mdi-action-lock right"></i>
@@ -126,35 +130,7 @@
                     </form>
                 </div>
             {{/if}}
-            <button id="passreset" class="btn waves-effect waves-light modal-trigger" type="button"
-                    name="passreset">
-                Forgot Password<i class="mdi-action-lock right"></i>
-            </button>
-            <div id="passreset-modal" class="modal bottom-sheet">
-                <form id="passreset-form">
-                    <div class="modal-content">
-                        <h4>Forgot password?</h4>
-
-                        <p>
-                            Please enter your email below for confirmation and an email will be sent with instructions.
-                        </p>
-
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input id="email" type="email" required>
-                                <label for="email">Email</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit"
-                                class="waves-effect waves-green btn-flat">Send Email<i
-                                class="mdi-content-send right"></i></button>
-                        <button class="modal-action modal-close waves-effect waves-green btn-flat">Cancel<i
-                                class="mdi-navigation-cancel right"></i></button>
-                    </div>
-                </form>
-            </div>
+            {{> forgotPassword}}
         {{/if}}
     </div>
 </template>

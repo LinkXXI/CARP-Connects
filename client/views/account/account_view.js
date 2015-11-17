@@ -53,40 +53,5 @@ Template.accountView.events({
     "click #passreset": function(e) {
         e.preventDefault();
         $('#passreset-modal').openModal();
-    },
-    "submit #passreset-form": function (e) {
-        e.preventDefault();
-        var $passresetModal = $('#passreset-modal');
-        var emailConfirm = {
-            address: $(e.target).find('#email').val(),
-            valid: false
-        };
-        var emails = this.emails;
-        for (var i=0; i<emails.length;i++) {
-            if (emailConfirm.address === emails[i].address) {
-                emailConfirm.valid = true;
-                break;
-            }
-        }
-        //TODO: meteor add audit-argument-checks
-        /*
-         check(emailConfirm, {
-         address: String
-         });
-         */
-
-        if (emailConfirm.valid) {
-            Accounts.forgotPassword({email: emailConfirm.address}, function (err) {
-                if (err) {
-                    sAlert.error(ACCOUNT_FORGOT_PASSWORD_ERROR);
-                } else {
-                    sAlert.success(ACCOUNT_FORGOT_PASSWORD_SUCCESS);
-                }
-            });
-        } else {
-            sAlert.error(ACCOUNT_FORGOT_PASSWORD_EMAIL_NO_MATCH);
-        }
-        $passresetModal.find('form')[0].reset();
-        $passresetModal.closeModal();
     }
 });

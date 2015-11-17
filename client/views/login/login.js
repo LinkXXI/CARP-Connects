@@ -41,9 +41,45 @@ Template.login.events({
     },
     "click #signup": function () {
         $('#signup-modal').openModal();
+    },
+    "click #passreset": function(e) {
+        e.preventDefault();
+        $('#passreset-modal').openModal();
+    },
+    "submit #forgotpassword-form": function (e) {
+        e.preventDefault();
+        var $forgotpasswordModal = $('#forgotpassword-modal');
+        var token = this.token;
+        var newPassword = $(e.target).find('#forgotpasswordnew').val();
+        //TODO: meteor add audit-argument-checks
+        /*
+         check(emailConfirm, {
+         address: String
+         });
+         */
+
+        if (token && newPassword) {
+            Accounts.resetPassword(token, newPassword, function (err) {
+                if (err) {
+                    sAlert.error(GENERIC_UNEXPECTED_ERROR);
+                } else {
+                    sAlert.success(ACCOUNT_CHANGE_PASSWORD_SUCCESS);
+                }
+            });
+        } else {
+            sAlert.error(GENERIC_UNEXPECTED_ERROR);
+        }
+        $forgotpasswordModal.find('form')[0].reset();
+        $forgotpasswordModal.closeModal();
     }
 });
 
 Template.login.created = function () {
     verifyEmail();
 };
+
+Template.login.onRendered(function() {
+    if (Router.current().route.getName() === "ForgotPassword") {
+        $('#forgotpasswordnew-modal').openModal();
+    }
+});

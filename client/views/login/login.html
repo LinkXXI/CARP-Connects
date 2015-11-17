@@ -21,13 +21,18 @@
                 </div>
                 <div class="row">
                     <div class="col s6">
-                        <button class="btn waves-effect waves-light" type="submit" name="submit">Submit
+                        <button class="btn waves-effect waves-light bottom" type="submit" name="submit">Submit
                             <i class="material-icons right">&gt;</i>
                         </button>
                     </div>
                     <div class="col s6">
-                        <button id="signup" class="btn waves-effect waves-light modal-trigger" type="button" name="signup">
+                        <button id="signup" class="btn waves-effect waves-light modal-trigger right" type="button"
+                                name="signup">
                             Sign up!
+                        </button>
+                        <button id="passreset" class="btn waves-effect waves-light modal-trigger right" type="button"
+                                name="passreset">
+                            Forgot Password<i class="mdi-action-lock right"></i>
                         </button>
                     </div>
                 </div>
@@ -52,10 +57,10 @@
                     </div>
                 </div>
                 <div class="row">
-                   <div class="input-field col s12">
-                       <input type="email" id="signup-email" class="validate" required/>
-                       <label for="signup-email">Email</label>
-                   </div>
+                    <div class="input-field col s12">
+                        <input type="email" id="signup-email" class="validate" required/>
+                        <label for="signup-email">Email</label>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
@@ -79,4 +84,32 @@
             </form>
         </div>
     </div>
+    {{> forgotPassword}}
+    {{#if token}}
+        <div id="forgotpasswordnew-modal" class="modal bottom-sheet">
+            <form id="forgotpasswordnew-form">
+                <div class="modal-content">
+                    <h4>New Password</h4>
+
+                    <p>
+                        Please enter a new password below.
+                    </p>
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="forgotpasswordnew" type="password" required>
+                            <label for="forgotpasswordnew">Password</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit"
+                            class="waves-effect waves-green btn-flat">Reset<i
+                            class="mdi-content-send right"></i></button>
+                    <button class="modal-action modal-close waves-effect waves-green btn-flat">Cancel<i
+                            class="mdi-navigation-cancel right"></i></button>
+                </div>
+            </form>
+        </div>
+    {{/if}}
 </template>

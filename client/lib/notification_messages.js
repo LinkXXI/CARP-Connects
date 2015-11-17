@@ -20,9 +20,8 @@ SIGNUP_SUCCESS = "You have successfully signed up for an account.";
 SIGNUP_ERROR = "There was an error signing up, please try again later.";
 
 ACCOUNT_EDIT_NO_PERMISSION_ERROR = "You do not have the required permission to edit this account.";
-ACCOUNT_FORGOT_PASSWORD_ERROR = "Forgot password did not work properly.";
+ACCOUNT_FORGOT_PASSWORD_ERROR = "Email could not be confirmed.";
 ACCOUNT_FORGOT_PASSWORD_SUCCESS = "Forgot password email sent.";
-ACCOUNT_FORGOT_PASSWORD_EMAIL_NO_MATCH = "Email could not be confirmed.";
 ACCOUNT_CHANGE_PASSWORD_ERROR = "Current password was entered incorrectly.";
 ACCOUNT_CHANGE_PASSWORD_SUCCESS = "Password changed successfully.";
 ACCOUNT_CHANGE_PASSWORD_NO_MATCH = "New passwords do not match.";
