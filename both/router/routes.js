@@ -73,6 +73,7 @@ Router.route('/events', {
     template: 'eventViewAll',
     waitOn: function () {
         return [
+            Meteor.subscribe('AllUsers'),
             Meteor.subscribe('Events')
         ];
     },
@@ -131,6 +132,7 @@ Router.route('/events/:_id', {
     template: 'eventView',
     waitOn: function () {
         return [
+            Meteor.subscribe('AllUsers'),
             Meteor.subscribe('OneEvent', this.params._id),
             Meteor.subscribe('TasksByEvent', this.params._id),
             Meteor.subscribe('Venues'),
