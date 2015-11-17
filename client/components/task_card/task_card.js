@@ -21,8 +21,8 @@ Template.taskCard.helpers({
         }
         return color;
     },
-    isCurrentRoute: function (routeName) {
-        if (Router.current().route.getName() === routeName) {
+    isEditable: function () {
+        if (Router.current().route.getName() === 'EventEdit' || Session.get('pastEventId') != undefined) {
             return true;
         } else {
             return false;

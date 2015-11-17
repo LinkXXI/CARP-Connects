@@ -1,0 +1,35 @@
+<template name="importPastEventModal">
+    <div id="import-past-event-modal" class="modal modal-fixed-footer">
+        <form id="import-past-event-form">
+            <div class="modal-content">
+                <h2 class="center">Import Past Event</h2>
+
+                <div class="row">
+                    <div class="col s6">
+                        <label for="past-event">Event</label>
+                        <select class="browser-default" id="past-event" required>
+                            <option value="" disabled selected>Please choose a past event</option>
+                            {{#each pastEvents}}
+                                <option value="{{this._id}}">{{this.name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row col s12">
+                    <div class="col s6 center">
+                        <button id="submit-import-past-event-button" class="waves-effect waves-light btn" type="submit">
+                            <i class="mdi-content-send right"></i>Import
+                        </button>
+                    </div>
+                    <div class="col s6 center">
+                        <a id="cancel-import-past-event-button" class="waves-effect waves-light btn" type="button">
+                            <i class="mdi-navigation-cancel right"></i>Cancel
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</template>

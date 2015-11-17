@@ -86,6 +86,8 @@ Router.route('/events/create', {
     template: 'eventCreate',
     waitOn: function () {
         return [
+            Meteor.subscribe('PastEvents'),
+            Meteor.subscribe('Tasks'),
             Meteor.subscribe('Vendors'),
             Meteor.subscribe('Venues')
         ]

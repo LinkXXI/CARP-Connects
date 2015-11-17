@@ -5,27 +5,33 @@
     <form id="create-event-form">
         <div class="row">
             <div class="input-field col s6">
-                <input type="text" class="validate" id="event-name" required>
-                <label for="event-name">Event Name</label>
+                <input type="text" class="validate" id="event-name" value="{{pastEvent.name}}" required>
+                <label class="{{activeLabel}}" for="event-name">Event Name</label>
             </div>
             <div class="input-field col s3">
-                <input type="text" class="validate" id="datetime" required>
-                <label for="datetime">Date/Time</label>
+                {{#if pastEvent}}
+                    <input type="text" class="validate" id="datetime" value="{{formatDateMDYT pastEvent.dateTime}}"
+                           required>
+                {{else}}
+                    <input type="text" class="validate" id="datetime" required>
+                {{/if}}
+                <label class="{{activeLabel}}" for="datetime">Date/Time</label>
             </div>
-            <!--            <div class="right input-field col s1">
-                            <a class="btn-floating tooltipped"
-                               data-position="bottom"
-                               data-delay="50"
-                               data-tooltip="Import Past Event">
-                                <i class="mdi-communication-import-export"></i>
-                            </a>
-                        </div>-->
+            <div class="left input-field col s1">
+                <a id="import-past-event-button"
+                   class="btn-floating tooltipped"
+                   data-position="bottom"
+                   data-delay="50"
+                   data-tooltip="Import Past Event">
+                    <i class="mdi-communication-import-export"></i>
+                </a>
+            </div>
         </div>
 
         <div class="row">
             <div class="input-field col s2">
-                <input id="event-budget" type="text" class="validate" required>
-                <label for="event-budget">Event Budget ($)</label>
+                <input id="event-budget" type="text" class="validate" value="{{pastEvent.totalBudget}}" required>
+                <label class="{{activeLabel}}" for="event-budget">Event Budget ($)</label>
             </div>
             <div class="input-field col s4">
             </div>
@@ -33,17 +39,24 @@
                 <label for="theme">Theme</label>
                 <select class="validate browser-default" id="theme">
                     <option value="" disabled selected>Choose an option</option>
-                    {{#each eventTheme}}
-                        <option value="{{this}}">{{this}}</option>
-                    {{/each}}
+                    {{#if pastEvent}}
+                        {{#each eventTheme}}
+                            <option value="{{this}}" {{isOptionSelected this pastEvent.theme}}>{{this}}</option>
+                        {{/each}}
+                    {{else}}
+                        {{#each eventTheme}}
+                            <option value="{{this}}">{{this}}</option>
+                        {{/each}}
+                    {{/if}}
                 </select>
             </div>
         </div>
 
         <div class="row">
             <div class="input-field col s6">
-                <textarea id="description" class="validate materialize-textarea"></textarea>
-                <label for="description">Description<i class="mdi-editor-mode-edit right"></i></label>
+                <textarea id="description" class="validate materialize-textarea">{{pastEvent.description}}</textarea>
+                <label class="{{activeLabel}}" for="description">Description<i
+                        class="mdi-editor-mode-edit right"></i></label>
             </div>
         </div>
 
@@ -52,9 +65,15 @@
                 <label for="venue">Venue</label>
                 <select class="validate browser-default" id="venue">
                     <option value="" disabled selected>Choose a venue</option>
-                    {{#each venues}}
-                        <option value="{{this._id}}">{{this.name}}</option>
-                    {{/each}}
+                    {{#if pastEvent}}
+                        {{#each venues}}
+                            <option value="{{this._id}}" {{isOptionSelected this._id pastEvent.venue}}>{{this.name}}</option>
+                        {{/each}}
+                    {{else}}
+                        {{#each venues}}
+                            <option value="{{this._id}}">{{this.name}}</option>
+                        {{/each}}
+                    {{/if}}
                 </select>
 
             </div>
@@ -93,8 +112,6 @@
                 <button type="submit" class="waves-effect waves-light btn" id="create-event-button">
                     <i class="mdi-content-send right"></i>Create Event
                 </button>
-                <!--                <a class="waves-effect waves-light btn dynamicWarning"><i
-                                        class="mdi-content-save right"></i>Save</a>-->
                 <a href="{{pathFor 'Index'}}" class="waves-effect waves-light btn">
                     <i class="mdi-navigation-cancel right"></i>Exit
                 </a>
@@ -117,8 +134,12 @@
             </div>
         </div>-->
 
+    {{> importPastEventModal}}
+
     {{> addVenueModal}}
 
     {{> taskAddModal}}
+
+    {{> taskEditModal}}
 
 </template>
