@@ -46,9 +46,9 @@ Template.login.events({
         e.preventDefault();
         $('#passreset-modal').openModal();
     },
-    "submit #forgotpassword-form": function (e) {
+    "submit #forgotpasswordnew-form": function (e) {
         e.preventDefault();
-        var $forgotpasswordModal = $('#forgotpassword-modal');
+        var $forgotpasswordModal = $('#forgotpasswordnew-modal');
         var token = this.token;
         var newPassword = $(e.target).find('#forgotpasswordnew').val();
         //TODO: meteor add audit-argument-checks
@@ -64,6 +64,7 @@ Template.login.events({
                     sAlert.error(GENERIC_UNEXPECTED_ERROR);
                 } else {
                     sAlert.success(ACCOUNT_CHANGE_PASSWORD_SUCCESS);
+                    Router.go('/'); // will login automatically
                 }
             });
         } else {

@@ -51,7 +51,7 @@ var generateErrorModal = function (message) {
     return modal;
 };
 
-// setup forget password email link direct
+// setup forget password email link redirect
 Accounts.onResetPasswordLink(function(token) {
     Router.go('ForgotPassword', {token: token});
 });
