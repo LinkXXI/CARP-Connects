@@ -14,6 +14,11 @@ Template.importPastEventModal.events({
         var modal = $('#import-past-event-modal');
         modal.closeModal();
         modal.find('form')[0].reset();
+
+        //re-init tooltip for Edit & Delete task buttona, they are added to dom dynamically...
+        Meteor.setTimeout(function() {
+            $('.tooltipped').tooltip({delay: 50})
+        }, 200);
     }
 });
 

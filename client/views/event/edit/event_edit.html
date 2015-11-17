@@ -12,14 +12,6 @@
                 <input type="text" class="validate" id="datetime" value="{{formatDateMDYT dateTime}}" required>
                 <label class="active" for="datetime">Date/Time</label>
             </div>
-            <!--            <div class="right input-field col s1">
-                            <a class="btn-floating tooltipped"
-                               data-position="bottom"
-                               data-delay="50"
-                               data-tooltip="Import Past Event">
-                                <i class="mdi-communication-import-export"></i>
-                            </a>
-                        </div>-->
         </div>
 
         <div class="row">
@@ -87,8 +79,10 @@
             {{> taskCard}}
         {{/each}}
         {{#if hasNewTasks}}
-            <div class="col s6">
-                <span class="header">New or Updated Tasks</span>
+            <div class="row">
+                <div class="col s6">
+                    <span class="header">New or Updated Tasks</span>
+                </div>
             </div>
 
             <div class="row">

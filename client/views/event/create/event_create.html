@@ -106,6 +106,19 @@
             {{#each tasks}}
                 {{> taskCard}}
             {{/each}}
+            {{#if hasNewTasks}}
+                <div class="row">
+                    <div class="col s6">
+                        <span class="header">New or Updated Tasks</span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    {{#each sessionTasks}}
+                        {{> taskCard}}
+                    {{/each}}
+                </div>
+            {{/if}}
         </div>
         <div class="row">
             <div class="col s12 center">

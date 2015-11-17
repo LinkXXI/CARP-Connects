@@ -44,14 +44,24 @@ Template.taskEditModal.events({
             status: $(e.target).find('#edit-task-status option:selected').val()
         };
         var sessionTasks = Session.get('tasks') != undefined ? Session.get('tasks') : new Array();
-        // search session tasks for a task with the current _id
-        var result = $.grep(sessionTasks, function(obj){
+        // search session tasks for and remove task with the current _id
+        var result = $.grep(sessionTasks, function (obj) {
             // found and removed old task
             return obj._id != id;
         });
         // update the session tasks with the updated task
         result.push(task);
         Session.set('tasks', result);
+
+        var pastSessionTasks = Session.get('pastTasks') == undefined ? false : Session.get('pastTasks');
+        // search pastSessionTasks for and remove task with the current _id
+        result = $.grep(pastSessionTasks, function (obj) {
+            // found and removed old task
+            return obj._id != id;
+        });
+        // update the past session tasks
+        Session.set('pastTasks', result);
+
         var modal = $('#edit-task-modal');
         modal.closeModal();
 
@@ -72,22 +82,32 @@ Template.taskEditModal.helpers({
     'vendors': function () {
         return vendors.find({}, {sort: {name: 1}});
     },
-    'task': function() {
+    'task': function () {
         var id = Session.get('taskToEditById');
         //get the tasks from the session
-        var allTasks = Session.get('tasks') == undefined ? false : Session.get('tasks');
+        var sessionTasks = Session.get('tasks') == undefined ? false : Session.get('tasks');
+        var pastSessionTasks = Session.get('pastTasks') == undefined ? false : Session.get('pastTasks');
         var task;
-        // if there's an id to edit and session task is not empty
-        // look for the task id in the session first, since that is where newest data is
-        if (id && allTasks) {
-            var result = $.grep(allTasks, function(e){
-                return e._id == id;
-            });
-            task = result[0];
-        }
-        if (!task) {
-            // get the task from the db
-            task = tasks.findOne({_id: id});
+        // make sure there is an id to edit first
+        if (id) {
+            // look in Session tasks for new and updated tasks
+            if (sessionTasks) {
+                var result = $.grep(sessionTasks, function (e) {
+                    return e._id == id;
+                });
+                task = result[0];
+            }
+            // also look in Past events (in case its an imported event)
+            if (!task && pastSessionTasks) {
+                var result = $.grep(pastSessionTasks, function (e) {
+                    return e._id == id;
+                });
+                task = result[0];
+            }
+            // if theres no matching task in the Session, look in the db
+            if (!task) {
+                task = tasks.findOne({_id: id});
+            }
         }
         return task;
     },

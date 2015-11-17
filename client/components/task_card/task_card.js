@@ -48,6 +48,7 @@ Template.taskCard.events({
         }
         Session.set('taskToEditById', undefined);
         Session.set('taskToEditById', this._id);
+        //console.log(this._id);
         $('#edit-task-modal').openModal();
     },
     'click .task-link': function (e) {
