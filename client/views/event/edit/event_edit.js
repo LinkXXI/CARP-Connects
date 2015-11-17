@@ -105,7 +105,7 @@ Template.eventEdit.events({
             theme: $(e.target).find('#theme option:selected').val(),
             venue: $(e.target).find('#venue').val()
         };
-        Meteor.call('eventUpdate', eventId, event, allTasks, function (error) {
+        Meteor.call('eventUpdate', eventId, event, tasks, function (error) {
             // display the error to the user and abort
             if (error) {
                 sAlert.error(EVENT_EDIT_ERROR);

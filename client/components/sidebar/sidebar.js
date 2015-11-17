@@ -12,6 +12,9 @@ Template.sidebar.helpers({
         }else{
             return "";
         }
+    },
+    isAdmin: function(routeName){
+        return Meteor.user().profile.permissions.role === 'Administrator';
     }
 });
 
