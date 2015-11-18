@@ -23,10 +23,14 @@ Template.eventCreate.onRendered(function () {
 Template.eventCreate.onDestroyed(function () {
     Session.set('tasks', undefined);
     delete Session.keys['tasks'];
+    Session.set('taskToEditById', undefined);
+    delete Session.keys['taskToEditById'];
     Session.set('pastTasks', undefined);
     delete Session.keys['pastTasks'];
     Session.set('pastEventId', undefined);
     delete Session.keys['pastEventId'];
+    Session.set('tasksToDelete', undefined);
+    delete Session.keys['tasksToDelete'];
 });
 
 Template.eventCreate.helpers({
@@ -85,15 +89,16 @@ Template.eventCreate.events({
         var pastSessionTasks = Session.get('pastTasks') != undefined ? Session.get('pastTasks') : new Array();
         var sessionTasks = Session.get('tasks') != undefined ? Session.get('tasks') : new Array();
 
-        // this copies the pastSessionTasks array to allTasks...
+        // this copies the sessionTasks array to allTasks...
         var allTasks = sessionTasks.slice();
 
         if (pastSessionTasks) {
-            // combine the past tasks into new tasks
+            // merge the past tasks with new tasks
             for (var i = 0; i < pastSessionTasks.length; i++) {
                 allTasks.push(pastSessionTasks[i]);
             }
         }
+
         var dateTime = $(e.target).find('#datetime').val();
         var event = {
             name: $(e.target).find('#event-name').val(),

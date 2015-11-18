@@ -24,24 +24,22 @@ Meteor.methods({
         });
         for (var i = 0; i < tasksAttributes.length; i++) {
             var task = tasksAttributes[i];
-            if(!task.event) { //check if task is new since it won't have an event attached
+            if (!task.event) { //check if task is new since it won't have an event attached
                 task.event = eventId;
             }
             var result = tasks.upsert(task._id, {$set: task}); //update or insert
-            if (result.numberAffected <= 0) { //check if new task inserted
+            if (result.numberAffected <= 0) { //check if task inserted
                 //TODO: throw error when task isn't saved properly, make sure other tasks save as well
             }
         }
     },
-    taskDelete: function (taskId) {
-        tasks.remove( {"_id": taskId }, function (error) {
-            if (error) {
-                return error;
-            }
-            else {
-                console.log("deleted: " + taskId);
-            }
-        });
+    tasksDelete: function (taskIds) {
+        for (var i = 0; i < taskIds.length; i++) {
+            var taskId = taskIds[i];
+            var result = tasks.remove(
+                {_id: taskId}
+            );
+        }
     },
     venueInsert: function (venue) {
         venues.insert(venue);

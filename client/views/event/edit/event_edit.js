@@ -23,6 +23,10 @@ Template.eventEdit.onRendered(function () {
 Template.eventEdit.onDestroyed(function () {
     Session.set('tasks', undefined);
     delete Session.keys['tasks'];
+    Session.set('taskToEditById', undefined);
+    delete Session.keys['taskToEditById'];
+    Session.set('tasksToDelete', undefined);
+    delete Session.keys['tasksToDelete'];
 });
 
 var allTasks;
@@ -43,11 +47,24 @@ Template.eventEdit.helpers({
     },
     'tasks': function () {
         var dbTasks = tasks.find().fetch();
+        var tasksToDelete = Session.get('tasksToDelete') != undefined ? Session.get('tasksToDelete') : new Array();
+        // this returns an array of tasks in the db minus tasks in Session tasksToDelete
+        var updatedDbTasks = $.grep(dbTasks, function (obj) {
+            var isADeleteMatch = true;
+            $.each(tasksToDelete, function(i, task) {
+                if (task === obj._id) {
+                    // the task id matches an item in the tasksToDelete array, so we don't return the Task in the new dbTasks array
+                    isADeleteMatch = false;
+                }
+            });
+            return isADeleteMatch;
+        });
+
         var sessionTasks = Session.get('tasks') != undefined ? Session.get('tasks') : new Array();
-        var originalTasks = new Array();
+        var notInSessionTasks = new Array();
         var mergedTasks = new Array();
         // pass unique db task objects to the new merged array.  if the _id matches any session task objects, dont add it
-        $.each(dbTasks, function(i, dbTask) {
+        $.each(updatedDbTasks, function(i, dbTask) {
             var isDupe = false;
             $.each(sessionTasks, function(j, sessionTask) {
                if (dbTask._id === sessionTask._id) {
@@ -56,11 +73,11 @@ Template.eventEdit.helpers({
             });
             if (!isDupe) {
                 // we only want to push tasks that don't have a matching id in session Tasks
-                originalTasks.push(dbTask);
+                notInSessionTasks.push(dbTask);
             }
         });
         // this copies the originalTasks array to mergedTasks...
-        mergedTasks = originalTasks.slice();
+        mergedTasks = notInSessionTasks.slice();
         // combine the merged task array and the session task array, should now have all unique and updated tasks
         for (var i = 0; i < sessionTasks.length; i++) {
             //console.log("session task: + i);");
@@ -69,7 +86,9 @@ Template.eventEdit.helpers({
         }
         // allTasks is passed to the eventUpdate server method call
         allTasks = mergedTasks;
-        return originalTasks;
+
+        // this returns notInSessionTasks because we only want to display db tasks, not all
+        return notInSessionTasks;
     }
 });
 
@@ -94,6 +113,16 @@ Template.eventEdit.events({
     },
     "submit #edit-event-form": function (e) {
         e.preventDefault();
+        // iterate through tasksToDelete array and delete tasks from collection
+        var tasksToDelete = Session.get('tasksToDelete') != undefined ? Session.get('tasksToDelete') : new Array();
+        Meteor.call('tasksDelete', tasksToDelete, function (error) {
+            // display the error to the user and abort
+            if (error) {
+                return throwError(error.reason);
+            }
+        });
+
+        // now we can insert the tasks
         var eventId = this._id;
         var tasks = allTasks;
         var dateTime = $(e.target).find('#datetime').val();
@@ -112,8 +141,6 @@ Template.eventEdit.events({
                 return throwError(error.reason);
             }
             else {
-                Session.set('tasks', undefined);
-                delete Session.keys['tasks'];
                 sAlert.success(EVENT_EDIT_SUCCESS);
             }
             // show this result but route anyway

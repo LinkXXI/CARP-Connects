@@ -13,6 +13,7 @@ VENDOR_INSERT_ERROR = "An error occurred creating a vendor.";
 
 TASK_CREATED_SUCCESS = "A task was successfully created.";
 TASK_EDITED_SUCCESS = "Task was successfully edited, please save the event for it to take effect.";
+TASK_DELETED_SUCCESS = "The task has been marked for deletion, please save your changes.";
 
 LOGIN_ERROR = "You have entered the wrong username/password combination, please try again.";
 LOGOUT = "You have been logged out.";
