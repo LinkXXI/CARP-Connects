@@ -16,5 +16,8 @@ Template.eventCard.helpers({
     },
     venue: function () {
         return venues.findOne({_id: this.venue});
+    },
+    isActive: function () {
+        return this.status === "active";
     }
 });
