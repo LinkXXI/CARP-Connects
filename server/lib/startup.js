@@ -4,7 +4,7 @@ Meteor.startup(function () {
     });
 
 
-    Accounts.emailTemplates.from = "CARP Connects <no-reply@carpconnects@gmail.com>";
+    Accounts.emailTemplates.from = "CARP Connects <carp.connects.test@gmail.com>";
     Accounts.emailTemplates.siteName = "CARP Connects";
     Accounts.emailTemplates.verifyEmail.subject = function (user) {
         return "Confirm your Email for CARP Connects";
@@ -43,8 +43,8 @@ Meteor.startup(function () {
         {service: "google"},
         {
             $set: {
-                clientId: "609568814212-rrknv9a2chkhulvhirjm9c27e91uehv3.apps.googleusercontent.com",
-                secret: "CmRQapaJC14In14dPN59ntNM"
+                clientId: "195417595857-4rj9gnsg7d59m942l4g8cq8215koim31.apps.googleusercontent.com",
+                secret: "ojLPrdww-7lGlWalNxlh3ZgZ"
             }
         }
     )
