@@ -3,7 +3,14 @@ Meteor.startup(function () {
         sendVerificationEmail: true
     });
 
-    process.env.MAIL_URL="smtp://carp.connects.test%40gmail.com:carpconnectsadmin%40smtp.gmail.com:465/";
+    var smtp = {
+        username: 'carp.connects.test@gmail.com',
+        password: 'carpconnectsadmin',
+        server: 'smtp.gmail.com',
+        port: 465
+    }
+    process.env.MAIL_URL = 'smtp://' + encodeURIComponent(smtp.username) + ':' + encodeURIComponent(smtp.password) + '@' + encodeURIComponent(smtp.server) + ':' + smtp.port;
+
     Accounts.emailTemplates.from = "CARP Connects <carp.connects.test@gmail.com>";
     Accounts.emailTemplates.siteName = "CARP Connects";
     Accounts.emailTemplates.verifyEmail.subject = function (user) {
@@ -32,7 +39,8 @@ Meteor.startup(function () {
         //tet googleLinked to true for user.
         Meteor.users.update(
             {_id: winner._id},
-            {$set:{
+            {
+                $set: {
                     'profile.googleLinked': true
                 }
             }
