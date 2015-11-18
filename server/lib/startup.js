@@ -3,7 +3,7 @@ Meteor.startup(function () {
         sendVerificationEmail: true
     });
 
-    process.env.MAIL_URL="smtp://carp.connects.test%40gmail.com:carpconnectsadmin@smtp.gmail.com:465/";
+    process.env.MAIL_URL="smtp://carp.connects.test%40gmail.com:carpconnectsadmin%40smtp.gmail.com:465/";
     Accounts.emailTemplates.from = "CARP Connects <carp.connects.test@gmail.com>";
     Accounts.emailTemplates.siteName = "CARP Connects";
     Accounts.emailTemplates.verifyEmail.subject = function (user) {
