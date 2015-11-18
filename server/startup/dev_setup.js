@@ -65,6 +65,21 @@ Meteor.startup(function () {
                     "postalZipCode": "M1H 2Z1"
                 }
             });
+            venue3 = venues.insert({
+                "name": "Sheridan College - Trafalgar",
+                "description": "Large conference room and theater room available.",
+                "hasParkingAvailability": "true",
+                "hasPublicTransportationAccess": "true",
+                "address": {
+                    "line1": "1430 Trafalgar Rd",
+                    "line2": "",
+                    "line3": "",
+                    "city": "Oakville",
+                    "provinceState": "Ontario",
+                    "country": "Canada",
+                    "postalZipCode": "L6H 2L1"
+                }
+            });
         }
         if (events.find().count() == 0) {
             var event = events.insert({
@@ -74,7 +89,7 @@ Meteor.startup(function () {
                 "totalBudget": "2500.00",
                 "theme": "Health",
                 "status": "complete",
-                "dateTime": "2015-10-15T04:00:00",
+                "dateTime": "2015-11-25T18:00:00",
                 "venue": venue1
             });
             tasks.insert({
@@ -82,7 +97,7 @@ Meteor.startup(function () {
                 "description": "Hire a caterer for 50-75 people",
                 "notes": "In talks with caterer, waiting on an estimate",
                 "userIdAssignedTo": "1",
-                "dateTime": "2015-10-10T04:00:00",
+                "dateTime": "2015-11-20T16:00:00",
                 "taskType": "Vendor",
                 "vendor": vendor1,
                 "budget": "350.00",
@@ -92,23 +107,25 @@ Meteor.startup(function () {
             tasks.insert({
                 "name": "Book Venue for Event",
                 "description": "Approximately 100 guests are attending, please book a hall to accommodate this in the Oakville area.",
+                "notes": "Take a look at the venue we used last time",
                 "userIdAssignedTo": "1",
-                "dateTime": "2015-10-17T04:00:00",
+                "dateTime": "2015-11-21T16:00:00",
                 "taskType": "Custom",
                 "vendor": "",
                 "budget": "1000.00",
-                "status": "In Progress",
+                "status": "Complete",
                 "event": event
             });
             tasks.insert({
                 "name": "Hire a Guest Speaker",
                 "description": "A Subject Matter Expert (SME) is required in the field of financial planning.",
+                "notes": "Do a Google search to see if we can find anyone nearby",
                 "userIdAssignedTo": "1",
-                "dateTime": "2015-10-24T04:00:00",
+                "dateTime": "2015-11-22T16:00:00",
                 "taskType": "Vendor",
                 "vendor": vendor2,
                 "budget": "200.00",
-                "status": "Not Started",
+                "status": "Complete",
                 "event": event
             });
             event = events.insert({
@@ -117,8 +134,8 @@ Meteor.startup(function () {
                 "description": "Showing support for those around us by providing much needed housing services.",
                 "totalBudget": "2500.00",
                 "theme": "Community",
-                "status": "complete",
-                "dateTime": "2015-10-20T04:00:00",
+                "status": "Complete",
+                "dateTime": "2015-11-28T19:00:00",
                 "venue": venue2
             });
             tasks.insert({
@@ -126,11 +143,11 @@ Meteor.startup(function () {
                 "description": "Hire a caterer for 50-75 people",
                 "notes": "In talks with caterer, waiting on an estimate",
                 "userIdAssignedTo": "1",
-                "dateTime": "2015-10-15T04:00:00",
+                "dateTime": "2015-11-25T17:00:00",
                 "taskType": "Vendor",
                 "vendor": vendor1,
                 "budget": "350.00",
-                "status": "In Progress",
+                "status": "Complete",
                 "event": event
             });
         }

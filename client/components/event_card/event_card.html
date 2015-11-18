@@ -18,10 +18,11 @@
 
             </div>
         </a>
-
-        <div class="card-action">
-            <a href="{{pathFor "EventEdit"}}">Work on Event</a>
-            <a href="{{pathFor "EventPublish"}}">Publish Event</a>
-        </div>
+        {{#if isActive}}
+            <div class="card-action">
+                <a href="{{pathFor "EventEdit"}}">Work on Event</a>
+                <a href="{{pathFor "EventPublish"}}">Publish Event</a>
+            </div>
+        {{/if}}
     </div>
 </template>
