@@ -3,8 +3,15 @@ Meteor.startup(function () {
         sendVerificationEmail: true
     });
 
+    var smtp = {
+        username: 'carp.connects.test@gmail.com',
+        password: 'carpconnectsadmin',
+        server: 'smtp.gmail.com',
+        port: 465
+    }
+    process.env.MAIL_URL = 'smtp://' + encodeURIComponent(smtp.username) + ':' + encodeURIComponent(smtp.password) + '@' + encodeURIComponent(smtp.server) + ':' + smtp.port;
 
-    Accounts.emailTemplates.from = "CARP Connects <no-reply@carpconnects@gmail.com>";
+    Accounts.emailTemplates.from = "CARP Connects <no-reply@carpconnects.com>";
     Accounts.emailTemplates.siteName = "CARP Connects";
     Accounts.emailTemplates.verifyEmail.subject = function (user) {
         return "Confirm your Email for CARP Connects";
@@ -32,7 +39,8 @@ Meteor.startup(function () {
         //tet googleLinked to true for user.
         Meteor.users.update(
             {_id: winner._id},
-            {$set:{
+            {
+                $set: {
                     'profile.googleLinked': true
                 }
             }
@@ -43,8 +51,8 @@ Meteor.startup(function () {
         {service: "google"},
         {
             $set: {
-                clientId: "609568814212-rrknv9a2chkhulvhirjm9c27e91uehv3.apps.googleusercontent.com",
-                secret: "CmRQapaJC14In14dPN59ntNM"
+                clientId: "195417595857-4rj9gnsg7d59m942l4g8cq8215koim31.apps.googleusercontent.com",
+                secret: "ojLPrdww-7lGlWalNxlh3ZgZ"
             }
         }
     )
