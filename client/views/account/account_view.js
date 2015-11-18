@@ -49,9 +49,5 @@ Template.accountView.events({
         }
         $passchangeModal.find('form')[0].reset();
         $passchangeModal.closeModal();
-    },
-    "click #passreset": function(e) {
-        e.preventDefault();
-        $('#passreset-modal').openModal();
     }
 });
