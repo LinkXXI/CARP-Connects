@@ -11,7 +11,7 @@ Meteor.startup(function () {
     }
     process.env.MAIL_URL = 'smtp://' + encodeURIComponent(smtp.username) + ':' + encodeURIComponent(smtp.password) + '@' + encodeURIComponent(smtp.server) + ':' + smtp.port;
 
-    Accounts.emailTemplates.from = "CARP Connects <carp.connects.test@gmail.com>";
+    Accounts.emailTemplates.from = "CARP Connects <no-reply@carpconnects.com>";
     Accounts.emailTemplates.siteName = "CARP Connects";
     Accounts.emailTemplates.verifyEmail.subject = function (user) {
         return "Confirm your Email for CARP Connects";
