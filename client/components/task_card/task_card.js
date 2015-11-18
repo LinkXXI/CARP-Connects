@@ -31,6 +31,9 @@ Template.taskCard.helpers({
     'isVendorTask': function () {
         return this.taskType === "Vendor";
     },
+    'hasNotes': function () {
+        return this.notes !== "";
+    },
     userIdAssignedTo: function () {
         return Meteor.users.findOne({_id: this.userIdAssignedTo});
     },
