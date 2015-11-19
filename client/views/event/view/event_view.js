@@ -27,8 +27,7 @@ Template.eventView.helpers({
         return vendors.find({}, {sort: {name: 1}});
     },
     'isActiveEvent': function () {
-        var event = events.find().fetch();
-        return event.status === "active";
+        return this.status === "Active";
     }
 });
 

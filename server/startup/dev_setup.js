@@ -88,7 +88,7 @@ Meteor.startup(function () {
                 "description": "Showing members how to live healthy",
                 "totalBudget": "2500.00",
                 "theme": "Health",
-                "status": "complete",
+                "status": "Complete",
                 "dateTime": "2015-11-25T18:00:00",
                 "venue": venue1
             });
@@ -134,7 +134,7 @@ Meteor.startup(function () {
                 "description": "Showing support for those around us by providing much needed housing services.",
                 "totalBudget": "2500.00",
                 "theme": "Community",
-                "status": "complete",
+                "status": "Complete",
                 "dateTime": "2015-11-28T19:00:00",
                 "venue": venue2
             });
@@ -156,7 +156,7 @@ Meteor.startup(function () {
                 "description": "How to plan for retirement and setup a savings account for a rainy day.",
                 "totalBudget": "1500.00",
                 "theme": "Financial",
-                "status": "active",
+                "status": "Active",
                 "dateTime": "2015-11-30T18:00:00",
                 "venue": venue3
             });
