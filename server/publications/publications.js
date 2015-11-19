@@ -3,7 +3,7 @@ Meteor.publish("Events", function () {
 });
 
 Meteor.publish("PastEvents", function () {
-    return events.find({ status: "complete" }, {sort: {name: 1}});
+    return events.find({ status: "Complete" }, {sort: {name: 1}});
 });
 
 Meteor.publish("Tasks", function () {

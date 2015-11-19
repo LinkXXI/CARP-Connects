@@ -5,7 +5,7 @@ Meteor.methods({
     eventInsert: function (eventAttributes, tasksAttributes) {
         var event = _.extend(eventAttributes, {
             owner: Meteor.userId(),
-            status: "active"
+            status: "Active"
         });
         var eventId = events.insert(event);
         for (var i = 0; i < tasksAttributes.length; i++) {

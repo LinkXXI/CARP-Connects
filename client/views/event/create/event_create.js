@@ -58,10 +58,12 @@ Template.eventCreate.helpers({
             delete event._id;
             var eventName = event['name'];
             event['name'] = eventName + " (Copy)";
+            event['status'] = "Active";
             var eventTasks = tasks.find({event: pastEventId}, {sort: {name: 1}}).fetch();
             $.each(eventTasks, function(i, eventTask) {
                 eventTask._id = Random.id();
                 eventTask.event = pastEventId;
+                eventTask.status = "Not Started";
             });
             Session.set('pastTasks', eventTasks);
             return event;

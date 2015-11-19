@@ -18,6 +18,6 @@ Template.eventCard.helpers({
         return venues.findOne({_id: this.venue});
     },
     isActiveEvent: function () {
-        return this.status === "active";
+        return this.status === "Active";
     }
 });

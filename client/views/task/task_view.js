@@ -16,6 +16,6 @@ Template.taskView.helpers({
     },
     'isActiveEvent': function () {
         var event = events.find().fetch();
-        return event.status === "active";
+        return event.status === "Active";
     }}
 );
