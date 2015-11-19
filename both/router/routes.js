@@ -4,7 +4,7 @@ Router.route('/', {
     waitOn: function () {
         return [
             Meteor.subscribe('Events'),
-            Meteor.subscribe('Tasks'),
+            Meteor.subscribe('TasksByUser'),
             Meteor.subscribe('Venues')
         ]
     },
@@ -71,7 +71,7 @@ Router.route('/calendar', {
     waitOn: function () {
         return [
             Meteor.subscribe('Events'),
-            Meteor.subscribe('Tasks')
+            Meteor.subscribe('TasksByUser')
         ];
     },
     data: function () {
@@ -143,11 +143,14 @@ Router.route('/events/:_id/edit', {
 
 Router.route('/events/:_id/publish', {
     name: 'EventPublish',
-    template: 'eventPublish',
+    template: 'eventView',
     waitOn: function () {
         return [
+            Meteor.subscribe('AllUsers'),
             Meteor.subscribe('OneEvent', this.params._id),
-            Meteor.subscribe('TasksByEvent', this.params._id)
+            Meteor.subscribe('TasksByEvent', this.params._id),
+            Meteor.subscribe('Venues'),
+            Meteor.subscribe('Vendors')
         ];
     },
     data: function () {

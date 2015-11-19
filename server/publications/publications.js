@@ -14,6 +14,10 @@ Meteor.publish("TasksByEvent", function (eventId) {
     return tasks.find({event: eventId}, {sort: {name: 1}});
 });
 
+Meteor.publish("TasksByUser", function (eventId, userId) {
+    return tasks.find({event: eventId, userIdAssignedTo: userId}, {sort: {name: 1}});
+});
+
 Meteor.publish("OneTask", function (taskId) {
     return tasks.find({_id: taskId});
 });

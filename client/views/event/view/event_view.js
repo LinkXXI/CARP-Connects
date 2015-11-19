@@ -1,4 +1,4 @@
-Template.eventView.rendered = function () {
+Template.eventView.onRendered(function() {
     /*    //store the dateTime from the input box in a var
      var dateTime = $('#datetime').val();
      //set the datepicker to use the stored dateTime, otherwise it'll default to current date
@@ -6,9 +6,12 @@ Template.eventView.rendered = function () {
      value: dateTime,
      format:'D/M/YYYY h:mm a'
      });*/
-
     $('.tooltipped').tooltip({delay: 50});
-};
+
+    if (Router.current().route.getName() === "EventPublish") {
+        this.$('#eventpublish-modal').openModal();
+    }
+});
 
 Template.eventView.helpers({
     "eventTheme": function () {
@@ -49,5 +52,8 @@ Template.eventView.events({
         var modal = $('#add-task-modal');
         modal.closeModal();
         modal.find('form')[0].reset();
+    },
+    "click .publish-event-button": function (e, template) {
+        $('#eventpublish-modal').openModal();
     }
 });

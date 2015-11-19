@@ -1,0 +1,19 @@
+<template name="eventPublishModal">
+    <div class="modal" id="eventpublish-modal">
+        <div class="modal-content">
+            <h4>
+                Publish Event
+            </h4>
+            <p>
+                Are you sure you want to publish {{name}}?
+                <br /><br />
+                <span style="color: red">WARNING: </span> {{name}} will become read-only.
+                No one will be able to edit the event after publishing, including Admins.
+            </p>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-action modal-close waves-effect waves-green btn-flat" id="eventpublish-yes">Yes</button>
+            <button class="modal-action modal-close waves-effect waves-green btn-flat" id="eventpublish-no">No</button>
+        </div>
+    </div>
+</template>
