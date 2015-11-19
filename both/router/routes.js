@@ -175,7 +175,10 @@ Router.route('/events/:_id', {
 
 Router.route('/reports', {
     name: 'Reports',
-    template: 'reports'
+    template: 'reports',
+    waitOn: function () {
+        return [];
+    }
 });
 
 Router.route('/reports/invite', {

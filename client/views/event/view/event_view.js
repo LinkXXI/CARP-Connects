@@ -1,4 +1,4 @@
-Template.eventView.rendered = function () {
+Template.eventView.onRendered(function () {
     /*    //store the dateTime from the input box in a var
      var dateTime = $('#datetime').val();
      //set the datepicker to use the stored dateTime, otherwise it'll default to current date
@@ -8,7 +8,7 @@ Template.eventView.rendered = function () {
      });*/
 
     $('.tooltipped').tooltip({delay: 50});
-};
+});
 
 Template.eventView.helpers({
     "eventTheme": function () {
@@ -28,6 +28,9 @@ Template.eventView.helpers({
     },
     'isActiveEvent': function () {
         return this.status === "Active";
+    },
+    'eventStatus': function () {
+        return this.status === "Active" ? "Current Event" : "Past Event";
     }
 });
 

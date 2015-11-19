@@ -2,15 +2,15 @@
         <div class="row">
             <h2>View Reports</h2>
 
-            <form>
+            <form id="reports-form">
                 <div class="row">
-                    <div class="input-field col s4">
-                        <select id="reports">
+                    <div class="col s4">
+                        <label>Report Type</label>
+                        <select class="validate browser-default" id="reports">
                             <option value="" disabled selected>Select a report</option>
                             <option value="{{pathFor 'InviteReport'}}">Invitation Report</option>
                             <option value="{{pathFor 'TaskReport'}}">Task Report</option>
                         </select>
-                        <label>Report Type</label>
                     </div>
                 </div>
             </form>
