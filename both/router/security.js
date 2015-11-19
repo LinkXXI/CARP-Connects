@@ -61,7 +61,7 @@ Router.onBeforeAction(function () {
 
 Router.onBeforeAction(function () {
         var event = events.findOne(this.params._id);
-        var taskList = events.find().fetch();
+        var taskList = tasks.find().fetch();
         var assignedToTask = false;
         $.each(taskList, function () {
             if(this.userIdAssignedTo == Meteor.userId){
