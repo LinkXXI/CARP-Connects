@@ -110,7 +110,7 @@ Meteor.methods({
         }
     },
     updatePermissions: function (userId, permissions) {
-        Meteor.users().update(Meteor.userId(), {
+        Meteor.users.update(Meteor.userId(), {
             $set: {
                 'profile.permissions': permissions
             }
