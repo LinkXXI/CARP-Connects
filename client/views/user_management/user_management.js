@@ -46,22 +46,22 @@ Template.user.events({
         })
     },
     "click #savePermissions": function(e, template){
-        var permissionsModal = $(template.find('#permissionsModal'));
+        var permissionsModal = $(template.firstNode);
         var permissions = {};
-        permissions.role = permissionsModal.find('#roleSelect').val();
-        permissions.createEvent = permissionsModal.find('#hasCreateEvent')[0].checked;
-        permissions.editEvent = permissionsModal.find('#hasEditEvent')[0].checked;
-        permissions.publishEvent = permissionsModal.find('#hasPublishEvent')[0].checked;
+        permissions.role = permissionsModal.find("[id^='roleSelect']").val();
+        permissions.createEvent = permissionsModal.find("[id^='hasCreateEvent']")[0].checked;
+        permissions.editEvent = permissionsModal.find("[id^='hasEditEvent']")[0].checked;
+        permissions.publishEvent = permissionsModal.find("[id^='hasPublishEvent']")[0].checked;
 
         Meteor.call("updatePermissions", this._id, permissions);
     },
     "click #cancelPermissions": function(e, template){
-        var permissionsModal = $(template.find('#permissionsModal'));
+        var permissionsModal = $(template.firstNode);
         var permissions = this.profile.permissions;
-        permissionsModal.find('#roleSelect').val(permissions.role);
-        permissionsModal.find('#hasCreateEvent')[0].checked = permissions.createEvent;
-        permissionsModal.find('#hasEditEvent')[0].checked = permissions.editEvent;
-        permissionsModal.find('#hasPublishEvent')[0].checked = permissions.publishEvent;
+        permissionsModal.find("[id^='roleSelect']").val(permissions.role);
+        permissionsModal.find("[id^='hasCreateEvent']")[0].checked = permissions.createEvent;
+        permissionsModal.find("[id^='hasEditEvent']")[0].checked = permissions.editEvent;
+        permissionsModal.find("[id^='hasPublishEvent']")[0].checked = permissions.publishEvent;
     }
 });
 

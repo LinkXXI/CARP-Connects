@@ -21,14 +21,14 @@
 </template>
 
 <template name="user">
-    <div class="modal" id="permissionsModal">
+    <div class="modal">
         <div class="modal-content">
             <h5>Permissions For {{profile.firstName}} {{profile.lastNAme}}</h5>
 
             <div class="row">
                 <div class="col s12">
-                    <label for="roleSelect"> Role </label>
-                    <select id="roleSelect" class="browser-default">
+                    <label for="roleSelect-{{_id}}"> Role </label>
+                    <select id="roleSelect-{{_id}}" class="browser-default">
                         <option value="Admin" selected="{{isRole "Admin"}}">Admin</option>
                         <option value="user" selected="{{isRole "user"}}">User</option>
                         <option value="incomplete" selected="{{isRole "incomplete"}}">Incomplete</option>
@@ -38,37 +38,37 @@
             <div class="row">
                 <div class="col s12">
                     <p>
-                        <input type="checkbox" id="hasCreateEvent" checked="{{hasPermission "createEvent"}}"/>
-                        <label for="hasCreateEvent">Create Events</label>
+                        <input type="checkbox" id="hasCreateEvent-{{_id}}" checked="{{hasPermission "createEvent"}}"/>
+                        <label for="hasCreateEvent-{{_id}}">Create Events</label>
                     </p>
                 </div>
             </div>
             <div class="row">
                 <div class="col s12">
                     <p>
-                        <input type="checkbox" id="hasEditEvent" checked="{{hasPermission "editEvent"}}">
-                        <label for="hasEditEvent">Edit Events</label>
+                        <input type="checkbox" id="hasEditEvent-{{_id}}" checked="{{hasPermission "editEvent"}}">
+                        <label for="hasEditEvent-{{_id}}">Edit Events</label>
                     </p>
                 </div>
             </div>
             <div class="row">
                 <div class="col s12">
                     <p>
-                        <input type="checkbox" id="hasPublishEvent" checked="{{hasPermission "publishEvent"}}">
-                        <label for="hasPublishEvent">Publish Events</label>
+                        <input type="checkbox" id="hasPublishEvent-{{_id}}" checked="{{hasPermission "publishEvent"}}">
+                        <label for="hasPublishEvent-{{_id}}">Publish Events</label>
                     </p>
                 </div>
             </div>
             <!--div class="row">
             <p>
                 <div class="col s4"><label for="">Create Task</label></div>
-                <div class="col s8"><input type="checkbox" id="hasCreateTask" checked="{{hasPermission "createEvent"}}"></div>
+                <div class="col s8"><input type="checkbox" id="hasCreateTask-{{_id}}" checked="{{hasPermission "createEvent"}}"></div>
                 </p>
             </div-->
             <!--div class="row">
             <p>
                 <div class="col s4"><label for="">Edit Task</label></div>
-                <div class="col s8"><input type="checkbox" id="hasCreateEvent" checked="{{hasPermission "createEvent"}}"></div>
+                <div class="col s8"><input type="checkbox" id="hasCreateEvent-{{_id}}" checked="{{hasPermission "createEvent"}}"></div>
                 </p>
             </div-->
         </div>
@@ -101,7 +101,7 @@
         </td>
     </tr>
 
-    <div class="modal" id="optionsModal">
+    <div class="modal">
         <div class="modal-content">
             <h4>User Options</h4>
             <h5>{{profile.firstName}} {{profile.lastName}}</h5>
