@@ -60,15 +60,12 @@ Router.onBeforeAction(function () {
 );
 
 Router.onBeforeAction(function () {
-        var event = events.findOne(this.params._id);
-        var taskList = events.find().fetch();
-        var assignedToTask = false;
-        $.each(taskList, function () {
-            if(this.userIdAssignedTo == Meteor.userId){
-                assignedToTask = true;
-            }
-        });
-        if (checkPermissions(EDT_EVENT) || event.owner == Meteor.userId() || assignedToTask) {
+        var params = {
+            event: events.findOne(this.params._id),
+            tasksAssignedTo: tasks.find({userIdAssignedTo: Meteor.userId()}).count()
+        };
+
+        if (checkPermissions(EDT_EVENT, params)) {
             this.next();
         } else {
             //history.go(-1);
@@ -81,8 +78,10 @@ Router.onBeforeAction(function () {
     }
 );
 Router.onBeforeAction(function () {
-        var event = events.findOne(this.params._id);
-        if (checkPermissions(PUBLISH_EVENT) || event.owner == Meteor.userId()) {
+        var params = {
+            event: events.findOne(this.params._id)
+        };
+        if (checkPermissions(PUBLISH_EVENT, params)) {
             this.next();
         } else {
             //history.go(-1);
@@ -96,7 +95,7 @@ Router.onBeforeAction(function () {
 );
 
 Router.onBeforeAction(function () {
-        if (checkPermissions("")) {
+        if (checkPermissions()) {
             this.next();
         } else {
             //history.go(-1);
@@ -109,4 +108,33 @@ Router.onBeforeAction(function () {
     }
 );
 
-//TODO: consolidate security function here and make it reusable
+// This function is an all or nothing permissions checker.
+checkPermissions = function(permissionFlag, params){
+    if (!Meteor.user()) {
+        return false;
+    }
+    var permissions = Meteor.user().profile.permissions;
+    if(permissions.role === "Admin"){
+        return true;
+    }
+    switch(permissionFlag){
+        case EDT_EVENT:
+            return permissions.editEvent && function() {
+                    return (params.event.owner == Meteor.userId() || params.tasksAssignedTo > 0); // check business criteria, add logic here if required
+                };
+        case CREATE_EVENT:
+            return permissions.createEvent;
+        case PUBLISH_EVENT:
+            return permissions.publishEvent && function() {
+                    return (params.event.owner == Meteor.userId());
+                };
+        case CREATE_TASK:
+            return permissions.createTask;
+        case EDIT_TASK:
+            return permissions.editTask;
+        default:
+            return false;
+    }
+
+    return false;
+};

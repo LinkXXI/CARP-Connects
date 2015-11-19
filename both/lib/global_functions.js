@@ -28,26 +28,3 @@ compareName = function compareName(a, b) {
         return 1;
     return 0;
 };
-
-checkPermissions = function(permissionFlag){
-    var permissions = Meteor.user().profile.permissions;
-    if(permissions.role === "Admin"){
-        return true;
-    }
-    switch(permissionFlag){
-        case EDT_EVENT:
-            return permissions.editEvent;
-        case CREATE_EVENT:
-            return permissions.createEvent;
-        case PUBLISH_EVENT:
-            return permissions.publishEvent;
-        case CREATE_TASK:
-            return permissions.createTask;
-        case EDIT_TASK:
-            return permissions.editTask;
-        default:
-            return false;
-    }
-
-    return false;
-};
