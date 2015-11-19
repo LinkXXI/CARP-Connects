@@ -1,31 +1,42 @@
 <template name="taskReport">
+    <h2>Task Breakdown Report</h2>
+
+    <p>The data in this report is up to date as of: {{ formatDate timestamp }}</p>
+
+    <div class="row green lighten-4 round-corners" style="padding-bottom: 1em;">
+        <div class="col s6">
+            <p><b>Event Name</b></p>
+            <span>{{this.name}}</span>
+        </div>
+        <div class="col s4">
+            <p><b>Date/Time of Event</b></p>
+            <span>{{formatDate this.dateTime}}</span>
+        </div>
+    </div>
     <div class="row">
-        <h2>Task Report</h2>
+        <div class="col s7">
+            {{> highchartsHelper chartId="taskReport" chartObject=taskReportChart}}
+        </div>
+        <div class="col s5">
+            <div class="card-panel col s10 grey lighten-4">
+                <h4>Detailed Report</h4>
 
-        <p>The data in this report is up to date as of: {{ formatDate timestamp }}</p>
-
-        {{> highchartsHelper chartId="taskReport" chartObject=taskReportChart}}
-
-        <div class="panel panel-primary">
-            <div class="panel-heading">Detailed Report</div>
-            <div class="panel-body">
                 <p>
-                    Total Tasks: {{allTaskCount}}
+                    <b>Tasks Not Started:</b> {{notStartedTaskCount}}
                 </p>
 
                 <p>
-                    Tasks Not Started: {{notStartedTaskCount}}
+                    <b>Tasks In Progress:</b> {{inProgressTaskCount}}
                 </p>
 
                 <p>
-                    Tasks In Progress: {{inProgressTaskCount}}
+                    <b>Completed Tasks:</b> {{completeTaskCount}}
                 </p>
 
                 <p>
-                    Completed Tasks: {{completeTaskCount}}
+                    <b>Total Tasks:</b> {{allTaskCount}}
                 </p>
             </div>
         </div>
-
     </div>
 </template>

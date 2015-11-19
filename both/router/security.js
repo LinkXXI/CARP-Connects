@@ -63,8 +63,8 @@ Router.onBeforeAction(function () {
         var event = events.findOne(this.params._id);
         var taskList = tasks.find().fetch();
         var assignedToTask = false;
-        $.each(taskList, function () {
-            if(this.userIdAssignedTo == Meteor.userId){
+        $.each(taskList, function (i, task) {
+            if(task.userIdAssignedTo == Meteor.userId()){
                 assignedToTask = true;
             }
         });
@@ -73,6 +73,7 @@ Router.onBeforeAction(function () {
         } else {
             //history.go(-1);
             sAlert.error(EVENT_EDIT_NO_PERMISSION_ERROR);
+            Router.go('/');
         }
     },
     {
@@ -86,6 +87,7 @@ Router.onBeforeAction(function () {
         } else {
             //history.go(-1);
             sAlert.error(EVENT_PUBLISH_NO_PERMISSION_ERROR);
+            Router.go('/');
         }
     },
     {
@@ -99,9 +101,12 @@ Router.onBeforeAction(function () {
         } else {
             //history.go(-1);
             sAlert.error(ADMIN_ONLY_ERROR);
+            Router.go('/');
         }
     },
     {
-        only: ['Reports', 'TaskReport', 'Invitations', 'UserManagement']
+        only: ['Reports', 'TaskReport', 'Invitations', 'UserManagement', 'Configuration']
     }
 );
+
+//TODO: consolidate security function here and make it reusable

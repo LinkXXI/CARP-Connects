@@ -1,0 +1,74 @@
+<template name="configuration">
+
+    <h2>Site Configuration</h2>
+
+    <div class="row">
+
+        <div class="card-panel col s4 grey lighten-4">
+            <div class="row">
+                <div class="col s9">
+                    <h5>Vendors</h5>
+                </div>
+                <div class="col s3" style="padding-top: 10px;">
+                    <a id="add-vendor-button"
+                       class="btn-floating tooltipped right-align"
+                       data-position="bottom"
+                       data-delay="50"
+                       data-tooltip="Add Vendor">
+                        <i class="mdi-content-add"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <label for="vendor">Vendor</label>
+                <select class="browser-default" id="vendor">
+                    <option value="" disabled selected>Please choose a vendor</option>
+                    {{#each vendors}}
+                        <option value="{{this._id}}">{{this.name}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="row">
+                <a id="delete-vendor-button" class="center waves-effect waves-light btn">
+                    <i class="mdi-navigation-cancel right"></i>Remove Vendor
+                </a>
+            </div>
+        </div>
+
+        <div class="card-panel col s4 grey lighten-4">
+            <div class="row">
+                <div class="col s9">
+                    <h5>Venues</h5>
+                </div>
+                <div class="col s3" style="padding-top: 10px;">
+                    <a id="add-venue-button"
+                       class="btn-floating tooltipped right-align"
+                       data-position="bottom"
+                       data-delay="50"
+                       data-tooltip="Add Venue">
+                        <i class="mdi-content-add"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <label for="venue">Venue</label>
+                <select class="validate browser-default" id="venue">
+                    <option value="" disabled selected>Choose a venue</option>
+                        {{#each venues}}
+                            <option value="{{this._id}}">{{this.name}}</option>
+                        {{/each}}
+                </select>
+            </div>
+            <div class="row">
+                <a id="delete-venue-button" class="center waves-effect waves-light btn">
+                    <i class="mdi-navigation-cancel right"></i>Remove Venue
+                </a>
+            </div>
+        </div>
+    </div>
+
+    {{> addVendorModal}}
+
+    {{> addVenueModal}}
+
+</template>
