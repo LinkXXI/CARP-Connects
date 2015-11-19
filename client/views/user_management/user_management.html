@@ -8,6 +8,7 @@
             <th>Primary Email</th>
             <th>Profile Complete</th>
             <th>Invite Code Applied</th>
+            <th>Permissions</th>
             <th>Options</th>
         </tr>
         </thead>
@@ -37,13 +38,73 @@
             </p>
         </td>
         <td>
-            <button class="btn waves-effect waves-light" id="userOptions">User Options</button>
+            <button class="btn waves-effect waves-light" id="userPermissions">Edit/View</button>
+        </td>
+        <td>
+            <button class="btn waves-effect waves-light" id="userOptions">Options</button>
         </td>
     </tr>
-    <div class="modal">
+    <div class="modal" id="permissionsModal">
+        <div class="modal-content">
+            <h5>Permissions For {{profile.firstName}} {{profile.lastNAme}}</h5>
+
+            <div class="row">
+                <div class="col s12">
+                    <label for="roleSelect"> Role </label>
+                    <select id="roleSelect" class="browser-default">
+                        <option value="Admin" selected="{{isRole "Admin"}}">Admin</option>
+                        <option value="user" selected="{{isRole "user"}}">User</option>
+                        <option value="incomplete" selected="{{isRole "incomplete"}}">Incomplete</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <p>
+                        <input type="checkbox" id="hasCreateEvent" checked="{{hasPermission "createEvent"}}"/>
+                        <label for="hasCreateEvent">Create Events</label>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <p>
+                        <input type="checkbox" id="hasEditEvent" checked="{{hasPermission "editEvent"}}">
+                        <label for="hasEditEvent">Edit Events</label>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <p>
+                        <input type="checkbox" id="hasPublishEvent" checked="{{hasPermission "publishEvent"}}">
+                        <label for="hasPublishEvent">Publish Events</label>
+                    </p>
+                </div>
+            </div>
+            <!--div class="row">
+            <p>
+                <div class="col s4"><label for="">Create Task</label></div>
+                <div class="col s8"><input type="checkbox" id="hasCreateTask" checked="{{hasPermission "createEvent"}}"></div>
+                </p>
+            </div-->
+            <!--div class="row">
+            <p>
+                <div class="col s4"><label for="">Edit Task</label></div>
+                <div class="col s8"><input type="checkbox" id="hasCreateEvent" checked="{{hasPermission "createEvent"}}"></div>
+                </p>
+            </div-->
+        </div>
+        <div class="modal-footer">
+            <a href="" class="modal-action modal-close waves-effect waves-green btn-flat" id="savePermissions">Save</a>
+            <a href="" class="modal-action modal-close waves-effect waves-green btn-flat" id="cancelPermissions">Cancel</a>
+        </div>
+    </div>
+    <div class="modal" id="optionsModal">
         <div class="modal-content">
             <h4>User Options</h4>
             <h5>{{profile.firstName}} {{profile.lastName}}</h5>
+
             <div class="row">
                 <div class="col s12">
                     {{#if profile.accountLocked}}
@@ -58,7 +119,8 @@
                     {{#if profile.inviteCode}}
                         User is already invited and validated!
                     {{else}}
-                        <button class="btn waves-effect waves-light" id="forceInvite">Generate and Apply Invite</button>
+                        <button class="btn waves-effect waves-light" id="forceInvite">Generate and Apply Invite
+                        </button>
                     {{/if}}
                 </div>
             </div>

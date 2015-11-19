@@ -54,6 +54,9 @@ Template.incomplete.helpers({
     completed: function () {
         if (Meteor.user()) {
             if ((Meteor.user().emails[0].verified && Meteor.user().profile.inviteCode && Meteor.user().profile.googleLinked)) {
+                Meteor.call('updatePermissions', null, {
+                    role:"user"
+                });
                 Router.go('/');
             }
         }

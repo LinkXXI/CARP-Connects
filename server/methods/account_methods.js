@@ -109,6 +109,13 @@ Meteor.methods({
             return false;
         }
     },
+    updatePermissions: function (userId, permissions) {
+        Meteor.users.update(Meteor.userId(), {
+            $set: {
+                'profile.permissions': permissions
+            }
+        });
+    },
     "updateEmails": function(userId, email) {
         if(Meteor.user() && userId) {
             //TODO: meteor add audit-argument-checks

@@ -14,7 +14,12 @@
     ],
     "profile":{
       "permissions":{
-        "role": "User's role -- incomplete, user, organizer, Administrator"
+        "role": "User's role -- incomplete, user, organizer, Administrator",
+        "createEvent": "",
+        "editEvent": "",
+        "publishEvent": "",
+        "createTask": "",
+        "editTask": ""
       },
       "firstName": "User First Name",
       "lastName": "User's Last Name",

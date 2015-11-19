@@ -14,12 +14,12 @@
         <li class="{{isActive "Events"}}"><a href="{{pathFor 'Events'}}">View All Events</a></li>
         <li class="divider"></li>
         <li><a href="" id="logout">Log Out</a></li>
-        <!--{{#if isAdmin}}-->
+        {{#if isAdmin}}
             <li class="divider"></li>
             <li class="logo teal-text darken-4">Administration</li>
             <li class="{{isActive "Invitations"}}"><a href="{{pathFor 'Invitations'}}">Invitations</a></li>
             <li class="{{isActive "Reports"}}"><a href="{{pathFor 'Reports'}}">Reports</a></li>
             <li class="{{isActive "UserManagement"}}"><a href="{{pathFor 'UserManagement'}}">User Management</a></li>
-        <!--{{/if}}-->
+        {{/if}}
     </ul>
 </template>

@@ -47,7 +47,7 @@ Router.onBeforeAction(function () {
  */
 Router.onBeforeAction(function () {
         var role = Meteor.user().profile.permissions.role;
-        if (Meteor.userId() === this.params._id || role === "Administrator") {
+        if (Meteor.userId() === this.params._id || role === "Admin") {
             this.next();
         } else {
             sAlert.error(ACCOUNT_EDIT_NO_PERMISSION_ERROR);
@@ -56,5 +56,52 @@ Router.onBeforeAction(function () {
     },
     {
         only: ['AccountEdit']
+    }
+);
+
+Router.onBeforeAction(function () {
+        var event = events.findOne(this.params._id);
+        var taskList = events.find().fetch();
+        var assignedToTask = false;
+        $.each(taskList, function () {
+            if(this.userIdAssignedTo == Meteor.userId){
+                assignedToTask = true;
+            }
+        });
+        if (checkPermissions(EDT_EVENT) || event.owner == Meteor.userId() || assignedToTask) {
+            this.next();
+        } else {
+            //history.go(-1);
+            sAlert.error(EVENT_EDIT_NO_PERMISSION_ERROR);
+        }
+    },
+    {
+        only: ['EventEdit']
+    }
+);
+Router.onBeforeAction(function () {
+        var event = events.findOne(this.params._id);
+        if (checkPermissions(PUBLISH_EVENT) || event.owner == Meteor.userId()) {
+            this.next();
+        } else {
+            //history.go(-1);
+            sAlert.error(EVENT_PUBLISH_NO_PERMISSION_ERROR);
+        }
+    },
+    {
+        only: ['EventPublish']
+    }
+);
+
+Router.onBeforeAction(function () {
+        if (checkPermissions("")) {
+            this.next();
+        } else {
+            //history.go(-1);
+            sAlert.error(ADMIN_ONLY_ERROR);
+        }
+    },
+    {
+        only: ['Reports', 'TaskReport', 'Invitations', 'UserManagement']
     }
 );
