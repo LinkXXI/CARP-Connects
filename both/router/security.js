@@ -102,6 +102,6 @@ Router.onBeforeAction(function () {
         }
     },
     {
-        only: ['Reports', 'TaskReport', 'Invitations', 'UserManagement']
+        only: ['Reports', 'TaskReport', 'Invitations', 'UserManagement', 'Configuration']
     }
 );

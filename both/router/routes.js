@@ -249,3 +249,14 @@ Router.route('/users', {
         ]
     }
 });
+
+Router.route('/config', {
+    name: 'Configuration',
+    template: 'configuration',
+    waitOn: function () {
+        return [
+            Meteor.subscribe('Vendors'),
+            Meteor.subscribe('Venues')
+        ]
+    }
+});

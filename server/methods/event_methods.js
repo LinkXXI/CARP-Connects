@@ -44,7 +44,17 @@ Meteor.methods({
     venueInsert: function (venue) {
         venues.insert(venue);
     },
+    venueDelete: function (venueId) {
+        venues.remove(
+                {_id: venueId}
+            );
+    },
     vendorInsert: function (vendor) {
         vendors.insert(vendor);
+    },
+    vendorDelete: function (vendorId) {
+        vendors.remove(
+            {_id: vendorId}
+        );
     }
 });
