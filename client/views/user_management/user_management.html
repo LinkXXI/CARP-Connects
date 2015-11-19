@@ -21,29 +21,6 @@
 </template>
 
 <template name="user">
-    <tr>
-        <td><a href="{{pathFor 'Account'}}/{{_id}}">{{profile.firstName}} {{profile.lastName}}</a></td>
-        <td>{{createdAt}}</td>
-        <td><a href="mailto:{{primaryEmail}}">{{primaryEmail}}</a></td>
-        <td>
-            <p>
-                <input type="checkbox" id="profileCheck" disabled checked="{{profileComplete}}"/>
-                <label for="profileCheck"></label>
-            </p>
-        </td>
-        <td>
-            <p>
-                <input type="checkbox" id="inviteCheck" disabled checked="{{inviteApplied}}"/>
-                <label for="inviteCheck"></label>
-            </p>
-        </td>
-        <td>
-            <button class="btn waves-effect waves-light" id="userPermissions">Edit/View</button>
-        </td>
-        <td>
-            <button class="btn waves-effect waves-light" id="userOptions">Options</button>
-        </td>
-    </tr>
     <div class="modal" id="permissionsModal">
         <div class="modal-content">
             <h5>Permissions For {{profile.firstName}} {{profile.lastNAme}}</h5>
@@ -100,6 +77,30 @@
             <a href="" class="modal-action modal-close waves-effect waves-green btn-flat" id="cancelPermissions">Cancel</a>
         </div>
     </div>
+    <tr>
+        <td><a href="{{pathFor 'Account'}}/{{_id}}">{{profile.firstName}} {{profile.lastName}}</a></td>
+        <td>{{createdAt}}</td>
+        <td><a href="mailto:{{primaryEmail}}">{{primaryEmail}}</a></td>
+        <td>
+            <p>
+                <input type="checkbox" id="profileCheck" disabled checked="{{profileComplete}}"/>
+                <label for="profileCheck"></label>
+            </p>
+        </td>
+        <td>
+            <p>
+                <input type="checkbox" id="inviteCheck" disabled checked="{{inviteApplied}}"/>
+                <label for="inviteCheck"></label>
+            </p>
+        </td>
+        <td>
+            <button class="btn waves-effect waves-light" id="userPermissions">Edit/View</button>
+        </td>
+        <td>
+            <button class="btn waves-effect waves-light" id="userOptions">Options</button>
+        </td>
+    </tr>
+
     <div class="modal" id="optionsModal">
         <div class="modal-content">
             <h4>User Options</h4>

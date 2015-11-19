@@ -6,10 +6,10 @@ Template.userManagement.helpers({
 
 Template.user.events({
     "click #userOptions": function (e, template) {
-        $(template.find("#optionsModal")).openModal();
+        $(template.lastNode).openModal();
     },
     "click #userPermissions": function(e, template){
-        $(template.find("#permissionsModal")).openModal();
+        $(template.firstNode).openModal();
     },
     "click #lockUser": function () {
         if (Meteor.userId() === this._id) {
