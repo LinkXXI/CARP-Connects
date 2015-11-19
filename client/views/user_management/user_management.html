@@ -8,6 +8,7 @@
             <th>Primary Email</th>
             <th>Profile Complete</th>
             <th>Invite Code Applied</th>
+            <th>Permissions</th>
             <th>Options</th>
         </tr>
         </thead>
@@ -37,10 +38,21 @@
             </p>
         </td>
         <td>
-            <button class="btn waves-effect waves-light" id="userOptions">User Options</button>
+            <button class="btn waves-effect waves-light" id="userPermissions">Edit/View</button>
+        </td>
+        <td>
+            <button class="btn waves-effect waves-light" id="userOptions">Options</button>
         </td>
     </tr>
-    <div class="modal">
+    <div class="modal" id="permissionsModal">
+        <div class="modal-content">
+
+        </div>
+        <div class="modal-footer">
+
+        </div>
+    </div>
+    <div class="modal" id="optionsModal">
         <div class="modal-content">
             <h4>User Options</h4>
             <h5>{{profile.firstName}} {{profile.lastName}}</h5>

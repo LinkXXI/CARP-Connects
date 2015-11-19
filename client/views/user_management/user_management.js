@@ -1,41 +1,44 @@
 Template.userManagement.helpers({
-    users: function(){
+    users: function () {
         return Meteor.users.find();
     }
 });
 
 Template.user.events({
-   "click #userOptions": function(e, template){
-       $(template.lastNode).openModal();
-   },
-    "click #lockUser": function(){
-        if(Meteor.userId() === this._id){
+    "click #userOptions": function (e, template) {
+        $(this).find("#optionsModal").openModal();
+    },
+    "click #userPermissions": function(e, template){
+        $(this).find("#permissionsModal").openModal();
+    },
+    "click #lockUser": function () {
+        if (Meteor.userId() === this._id) {
             return;
         }
         Meteor.call('disableAccount', this._id, function (err, data) {
-            if(err){
+            if (err) {
                 console.log(err);
             }
         })
 
     },
-    "click #unlockUser": function(){
+    "click #unlockUser": function () {
         Meteor.call('enableAccount', this._id, function (err, data) {
-            if(err){
+            if (err) {
                 console.log(err);
             }
         })
     },
-    "click #forceInvite": function(){
+    "click #forceInvite": function () {
         var context = this;
-        Meteor.call('newInvitation', function(err, data){
-            if(err){
+        Meteor.call('newInvitation', function (err, data) {
+            if (err) {
                 console.log(err);
-            }else{
+            } else {
                 Meteor.call('validateInvitation', data._id, context._id, function (err, data) {
-                    if(err){
+                    if (err) {
                         console.log(err)
-                    }else{
+                    } else {
 
                     }
                 })
@@ -45,13 +48,13 @@ Template.user.events({
 });
 
 Template.user.helpers({
-   primaryEmail: function () {
-       return this.emails[0].address;
-   },
-    inviteApplied: function(){
+    primaryEmail: function () {
+        return this.emails[0].address;
+    },
+    inviteApplied: function () {
         return !!this.profile.inviteCode;
     },
-    profileComplete: function(){
+    profileComplete: function () {
         return Meteor.user().emails[0].verified && Meteor.user().profile.inviteCode && Meteor.user().profile.googleLinked;
     }
 });
