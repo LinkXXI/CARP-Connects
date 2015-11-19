@@ -11,7 +11,8 @@ Template.incomplete.events({
             }
         })*/
         Meteor.signInWithGoogle({
-                requestPermissions: ['email', 'https://www.googleapis.com/auth/drive.file']
+            requestPermissions: ['email', 'https://www.googleapis.com/auth/drive.file'],
+            requestOfflineToken: true
         },
             function (err, mergedUserId) {
                 if(err){

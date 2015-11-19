@@ -5,7 +5,8 @@ Router.route('/', {
         return [
             Meteor.subscribe('Events'),
             Meteor.subscribe('Tasks'),
-            Meteor.subscribe('Venues')
+            Meteor.subscribe('Venues'),
+            Meteor.subscribe('userAuthToken')
         ]
     },
     data: function () {
