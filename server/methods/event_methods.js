@@ -61,9 +61,19 @@ Meteor.methods({
         //TODO: check permission using same logic as security.js
         venues.insert(venue);
     },
+    venueDelete: function (venueId) {
+        venues.remove(
+                {_id: venueId}
+            );
+    },
     vendorInsert: function (vendor) {
         //TODO: check permission using same logic as security.js
         vendors.insert(vendor);
+    },
+    vendorDelete: function (vendorId) {
+        vendors.remove(
+            {_id: vendorId}
+        );
     }
 })
 ;

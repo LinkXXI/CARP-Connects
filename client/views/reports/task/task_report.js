@@ -51,7 +51,7 @@ Template.taskReport.taskReportChart = function () {
             plotShadow: false
         },
         title: {
-            text: "Task Report Chart"
+            text: "Task Breakdown Report Chart"
         },
         tooltip: {
             pointFormat: '<b>{point.percentage:.1f}%</b>'

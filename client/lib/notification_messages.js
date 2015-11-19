@@ -12,8 +12,14 @@ EVENT_PUBLISH_SUCCESS = "Event was successfully published.";
 
 VENUE_INSERT_SUCCESS = "A venue was successfully created.";
 VENUE_INSERT_ERROR = "An error occurred creating a venue.";
+VENUE_DELETE_SUCCESS = "A venue was successfully removed.";
+VENUE_DELETE_ERROR = "An error occurred removing a venue.";
+VENUE_DELETE_NONESELECTED = "Please choose a venue from the list.";
 VENDOR_INSERT_SUCCESS = "A vendor was successfully created.";
 VENDOR_INSERT_ERROR = "An error occurred creating a vendor.";
+VENDOR_DELETE_SUCCESS = "A vendor was successfully removed.";
+VENDOR_DELETE_ERROR = "An error occurred removing a vendor.";
+VENDOR_DELETE_NONESELECTED = "Please choose a vendor from the list.";
 
 TASK_CREATED_SUCCESS = "A task was successfully created.";
 TASK_EDITED_SUCCESS = "Task was successfully edited, please save the event for it to take effect.";

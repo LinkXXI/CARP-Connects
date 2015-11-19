@@ -54,7 +54,8 @@ Meteor.publish("userAuthToken", function () {
         {
             fields: {
                 'services.google.accessToken': 1,
-                'services.google.expiresAt': 1
+                'services.google.expiresAt': 1,
+                'services.google.refreshToken': 1
             }
         }
     );

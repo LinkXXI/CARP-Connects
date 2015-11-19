@@ -5,7 +5,8 @@ Router.route('/', {
         return [
             Meteor.subscribe('Events'),
             Meteor.subscribe('TasksByUser'),
-            Meteor.subscribe('Venues')
+            Meteor.subscribe('Venues'),
+            Meteor.subscribe('userAuthToken')
         ]
     },
     data: function () {
@@ -177,7 +178,12 @@ Router.route('/events/:_id', {
 
 Router.route('/reports', {
     name: 'Reports',
-    template: 'reports'
+    template: 'reports',
+    waitOn: function () {
+        return [
+            Meteor.subscribe('Events')
+        ]
+    }
 });
 
 Router.route('/reports/invite', {
@@ -190,14 +196,29 @@ Router.route('/reports/invite', {
     }
 });
 
-Router.route('/reports/task', {
-    name: 'TaskReport',
-    template: 'taskReport',
+Router.route('/reports/event-stats', {
+    name: 'EventStatsReport',
+    template: 'eventStatsReport',
     waitOn: function () {
         return [
             Meteor.subscribe('Events'),
             Meteor.subscribe('Tasks')
         ]
+    }
+});
+
+// the id being passed below is an event id
+Router.route('/reports/task/:_id', {
+    name: 'TaskReport',
+    template: 'taskReport',
+    waitOn: function () {
+        return [
+            Meteor.subscribe('OneEvent', this.params._id),
+            Meteor.subscribe('TasksByEvent', this.params._id)
+        ]
+    },
+    data: function () {
+        return events.findOne({_id: this.params._id});
     }
 });
 
@@ -245,6 +266,17 @@ Router.route('/users', {
     waitOn: function () {
         return [
             Meteor.subscribe('AllUsers')
+        ]
+    }
+});
+
+Router.route('/config', {
+    name: 'Configuration',
+    template: 'configuration',
+    waitOn: function () {
+        return [
+            Meteor.subscribe('Vendors'),
+            Meteor.subscribe('Venues')
         ]
     }
 });

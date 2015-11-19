@@ -7,10 +7,10 @@ Template.eventView.onRendered(function() {
      format:'D/M/YYYY h:mm a'
      });*/
     $('.tooltipped').tooltip({delay: 50});
-
+    
     if (Router.current().route.getName() === "EventPublish") {
         this.$('#eventpublish-modal').openModal();
-    }
+    }   
 });
 
 Template.eventView.helpers({
@@ -31,6 +31,9 @@ Template.eventView.helpers({
     },
     'isActiveEvent': function () {
         return this.status === "Active";
+    },
+    'eventStatus': function () {
+        return this.status === "Active" ? "Current Event" : "Past Event";
     }
 });
 
