@@ -9,7 +9,7 @@ Router.route('/', {
         ]
     },
     data: function () {
-        return events.find();
+        return events.find({}, {sort: {dateTime: 1}});
     }
 });
 
