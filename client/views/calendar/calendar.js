@@ -27,8 +27,7 @@ function mapCalendarEvents(eventsArr) {
                     calendarEvents.push({
                         title: task.name,
                         start: task.dateTime,
-                        //TODO: add task path url when tasks are implemented
-                        //url: Router.routes.Task.path({_id:task._id}),
+                        url: Router.routes.TaskView.path({_id: task._id}),
                         color: "#99CC99",
                         allDay: false
                     });

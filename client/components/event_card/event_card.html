@@ -13,12 +13,10 @@
 
                 <p><b>Location:</b> {{venue.name}}, {{venue.address.city}}, {{venue.address.provinceState}}</p>
 
-                <!-- TODO: Find out how to link the venue and insert the name here -->
                 <p><b>Description:</b> {{description}}</p>
-
             </div>
         </a>
-        {{#if isActive}}
+        {{#if isActiveEvent}}
             <div class="card-action">
                 <a href="{{pathFor "EventEdit"}}">Work on Event</a>
                 <a href="{{pathFor "EventPublish"}}">Publish Event</a>

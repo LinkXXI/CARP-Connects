@@ -134,7 +134,7 @@ Meteor.startup(function () {
                 "description": "Showing support for those around us by providing much needed housing services.",
                 "totalBudget": "2500.00",
                 "theme": "Community",
-                "status": "Complete",
+                "status": "complete",
                 "dateTime": "2015-11-28T19:00:00",
                 "venue": venue2
             });
@@ -148,6 +148,52 @@ Meteor.startup(function () {
                 "vendor": vendor1,
                 "budget": "350.00",
                 "status": "Complete",
+                "event": event
+            });
+            event = events.insert({
+                "owner": "Brandon White",
+                "name": "Financial Planning",
+                "description": "How to plan for retirement and setup a savings account for a rainy day.",
+                "totalBudget": "1500.00",
+                "theme": "Financial",
+                "status": "active",
+                "dateTime": "2015-11-30T18:00:00",
+                "venue": venue3
+            });
+            tasks.insert({
+                "name": "Book Venue for Event",
+                "description": "Approximately 100 guests are attending, please book a hall to accommodate this in the Oakville area.",
+                "notes": "Take a look at the venue we used last time",
+                "userIdAssignedTo": "1",
+                "dateTime": "2015-11-25T16:00:00",
+                "taskType": "Custom",
+                "vendor": "",
+                "budget": "1000.00",
+                "status": "Complete",
+                "event": event
+            });
+            tasks.insert({
+                "name": "Hire Caterer",
+                "description": "Hire a caterer for 50-75 people",
+                "notes": "In talks with caterer, waiting on an estimate",
+                "userIdAssignedTo": "1",
+                "dateTime": "2015-11-26T17:00:00",
+                "taskType": "Vendor",
+                "vendor": vendor1,
+                "budget": "500.00",
+                "status": "In Progress",
+                "event": event
+            });
+            tasks.insert({
+                "name": "Hire a Guest Speaker",
+                "description": "A Subject Matter Expert (SME) is required in the field of financial planning.",
+                "notes": "Do a Google search to see if we can find anyone nearby",
+                "userIdAssignedTo": "1",
+                "dateTime": "2015-11-27T16:00:00",
+                "taskType": "Custom",
+                "vendor": "",
+                "budget": "300.00",
+                "status": "Not Started",
                 "event": event
             });
         }

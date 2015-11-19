@@ -1,0 +1,87 @@
+<template name="taskView">
+
+    <h2>View Task Details</h2>
+
+    <form id="view-task-form">
+        <div class="row">
+            <div class="col s12 center">
+                <a href="{{pathFor 'EventView' _id=this.event}}" class="waves-effect waves-light btn">
+                    <i class="mdi-content-send right"></i>View parent Event
+                </a>
+                {{#if isActiveEvent}}
+                    <a href="{{pathFor 'EventEdit' _id=this.event}}" class="waves-effect waves-light btn">
+                        <i class="mdi-navigation-cancel right"></i>Work on parent Event
+                    </a>
+                {{/if}}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s6">
+                <p>Task Name</p>
+                <span>{{this.name}}</span>
+            </div>
+            <div class="col s4">
+                <p>Date/Time</p>
+                <span>{{formatDate this.dateTime}}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s6">
+                <p>Description</p>
+                <span>{{this.description}}</span>
+            </div>
+        </div>
+        {{#if hasNotes}}
+            <div class="row">
+                <div class="col s6">
+                    <p>Notes</p>
+                    <span>{{this.notes}}</span>
+                </div>
+            </div>
+        {{/if}}
+        <div class="row">
+            <div class="col s4">
+                <p>Task type</p>
+                <span>{{this.taskType}}</span>
+            </div>
+            {{#if isVendorTask}}
+                <div class="col s4">
+                    <p>Vendor</p>
+                    <span>{{vendor.name}}</span>
+                </div>
+            {{/if}}
+        </div>
+        <div class="row">
+            <div class="col s4">
+                <p>Budget</p>
+                <span>{{this.budget}}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s4">
+                <p>Assigned to</p>
+                <span>{{userIdAssignedTo.profile.firstName}} {{userIdAssignedTo.profile.lastName}}</span>
+            </div>
+            <div class="col s4">
+                <p>Status</p>
+                <span>{{this.status}}</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12 center">
+                <a href="{{pathFor 'EventView' _id=this.event}}" class="waves-effect waves-light btn">
+                    <i class="mdi-content-send right"></i>View parent Event
+                </a>
+                {{#if isActiveEvent}}
+                    <a href="{{pathFor 'EventEdit' _id=this.event}}" class="waves-effect waves-light btn">
+                        <i class="mdi-navigation-cancel right"></i>Work on parent Event
+                    </a>
+                {{/if}}
+            </div>
+        </div>
+
+    </form>
+
+</template>

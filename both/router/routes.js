@@ -79,6 +79,23 @@ Router.route('/calendar', {
     }
 });
 
+Router.route('/tasks/:_id', {
+    name: 'TaskView',
+    template: 'taskView',
+    waitOn: function () {
+        return [
+            Meteor.subscribe('OneTask', this.params._id),
+            Meteor.subscribe('OneEvent', this.event),
+            Meteor.subscribe('AllUsers'),
+            Meteor.subscribe('Vendors'),
+            Meteor.subscribe('Venues')
+        ];
+    },
+    data: function () {
+        return tasks.findOne({_id: this.params._id});
+    }
+});
+
 Router.route('/events', {
     name: 'Events',
     template: 'eventViewAll',
