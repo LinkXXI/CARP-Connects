@@ -8,8 +8,18 @@
                         <label>Report Type</label>
                         <select class="validate browser-default" id="reports">
                             <option value="" disabled selected>Select a report</option>
-                            <option value="{{pathFor 'InviteReport'}}">Invitation Report</option>
-                            <option value="{{pathFor 'TaskReport'}}">Task Report</option>
+                            <option value="task">Task Breakdown Report</option>
+                            <option value="eventStats">Event Statistics Report</option>
+                            <option value="invitation">Invitation Report</option>
+                        </select>
+                    </div>
+                    <div id="event" class="col s4">
+                        <label>Event</label>
+                        <select class="validate browser-default" id="events">
+                            <option value="" disabled selected>Choose an event</option>
+                            {{#each events}}
+                                <option value="{{this._id}}">{{this.name}}</option>
+                            {{/each}}
                         </select>
                     </div>
                 </div>

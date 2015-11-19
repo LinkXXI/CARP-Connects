@@ -1,25 +1,25 @@
-<template name="inviteReport">
-    <h2>Invitation Report</h2>
+<template name="eventStatsReport">
+    <h2>Event Statistics Report</h2>
 
     <p>The data in this report is up to date as of: {{ formatDate timestamp }}</p>
 
     <div class="row">
         <div class="col s7">
-            {{> highchartsHelper chartId="inviteReport" chartObject=inviteReportChart}}
+            {{> highchartsHelper chartId="eventStatsReport" chartObject=eventStatsReportChart}}
         </div>
         <div class="col s5">
             <div class="card-panel col s10 grey lighten-4">
                 <h4>Detailed Report</h4>
                 <p>
-                    <b>Total Invites Generated:</b> {{inviteCount}}
+                    <b>Number of events:</b> {{eventCount}}
                 </p>
 
                 <p>
-                    <b>Invites Used:</b> {{inviteUsedCount}}
+                    <b>Number of Tasks:</b> {{taskCount}}
                 </p>
 
                 <p>
-                    <b>Invites Not Used:</b> {{inviteNotUsedCount}}
+                    <b>Tasks per Event:</b> {{tasksPerEvent}}
                 </p>
             </div>
         </div>
