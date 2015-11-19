@@ -4,7 +4,7 @@ Router.route('/', {
     waitOn: function () {
         return [
             Meteor.subscribe('Events'),
-            Meteor.subscribe('TasksByUser'),
+            Meteor.subscribe('Tasks'),
             Meteor.subscribe('Venues'),
             Meteor.subscribe('userAuthToken')
         ]
@@ -72,7 +72,7 @@ Router.route('/calendar', {
     waitOn: function () {
         return [
             Meteor.subscribe('Events'),
-            Meteor.subscribe('TasksByUser')
+            Meteor.subscribe('Tasks')
         ];
     },
     data: function () {
