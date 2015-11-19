@@ -39,8 +39,8 @@ Meteor.methods({
         // }
     },
     eventPublish: function (event) {
-        // var hasCompletedTasks = !!tasks.find({event: event._id, status: "Complete"}).count();
-        //   if (!hasCompletedTasks && checkPermissions(PUBLISH_EVENT, {event: event})) {
+        // var hasIncompleteTasks = !!tasks.find({event: event._id, status: {$ne:"Complete"}}).count();
+        //   if (!hasIncompleteTasks && checkPermissions(PUBLISH_EVENT, {event: event})) {
         events.update(event._id, {$set: {status: "Complete"}}, function (error) {
             if (error) {
                 return error;
@@ -63,8 +63,8 @@ Meteor.methods({
     },
     venueDelete: function (venueId) {
         venues.remove(
-                {_id: venueId}
-            );
+            {_id: venueId}
+        );
     },
     vendorInsert: function (vendor) {
         //TODO: check permission using same logic as security.js
