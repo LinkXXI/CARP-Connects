@@ -14,7 +14,7 @@
     ],
     "profile":{
       "permissions":{
-        "role": "User's role -- incomplete, user, organizer, Administrator",
+        "role": "User's role -- incomplete, user, Admin",
         "createEvent": "",
         "editEvent": "",
         "publishEvent": "",

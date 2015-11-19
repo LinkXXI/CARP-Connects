@@ -29,4 +29,4 @@ ACCOUNT_CHANGE_PASSWORD_ERROR = "Current password was entered incorrectly.";
 ACCOUNT_CHANGE_PASSWORD_SUCCESS = "Password changed successfully.";
 ACCOUNT_CHANGE_PASSWORD_NO_MATCH = "New passwords do not match.";
 
-ADMIN_ONLY_ERROR = "This is an admin function. This access attempt has be logged and reported.";
+ADMIN_ONLY_ERROR = "This is an admin function. This access attempt has been logged and reported.";

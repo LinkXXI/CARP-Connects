@@ -73,6 +73,7 @@ Router.onBeforeAction(function () {
         } else {
             //history.go(-1);
             sAlert.error(EVENT_EDIT_NO_PERMISSION_ERROR);
+            Router.go('/');
         }
     },
     {
@@ -86,6 +87,7 @@ Router.onBeforeAction(function () {
         } else {
             //history.go(-1);
             sAlert.error(EVENT_PUBLISH_NO_PERMISSION_ERROR);
+            Router.go('/');
         }
     },
     {
@@ -99,9 +101,12 @@ Router.onBeforeAction(function () {
         } else {
             //history.go(-1);
             sAlert.error(ADMIN_ONLY_ERROR);
+            Router.go('/');
         }
     },
     {
         only: ['Reports', 'TaskReport', 'Invitations', 'UserManagement']
     }
 );
+
+//TODO: consolidate security function here and make it reusable
