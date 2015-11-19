@@ -37,6 +37,7 @@ Template.taskEditModal.events({
             name: $(e.target).find('#edit-task-name').val(),
             dateTime: formatDateDefault(dateTime),
             description: $(e.target).find('#edit-task-description').val(),
+            notes: $(e.target).find('#edit-task-notes').val(),
             taskType: $(e.target).find('#edit-task-type option:selected').val(),
             vendor: $(e.target).find('#edit-vendor-name').val(),
             budget: $(e.target).find('#edit-task-budget').val(),

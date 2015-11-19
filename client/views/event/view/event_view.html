@@ -5,9 +5,11 @@
     <form id="view-event-form">
         <div class="row">
             <div class="col s12 center">
-                <a href="{{pathFor 'EventEdit'}}" class="waves-effect waves-light btn" id="edit-event-button">
-                    <i class="mdi-content-send right"></i>Work on event
-                </a>
+                {{#if isActiveEvent}}
+                    <a href="{{pathFor 'EventEdit'}}" class="waves-effect waves-light btn" id="edit-event-button">
+                        <i class="mdi-content-send right"></i>Work on event
+                    </a>
+                {{/if}}
                 <a href="{{pathFor 'Events'}}" class="waves-effect waves-light btn">
                     <i class="mdi-navigation-cancel right"></i>Back to all events
                 </a>
@@ -63,9 +65,11 @@
 
         <div class="row">
             <div class="col s12 center">
-                <a href="{{pathFor 'EventEdit'}}" class="waves-effect waves-light btn" id="edit-event-button">
-                    <i class="mdi-content-send right"></i>Work on event
-                </a>
+                {{#if isActiveEvent}}
+                    <a href="{{pathFor 'EventEdit'}}" class="waves-effect waves-light btn" id="edit-event-button">
+                        <i class="mdi-content-send right"></i>Work on event
+                    </a>
+                {{/if}}
                 <a href="{{pathFor 'Events'}}" class="waves-effect waves-light btn">
                     <i class="mdi-navigation-cancel right"></i>Back to all events
                 </a>

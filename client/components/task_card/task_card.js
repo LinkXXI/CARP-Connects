@@ -8,7 +8,7 @@ Template.taskCard.onRendered(function () {
 });
 
 Template.taskCard.helpers({
-    getStatus: function () {
+    'getStatus': function () {
         var color = "light blue";
         if (this.status === "Not Started") {
             color = "red lighten-4";
@@ -21,7 +21,7 @@ Template.taskCard.helpers({
         }
         return color;
     },
-    isEditable: function () {
+    'isEditable': function () {
         if (Router.current().route.getName() === 'EventEdit' || Session.get('pastEventId') != undefined) {
             return true;
         } else {
@@ -31,10 +31,13 @@ Template.taskCard.helpers({
     'isVendorTask': function () {
         return this.taskType === "Vendor";
     },
-    userIdAssignedTo: function () {
+    'hasNotes': function () {
+        return this.notes !== "";
+    },
+    'userIdAssignedTo': function () {
         return Meteor.users.findOne({_id: this.userIdAssignedTo});
     },
-    vendor: function () {
+    'vendor': function () {
         return vendors.findOne({_id: this.vendor});
     }
 });

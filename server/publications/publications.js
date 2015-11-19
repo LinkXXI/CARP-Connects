@@ -14,6 +14,10 @@ Meteor.publish("TasksByEvent", function (eventId) {
     return tasks.find({event: eventId}, {sort: {name: 1}});
 });
 
+Meteor.publish("OneTask", function (taskId) {
+    return tasks.find({_id: taskId});
+});
+
 Meteor.publish("Vendors", function () {
     return vendors.find({});
 });
@@ -27,7 +31,7 @@ Meteor.publish("Invitations", function () {
 });
 
 Meteor.publish("AllUsers", function () {
-    return Meteor.users.find();
+    return Meteor.users.find({mergedWith: {$exists: false}});
 });
 Meteor.publish("OneUser", function (userId) {
     //TODO: meteor add audit-argument-checks
