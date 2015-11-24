@@ -13,11 +13,13 @@ EVENT_PUBLISH_SUCCESS = "Event was successfully published.";
 VENUE_INSERT_SUCCESS = "A venue was successfully created.";
 VENUE_INSERT_ERROR = "An error occurred creating a venue.";
 VENUE_DELETE_SUCCESS = "A venue was successfully removed.";
+VENUE_DELETE_FAILED = "Venue could not be removed because it's currently in use by an event.";
 VENUE_DELETE_ERROR = "An error occurred removing a venue.";
 VENUE_DELETE_NONESELECTED = "Please choose a venue from the list.";
 VENDOR_INSERT_SUCCESS = "A vendor was successfully created.";
 VENDOR_INSERT_ERROR = "An error occurred creating a vendor.";
 VENDOR_DELETE_SUCCESS = "A vendor was successfully removed.";
+VENDOR_DELETE_FAILED = "Vendor could not be removed because it's currently in use by a task.";
 VENDOR_DELETE_ERROR = "An error occurred removing a vendor.";
 VENDOR_DELETE_NONESELECTED = "Please choose a vendor from the list.";
 

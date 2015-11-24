@@ -62,18 +62,36 @@ Meteor.methods({
         venues.insert(venue);
     },
     venueDelete: function (venueId) {
-        venues.remove(
-            {_id: venueId}
-        );
+        var count = events.find({
+            venue: venueId
+        }).count();
+        if (count === 0) {
+            venues.remove(
+                {_id: venueId}
+            );
+            return true;
+        }
+        else {
+            return false;
+        }
     },
     vendorInsert: function (vendor) {
         //TODO: check permission using same logic as security.js
         vendors.insert(vendor);
     },
     vendorDelete: function (vendorId) {
-        vendors.remove(
-            {_id: vendorId}
-        );
+        var count = tasks.find({
+            vendor: vendorId
+        }).count();
+        if (count === 0) {
+            vendors.remove(
+                {_id: vendorId}
+            );
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 })
 ;
