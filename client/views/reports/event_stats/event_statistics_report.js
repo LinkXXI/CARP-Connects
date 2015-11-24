@@ -23,6 +23,8 @@ Template.eventStatsReport.eventStatsReportChart = function () {
     var eventCount = events.find().count();
     var taskCount = tasks.find().count();
     tasksPerEvent = parseInt(taskCount) / parseInt(eventCount);
+    // round to 2 decimal places
+    tasksPerEvent = Math.round(tasksPerEvent * 100) / 100;
     seriesData.push(['Events', eventCount]);
     seriesData.push(['Tasks', taskCount]);
     seriesData.push(['Tasks per Event', tasksPerEvent]);

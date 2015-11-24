@@ -24,14 +24,17 @@ Template.configuration.events({
             }, function (ok) {
                 // ok is true if the user clicked on "ok", false otherwise
                 if (ok) {
-                    Meteor.call('venueDelete', venueId, function (error) {
+                    Meteor.call('venueDelete', venueId, function (error, result) {
                         // display the error to the user and abort
                         if (error) {
                             sAlert.error(VENUE_DELETE_ERROR);
                             return throwError(error.reason);
                         }
-                        else {
+                        else if (result) {
                             sAlert.success(VENUE_DELETE_SUCCESS);
+                        }
+                        else if (!result) {
+                            sAlert.error(VENUE_DELETE_FAILED);
                         }
                     });
                 }
@@ -53,14 +56,17 @@ Template.configuration.events({
             }, function (ok) {
                 // ok is true if the user clicked on "ok", false otherwise
                 if (ok) {
-                    Meteor.call('vendorDelete', vendorId, function (error) {
+                    Meteor.call('vendorDelete', vendorId, function (error, result) {
                         // display the error to the user and abort
                         if (error) {
                             sAlert.error(VENDOR_DELETE_ERROR);
                             return throwError(error.reason);
                         }
-                        else {
+                        else if (result) {
                             sAlert.success(VENDOR_DELETE_SUCCESS);
+                        }
+                        else if (!result) {
+                            sAlert.error(VENDOR_DELETE_FAILED);
                         }
                     });
                 }
