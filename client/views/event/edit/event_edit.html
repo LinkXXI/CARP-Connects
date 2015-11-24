@@ -75,22 +75,21 @@
                 </a>
             </div>
         </div>
-        {{#each tasks}}
-            {{> taskCard}}
-        {{/each}}
         {{#if hasNewTasks}}
-            <div class="row">
+            <div class="row green lighten-5 round-corners">
                 <div class="col s6">
-                    <span class="header">New or Updated Tasks</span>
+                    <h5>New or Updated Tasks</h5>
                 </div>
-            </div>
-
-            <div class="row">
                 {{#each sessionTasks}}
                     {{> taskCard}}
                 {{/each}}
             </div>
         {{/if}}
+        <div class="row">
+            {{#each tasks}}
+                {{> taskCard}}
+            {{/each}}
+        </div>
         <div class="row">
             <div class="col s12 center">
                 <button type="submit" class="waves-effect waves-light btn" id="create-event-button">
