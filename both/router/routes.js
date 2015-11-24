@@ -196,7 +196,7 @@ Router.route('/reports/invite', {
     }
 });
 
-Router.route('/reports/event-stats', {
+Router.route('/reports/event_stats', {
     name: 'EventStatsReport',
     template: 'eventStatsReport',
     waitOn: function () {
@@ -273,6 +273,17 @@ Router.route('/users', {
 Router.route('/config', {
     name: 'Configuration',
     template: 'configuration',
+    waitOn: function () {
+        return [
+            Meteor.subscribe('Vendors'),
+            Meteor.subscribe('Venues')
+        ]
+    }
+});
+
+Router.route('/dw', {
+    name: 'DocumentWorkspace',
+    template: 'documentWorkspace',
     waitOn: function () {
         return [
             Meteor.subscribe('Vendors'),
