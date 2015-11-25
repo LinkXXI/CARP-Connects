@@ -42,6 +42,11 @@ Meteor.publish("OneUser", function (userId) {
     //check(userId, String);
     return Meteor.users.find({_id: userId});
 });
+Meteor.publish("UserGoogle", function () {
+    //TODO: meteor add audit-argument-checks
+    //check(userId, String);
+    return Meteor.users.find({_id: this.userId}, {"services.google": 1});
+});
 Meteor.publish("OneEvent", function (eventId) {
     //TODO: meteor add audit-argument-checks
     //check(eventId, String);

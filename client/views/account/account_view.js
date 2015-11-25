@@ -1,6 +1,5 @@
 Template.accountView.helpers({
     editAllowed: function() {
-        var role = Meteor.user().profile.permissions.role;
         return Meteor.userId() === this._id || checkPermissions("");
     },
     changePassword: function() {
@@ -9,7 +8,6 @@ Template.accountView.helpers({
     profilePicAttr: function() {
         return {
             src: this.services.google.picture,
-            alt: "",
             class: "circle responsive-img"
         };
     }
