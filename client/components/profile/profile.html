@@ -1,0 +1,35 @@
+<template name="profile">
+    <a href ="#" data-activates="profile-dropdown" class="dropdown-button button-collapse right"><img {{profilePicAttr}}></a>
+    <div class="row right hide-on-med-and-down">
+        <div class="col s12 m4 l4">
+            <img {{profilePicAttr}}>
+        </div>
+        <div class="col s0 m8 l8">
+            <a class="dropdown-button waves-effect waves-light" href="#" data-activates="profile-dropdown">{{name}}<i
+                    class="mdi-navigation-arrow-drop-down right"></i></a>
+            <p style="font-size: 12px">{{role}}</p>
+            <ul id="profile-dropdown" class="dropdown-content active">
+                <li><a href="#"><i class="mdi-action-account-box"></i> Profile</a></li>
+                <li>{{> logout}}</li>
+            </ul>
+
+        </div>
+    </div>
+
+    <!--
+    <ul class="right fixed">
+        <li><a href="#!" data-activates="profile-dropdown" class="button-collapse"><img /></a>
+        </li>
+        <li class="hide-on-med-and-down">
+            <a class="btn-flat dropdown-button waves-effect waves-light" href="#!"
+                                            data-activates="profileDropdown">
+                <img {{profilePicAttr}}/>{{name}}<i
+                class="mdi-navigation-arrow-drop-down right"></i></a></li>
+        <ul id="profile-dropdown" class="dropdown-content active">
+            <li><a href="{{pathFor "Account"}}">Profile<i
+                    class="mdi-action-account-box left"></i></a></li>
+            <li>{{> logout}}</li>
+        </ul>
+    </ul>
+-->
+</template>
