@@ -42,31 +42,9 @@ Meteor.publish("OneUser", function (userId) {
     //check(userId, String);
     return Meteor.users.find({_id: userId});
 });
-Meteor.publish("UserGooglePicture", function () {
-    return Meteor.users.find(
-        {_id: this.userId},
-        {
-            fields: {
-                'services.google.picture': 1
-            }
-        }
-    );
-});
+
 Meteor.publish("OneEvent", function (eventId) {
     //TODO: meteor add audit-argument-checks
     //check(eventId, String);
     return events.find({_id: eventId});
-});
-
-Meteor.publish("userAuthToken", function () {
-    return Meteor.users.find(
-        this.userId,
-        {
-            fields: {
-                'services.google.accessToken': 1,
-                'services.google.expiresAt': 1,
-                'services.google.refreshToken': 1
-            }
-        }
-    );
 });

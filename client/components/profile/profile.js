@@ -1,18 +1,21 @@
-var userGooglePictureSubscription;
+var userSubscription;
 
 Meteor.startup(function() {
-    userGooglePictureSubscription = Meteor.subscribe("UserGooglePicture");
+    userSubscription = Meteor.subscribe("OneUser", Meteor.userId());
 });
 
 Template.profile.onRendered(function () {
-    $(".dropdown-button").dropdown();
+    $(".dropdown-button").dropdown({
+        hover: true, // Activate on hover
+        belowOrigin: true // Displays dropdown below the button
+    });
 });
 
 Template.profile.helpers({
     profilePicAttr: function () {
         return {
-            src: userGooglePictureSubscription.ready() ? Meteor.user().services.google.picture : "",
-            class: "circle responsive-img valign",
+            src: userSubscription.ready() ? Meteor.user().services.google.picture : "",
+            class: "circle responsive-img",
             style: "max-height: 50px;"
         };
     },
