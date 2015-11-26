@@ -1,5 +1,7 @@
 <template name="sidebar">
-    <a data-activates="side-nav" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+    <div class="container"> <!-- creates a nice margin for button -->
+        <a data-activates="side-nav" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+    </div>
     <ul class="side-nav fixed left" id="side-nav">
         <li class="logo">
             <a id="logo-container" href="/">
@@ -12,7 +14,8 @@
         <li class="divider"></li>
         <li class="{{isActive "EventCreate"}}"><a href="{{pathFor 'EventCreate'}}">Create New Event</a></li>
         <li class="{{isActive "Events"}}"><a href="{{pathFor 'Events'}}">View All Events</a></li>
-        <li class="{{isActive "DocumentWorkspace"}}"><a href="{{pathFor 'DocumentWorkspace'}}">Document Workspace</a></li>
+        <li class="{{isActive "DocumentWorkspace"}}"><a href="{{pathFor 'DocumentWorkspace'}}">Document Workspace</a>
+        </li>
         {{#if isAdmin}}
             <li class="divider"></li>
             <li class="logo teal-text darken-4">Administration</li>
