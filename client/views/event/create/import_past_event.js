@@ -19,6 +19,8 @@ Template.importPastEventModal.events({
         Meteor.setTimeout(function() {
             $('.tooltipped').tooltip({delay: 50})
         }, 200);
+        //re-init the date/time picker on the create event page
+        $('#datetime').datetimepicker();
     }
 });
 
