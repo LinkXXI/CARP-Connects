@@ -1,7 +1,8 @@
-@media(min-width: 991px) {
+@media (min-width: 991px) {
     .nav-wrapper .brand-logo {
         padding-left: 240px;
     }
+
     main {
         padding-left: 240px;
     }
@@ -17,7 +18,7 @@
 }
 
 /* Changes cursor to pointer when in mobile and tablet mode when hovers over sidenav */
-@media only screen and (max-width : 992px) {
+@media only screen and (max-width: 992px) {
     a.button-collapse {
         cursor: pointer;
     }
@@ -87,7 +88,7 @@ ul.side-nav.fixed li.logo:hover {
     font-weight: bold;
 }
 
-.forcetop{
+.forcetop {
     z-index: 9001;
 }
 

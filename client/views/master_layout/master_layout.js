@@ -39,3 +39,12 @@ Template.master.helpers({
         !Meteor.user());
     }
 });
+
+Template.master.events({
+    'click .map': function () {
+        $('.map iframe').css("pointer-events", "auto");
+    },
+    'mouseleave .map': function() {
+        $('.map iframe').css("pointer-events", "none");
+    }
+});
