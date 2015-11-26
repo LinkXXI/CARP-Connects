@@ -3,9 +3,7 @@
  */
 Template.addVendorModal.events({
     'click #cancel-add-vendor-button': function (e) {
-        var modal = $('#add-vendor-modal');
-        modal.closeModal();
-        modal.find('form')[0].reset();
+        closeAndResetModal('#add-vendor-modal');
     },
     "submit #add-vendor-form": function (e) {
         e.preventDefault();
@@ -39,6 +37,6 @@ Template.addVendorModal.events({
                 sAlert.success(VENDOR_INSERT_SUCCESS);
             }
         });
-        $('#add-vendor-modal').closeModal();
+        closeAndResetModal('#add-vendor-modal');
     }
 });

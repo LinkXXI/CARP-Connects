@@ -7,7 +7,7 @@ Meteor.startup(function () {
     sAlert.config({
         effect: 'scale', // scale, slide, genie, jelly, flip, bouncyflip, stackslide
         position: 'top-right', // top-left, bottom-left, top-right, bottom-right, top (full width), bottom (full-width)
-        timeout: 4000,
+        timeout: 4000, // 'no' to disable
         html: false,
         onRouteClose: false,
         stack: true,

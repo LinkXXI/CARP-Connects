@@ -3,9 +3,7 @@
  */
 Template.addVenueModal.events({
     "click #cancel-add-venue-button": function (e) {
-        var modal = $('#add-venue-modal');
-        modal.closeModal();
-        modal.find('form')[0].reset();
+        closeAndResetModal('#add-venue-modal');
     },
     "submit #add-venue-form": function (e) {
         e.preventDefault();
@@ -39,6 +37,6 @@ Template.addVenueModal.events({
                 sAlert.success(VENUE_INSERT_SUCCESS);
             }
         });
-        $('#add-venue-modal').closeModal();
+        closeAndResetModal('#add-venue-modal');
     }
 });

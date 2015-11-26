@@ -3,9 +3,7 @@
  */
 Template.addThemeModal.events({
     'click #cancel-add-theme-button': function (e) {
-        var modal = $('#add-theme-modal');
-        modal.closeModal();
-        modal.find('form')[0].reset();
+        closeAndResetModal('#add-theme-modal');
     },
     "submit #add-theme-form": function (e) {
         e.preventDefault();
@@ -26,6 +24,6 @@ Template.addThemeModal.events({
                 sAlert.success(THEME_INSERT_SUCCESS);
             }
         });
-        $('#add-theme-modal').closeModal();
+        closeAndResetModal('#add-theme-modal');
     }
 });

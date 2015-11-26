@@ -51,3 +51,9 @@ checkPermissions = function(permissionFlag){
 
     return false;
 };
+
+closeAndResetModal = function(modal) {
+    var modal = $(modal);
+    modal.closeModal();
+    modal.find('form')[0].reset();
+};
