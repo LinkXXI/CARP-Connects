@@ -50,6 +50,15 @@
                     {{/if}}
                 </select>
             </div>
+            <div class="input-field col s1">
+                <a id="add-theme-button"
+                   class="btn-floating tooltipped right-align"
+                   data-position="bottom"
+                   data-delay="50"
+                   data-tooltip="Add Theme">
+                    <i class="mdi-content-add"></i>
+                </a>
+            </div>
         </div>
 
         <div class="row">
@@ -145,6 +154,8 @@
         </div>-->
 
     {{> importPastEventModal}}
+
+    {{> addThemeModal}}
 
     {{> addVenueModal}}
 

@@ -1,6 +1,7 @@
 Template.eventCard.helpers({
     mapAttributes: function () {
         var venue = venues.findOne({_id: this.venue});
+        var zoom = 13;
         return {
             frameborder: "0",
             style: "border:0",
@@ -10,7 +11,8 @@ Template.eventCard.helpers({
             encodeURIComponent(venue.address.city.trim()) + ',' +
             encodeURIComponent(venue.address.provinceState.trim()) + ',' +
             encodeURIComponent(venue.address.postalZipCode.trim()) + ',' +
-            encodeURIComponent(venue.address.country.trim()) +
+            encodeURIComponent(venue.address.country.trim()) + ',' +
+            "&zoom=" + zoom +
             "'&key=AIzaSyDez5ZF6K_UOr8izzd4PkXyWpAzG1dwTJQ"
         }
     },

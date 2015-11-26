@@ -10,12 +10,20 @@ EVENT_PUBLISH_NO_PERMISSION_ERROR = "You do not have permission to publish this 
 EVENT_PUBLISH_INCOMPLETE_TASKS_ERROR = "There are still incomplete tasks in this event. Please complete all tasks before publishing this event.";
 EVENT_PUBLISH_SUCCESS = "Event was successfully published.";
 
+THEME_INSERT_SUCCESS = "A theme was successfully created.";
+THEME_INSERT_ERROR = "An error occurred creating a theme.";
+THEME_DELETE_SUCCESS = "A theme was successfully removed.";
+THEME_DELETE_FAILED = "Theme could not be removed because it's currently in use by an event.";
+THEME_DELETE_ERROR = "An error occurred removing a theme.";
+THEME_DELETE_NONESELECTED = "Please choose a theme from the list.";
+
 VENUE_INSERT_SUCCESS = "A venue was successfully created.";
 VENUE_INSERT_ERROR = "An error occurred creating a venue.";
 VENUE_DELETE_SUCCESS = "A venue was successfully removed.";
 VENUE_DELETE_FAILED = "Venue could not be removed because it's currently in use by an event.";
 VENUE_DELETE_ERROR = "An error occurred removing a venue.";
 VENUE_DELETE_NONESELECTED = "Please choose a venue from the list.";
+
 VENDOR_INSERT_SUCCESS = "A vendor was successfully created.";
 VENDOR_INSERT_ERROR = "An error occurred creating a vendor.";
 VENDOR_DELETE_SUCCESS = "A vendor was successfully removed.";

@@ -78,6 +78,9 @@ Template.eventCreate.events({
     "click #import-past-event-button": function (e) {
         $('#import-past-event-modal').openModal();
     },
+    "click #add-theme-button": function (e) {
+        $('#add-theme-modal').openModal();
+    },
     "click #add-venue-button": function (e) {
         $('#add-venue-modal').openModal();
     },

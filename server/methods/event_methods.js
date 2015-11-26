@@ -57,6 +57,24 @@ Meteor.methods({
             );
         }
     },
+    themeInsert: function (theme) {
+        //TODO: check permission using same logic as security.js
+        themes.insert(theme);
+    },
+    themeDelete: function (themeId) {
+        var count = events.find({
+            theme: themeId
+        }).count();
+        if (count === 0) {
+            themes.remove(
+                {_id: themeId}
+            );
+            return true;
+        }
+        else {
+            return false;
+        }
+    },
     venueInsert: function (venue) {
         //TODO: check permission using same logic as security.js
         venues.insert(venue);
