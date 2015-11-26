@@ -120,7 +120,8 @@ Router.route('/events/create', {
             Meteor.subscribe('PastEvents'),
             Meteor.subscribe('Tasks'),
             Meteor.subscribe('Vendors'),
-            Meteor.subscribe('Venues')
+            Meteor.subscribe('Venues'),
+            Meteor.subscribe('Themes')
         ]
     }
 });
@@ -134,7 +135,8 @@ Router.route('/events/:_id/edit', {
             Meteor.subscribe('OneEvent', this.params._id),
             Meteor.subscribe('TasksByEvent', this.params._id),
             Meteor.subscribe('Vendors'),
-            Meteor.subscribe('Venues')
+            Meteor.subscribe('Venues'),
+            Meteor.subscribe('Themes')
         ];
     },
     data: function () {
@@ -151,7 +153,8 @@ Router.route('/events/:_id/publish', {
             Meteor.subscribe('OneEvent', this.params._id),
             Meteor.subscribe('TasksByEvent', this.params._id),
             Meteor.subscribe('Venues'),
-            Meteor.subscribe('Vendors')
+            Meteor.subscribe('Vendors'),
+            Meteor.subscribe('Themes')
         ];
     },
     data: function () {
@@ -168,7 +171,8 @@ Router.route('/events/:_id', {
             Meteor.subscribe('OneEvent', this.params._id),
             Meteor.subscribe('TasksByEvent', this.params._id),
             Meteor.subscribe('Venues'),
-            Meteor.subscribe('Vendors')
+            Meteor.subscribe('Vendors'),
+            Meteor.subscribe('Themes')
         ];
     },
     data: function () {
@@ -276,7 +280,8 @@ Router.route('/config', {
     waitOn: function () {
         return [
             Meteor.subscribe('Vendors'),
-            Meteor.subscribe('Venues')
+            Meteor.subscribe('Venues'),
+            Meteor.subscribe('Themes')
         ]
     }
 });

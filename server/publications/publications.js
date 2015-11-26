@@ -60,3 +60,7 @@ Meteor.publish("userAuthToken", function () {
         }
     );
 });
+
+Meteor.publish("Themes", function () {
+    return themes.find();
+});

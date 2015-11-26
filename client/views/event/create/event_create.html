@@ -40,12 +40,12 @@
                 <select class="validate browser-default" id="theme">
                     <option value="" disabled selected>Choose an option</option>
                     {{#if pastEvent}}
-                        {{#each eventTheme}}
-                            <option value="{{this}}" {{isOptionSelected this pastEvent.theme}}>{{this}}</option>
+                        {{#each themes}}
+                            <option value="{{_id}}" {{isOptionSelected _id ../theme}}>{{name}}</option>
                         {{/each}}
                     {{else}}
-                        {{#each eventTheme}}
-                            <option value="{{this}}">{{this}}</option>
+                        {{#each themes}}
+                            <option value="{{_id}}">{{name}}</option>
                         {{/each}}
                     {{/if}}
                 </select>

@@ -32,8 +32,8 @@ Template.eventEdit.onDestroyed(function () {
 var allTasks;
 
 Template.eventEdit.helpers({
-    'eventTheme': function () {
-        return Enumeration.eventThemes;
+    'themes': function () {
+        return themes.find({}, {sort: {name: 1}});
     },
     'venues': function () {
         return venues.find({}, {sort: {name: 1}});

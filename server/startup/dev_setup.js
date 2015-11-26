@@ -1,5 +1,23 @@
 Meteor.startup(function () {
     if (process.env.NODE_ENV === "development" || process.env.NODE_ENV === "production") {
+        var theme1, theme2, theme3, theme4, theme5;
+        if (themes.find().count() == 0) {
+            theme1 = themes.insert({
+                "name": "Financial"
+            });
+            theme2 = themes.insert({
+                "name": "Health"
+            });
+            theme3 = themes.insert({
+                "name": "Retirement"
+            });
+            theme4 = themes.insert({
+                "name": "Senior Living"
+            });
+            theme5 = themes.insert({
+                "name": "Community"
+            });
+        }
         var vendor1, vendor2;
         var venue1, venue2;
         if (vendors.find().count() == 0) {
@@ -87,7 +105,7 @@ Meteor.startup(function () {
                 "name": "Retirees and Healthy Living",
                 "description": "Showing members how to live healthy",
                 "totalBudget": "2500.00",
-                "theme": "Health",
+                "theme": theme2,
                 "status": "Complete",
                 "dateTime": "2015-11-25T18:00:00",
                 "venue": venue1
@@ -133,7 +151,7 @@ Meteor.startup(function () {
                 "name": "Community Housing",
                 "description": "Showing support for those around us by providing much needed housing services.",
                 "totalBudget": "2500.00",
-                "theme": "Community",
+                "theme": theme5,
                 "status": "Complete",
                 "dateTime": "2015-11-28T19:00:00",
                 "venue": venue2
@@ -155,7 +173,7 @@ Meteor.startup(function () {
                 "name": "Financial Planning",
                 "description": "How to plan for retirement and setup a savings account for a rainy day.",
                 "totalBudget": "1500.00",
-                "theme": "Financial",
+                "theme": theme1,
                 "status": "Active",
                 "dateTime": "2015-11-30T18:00:00",
                 "venue": venue3

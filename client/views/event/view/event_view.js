@@ -14,19 +14,19 @@ Template.eventView.onRendered(function() {
 });
 
 Template.eventView.helpers({
-    "eventTheme": function () {
-        return Enumeration.eventThemes;
+    'theme': function () {
+        return themes.findOne({_id: this.theme});
     },
-    "tasks": function () {
+    'tasks': function () {
         return tasks.find().fetch();
     },
-    venue: function () {
+    'venue': function () {
         return venues.findOne({_id: this.venue});
     },
-    "venues": function () {
+    'venues': function () {
         return venues.find({}, {sort: {name: 1}});
     },
-    "vendors": function () {
+    'vendors': function () {
         return vendors.find({}, {sort: {name: 1}});
     },
     'isActiveEvent': function () {
