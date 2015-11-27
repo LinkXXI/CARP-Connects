@@ -50,9 +50,10 @@ Template.accountEdit.events({
         e.preventDefault();
         Router.go('AccountView', {_id: this._id});
     },
-    "click .a-resend-verification": function(e) {
+    "click .a-resend-verification": function(e, template) {
         e.preventDefault();
-        Meteor.call('resendVerificationEmail', e.target.id.split("email-")[1], function (err, data) {
+        console.log(template);
+        Meteor.call('resendVerificationEmail', template.data, e.target.id.split("email-")[1], function (err, data) {
             if (err || !data) {
                 //TODO: throw error
             } else {
@@ -121,7 +122,7 @@ Template.accountEdit.events({
                 console.log(err);
                 //throwError(err.reason);
             } else {
-                Router.go('Account');
+                history.go(-1);
             }
         });
     },

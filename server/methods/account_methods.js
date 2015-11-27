@@ -79,11 +79,13 @@ Meteor.methods({
             }
         }
     },
-    "resendVerificationEmail": function(index){
+    "resendVerificationEmail": function(user, index){
         if(Meteor.user()) {
-            index = parseInt(index) || 0;
-            Accounts.sendVerificationEmail(Meteor.userId(), Meteor.user().emails[index].address);
-            return true;
+            if (user && index) {
+                Accounts.sendVerificationEmail(user._id, user.emails[parseInt(index)].address);
+            } else {
+                Accounts.sendVerificationEmail(Meteor.userId());
+            }
         }else{
             return false;
         }

@@ -1,7 +1,10 @@
 var userSubscription;
 
-Meteor.startup(function() {
-    userSubscription = Meteor.subscribe("OneUser", Meteor.userId()); // one of the few subscriptions outside routes.js, its a dependency for profile
+//Template.profile.onCreated(function () {
+Tracker.autorun(function () {
+    if (Meteor.user()) {
+        userSubscription = Meteor.subscribe("OneUser", Meteor.userId()); // one of the few subscriptions outside routes.js, its a dependency for profile
+    }
 });
 
 Template.profile.onRendered(function () {
@@ -18,7 +21,7 @@ Template.profile.onRendered(function () {
 Template.profile.helpers({
     profilePicAttr: function () {
         return {
-            src: userSubscription.ready() ? Meteor.user().services.google.picture : "",
+            src: userSubscription.ready() && Meteor.user().profile.googleLinked ? Meteor.user().services.google.picture : "",
             class: "circle responsive-img valign"
         };
     },
