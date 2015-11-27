@@ -15,8 +15,7 @@ Template.profile.helpers({
     profilePicAttr: function () {
         return {
             src: userSubscription.ready() ? Meteor.user().services.google.picture : "",
-            class: "circle responsive-img",
-            style: "max-height: 50px;"
+            class: "circle responsive-img valign"
         };
     },
     name: function () {

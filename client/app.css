@@ -23,6 +23,10 @@
     }
 }
 
+html {
+    overflow-y: scroll;
+}
+
 main {
     /* a little bit of padding for content */
     margin-left: 10px;
@@ -109,4 +113,12 @@ ul.side-nav.fixed li.logo:hover {
 
 .round-corners {
     border-radius: 10px;
+}
+
+img.valign {
+    /*
+    display: inline-block;
+    height: 100%;
+    */
+    vertical-align: middle;
 }
