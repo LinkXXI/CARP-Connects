@@ -15,12 +15,12 @@ Template.importPastEventModal.events({
         modal.closeModal();
         modal.find('form')[0].reset();
 
-        //re-init tooltip for Edit & Delete task buttona, they are added to dom dynamically...
+        //re-init tooltip for Edit & Delete task buttons, they are added to dom dynamically...
         Meteor.setTimeout(function() {
-            $('.tooltipped').tooltip({delay: 50})
+            $('.tooltipped').tooltip({delay: 50});
         }, 200);
         //re-init the date/time picker on the create event page
-        $('#datetime').datetimepicker();
+        $('#datetime').datetimepicker({});
     }
 });
 

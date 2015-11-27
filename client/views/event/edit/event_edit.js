@@ -2,7 +2,7 @@
  * Created by Sergio on 10/3/2015.
  */
 Template.eventEdit.onRendered(function () {
-    $('#datetime').datetimepicker();
+    $('#datetime').datetimepicker({});
 
     /*    $('#event-budget').ionRangeSlider({
      type: "single",
@@ -27,6 +27,8 @@ Template.eventEdit.onDestroyed(function () {
     delete Session.keys['taskToEditById'];
     Session.set('tasksToDelete', undefined);
     delete Session.keys['tasksToDelete'];
+    Session.set('venueId', undefined);
+    delete Session.keys['venueId'];
 });
 
 var allTasks;
@@ -93,25 +95,25 @@ Template.eventEdit.helpers({
 });
 
 Template.eventEdit.events({
-    "click #add-venue-button": function (e) {
+    'click #add-venue-button': function (e) {
         $('#add-venue-modal').openModal();
     },
-    "click #cancel-add-venue-button": function (e) {
+    'click #cancel-add-venue-button': function (e) {
         var modal = $('#add-venue-modal');
         modal.closeModal();
         modal.find('form')[0].reset();
     },
-    "click #add-task-button": function (e) {
+    'click #add-task-button': function (e) {
         // reset so the vendor input box doesn't display
         Session.set('isVendorTask', false);
         $('#add-task-modal').openModal();
     },
-    "click #cancel-add-task-button": function (e) {
+    'click #cancel-add-task-button': function (e) {
         var modal = $('#add-task-modal');
         modal.closeModal();
         modal.find('form')[0].reset();
     },
-    "submit #edit-event-form": function (e) {
+    'submit #edit-event-form': function (e) {
         e.preventDefault();
         // iterate through tasksToDelete array and delete tasks from collection
         var tasksToDelete = Session.get('tasksToDelete') != undefined ? Session.get('tasksToDelete') : new Array();
@@ -146,6 +148,10 @@ Template.eventEdit.events({
             // show this result but route anyway
             Router.go('EventView', {_id: eventId});
         });
+    },
+    'change #venue': function(e) {
+        var venueId = $('#venue option:selected').val();
+        Session.set('venueId', venueId);
     }
 });
 

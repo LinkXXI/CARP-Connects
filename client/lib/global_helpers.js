@@ -56,3 +56,30 @@ Template.registerHelper('mapAttributes', function () {
         "'&key=AIzaSyDez5ZF6K_UOr8izzd4PkXyWpAzG1dwTJQ"
     }
 });
+
+Template.registerHelper('mapAttributesFromVenueSelect', function () {
+    var venueId;
+    venueId = Session.get('venueId');
+    if (!venueId) {
+        venueId = $('#venue option:selected').val();
+    }
+    if (!venueId) {
+        venueId = this.venue;
+    }
+    var venue = venues.findOne({_id: venueId});
+
+    var zoom = 13;
+    return {
+        frameborder: "0",
+        style: "border:0",
+        src: "https://www.google.com/maps/embed/v1/place?q='" +
+        encodeURIComponent(venue.name.trim()) +
+        encodeURIComponent(venue.address.line1.trim()) + ',' +
+        encodeURIComponent(venue.address.city.trim()) + ',' +
+        encodeURIComponent(venue.address.provinceState.trim()) + ',' +
+        encodeURIComponent(venue.address.postalZipCode.trim()) + ',' +
+        encodeURIComponent(venue.address.country.trim()) + ',' +
+        "&zoom=" + zoom +
+        "'&key=AIzaSyDez5ZF6K_UOr8izzd4PkXyWpAzG1dwTJQ"
+    }
+});

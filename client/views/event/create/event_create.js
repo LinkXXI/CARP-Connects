@@ -2,20 +2,11 @@
  * Created by Sergio on 10/3/2015.
  */
 Template.eventCreate.onRendered(function () {
-    $('#datetime').datetimepicker();
+    $('#datetime').datetimepicker({});
 
-    /*    $('#event-budget').ionRangeSlider({
-     type: "single",
-     min: 0,
-     max: 5000,
-     grid: true,
-     prefix: "$",
-     step: 25
-     });*/
-
-    $("#event-budget").change(function () {
-        $("#budget-total").html($("#event-budget").val());
-    });
+//    $("#event-budget").change(function () {
+//        $("#budget-total").html($("#event-budget").val());
+//    });
 
     $('.tooltipped').tooltip({delay: 50});
 });
@@ -31,6 +22,8 @@ Template.eventCreate.onDestroyed(function () {
     delete Session.keys['pastEventId'];
     Session.set('tasksToDelete', undefined);
     delete Session.keys['tasksToDelete'];
+    Session.set('venueId', undefined);
+    delete Session.keys['venueId'];
 });
 
 Template.eventCreate.helpers({
@@ -66,11 +59,16 @@ Template.eventCreate.helpers({
                 eventTask.status = "Not Started";
             });
             Session.set('pastTasks', eventTasks);
+            var venueId = event.venue;
+            Session.set('venueId', venueId);
             return event;
         }
     },
     'activeLabel': function () {
         return Session.get('pastEventId') != undefined ? "active" : "";
+    },
+    'isVenueSelected': function () {
+        return Session.get('venueId');
     }
 });
 
@@ -128,6 +126,10 @@ Template.eventCreate.events({
         // set the key to undefined first to make sure it's really gone
         Session.set('tasks', undefined);
         delete Session.keys['tasks'];
+    },
+    'change #venue': function(e) {
+        var venueId = $('#venue option:selected').val();
+        Session.set('venueId', venueId);
     }
 });
 

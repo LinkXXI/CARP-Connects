@@ -41,7 +41,7 @@
                     <option value="" disabled selected>Choose an option</option>
                     {{#if pastEvent}}
                         {{#each themes}}
-                            <option value="{{_id}}" {{isOptionSelected _id ../theme}}>{{name}}</option>
+                            <option value="{{this._id}}" {{isOptionSelected this._id pastEvent.theme}}>{{this.name}}</option>
                         {{/each}}
                     {{else}}
                         {{#each themes}}
@@ -96,6 +96,13 @@
                 </a>
             </div>
         </div>
+        {{#if isVenueSelected}}
+        <div class="row map">
+            <!-- Venue Map -->
+            <iframe {{mapAttributesFromVenueSelect}}></iframe>
+        </div>
+        {{/if}}
+
         <hr>
         <div class="row valign-wrapper">
             <div class="col s2">
