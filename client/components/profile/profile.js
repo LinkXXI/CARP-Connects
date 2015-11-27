@@ -1,11 +1,15 @@
 var userSubscription;
 
 Meteor.startup(function() {
-    userSubscription = Meteor.subscribe("OneUser", Meteor.userId());
+    userSubscription = Meteor.subscribe("OneUser", Meteor.userId()); // one of the few subscriptions outside routes.js, its a dependency for profile
 });
 
 Template.profile.onRendered(function () {
-    $(".dropdown-button").dropdown({
+    $("#dropdown-button-mobile").dropdown({
+        hover: false, // Activate on hover
+        belowOrigin: true // Displays dropdown below the button
+    });
+    $("#dropdown-button-large").dropdown({
         hover: true, // Activate on hover
         belowOrigin: true // Displays dropdown below the button
     });

@@ -1,4 +1,4 @@
-@media(min-width: 991px) {
+@media(min-width: 993px) {
     .nav-wrapper .brand-logo {
         padding-left: 240px;
     }
@@ -23,6 +23,7 @@
     }
 }
 
+/* adds scroll bar to all pages to prevent header contents from moving left right due to the scroll bar */
 html {
     overflow-y: scroll;
 }
