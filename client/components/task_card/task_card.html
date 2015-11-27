@@ -4,10 +4,10 @@
             <a class="task-link hyperlink-no-style">
                 <div class="col s6" style="margin-bottom: 1em;">
                     <h5>{{name}}</h5>
-                    <span>{{description}}</span>
+                    <span>{{trimParagraph description 170}}</span>
                     {{#if hasNotes}}
                         <br>
-                        <span><b>Notes:</b> {{notes}}</span>
+                        <span><b>Notes:</b> {{trimParagraph notes 145}}</span>
                     {{/if}}
                 </div>
                 <div class="col s4">

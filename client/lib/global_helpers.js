@@ -83,3 +83,11 @@ Template.registerHelper('mapAttributesFromVenueSelect', function () {
         "'&key=AIzaSyDez5ZF6K_UOr8izzd4PkXyWpAzG1dwTJQ"
     }
 });
+
+Template.registerHelper('trimParagraph', function(paragraph, chars) {
+    var newParagraph = paragraph;
+    if (paragraph.length > chars) {
+        newParagraph = paragraph.substring(0, chars) + ' ...';
+    }
+    return newParagraph;
+});
