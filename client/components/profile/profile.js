@@ -26,6 +26,17 @@ Template.profile.helpers({
         return Meteor.user().profile.firstName + " " + Meteor.user().profile.lastName;
     },
     role: function () {
-        return Meteor.user().profile.permissions.role;
+        var role = Meteor.user().profile.permissions.role;
+        if (role) {
+            switch (role) {
+                case "Admin":
+                    return "Administrator";
+                case "user":
+                    return "Volunteer";
+                default:
+                    return role;
+            }
+        }
+        return "";
     }
 });
