@@ -7,6 +7,20 @@
         </div>
         <div class="col s12 m5 l4">
             {{> calendar calendarEvents}}
+            <ul class="collection with-header">
+                <li class="collection-header"><h4>My Assigned Tasks</h4></li>
+                {{#each assignedTasks}}
+                    <li class="collection-item avatar {{getStatus}}" style="padding-left: 30px">
+                        <a href="{{pathFor "TaskView"}}" class="hyperlink-no-style">
+                            <span class="title">{{name}}</span>
+                            <p><b>Due:</b> {{formatDateShort dateTime}} <br>
+                                <b>Status:</b> {{status}} <br>
+                                <b>Event:</b> {{eventName event}}
+                            </p>
+                        </a>
+                    </li>
+                {{/each}}
+            </ul>
         </div>
     </div>
 </template>
