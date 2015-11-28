@@ -4,13 +4,13 @@
 Template.addressSearchModal.onRendered(function () {
     this.autorun(function () {
         if (GoogleMaps.loaded()) {
-            console.log("Google Maps Loaded");
             $("#geocomplete").geocomplete({
-                map: $("#map_canvas"),
+                map: $('#map_canvas'),
                 mapOptions: {
-                    zoom: 14
+                    zoom: 13
                 }
             }).bind("geocode:result", function (event, result) {
+                // resize needed to get map to display -- !!!!! 2 hours to find this
                 console.log("Result: " + result.formatted_address);
             }).bind("geocode:error", function (event, status) {
                 console.log("ERROR: " + status);
@@ -24,9 +24,6 @@ Template.addressSearchModal.onRendered(function () {
 Template.addressSearchModal.events({
     'click #cancel-address-search-button': function (e) {
         closeAndResetModal('#address-search-modal');
-    },
-    'click #find-address-search-button': function (e) {
-        $('#geocomplete').trigger("geocode");
     },
     'submit #address-search-form': function (e) {
         e.preventDefault();
