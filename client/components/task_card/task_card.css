@@ -1,5 +1,9 @@
-.pointer {
+.cursor-pointer {
     cursor: pointer;
+}
+
+.cursor-default {
+    cursor: default;
 }
 
 .card-panel {

@@ -6,7 +6,6 @@
 
 rzymek:fullcalendar
 momentjs:moment
-dburles:google-maps
 accounts-password
 standard-minifiers
 mobile-experience
@@ -42,3 +41,4 @@ accounts-google
 mikael:accounts-merge
 service-configuration
 matdutour:popup-confirm
+jeremy:geocomplete

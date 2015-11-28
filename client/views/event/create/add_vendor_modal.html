@@ -15,8 +15,6 @@
                         <input id="vendor-contact-person" type="text" class="validate">
                         <label for="vendor-contact-person">Contact Person</label>
                     </div>
-                </div>
-                <div class="row">
                     <div class="input-field col s6">
                         <input id="vendor-contact-number" type="text" class="validate">
                         <label for="vendor-contact-number">Contact Phone Number</label>
@@ -29,19 +27,28 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s6">
-                        <input id="vendor-address-line1" type="text" class="validate">
-                        <label for="vendor-address-line1">Address Line 1</label>
+                    <div class="left input-field col s1">
+                        <a id="address-search-modal-button"
+                           class="btn-floating tooltipped"
+                           data-position="bottom"
+                           data-delay="50"
+                           data-tooltip="Auto-fill Address">
+                            <i class="mdi-communication-import-export"></i>
+                        </a>
                     </div>
                     <div class="input-field col s6">
+                        <input id="vendor-address-line1" type="text" class="validate">
+                        <label for="vendor-address-line1">Street Number & Name</label>
+                    </div>
+                    <div class="input-field col s5">
                         <input id="vendor-address-line2" type="text" class="validate">
-                        <label for="vendor-address-line2">Address Line 2</label>
+                        <label for="vendor-address-line2">Unit Number</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
                         <input id="vendor-address-line3" type="text" class="validate">
-                        <label for="vendor-address-line3">Address Line 3</label>
+                        <label for="vendor-address-line3">Address Line 3 (Optional)</label>
                     </div>
                 </div>
                 <div class="row">
@@ -59,9 +66,14 @@
                         <input id="vendor-address-postalZip" type="text" class="validate">
                         <label for="vendor-address-postalZip">Postal Code/Zip Code</label>
                     </div>
-                    <div class="input-field col s6">
-                        <input id="vendor-address-country" type="text" class="validate">
+                    <div class="col s6">
                         <label for="vendor-address-country">Country</label>
+                        <select class="validate browser-default" id="vendor-address-country">
+                            <option value="" disabled selected>Choose a country</option>
+                            {{#each countries}}
+                                <option value="{{this.name}}">{{this.name}}</option>
+                            {{/each}}
+                        </select>
                     </div>
                 </div>
             </div>
@@ -81,4 +93,6 @@
             </div>
         </form>
     </div>
+
+    {{> addressSearchModal}}
 </template>

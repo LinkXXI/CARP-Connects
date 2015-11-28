@@ -83,9 +83,14 @@
                         <input id="venue-address-postalZip" type="text" class="validate">
                         <label for="venue-address-postalZip">Postal Code/Zip Code</label>
                     </div>
-                    <div class="input-field col s6">
-                        <input id="venue-address-country" type="text" class="validate">
+                    <div class="col s6">
                         <label for="venue-address-country">Country</label>
+                        <select class="validate browser-default" id="venue-address-country">
+                            <option value="" disabled selected>Choose a country</option>
+                            {{#each countries}}
+                                <option value="{{this.name}}">{{this.name}}</option>
+                            {{/each}}
+                        </select>
                     </div>
                 </div>
             </div>

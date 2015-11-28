@@ -2,10 +2,13 @@
  * Created by Sergio on 10/28/2015.
  */
 Template.addVendorModal.events({
+    'click #address-search-modal-button': function (e) {
+        $('#address-search-modal').openModal();
+    },
     'click #cancel-add-vendor-button': function (e) {
         closeAndResetModal('#add-vendor-modal');
     },
-    "submit #add-vendor-form": function (e) {
+    'submit #add-vendor-form': function (e) {
         e.preventDefault();
         var address = {
             line1: $(e.target).find('#venue-address-line1').val(),
@@ -13,7 +16,7 @@ Template.addVendorModal.events({
             line3: $(e.target).find('#venue-address-line3').val(),
             city: $(e.target).find('#venue-address-city').val(),
             provinceState: $(e.target).find('#venue-address-provState').val(),
-            country: $(e.target).find('#venue-address-country').val(),
+            country: $(e.target).find('#venue-address-country option:selected').val(),
             postalZipCode: $(e.target).find('#venue-address-postalZip').val()
         };
         var vendor = {
@@ -38,5 +41,11 @@ Template.addVendorModal.events({
             }
         });
         closeAndResetModal('#add-vendor-modal');
+    }
+});
+
+Template.addVendorModal.helpers({
+    'countries': function () {
+        return Config.Countries;
     }
 });

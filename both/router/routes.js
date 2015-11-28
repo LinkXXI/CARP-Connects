@@ -211,7 +211,7 @@ Router.route('/reports/event_stats', {
 });
 
 // the id being passed below is an event id
-Router.route('/reports/task/:_id', {
+Router.route('/reports/tasks_by_event/:_id', {
     name: 'TaskReport',
     template: 'taskReport',
     waitOn: function () {

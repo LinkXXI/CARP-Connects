@@ -2,10 +2,10 @@
  * Created by Sergio on 10/4/2015.
  */
 Template.addVenueModal.events({
-    "click #cancel-add-venue-button": function (e) {
+    'click #cancel-add-venue-button': function (e) {
         closeAndResetModal('#add-venue-modal');
     },
-    "submit #add-venue-form": function (e) {
+    'submit #add-venue-form': function (e) {
         e.preventDefault();
         var address = {
             line1: $(e.target).find('#venue-address-line1').val(),
@@ -13,7 +13,7 @@ Template.addVenueModal.events({
             line3: $(e.target).find('#venue-address-line3').val(),
             city: $(e.target).find('#venue-address-city').val(),
             provinceState: $(e.target).find('#venue-address-provState').val(),
-            country: $(e.target).find('#venue-address-country').val(),
+            country: $(e.target).find('#venue-address-country option:selected').val(),
             postalZipCode: $(e.target).find('#venue-address-postalZip').val()
         };
         var venue = {
@@ -38,5 +38,11 @@ Template.addVenueModal.events({
             }
         });
         closeAndResetModal('#add-venue-modal');
+    }
+});
+
+Template.addVenueModal.helpers({
+    'countries': function () {
+        return Config.Countries;
     }
 });

@@ -1,0 +1,39 @@
+<template name="addressSearchModal">
+    <div id="address-search-modal" class="modal modal-fixed-footer">
+        <form id="address-search-form">
+            <div class="modal-content">
+                <h2 class="center">Find a Place</h2>
+
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="geocomplete" type="text" class="validate" required>
+                    </div>
+                    <div class="col s2 valign-center">
+                        <a id="find-address-search-button" class="waves-effect waves-light btn">
+                            <i class="mdi-content-send right"></i>Find
+                        </a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div id="map_canvas" class="col 12" style="height: 200px; width: 400px; border: 0; padding: 0; overflow: visible;"></div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <div class="row col s12">
+                    <div class="col s6 center">
+                        <button id="submit-address-search-button" class="waves-effect waves-light btn" type="submit">
+                            <i class="mdi-content-send right"></i>OK
+                        </button>
+                    </div>
+                    <div class="col s6 center">
+                        <a id="cancel-address-search-button" class="waves-effect waves-light btn" type="button">
+                            <i class="mdi-navigation-cancel right"></i>Cancel
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</template>

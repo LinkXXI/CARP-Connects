@@ -3,10 +3,10 @@
  */
 Template.taskCard.onRendered(function () {
     if (Router.current().route.getName() === 'EventEdit') {
-        $('.task-link').addClass('pointer');
+        $('.task-link').addClass('cursor-pointer');
     }
     else {
-        $('.task-link').addClass('arrow');
+        $('.task-link').addClass('cursor-default');
     }
 
     $('.tooltipped').tooltip({delay: 50});
