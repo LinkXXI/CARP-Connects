@@ -124,3 +124,11 @@ img.valign {
     */
     vertical-align: middle;
 }
+
+.material-tooltip {
+    /* over-ride - materialize cuts off left 10px of box when a comment fills the screen - this prevents that */
+    margin-left: 10px !important;
+    padding: 10px;
+    text-align: left;
+}
+

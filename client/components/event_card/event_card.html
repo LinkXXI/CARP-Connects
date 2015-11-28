@@ -12,7 +12,11 @@
 
                 <p><b>Location:</b> {{venue.name}}, {{venue.address.city}}, {{venue.address.provinceState}}</p>
 
-                <p><b>Description:</b> {{trimParagraph description 210}}</p>
+                <p class="truncate tooltipped"
+                   data-position="bottom"
+                   style="padding:0;margin:0;"
+                   data-delay="50"
+                   data-tooltip="{{description}}"><b>Description:</b> {{description}}</p>
             </div>
         </a>
         {{#if isActiveEvent}}

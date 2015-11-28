@@ -5,6 +5,11 @@ Template.taskCard.onRendered(function () {
     if (Router.current().route.getName() === 'EventEdit') {
         $('.task-link').addClass('pointer');
     }
+    else {
+        $('.task-link').addClass('arrow');
+    }
+
+    $('.tooltipped').tooltip({delay: 50});
 });
 
 Template.taskCard.helpers({
