@@ -5,8 +5,7 @@ Router.route('/', {
         return [
             Meteor.subscribe('Events'),
             Meteor.subscribe('Tasks'),
-            Meteor.subscribe('Venues'),
-            Meteor.subscribe('userAuthToken')
+            Meteor.subscribe('Venues')
         ]
     },
     data: function () {
@@ -230,7 +229,7 @@ Router.route('/incomplete', {
     name: 'Incomplete',
     template: 'incomplete',
     waitOn: function () {
-        return [Meteor.subscribe("userAuthToken")];
+        return [];
     },
     data: function () {
         return Meteor.user();

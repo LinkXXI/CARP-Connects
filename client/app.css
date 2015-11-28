@@ -1,4 +1,4 @@
-@media (min-width: 991px) {
+@media(min-width: 993px) {
     .nav-wrapper .brand-logo {
         padding-left: 240px;
     }
@@ -22,6 +22,11 @@
     a.button-collapse {
         cursor: pointer;
     }
+}
+
+/* adds scroll bar to all pages to prevent header contents from moving left right due to the scroll bar */
+html {
+    overflow-y: scroll;
 }
 
 main {
@@ -110,4 +115,12 @@ ul.side-nav.fixed li.logo:hover {
 
 .round-corners {
     border-radius: 10px;
+}
+
+img.valign {
+    /*
+    display: inline-block;
+    height: 100%;
+    */
+    vertical-align: middle;
 }

@@ -10,6 +10,7 @@ Template.incomplete.events({
                 console.log(error);
             }
         })*/
+        //TODO: CHECK IF GOOGLE ID IS USED ALREADY, WILL BREAK IF GOOGLE ID USED TWICE
         Meteor.signInWithGoogle({
             requestPermissions: ['email', 'https://www.googleapis.com/auth/drive.file'],
             requestOfflineToken: true

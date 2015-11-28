@@ -55,3 +55,11 @@ var generateErrorModal = function (message) {
 Accounts.onResetPasswordLink(function(token) {
     Router.go('ForgotPassword', {token: token});
 });
+
+// setup redirect after verifying email
+Accounts.onEmailVerificationLink(function(token, done) { // to home once done
+    Accounts.verifyEmail(token);
+    if (done) {
+        Router.go('/');
+    }
+});

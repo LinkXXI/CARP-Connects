@@ -1,5 +1,8 @@
 <template name="sidebar">
-    <ul class="side-nav fixed" id="side-nav" style="left: 0">
+    <div class="container"> <!-- creates a nice margin for button -->
+        <a data-activates="side-nav" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+    </div>
+    <ul class="side-nav fixed left" id="side-nav">
         <li class="logo">
             <a id="logo-container" href="/">
                 <img id="front-page-logo" src="/images/logo.png" class="responsive-img">
@@ -7,14 +10,12 @@
         </li>
         <li class="clearfix"></li>
         <li class="{{isActive "Index"}}"><a href="{{pathFor 'Index'}}">Home</a></li>
-        <li class="{{isActive "Account"}}"><a href="{{pathFor 'Account'}}">Account Management</a></li>
         <li class="{{isActive "Calendar"}}"><a href="{{pathFor 'Calendar'}}">Calendar</a></li>
         <li class="divider"></li>
         <li class="{{isActive "EventCreate"}}"><a href="{{pathFor 'EventCreate'}}">Create New Event</a></li>
         <li class="{{isActive "Events"}}"><a href="{{pathFor 'Events'}}">View All Events</a></li>
-        <li class="{{isActive "DocumentWorkspace"}}"><a href="{{pathFor 'DocumentWorkspace'}}">Document Workspace</a></li>
-        <li class="divider"></li>
-        <li><a href="" id="logout">Log Out</a></li>
+        <li class="{{isActive "DocumentWorkspace"}}"><a href="{{pathFor 'DocumentWorkspace'}}">Document Workspace</a>
+        </li>
         {{#if isAdmin}}
             <li class="divider"></li>
             <li class="logo teal-text darken-4">Administration</li>
