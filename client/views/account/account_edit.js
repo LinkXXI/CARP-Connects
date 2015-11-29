@@ -1,13 +1,8 @@
-Template.accountEdit.rendered = function() {
-    //TODO: update profile.phones/emails to use Meteor.user() session set here
-    //Session.set("user", Meteor.user());
-};
-
 Template.accountEdit.helpers({
-    "phoneType": function() {
+    phoneType: function() {
         return Enumeration.phoneType;
     },
-    "isOnlyPhone": function() {
+    isOnlyPhone: function() {
         if (this.profile.phones) {
             if (this.profile.phones.length > 0) {
                 return;
@@ -25,27 +20,15 @@ Template.accountEdit.helpers({
 });
 
 Template.phone.helpers({
-    "isPrimaryPhone": function() {
+    isPrimaryPhone: function() {
         if (this.primary) return "checked";
     },
-    "phoneType": function() {
+    phoneType: function() {
         return Enumeration.phoneType;
     }
 });
 
 Template.accountEdit.events({
-    "click #add-email-cancel": function(e) {
-        e.preventDefault();
-        $('#add-email-modal').closeModal();
-    },
-    "click #remove-email-cancel": function(e) {
-        e.preventDefault();
-        $('#remove-email-modal').closeModal();
-    },
-    "click #add-phone-cancel": function (e) {
-        e.preventDefault();
-        $('#add-phone-modal').closeModal();
-    },
     "click #acctmgmt-cancel": function(e) {
         e.preventDefault();
         Router.go('AccountView', {_id: this._id});

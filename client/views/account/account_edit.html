@@ -1,6 +1,7 @@
 <template name="accountEdit">
     <div class="container">
         <h3 class="center">Edit Profile</h3>
+
         <form id="acctmgmt-form">
             <div class="row">
                 <div class="col s2">
@@ -102,25 +103,29 @@
                     </table>
                 </div>
             </div>
-            <button class="btn waves-effect waves-light" type="submit">Save<i
-                    class="mdi-content-send right"></i>
-            </button>
-            <button id="acctmgmt-cancel" class="btn waves-effect waves-light" type="button">Cancel<i
-                    class="mdi-navigation-cancel right"></i>
-            </button>
+            <div class="row">
+                <div class="col s12 center">
+                    <button class="btn waves-effect waves-light" type="submit">Save<i
+                            class="mdi-content-send right"></i>
+                    </button>
+                    <button id="acctmgmt-cancel" class="btn waves-effect waves-light" type="button">Cancel<i
+                            class="mdi-navigation-cancel right"></i>
+                    </button>
+                </div>
+            </div>
         </form>
         <div id="add-phone-modal" class="modal">
-            <div class="modal-content">
-                <h4>Add Phone</h4>
+            <form id="add-phone-form">
+                <div class="modal-content">
+                    <h4>Add Phone</h4>
 
-                <form id="add-phone-form">
                     <div class="row">
                         <div class="input-field col s4">
-                            <input id="phone-number-new" type="text"/>
+                            <input id="phone-number-new" type="text" required/>
                             <label for="phone-number-new">Number</label>
                         </div>
                         <div class="input-field col s4">
-                            <select id="phone-type-new" class="browser-default">
+                            <select id="phone-type-new" class="browser-default" required>
                                 <option value="" disabled selected>Choose your option</option>
                                 {{#each phoneType}}
                                     <option value="{{this}}">{{this}}</option>
@@ -132,66 +137,66 @@
                             <label for="phone-primary-new">Primary?</label>
                         </div>
                     </div>
-                    <button class="btn waves-effect waves-light" type="submit">Save<i
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-flat waves-effect waves-green" type="submit">Save<i
                             class="mdi-content-send right"></i>
                     </button>
-                    <button id="add-phone-cancel" class="btn waves-effect waves-light" type="button">Cancel<i
+                    <button id="add-phone-cancel" class="modal-action modal-close btn-flat waves-effect waves-light"
+                            type="button">Cancel<i
                             class="mdi-navigation-cancel right"></i>
                     </button>
-                </form>
-            </div>
-            <div class="modal-footer">
-            </div>
+                </div>
+            </form>
         </div>
         <div id="add-email-modal" class="modal">
-            <div class="modal-content">
-                <h4>Add Email</h4>
+            <form id="add-email-form">
+                <div class="modal-content">
+                    <h4>Add Email</h4>
 
-                <form id="add-email-form">
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="email-new" type="email"/>
+                            <input id="email-new" type="email" required/>
                             <label for="email-new">Email</label>
                         </div>
                     </div>
-                    <button class="btn waves-effect waves-light" type="submit">Save<i
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-flat waves-effect waves-light" type="submit">Save<i
                             class="mdi-content-send right"></i>
                     </button>
-                    <button id="add-email-cancel" class="btn waves-effect waves-light" type="button">Cancel<i
+                    <button id="add-email-cancel" class="modal-action modal-close btn-flat waves-effect waves-light"
+                            type="button">Cancel<i
                             class="mdi-navigation-cancel right"></i>
                     </button>
-                </form>
-            </div>
-            <div class="modal-footer">
-            </div>
+                </div>
+            </form>
         </div>
         <div id="remove-email-modal" class="modal">
-            <div class="modal-content">
-                <h4>Remove Email</h4>
+            <form id="remove-email-form">
+                <div class="modal-content">
+                    <h4>Remove Email</h4>
 
-                <form id="remove-email-form">
                     {{#each emails}}
                         <div class="row">
-                            <div class="input-field col s2">
+                            <div class="input-field col s12">
                                 <input type="radio" name="remove-email-radiogroup" id="remove-email-{{@index}}"
                                        value="{{address}}"/>
-                                <label for="remove-email-{{@index}}"></label>
-                            </div>
-                            <div class="input-field col s10">
-                                {{address}}
+                                <label for="remove-email-{{@index}}">{{address}}</label>
                             </div>
                         </div>
                     {{/each}}
-                    <button class="btn waves-effect waves-light" type="submit">Remove<i
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-flat waves-effect waves-green" type="submit">Remove<i
                             class="mdi-content-send right"></i>
                     </button>
-                    <button id="remove-email-cancel" class="btn waves-effect waves-light" type="button">Cancel<i
+                    <button id="remove-email-cancel" class="modal-action modal-close btn-flat waves-effect waves-light"
+                            type="button">Cancel<i
                             class="mdi-navigation-cancel right"></i>
                     </button>
-                </form>
-            </div>
-            <div class="modal-footer">
-            </div>
+                </div>
+            </form>
         </div>
     </div>
 </template>

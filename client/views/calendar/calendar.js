@@ -12,7 +12,7 @@ Template.calendar.onCreated(function () {
 
 Template.calendar.onRendered(function () {
     // add legend button to fullcalendar and initialize
-    $('.fc-right').prepend('<a href="#!" class="btn-flat dropdown-button no-margin-bot" data-activates="legend">Legend<i class="mdi-navigation-arrow-drop-down right"></i></a>');
+    $('.fc-right').append('<a href="#!" class="btn-flat dropdown-button no-margin-bot" data-activates="legend">Legend<i class="mdi-navigation-arrow-drop-down right"></i></a>');
     $('.dropdown-button').dropdown({
         inDuration: 300,
         outDuration: 225,

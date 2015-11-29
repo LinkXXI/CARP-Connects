@@ -2,7 +2,7 @@
  * Created by Sergio on 10/8/2015.
  */
 Template.taskCard.onRendered(function () {
-    if (Router.current().route.getName() === 'EventEdit') {
+    if (Router.current().route.getName() === 'EventEdit' || Router.current().route.getName() === 'EventView') {
         $('.task-link').addClass('cursor-pointer');
     }
     else {
@@ -25,6 +25,13 @@ Template.taskCard.helpers({
             color = "green lighten-4";
         }
         return color;
+    },
+    viewTaskLink: function () {
+        if (Router.current().route.getName() === "EventView") {
+            return {
+                href: Router.routes.TaskView.path({_id: this._id})
+            };
+        }
     },
     'isEditable': function () {
         if (Router.current().route.getName() === 'EventEdit' || Session.get('pastEventId') != undefined) {

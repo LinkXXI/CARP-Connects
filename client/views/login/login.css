@@ -1,25 +1,28 @@
-#login{
-    margin-left:auto;
-    margin-right:auto;
-    margin-top: 10%;
-    width:40%;
+#login {
+    margin-top: 30px;
+    width:100%;
     background-color: white;
     border-color: white;
     border-style: solid;
     opacity: 0.8;
-    padding: 10px;
+    padding: 20px;
 }
-#login_background{
+
+@media only screen and (min-width: 993px) {
+    #login_container {
+        width: 50%;
+    }
+}
+
+#login_background {
     background-image: url("http://www.wallpaprz.com/wp-content/uploads/2013/09/amazing_clouds_horizon.jpg");
     width: 100%;
     height: 100vh;
     position: absolute;
-    top:0;
+    top: 0;
     z-index: -1;
 }
 
 .navbar-default {
     background-color: deepskyblue;
-    display: inline-block;
-    horiz-align: left;
 }

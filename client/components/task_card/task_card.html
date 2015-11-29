@@ -1,7 +1,7 @@
 <template name="taskCard">
     <div class="row">
         <div class="card-panel {{getStatus}} col s11 hoverable">
-            <a class="task-link hyperlink-no-style">
+            <a {{viewTaskLink}} class="task-link hyperlink-no-style">
                 <div class="col s6" style="margin-bottom: 1em;">
                     <h5>{{name}}</h5>
                     <span class="truncate tooltipped"
