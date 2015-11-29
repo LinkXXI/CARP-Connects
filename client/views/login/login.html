@@ -4,9 +4,10 @@
             <a class="brand-logo center" style="padding-left:0" href="#">CARP Connects</a>
         </div>
     </nav>
-    <div id="login_background">
+    <div id="login_background"></div>
+    <div id="login_container" class="container">
         <div id="login">
-            <form class="col s12" id="signin">
+            <form id="signin">
                 <div class="row">
                     <div class="input-field col s12">
                         <input type="email" id="email" class="validate"/>
@@ -20,17 +21,17 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col s6">
+                    <div class="col s12 m6 l6">
                         <button class="btn waves-effect waves-light bottom" type="submit" name="submit">Submit
                             <i class="material-icons right">&gt;</i>
                         </button>
                     </div>
-                    <div class="col s6">
-                        <button id="signup" class="btn waves-effect waves-light modal-trigger right" type="button"
+                    <div class="col s12 m6 l6">
+                        <button id="signup" class="btn waves-effect waves-light modal-trigger" type="button"
                                 name="signup">
                             Sign up!
                         </button>
-                        <button id="passreset" class="btn waves-effect waves-light modal-trigger right" type="button"
+                        <button id="passreset" class="btn waves-effect waves-light modal-trigger" type="button"
                                 name="passreset">
                             Forgot Password<i class="mdi-action-lock right"></i>
                         </button>
@@ -38,6 +39,7 @@
                 </div>
             </form>
         </div>
+
     </div>
 
     <div id="signup-modal" class="modal">
