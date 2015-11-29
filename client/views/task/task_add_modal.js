@@ -43,8 +43,17 @@ Template.taskAddModal.events({
             $('.tooltipped').tooltip({delay: 50})
         }, 200);
     },
-    "click #add-vendor-button": function (e) {
-        $('#add-vendor-modal').openModal();
+    'click #add-vendor-button': function (e) {
+        $('#add-vendor-modal').openModal({
+            complete: function () {
+                // callback when modal is closed
+                Session.set('autofillReturnPage', undefined);
+                delete Session.keys['autofillReturnPage'];
+            }
+        });
+
+        // what autofill results will be binded to
+        Session.set('autofillReturnPage', 'addVendorModal');
     }
 });
 

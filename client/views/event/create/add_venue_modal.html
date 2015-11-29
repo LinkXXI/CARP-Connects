@@ -53,11 +53,20 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s6">
-                        <input id="venue-address-line1" type="text" class="validate">
-                        <label for="venue-address-line1">Address Line 1</label>
+                    <div class="left input-field col s1">
+                        <a id="address-search-modal-button"
+                           class="btn-floating tooltipped"
+                           data-position="bottom"
+                           data-delay="50"
+                           data-tooltip="Auto-fill Address">
+                            <i class="mdi-communication-import-export"></i>
+                        </a>
                     </div>
                     <div class="input-field col s6">
+                        <input id="venue-address-line1" type="text" class="validate">
+                        <label for="venue-address-line1">Street Number & Name</label>
+                    </div>
+                    <div class="input-field col s5">
                         <input id="venue-address-line2" type="text" class="validate">
                         <label for="venue-address-line2">Address Line 2</label>
                     </div>
@@ -110,4 +119,6 @@
             </div>
         </form>
     </div>
+
+    {{> addressSearchModal}}
 </template>

@@ -79,8 +79,17 @@ Template.eventCreate.events({
     "click #add-theme-button": function (e) {
         $('#add-theme-modal').openModal();
     },
-    "click #add-venue-button": function (e) {
-        $('#add-venue-modal').openModal();
+    'click #add-venue-button': function (e) {
+        $('#add-venue-modal').openModal({
+            complete: function () {
+                // callback when modal is closed
+                Session.set('autofillReturnPage', undefined);
+                delete Session.keys['autofillReturnPage'];
+            }
+        });
+
+        // what autofill results will be binded to
+        Session.set('autofillReturnPage', 'addVenueModal');
     },
     "click #add-task-button": function (e) {
         // reset so the vendor input box doesn't display

@@ -84,6 +84,19 @@ Template.registerHelper('mapAttributesFromVenueSelect', function () {
     }
 });
 
+Template.registerHelper('mapAttributesGooglePlaces', function (place) {
+    //console.log(place);
+    var zoom = 13;
+    return {
+        frameborder: "0",
+        style: "border:0",
+        src: "https://www.google.com/maps/embed/v1/place?q='" +
+        encodeURIComponent(place.trim()) +
+        "&zoom=" + zoom +
+        "'&key=AIzaSyDez5ZF6K_UOr8izzd4PkXyWpAzG1dwTJQ"
+    }
+});
+
 Template.registerHelper('trimParagraph', function(paragraph, chars) {
     var newParagraph = paragraph;
     if (paragraph.length > chars) {

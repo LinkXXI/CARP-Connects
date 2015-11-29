@@ -2,8 +2,14 @@
  * Created by Sergio on 10/4/2015.
  */
 Template.addVenueModal.events({
+    'click #address-search-modal-button': function (e) {
+        $('#address-search-modal').openModal();
+    },
     'click #cancel-add-venue-button': function (e) {
         closeAndResetModal('#add-venue-modal');
+
+        Session.set('autofillReturnPage', undefined);
+        delete Session.keys['autofillReturnPage'];
     },
     'submit #add-venue-form': function (e) {
         e.preventDefault();
@@ -38,6 +44,9 @@ Template.addVenueModal.events({
             }
         });
         closeAndResetModal('#add-venue-modal');
+
+        Session.set('autofillReturnPage', undefined);
+        delete Session.keys['autofillReturnPage'];
     }
 });
 

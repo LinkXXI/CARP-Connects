@@ -7,17 +7,20 @@ Template.addVendorModal.events({
     },
     'click #cancel-add-vendor-button': function (e) {
         closeAndResetModal('#add-vendor-modal');
+
+        Session.set('autofillReturnPage', undefined);
+        delete Session.keys['autofillReturnPage'];
     },
     'submit #add-vendor-form': function (e) {
         e.preventDefault();
         var address = {
-            line1: $(e.target).find('#venue-address-line1').val(),
-            line2: $(e.target).find('#venue-address-line2').val(),
-            line3: $(e.target).find('#venue-address-line3').val(),
-            city: $(e.target).find('#venue-address-city').val(),
-            provinceState: $(e.target).find('#venue-address-provState').val(),
-            country: $(e.target).find('#venue-address-country option:selected').val(),
-            postalZipCode: $(e.target).find('#venue-address-postalZip').val()
+            line1: $(e.target).find('#vendor-address-line1').val(),
+            line2: $(e.target).find('#vendor-address-line2').val(),
+            line3: $(e.target).find('#vendor-address-line3').val(),
+            city: $(e.target).find('#vendor-address-city').val(),
+            provinceState: $(e.target).find('#vendor-address-provState').val(),
+            country: $(e.target).find('#vendor-address-country option:selected').val(),
+            postalZipCode: $(e.target).find('#vendor-address-postalZip').val()
         };
         var vendor = {
             name: $(e.target).find('#vendor-name').val(),
@@ -41,6 +44,9 @@ Template.addVendorModal.events({
             }
         });
         closeAndResetModal('#add-vendor-modal');
+
+        Session.set('autofillReturnPage', undefined);
+        delete Session.keys['autofillReturnPage'];
     }
 });
 
