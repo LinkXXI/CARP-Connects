@@ -2,7 +2,8 @@
  * Created by Sergio on 11/28/2015.
  */
 Config = {};
-Config.Countries = [
+Config.siteTitle = "CARP Connects";
+Config.countries = [
     {name: 'Canada', code: 'CA'},
     {name: 'United States', code: 'US'},
     {name: 'Afghanistan', code: 'AF'},

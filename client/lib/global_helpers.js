@@ -1,6 +1,10 @@
 /**
  * Created by Sergio on 9/24/2015.
  */
+Template.registerHelper('siteTitle', function(date) {
+    return Config.siteTitle;
+});
+
 Template.registerHelper('formatDate', function(date) {
     return moment(date).format('MMMM Do YYYY, h:mm:ss a');
 });

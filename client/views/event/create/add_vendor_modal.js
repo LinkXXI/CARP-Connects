@@ -52,6 +52,6 @@ Template.addVendorModal.events({
 
 Template.addVendorModal.helpers({
     'countries': function () {
-        return Config.Countries;
+        return Config.countries;
     }
 });

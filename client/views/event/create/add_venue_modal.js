@@ -52,6 +52,6 @@ Template.addVenueModal.events({
 
 Template.addVenueModal.helpers({
     'countries': function () {
-        return Config.Countries;
+        return Config.countries;
     }
 });

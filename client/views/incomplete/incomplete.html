@@ -1,7 +1,7 @@
 <template name="incomplete">
     <nav>
         <div align="center" class="nav-wrapper blue lighten-1">
-            <a class="brand-logo center" style="padding-left:0" href="#!">CARP Connects</a>
+            <a class="brand-logo center" style="padding-left:0" href="#!">{{siteTitle}}</a>
             <ul class="right">
                 <li>{{> logout}}</li>
             </ul>
@@ -11,7 +11,7 @@
         {{completed}}
         <h2>Your Profile is incomplete!</h2>
 
-        <p>In order for you to start using CARP Connects, you will need to complete the following steps</p>
+        <p>In order for you to start using {{siteTitle}}, you will need to complete the following steps</p>
 
         <h4>Email Validation</h4>
 
