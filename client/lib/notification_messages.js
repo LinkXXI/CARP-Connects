@@ -35,6 +35,9 @@ TASK_CREATED_SUCCESS = "A task was successfully created.";
 TASK_EDITED_SUCCESS = "Task was successfully edited, please save the event for it to take effect.";
 TASK_DELETED_SUCCESS = "The task has been marked for deletion, please save your changes.";
 
+TASK_HELP_REQUEST_SUCCESS = "A message has been sent to the event owner asking for help with the task.";
+TASK_HELP_REQUEST_ERROR = "There was an error creating a task help request.";
+
 LOGIN_ERROR = "You have entered the wrong username/password combination, please try again.";
 LOGOUT = "You have been logged out.";
 SIGNUP_SUCCESS = "You have successfully signed up for an account.";

@@ -1,4 +1,4 @@
-@media(min-width: 993px) {
+@media (min-width: 993px) {
     .nav-wrapper .brand-logo {
         padding-left: 240px;
     }
@@ -135,3 +135,25 @@ img.valign {
     text-align: left;
 }
 
+.new-msg-circle {
+    background: #f00;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    /* width and height can be anything, as long as they're equal */
+    position: absolute;
+    top: 7px;
+    right: 0;
+    z-index: 1561; /* we want this to show on top of the user image and any other layers */
+}
+
+.new-msg-count {
+    position: absolute;
+    top: -16px;
+    right: 3px;
+    z-index: 1561;
+    font-weight: bold;
+    font-size: 11px;
+    width: 12px;
+    text-align: center;
+}

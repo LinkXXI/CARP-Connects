@@ -70,7 +70,7 @@ Template.taskAddModal.helpers({
     'isVendorTask': function () {
         return Session.get('isVendorTask');
     },
-    "vendors": function() {
+    'vendors': function() {
         return vendors.find({}, {sort: {name: 1}});
     }
 });

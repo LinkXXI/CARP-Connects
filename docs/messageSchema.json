@@ -1,0 +1,12 @@
+{
+  "Message": {
+    "_id": "Meteor generated",
+    "subject": "string",
+    "body": "string",
+    "read": "boolean",
+    "from": "string - used id",
+    "to": "string - user id",
+    "createdAt": "date",
+    "linkedTask": "string - task id of a task help request"
+  }
+}
