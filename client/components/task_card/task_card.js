@@ -123,6 +123,56 @@ Template.taskCard.events({
             }
         });
     },
+    'click .help-task-button': function (e) {
+        var taskId = this._id;
+
+        var userId = Meteor.userId();
+        var user = Meteor.users.findOne({_id: userId});
+        var userFirstName = user.profile.firstName === "" ? "" : user.profile.firstName;
+        var userLastName = user.profile.lastName === "" ? "" : user.profile.lastName;
+
+        var eventOwnerId = events.findOne({_id: this.event}).owner;
+        var eventOwner = Meteor.users.findOne({_id: eventOwnerId});
+        var eventOwnerFirstName = eventOwner.profile.firstName === "" ? "" : eventOwner.profile.firstName;
+        var eventOwnerLastName = eventOwner.profile.lastName === "" ? "" : eventOwner.profile.lastName;
+        console.log(userId);
+        new Confirmation({
+            message: "The event owner is " + eventOwnerFirstName + " " + eventOwnerLastName +
+            ". Do you wish to send them a help request message?",
+            title: "Request Help from Event Owner",
+            cancelText: "Cancel",
+            okText: "Yes",
+            success: false // true is green, false is red
+        }, function (ok) {
+            // ok is true if the user clicked on "ok", false otherwise
+            if (ok) {
+                var createdAt = new Date();
+                var message = {
+                    subject: "Help request from " + userFirstName + " " + userLastName,
+                    body: "Help request from " + userFirstName + " " + userLastName,
+                    read: false,
+                    from: userId,
+                    to: eventOwnerId,
+                    createdAt: createdAt,
+                    linkedTask: taskId
+                };
+                Meteor.call('messageInsert', message, function (error, result) {
+                    // display the error to the user and abort
+                    if (error) {
+                        sAlert.error(TASK_HELP_REQUEST_ERROR);
+                        return throwError(error.reason);
+                    }
+                    else if (result) {
+                        sAlert.success(TASK_HELP_REQUEST_SUCCESS);
+                        //TODO: send email
+                    }
+                    else if (!result) {
+                        //sAlert.error(TASK_HELP_REQUEST_FAILED);
+                    }
+                });
+            }
+        });
+    },
     'click .task-link': function (e) {
         if (Router.current().route.getName() === 'EventEdit') {
             if (this.taskType === "Vendor") {

@@ -1,7 +1,7 @@
 /**
  * Created by Sergio on 9/24/2015.
  */
-Template.registerHelper('siteTitle', function(date) {
+Template.registerHelper('siteTitle', function() {
     return Config.siteTitle;
 });
 

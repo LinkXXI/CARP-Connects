@@ -1,9 +1,11 @@
 <template name="header">
-    <nav>
-        <div class="nav-wrapper blue lighten-1">
-            <a class="brand-logo center" href="{{pathFor 'Index'}}">{{siteTitle}}</a>
-            {{>sidebar}}
-            {{>profile}}
-        </div>
-    </nav>
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper blue lighten-1">
+                <a class="brand-logo center" href="{{pathFor 'Index'}}">{{siteTitle}}</a>
+                {{>sidebar}}
+                {{>profile}}
+            </div>
+        </nav>
+    </div>
 </template>

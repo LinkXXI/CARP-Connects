@@ -1,22 +1,33 @@
 <template name="profile">
     <div class="row right no-margin-bot hide-on-large-only">
         <div class="col s12" style="display:inline-block;">
-            <a href="#!" id="dropdown-button-mobile" class="dropdown-button" style="display:inline-block" data-activates="profile-dropdown-mobile">
-                <img {{profilePicAttr}} style="max-width: 48px" />
+            <a href="#!" id="dropdown-button-mobile" class="dropdown-button" style="display:inline-block"
+               data-activates="profile-dropdown-mobile">
+                <img {{profilePicAttr}} style="max-width: 48px"/>
                 <i class="mdi-navigation-arrow-drop-down right" style="margin-left:5px"></i>
             </a>
         </div>
         <ul id="profile-dropdown-mobile" class="dropdown-content">
+            <li><a href="{{pathFor "Messages"}}"><i class="mdi-communication-email left"></i> Messages</a></li>
             <li><a href="{{profilePath}}"><i class="mdi-action-account-box left"></i> Profile</a></li>
             <li>{{> logout}}</li>
         </ul>
     </div>
     <div class="row right no-margin-bot hide-on-med-and-down">
-        <div class="col s3" style="display:inline-block">
-            <img {{profilePicAttr}} style="max-width: 48px" />
+        <div class="col s3" style="display:inline-block; position: relative;">
+            {{#if hasNewMessages}}
+                <div class="new-msg-circle"></div>
+                <a href="{{pathFor "Messages"}}" class="hyperlink-no-style">
+                    <div class="new-msg-count">
+                        {{newMessageCount}}
+                    </div>
+                </a>
+            {{/if}}
+            <img {{profilePicAttr}} style="max-width: 48px;"/>
         </div>
         <div class="col s9" style="display:inline-block;">
-            <a href="#!" id="dropdown-button-large" class="dropdown-button" style="display:inline-block" data-activates="profile-dropdown-large">
+            <a href="#!" id="dropdown-button-large" class="dropdown-button" style="display:inline-block"
+               data-activates="profile-dropdown-large">
                 <span style="display:inline-block;height:inherit;vertical-align:middle;">
                     <span style="line-height:normal;float:left">{{name}}</span>
                     <span style="line-height:normal;clear:left;float:left;display:inline-block;font-size:12px;">{{role}}</span>
@@ -26,6 +37,7 @@
         </div>
         <ul id="profile-dropdown-large" class="dropdown-content">
             <li><a href="{{profilePath}}"><i class="mdi-action-account-box left"></i> Profile</a></li>
+            <li><a href="{{pathFor "Messages"}}"><i class="mdi-communication-email left"></i> Messages</a></li>
             <li>{{> logout}}</li>
         </ul>
     </div>

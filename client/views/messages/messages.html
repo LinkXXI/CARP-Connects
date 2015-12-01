@@ -1,0 +1,15 @@
+<template name="messages">
+
+    <h2>My Messages</h2>
+
+    {{#if hasMessages}}
+        <ul>
+            {{#each messages}}
+                <li>{{this.subject}}</li>
+            {{/each}}
+        </ul>
+    {{else}}
+        <span>You have no messages.</span>
+    {{/if}}
+
+</template>

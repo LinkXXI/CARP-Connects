@@ -4,17 +4,20 @@ var userSubscription;
 Tracker.autorun(function () {
     if (Meteor.user()) {
         userSubscription = Meteor.subscribe("OneUser", Meteor.userId()); // one of the few subscriptions outside routes.js, its a dependency for profile
+        Meteor.subscribe("Messages", Meteor.userId());
     }
 });
 
 Template.profile.onRendered(function () {
     $("#dropdown-button-mobile").dropdown({
         hover: false, // Activate on hover
-        belowOrigin: true // Displays dropdown below the button
+        belowOrigin: true, // Displays dropdown below the button
+        constrain_width: false
     });
     $("#dropdown-button-large").dropdown({
         hover: true, // Activate on hover
-        belowOrigin: true // Displays dropdown below the button
+        belowOrigin: true, // Displays dropdown below the button
+        constrain_width: false
     });
 });
 
@@ -44,5 +47,11 @@ Template.profile.helpers({
             }
         }
         return "";
+    },
+    'hasNewMessages': function() {
+        return messages.find({read: false}).count() > 0;
+    },
+    'newMessageCount': function() {
+        return messages.find({read: false}).count();
     }
 });

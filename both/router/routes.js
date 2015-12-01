@@ -284,3 +284,13 @@ Router.route('/dw', {
         ]
     }
 });
+
+Router.route('/messages', {
+    name: 'Messages',
+    template: 'messages',
+    waitOn: function () {
+        return [
+            Meteor.subscribe('AllUsers')
+        ]
+    }
+});
