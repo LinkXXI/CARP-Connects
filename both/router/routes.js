@@ -32,18 +32,7 @@ Router.route('/login/:token/forgot', {
     }
 });
 
-Router.route('/account', {
-    name: 'Account',
-    template: 'accountView',
-    waitOn: function () {
-        return Meteor.subscribe('OneUser', Meteor.userId());
-    },
-    data: function () {
-        return Meteor.users.findOne({_id: Meteor.userId()});
-    }
-});
-
-Router.route('/account/:_id/edit', {
+Router.route('/accounts/:_id/edit', {
     name: 'AccountEdit',
     template: 'accountEdit',
     waitOn: function () {
@@ -54,7 +43,7 @@ Router.route('/account/:_id/edit', {
     }
 });
 
-Router.route('/account/:_id', {
+Router.route('/accounts/:_id', {
     name: 'AccountView',
     template: 'accountView',
     waitOn: function () {
@@ -62,6 +51,17 @@ Router.route('/account/:_id', {
     },
     data: function () {
        return Meteor.users.findOne({_id: this.params._id});
+    }
+});
+
+Router.route('/accounts', {
+    name: 'Accounts',
+    template: 'accountViewAll',
+    waitOn: function () {
+        return Meteor.subscribe('AllUsers');
+    },
+    data: function () {
+        return Meteor.users.find();
     }
 });
 

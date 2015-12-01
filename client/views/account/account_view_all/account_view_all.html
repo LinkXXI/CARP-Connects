@@ -1,0 +1,8 @@
+<template name="accountViewAll">
+    <h2>Users</h2>
+
+    <div id="event-table">
+        {{> filterStatus}}
+        {{> reactiveTable collection=this settings=tableSettings class="table bordered striped highlight"}}
+    </div>
+</template>
