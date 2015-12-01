@@ -1,7 +1,9 @@
 Meteor.startup(function () {
+    /* had to manually send verification email after createuser, below code did not work
     Accounts.config({
         sendVerificationEmail: true
     });
+    */
 
     var smtp = {
         username: 'carp.connects.test@gmail.com',

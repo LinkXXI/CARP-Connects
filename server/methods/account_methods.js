@@ -1,39 +1,39 @@
 Meteor.methods({
     "validateInvitation": function (inviteCode, applyToId, signupMail) {
         var searchMail;
-        if(Meteor.user()){
+        if (Meteor.user()) {
             searchMail = Meteor.user().emails[0].address;
-        }else if(signupMail){
+        } else if (signupMail) {
             searchMail = signupMail;
         }
         var count = invitations.find({
             _id: inviteCode,
             //TODO: Add usergroup/permission level to invitation search
-            validFor: { $in: [searchMail, Meteor.userId(), "Any"]},
+            validFor: {$in: [searchMail, Meteor.userId(), "Any"]},
             used: false
         }).count();
-        if (count > 0 || applyToId){//(applyToId && Meteor.user().profile.role == "Administrator")) { //TODO: Also check if user is admin before continuing
+        if (count > 0 || applyToId) {//(applyToId && Meteor.user().profile.role == "Administrator")) { //TODO: Also check if user is admin before continuing
             invitations.update({_id: inviteCode}, {
                 $set: {
-                    used:true,
+                    used: true,
                     appliedTo: applyToId || Meteor.userId()
                 }
             });
-            if(Meteor.user()) {
+            if (Meteor.user()) {
                 Meteor.users.update({_id: applyToId || Meteor.userId()}, {
                     $set: {
                         "profile.inviteCode": inviteCode
                     }
                 });
                 return true;
-            }else{
+            } else {
                 Meteor.users.update({'emails.address': searchMail}, {
                     $set: {
                         "profile.inviteCode": inviteCode
                     }
                 });
             }
-        }else{
+        } else {
             return false;
         }
     },
@@ -44,7 +44,7 @@ Meteor.methods({
          */
 
         if (password !== confirmPass) {
-            return {result:false,element:"password"};
+            return {result: false, element: "password"};
         }
 
         //TODO: Debug/find functioning REGEX
@@ -54,15 +54,15 @@ Meteor.methods({
         //}
 
         if (!firstName || !lastName) {
-            return {result:false,element: (!firstName) ? "firstName":"lastName"};
+            return {result: false, element: (!firstName) ? "firstName" : "lastName"};
         }
 
-        Accounts.createUser({
+        var userId = Accounts.createUser({
             email: email,
             password: password,
-            profile:{
-                permissions:{
-                    role:'incomplete'
+            profile: {
+                permissions: {
+                    role: 'incomplete'
                 },
                 firstName: firstName,
                 lastName: lastName,
@@ -71,27 +71,31 @@ Meteor.methods({
             }
         });
 
-        //NOTE: New user is now logged in.
-        if (inviteCode) {
-            var result = Meteor.call("validateInvitation", inviteCode, null, email);
-            if(!result){
-                //TODO: Handle Error
+        if (userId) {
+            Accounts.sendVerificationEmail(userId); // added because Accounts.config did not work
+
+            //NOTE: New user is now logged in.
+            if (inviteCode) {
+                var result = Meteor.call("validateInvitation", inviteCode, userId, email);
+                if (!result) {
+                    //TODO: Handle Error
+                }
             }
         }
     },
-    "resendVerificationEmail": function(user, index){
-        if(Meteor.user()) {
+    "resendVerificationEmail": function (user, index) {
+        if (Meteor.user()) {
             if (user && index) {
                 Accounts.sendVerificationEmail(user._id, user.emails[parseInt(index)].address);
             } else {
                 Accounts.sendVerificationEmail(Meteor.userId());
             }
-        }else{
+        } else {
             return false;
         }
     },
-    "updateAccount": function(userId, userAttributes) {
-        if(Meteor.user() && userId) {
+    "updateAccount": function (userId, userAttributes) {
+        if (Meteor.user() && userId) {
             //TODO: meteor add audit-argument-checks
             /*
              check(userAttributes, {
@@ -101,7 +105,7 @@ Meteor.methods({
              "profile.skills": String
              });
              */
-            Meteor.users.update(userId, {$set: userAttributes}, function(error) {
+            Meteor.users.update(userId, {$set: userAttributes}, function (error) {
                 if (error) {
                     return error;
                 }
@@ -118,13 +122,13 @@ Meteor.methods({
             }
         });
     },
-    "updateEmails": function(userId, email) {
-        if(Meteor.user() && userId) {
+    "updateEmails": function (userId, email) {
+        if (Meteor.user() && userId) {
             //TODO: meteor add audit-argument-checks
             /*
              check(email, {
-                 "emails.address": String,
-                 "emails.verified": Boolean
+             "emails.address": String,
+             "emails.verified": Boolean
              });
              */
             if (email) {
@@ -135,8 +139,8 @@ Meteor.methods({
             return false;
         }
     },
-    "removeEmails": function(userId, email) {
-        if(Meteor.user() && userId) {
+    "removeEmails": function (userId, email) {
+        if (Meteor.user() && userId) {
             //TODO: meteor add audit-argument-checks
             /*
              check(email, {
@@ -152,17 +156,20 @@ Meteor.methods({
             return false;
         }
     },
-    updatePhones: function(userId, phone) {
-        if(Meteor.user() && userId) {
+    updatePhones: function (userId, phone) {
+        if (Meteor.user() && userId) {
             // editable for current user and Administrator, make sure current phone added is only primary number
             if (phone.primary) {
-                Meteor.users.update({_id:userId, "profile.phones.primary" : true}, {$set: {"profile.phones.$.primary" : false}}, function(error) {
+                Meteor.users.update({
+                    _id: userId,
+                    "profile.phones.primary": true
+                }, {$set: {"profile.phones.$.primary": false}}, function (error) {
                     if (error) {
                         return error;
                     }
                 });
             }
-            Meteor.users.update(userId, {$push: {"profile.phones":phone}}, function(error) {
+            Meteor.users.update(userId, {$push: {"profile.phones": phone}}, function (error) {
                 if (error) {
                     return error;
                 }
@@ -173,9 +180,9 @@ Meteor.methods({
         }
     },
     disableAccount: function (accountId) {
-        Meteor.users.update({_id:accountId}, {$set:{'profile.accountLocked':true}});
+        Meteor.users.update({_id: accountId}, {$set: {'profile.accountLocked': true}});
     },
-    enableAccount: function(accountId){
-        Meteor.users.update({_id:accountId},{$set:{'profile.accountLocked':false}});
+    enableAccount: function (accountId) {
+        Meteor.users.update({_id: accountId}, {$set: {'profile.accountLocked': false}});
     }
 });

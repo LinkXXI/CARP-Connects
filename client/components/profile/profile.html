@@ -15,7 +15,7 @@
         </div>
         <ul id="profile-dropdown-mobile" class="dropdown-content">
             <li><a href="{{pathFor "Messages"}}"><i class="mdi-communication-email left"></i> Messages</a></li>
-            <li><a href="{{pathFor "Account"}}"><i class="mdi-action-account-box left"></i> Profile</a></li>
+            <li><a href="{{profilePath}}"><i class="mdi-action-account-box left"></i> Profile</a></li>
             <li>{{> logout}}</li>
         </ul>
     </div>
@@ -42,8 +42,8 @@
             </a>
         </div>
         <ul id="profile-dropdown-large" class="dropdown-content">
+            <li><a href="{{profilePath}}"><i class="mdi-action-account-box left"></i> Profile</a></li>
             <li><a href="{{pathFor "Messages"}}"><i class="mdi-communication-email left"></i> Messages</a></li>
-            <li><a href="{{pathFor "Account"}}"><i class="mdi-action-account-box left"></i> Profile</a></li>
             <li>{{> logout}}</li>
         </ul>
     </div>

@@ -31,6 +31,9 @@ Template.profile.helpers({
     name: function () {
         return Meteor.user().profile.firstName + " " + Meteor.user().profile.lastName;
     },
+    profilePath: function() {
+        return Router.routes.AccountView.path({_id:Meteor.userId()});
+    },
     role: function () {
         var role = Meteor.user().profile.permissions.role;
         if (role) {
