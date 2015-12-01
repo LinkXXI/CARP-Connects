@@ -52,6 +52,7 @@ ACCOUNT_CHANGE_PASSWORD_NO_MATCH = "New passwords do not match.";
 
 ADMIN_ONLY_ERROR = "This is an admin function. This access attempt has been logged and reported.";
 
+MESSAGE_VIEW_NO_PERMISSION_ERROR = "You do not have the required permission to view this message.";
 MESSAGE_DELETE_SUCCESS = "The message has been successfully deleted.";
 MESSAGE_DELETE_FAILED = "Message could not be removed.";
 MESSAGE_DELETE_ERROR = "An error occurred removing a message.";

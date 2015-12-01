@@ -43,12 +43,12 @@ Template.messages.helpers({
     },
     'sentMessagesCount': function () {
         var userId = Meteor.userId();
-        return "(" + messages.find({
+        return messages.find({
                 $and: [
                     {type: "Outgoing"},
                     {from: userId}
                 ]
-            }).count() + ")";
+            }).count();
     },
     'hasIncomingMessages': function () {
         var userId = Meteor.userId();

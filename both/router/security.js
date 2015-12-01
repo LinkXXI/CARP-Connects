@@ -109,4 +109,19 @@ Router.onBeforeAction(function () {
     }
 );
 
+Router.onBeforeAction(function () {
+        var role = Meteor.user().profile.permissions.role;
+        var message = messages.findOne(this.params._id);
+        if (Meteor.userId() === message.to || role === "Admin") {
+            this.next();
+        } else {
+            sAlert.error(MESSAGE_VIEW_NO_PERMISSION_ERROR);
+            Router.go('Messages');
+        }
+    },
+    {
+        only: ['MessageView', 'MessageReply']
+    }
+);
+
 //TODO: consolidate security function here and make it reusable
