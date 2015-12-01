@@ -2,28 +2,66 @@
  * Created by Sergio on 11/30/2015.
  */
 Template.messages.helpers({
-    'inboxMessages': function() {
-        return messages.find({type: "Incoming"}, {sort: {createdAt: -1}});
+    'inboxMessages': function () {
+        var userId = Meteor.userId();
+        return messages.find({
+                $and: [
+                    {type: "Incoming"},
+                    {to: userId}
+                ]
+            }, {sort: {createdAt: -1}}
+        );
     },
-    'inboxMessagesCount': function() {
-        return "(" + messages.find({type: "Incoming"}).count() + ")";
+    'inboxMessagesCount': function () {
+        var userId = Meteor.userId();
+        return "(" + messages.find({
+                $and: [
+                    {type: "Incoming"},
+                    {to: userId}
+                ]
+            }).count() + ")";
     },
-    'sentMessages': function() {
-        return messages.find({type: "Outgoing"}, {sort: {createdAt: -1}});
+    'sentMessages': function () {
+        var userId = Meteor.userId();
+        return messages.find({
+                $and: [
+                    {type: "Outgoing"},
+                    {from: userId}
+                ]
+            }, {sort: {createdAt: -1}}
+        );
     },
-    'sentMessagesCount': function() {
-        return "(" + messages.find({type: "Outgoing"}).count() + ")";
+    'sentMessagesCount': function () {
+        var userId = Meteor.userId();
+        return "(" + messages.find({
+                $and: [
+                    {type: "Outgoing"},
+                    {from: userId}
+                ]
+            }).count() + ")";
     },
-    'hasIncomingMessages': function() {
-        return messages.find({type: "Incoming"}).count() > 0;
+    'hasIncomingMessages': function () {
+        var userId = Meteor.userId();
+        return messages.find({
+                $and: [
+                    {type: "Incoming"},
+                    {to: userId}
+                ]
+            }).count() > 0;
     },
-    'hasOutgoingMessages': function() {
-        return messages.find({type: "Outgoing"}).count() > 0;
+    'hasOutgoingMessages': function () {
+        var userId = Meteor.userId();
+        return messages.find({
+                $and: [
+                    {type: "Outgoing"},
+                    {from: userId}
+                ]
+            }).count() > 0;
     },
-    'hasALinkedTask': function() {
+    'hasALinkedTask': function () {
         return this.linkedTask;
     },
-    'task': function() {
-        return tasks.findOne({_id: this.linkedTask });
+    'task': function () {
+        return tasks.findOne({_id: this.linkedTask});
     }
 });

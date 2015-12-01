@@ -49,17 +49,21 @@ Template.profile.helpers({
         return "";
     },
     'hasNewIncomingMessages': function () {
+        var userId = Meteor.userId();
         return messages.find({
                 $and: [
                     { type: "Incoming" },
+                    { to: userId },
                     { read: false }
                 ]
             }).count() > 0;
     },
     'newIncomingMessageCount': function () {
+        var userId = Meteor.userId();
         return messages.find({
             $and: [
                 { type: "Incoming" },
+                { to: userId },
                 { read: false }
             ]
         }).count();
