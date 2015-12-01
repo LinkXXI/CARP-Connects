@@ -2,7 +2,7 @@ Meteor.methods({
     newInvitation: function () {
         var newId = invitations.insert({
             used: false,
-            generatedBy: Meteor.user().profile.firstName + " " + Meteor.user().profile.lastName,
+            generatedBy: Meteor.userId(),
             validFor: []
         });
         return invitations.findOne(newId);
@@ -21,7 +21,7 @@ Meteor.methods({
     createInviteForUser: function (userID, sendMail) {
         var inviteId = invitations.insert({
             used: false,
-            generatedBy: Meteor.user().profile.firstName + " " + Meteor.user().profile.lastName,
+            generatedBy: Meteor.userId(),
             validFor: [userID],
             invitationSent: sendMail
         });
@@ -33,12 +33,12 @@ Meteor.methods({
     createInviteForEmail: function (email, sendMail) {
         var inviteId = invitations.insert({
             used: false,
-            generatedBy: Meteor.user().profile.firstName + " " + Meteor.user().profile.lastName,
+            generatedBy: Meteor.userId(),
             validFor: [email],
             invitationSent: sendMail
         });
         if (sendMail) {
-            sendInvitationMessage(email);
+            sendInvitationMessage(email, inviteId);
         }
 
         return inviteId;
@@ -48,8 +48,12 @@ Meteor.methods({
     }
 });
 
-var sendInvitationMessage = function (address) {
-    Email.send("Here is your invitation code for CARP Connects: " + inviteId + "\n\n"
-        + "If you have not signed up yet, please coppy the code into the 'ivite' field \n" +
-        "if you have, <a href='" + process.env.ROOT_URL + "applyInvite/" + inviteId + "'>Click Here</a> to apply it to your account.", address);
+var sendInvitationMessage = function (address, inviteId) {
+    Email.send({
+        to: address,
+        from: Accounts.emailTemplates.from,
+        subject: "CARP Connects Invite Code",
+        text: "Here is your invitation code for CARP Connects: " + inviteId + "\n\n" + "If you have not signed up yet, please copy the code into the 'Invite Code' field during sign up here: " + process.env.ROOT_URL + "\n" +
+        "If you have already signed up, <a href='" + process.env.ROOT_URL + "applyInvite/" + inviteId + "'>Click Here</a> to apply it to your account."
+    });
 };
