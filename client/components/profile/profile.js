@@ -45,10 +45,20 @@ Template.profile.helpers({
         }
         return "";
     },
-    'hasNewMessages': function() {
-        return messages.find({read: false}).count() > 0;
+    'hasNewIncomingMessages': function () {
+        return messages.find({
+                $and: [
+                    { type: "Incoming" },
+                    { read: false }
+                ]
+            }).count() > 0;
     },
-    'newMessageCount': function() {
-        return messages.find({read: false}).count();
+    'newIncomingMessageCount': function () {
+        return messages.find({
+            $and: [
+                { type: "Incoming" },
+                { read: false }
+            ]
+        }).count();
     }
 });

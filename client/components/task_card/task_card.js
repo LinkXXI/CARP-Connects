@@ -147,7 +147,18 @@ Template.taskCard.events({
             // ok is true if the user clicked on "ok", false otherwise
             if (ok) {
                 var createdAt = new Date();
-                var message = {
+                var outgoingMessage = {
+                    type: "Outgoing",
+                    subject: "Help request from " + userFirstName + " " + userLastName,
+                    body: "Help request from " + userFirstName + " " + userLastName,
+                    read: true,
+                    from: userId,
+                    to: eventOwnerId,
+                    createdAt: createdAt,
+                    linkedTask: taskId
+                };
+                var incomingMessage = {
+                    type: "Incoming",
                     subject: "Help request from " + userFirstName + " " + userLastName,
                     body: "Help request from " + userFirstName + " " + userLastName,
                     read: false,
@@ -156,18 +167,15 @@ Template.taskCard.events({
                     createdAt: createdAt,
                     linkedTask: taskId
                 };
-                Meteor.call('messageInsert', message, function (error, result) {
+                Meteor.call('messageInsert', outgoingMessage, incomingMessage, function (error) {
                     // display the error to the user and abort
                     if (error) {
                         sAlert.error(TASK_HELP_REQUEST_ERROR);
                         return throwError(error.reason);
                     }
-                    else if (result) {
+                    else {
                         sAlert.success(TASK_HELP_REQUEST_SUCCESS);
                         //TODO: send email
-                    }
-                    else if (!result) {
-                        //sAlert.error(TASK_HELP_REQUEST_FAILED);
                     }
                 });
             }

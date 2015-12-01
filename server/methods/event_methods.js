@@ -110,10 +110,5 @@ Meteor.methods({
         else {
             return false;
         }
-    },
-    messageInsert: function (message) {
-        //TODO: check permission using same logic as security.js
-        messages.insert(message);
     }
-})
-;
+});

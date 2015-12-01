@@ -301,6 +301,17 @@ Router.route('/messages', {
     template: 'messages',
     waitOn: function () {
         return [
+            Meteor.subscribe('AllUsers'),
+            Meteor.subscribe('Tasks')
+        ]
+    }
+});
+
+Router.route('/messages/create', {
+    name: 'MessageCreate',
+    template: 'messageCreate',
+    waitOn: function () {
+        return [
             Meteor.subscribe('AllUsers')
         ]
     }

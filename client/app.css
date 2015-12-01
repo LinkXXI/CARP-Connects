@@ -107,6 +107,11 @@ ul.side-nav.fixed li.logo:hover {
     clear: both;
 }
 
+.clearfix {
+    overflow: auto;
+    zoom: 1;
+}
+
 .header {
     font-size: 2.5em;
     margin: 0;
@@ -151,6 +156,29 @@ img.valign {
     position: absolute;
     top: -16px;
     right: 3px;
+    z-index: 1561;
+    font-weight: bold;
+    font-size: 11px;
+    width: 12px;
+    text-align: center;
+}
+
+.new-msg-circle-mobile {
+    background: #f00;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    /* width and height can be anything, as long as they're equal */
+    position: absolute;
+    top: 7px;
+    right: 41px;
+    z-index: 1561; /* we want this to show on top of the user image and any other layers */
+}
+
+.new-msg-count-mobile {
+    position: absolute;
+    top: -16px;
+    right: 44px;
     z-index: 1561;
     font-weight: bold;
     font-size: 11px;

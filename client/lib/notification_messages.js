@@ -51,3 +51,14 @@ ACCOUNT_CHANGE_PASSWORD_SUCCESS = "Password changed successfully.";
 ACCOUNT_CHANGE_PASSWORD_NO_MATCH = "New passwords do not match.";
 
 ADMIN_ONLY_ERROR = "This is an admin function. This access attempt has been logged and reported.";
+
+MESSAGE_DELETE_SUCCESS = "The message has been successfully deleted.";
+MESSAGE_DELETE_FAILED = "Message could not be removed.";
+MESSAGE_DELETE_ERROR = "An error occurred removing a message.";
+
+MESSAGE_MARK_READ_SUCCESS = "The message has been successfully marked as read.";
+MESSAGE_MARK_READ_FAILED = "Message could not be marked as read.";
+MESSAGE_MARK_READ_ERROR = "An error occurred marking a message as read.";
+
+MESSAGE_SEND_SUCCESS = "The message has been successfully sent.";
+MESSAGE_SEND_ERROR = "An error occurred sending a message.";

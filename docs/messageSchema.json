@@ -1,6 +1,7 @@
 {
   "Message": {
     "_id": "Meteor generated",
+    "type": "string - Incoming or Outgoing (we need 2 copies of each message)",
     "subject": "string",
     "body": "string",
     "read": "boolean",
