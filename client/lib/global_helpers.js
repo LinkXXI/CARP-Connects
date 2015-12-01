@@ -57,7 +57,8 @@ Template.registerHelper('mapAttributes', function () {
         encodeURIComponent(venue.address.postalZipCode.trim()) + ',' +
         encodeURIComponent(venue.address.country.trim()) + ',' +
         "&zoom=" + zoom +
-        "'&key=AIzaSyDez5ZF6K_UOr8izzd4PkXyWpAzG1dwTJQ"
+        //old key: "'&key=AIzaSyDez5ZF6K_UOr8izzd4PkXyWpAzG1dwTJQ"
+        "'&key=AIzaSyCiQ5p1li8CbpVTQoN0YA4tZf__-i5C-vg"
     }
 });
 
@@ -84,7 +85,8 @@ Template.registerHelper('mapAttributesFromVenueSelect', function () {
         encodeURIComponent(venue.address.postalZipCode.trim()) + ',' +
         encodeURIComponent(venue.address.country.trim()) + ',' +
         "&zoom=" + zoom +
-        "'&key=AIzaSyDez5ZF6K_UOr8izzd4PkXyWpAzG1dwTJQ"
+        //old key: "'&key=AIzaSyDez5ZF6K_UOr8izzd4PkXyWpAzG1dwTJQ"
+        "'&key=AIzaSyCiQ5p1li8CbpVTQoN0YA4tZf__-i5C-vg"
     }
 });
 
@@ -97,7 +99,8 @@ Template.registerHelper('mapAttributesGooglePlaces', function (place) {
         src: "https://www.google.com/maps/embed/v1/place?q='" +
         encodeURIComponent(place.trim()) +
         "&zoom=" + zoom +
-        "'&key=AIzaSyDez5ZF6K_UOr8izzd4PkXyWpAzG1dwTJQ"
+        //old key: "'&key=AIzaSyDez5ZF6K_UOr8izzd4PkXyWpAzG1dwTJQ"
+        "'&key=AIzaSyCiQ5p1li8CbpVTQoN0YA4tZf__-i5C-vg"
     }
 });
 

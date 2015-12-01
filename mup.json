@@ -6,7 +6,22 @@
       "username": "meteorup",
       //"password": "password"
       // or pem file (ssh based authentication)
-      "pem": "./.ssh/CARPSheridanDeploymentOpenSSHVersion.pem"
+      "pem": "./.ssh/CARPSheridanDeploymentOpenSSHVersion.pem",
+      // Configure environment
+      "env": {
+        "ROOT_URL": "http://cs24.sheridanc.on.ca"
+      }
+    },
+    {
+      "host": "167.88.43.207",
+      "username": "user",
+      "password": "u9UteRYjAn",
+      // or pem file (ssh based authentication)
+      //"pem": "./.ssh/CARPSheridanDeploymentOpenSSHVersion.pem"
+      // Configure environment
+      "env": {
+        "ROOT_URL": "http://carp-connects.kevinzoelee.ca"
+      }
     }
   ],
 
@@ -31,11 +46,6 @@
 
   // Location of app (local directory)
   "app": ".",
-
-  // Configure environment
-  "env": {
-    "ROOT_URL": "http://cs24.sheridanc.on.ca"
-  },
 
   // Meteor Up checks if the app comes online just after the deployment
   // before mup checks that, it will wait for no. of seconds configured below
