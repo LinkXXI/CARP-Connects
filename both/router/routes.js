@@ -305,3 +305,31 @@ Router.route('/messages/create', {
         ]
     }
 });
+
+Router.route('/messages/view/:_id', {
+    name: 'MessageView',
+    template: 'messageView',
+    waitOn: function () {
+        return [
+            Meteor.subscribe('AllUsers'),
+            Meteor.subscribe('OneMessage', this.params._id)
+        ]
+    },
+    data: function () {
+        return messages.findOne({_id: this.params._id});
+    }
+});
+
+Router.route('/messages/reply/:_id', {
+    name: 'MessageReply',
+    template: 'messageReply',
+    waitOn: function () {
+        return [
+            Meteor.subscribe('AllUsers'),
+            Meteor.subscribe('OneMessage', this.params._id)
+        ]
+    },
+    data: function () {
+        return messages.findOne({_id: this.params._id});
+    }
+});

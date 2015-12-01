@@ -185,3 +185,7 @@ img.valign {
     width: 12px;
     text-align: center;
 }
+
+#view-message-form p {
+    font-weight: bold;
+}

@@ -40,7 +40,6 @@ Template.message.helpers({
 Template.message.events({
     'click .delete-message-button': function (e) {
         var messageId = this._id;
-        console.log(messageId);
         new Confirmation({
             message: "Are you sure you want to delete this message?",
             title: "Delete Message",
@@ -68,7 +67,6 @@ Template.message.events({
     },
     'click .mark-read-message-button': function (e) {
         var messageId = this._id;
-        console.log(messageId);
         new Confirmation({
             message: "Are you sure you want to mark this message as being read?",
             title: "Mark as Read",
@@ -91,6 +89,22 @@ Template.message.events({
                         sAlert.error(MESSAGE_MARK_READ_FAILED);
                     }
                 });
+            }
+        });
+    },
+    'click .message-subject-link': function (e) {
+        var messageId = this._id;
+        Meteor.call('messageMarkRead', messageId, function (error, result) {
+            // display the error to the user and abort
+            if (error) {
+                //sAlert.error(MESSAGE_MARK_READ_ERROR);
+                return throwError(error.reason);
+            }
+            else if (result) {
+                //sAlert.success(MESSAGE_MARK_READ_SUCCESS);
+            }
+            else if (!result) {
+                //sAlert.error(MESSAGE_MARK_READ_FAILED);
             }
         });
     }

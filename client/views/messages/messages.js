@@ -12,14 +12,24 @@ Template.messages.helpers({
             }, {sort: {createdAt: -1}}
         );
     },
-    'inboxMessagesCount': function () {
+    'inboxTotalMessagesCount': function () {
         var userId = Meteor.userId();
-        return "(" + messages.find({
+        return messages.find({
                 $and: [
                     {type: "Incoming"},
                     {to: userId}
                 ]
-            }).count() + ")";
+            }).count();
+    },
+    'inboxUnreadMessagesCount': function () {
+        var userId = Meteor.userId();
+        return messages.find({
+            $and: [
+                {type: "Incoming"},
+                {read: false},
+                {to: userId}
+            ]
+        }).count();
     },
     'sentMessages': function () {
         var userId = Meteor.userId();

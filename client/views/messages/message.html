@@ -1,7 +1,7 @@
 <template name="message">
     <li class="collection-item {{isUnreadColor}}">
         <div class="left">
-            <b>{{isToOrFrom}} {{user.profile.firstName}} {{user.profile.lastName}}</b>
+            {{isToOrFrom}} <a href="/accounts/{{user._id}}">{{user.profile.firstName}} {{user.profile.lastName}}</a>
         </div>
         <div id="message-action-buttons" class="right" style="position: relative;">
             {{#if isUnread}}
@@ -22,15 +22,15 @@
             </a>
         </div>
         <div class="clearfix"></div>
-        <div class="left">
-            {{this.subject}}
+        <div class="message-subject-link left">
+            <a href="{{pathFor 'MessageView' this._id}}">{{this.subject}}</a>
         </div>
         <div class="right" style="font-size: 10px">
             {{formatDateMDYT this.createdAt}}
         </div>
         {{#if this.linkedTask}}
             <div class="clearfix"></div>
-            <b>Task:</b> {{task.name}}
+            <b>Task:</b> <a href="/tasks/{{this.linkedTask}}">{{task.name}}</a>
         {{/if}}
         <div class="clearfix"></div>
     </li>

@@ -135,7 +135,7 @@ Template.taskCard.events({
         var eventOwner = Meteor.users.findOne({_id: eventOwnerId});
         var eventOwnerFirstName = eventOwner.profile.firstName === "" ? "" : eventOwner.profile.firstName;
         var eventOwnerLastName = eventOwner.profile.lastName === "" ? "" : eventOwner.profile.lastName;
-        console.log(userId);
+        //console.log(userId);
         new Confirmation({
             message: "The event owner is " + eventOwnerFirstName + " " + eventOwnerLastName +
             ". Do you wish to send them a help request message?",
@@ -149,8 +149,8 @@ Template.taskCard.events({
                 var createdAt = new Date();
                 var outgoingMessage = {
                     type: "Outgoing",
-                    subject: "Help request from " + userFirstName + " " + userLastName,
-                    body: "Help request from " + userFirstName + " " + userLastName,
+                    subject: "Task help request from " + userFirstName + " " + userLastName,
+                    body: "Task help request from " + userFirstName + " " + userLastName,
                     read: true,
                     from: userId,
                     to: eventOwnerId,

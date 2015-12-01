@@ -14,6 +14,9 @@ Template.eventView.onRendered(function() {
 });
 
 Template.eventView.helpers({
+    'eventOwner': function () {
+        return Meteor.users.findOne({_id: this.owner});
+    },
     'theme': function () {
         return themes.findOne({_id: this.theme});
     },

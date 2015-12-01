@@ -9,7 +9,7 @@ Template.importPastEventModal.events({
     },
     "submit #import-past-event-form": function (e) {
         e.preventDefault();
-        pastEventId = $(e.target).find('#past-event option:selected').val();
+        var pastEventId = $(e.target).find('#past-event option:selected').val();
         Session.set('pastEventId', pastEventId);
         var modal = $('#import-past-event-modal');
         modal.closeModal();
