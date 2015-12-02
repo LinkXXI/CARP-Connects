@@ -263,7 +263,7 @@ Router.route('/applyInvite/:_id', {
     }
 });
 
-Router.route('/users', {
+Router.route('/users/manage', {
     name: 'UserManagement',
     template: 'userManagement',
     waitOn: function () {
@@ -286,13 +286,10 @@ Router.route('/config', {
 });
 
 Router.route('/documents', {
-    name: 'DocumentWorkspace',
-    template: 'documentWorkspace',
+    name: 'Documents',
+    template: 'documents',
     waitOn: function () {
-        return [
-            Meteor.subscribe('Vendors'),
-            Meteor.subscribe('Venues')
-        ]
+        return [];
     }
 });
 
