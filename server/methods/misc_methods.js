@@ -54,6 +54,6 @@ var sendInvitationMessage = function (address, inviteId) {
         from: Accounts.emailTemplates.from,
         subject: "You've been invited to CARP Connects!",
         text: "Here is your invitation code for CARP Connects: " + inviteId + "\n\n" + "If you have not signed up yet, please click on the following link to sign up: " + Router.routes.Signup.url({inviteId: inviteId}) + "\n" +
-        "If you have already signed up, <a href='" + Router.routes.ApplyInvitation.url({_id: inviteId}) + "'>Click Here</a> to apply it to your account."
+        "If you have already signed up and logged in, <a href='" + Router.routes.ApplyInvitation.url({_id: inviteId}) + "'>Click Here</a> to apply it to your account."
     });
 };

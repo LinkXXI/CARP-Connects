@@ -1,38 +1,36 @@
 Meteor.methods({
-    "validateInvitation": function (inviteCode, applyToId) {
-        var searchMail;
-        if (!applyToId && Meteor.user()) { // either check if it's not generate invite scenario
-            searchMail = Meteor.user().emails[0].address;
-        }
-        var count = invitations.find({
-            _id: inviteCode,
-            //TODO: Add usergroup/permission level to invitation search
-            validFor: {$in: [searchMail, Meteor.userId(), "Any"]},
-            used: false
-        }).count();
-        if ((count > 0 || applyToId) && Meteor.user()) {//(applyToId && Meteor.user().profile.role == "Administrator")) { //TODO: Also check if user is admin before continuing
-            invitations.update({_id: inviteCode}, {
-                $set: {
-                    used: true,
-                    appliedTo: applyToId || Meteor.userId()
-                }
-            });
-            Meteor.users.update({_id: applyToId || Meteor.userId()}, {
-                $set: {
-                    "profile.inviteCode": inviteCode
-                }
-            });
-            return true;
-            /* removed block, a user will always be logged in when validating an invitation, either an admin during generate and apply or the user themselves
-             else {
-             Meteor.users.update({'emails.address': searchMail}, {
-             $set: {
-             "profile.inviteCode": inviteCode
-             }
-             });
-             }*/
-        } else {
-            return false;
+    "validateInvitation": function (inviteCode, applyToId) { // applyToId = generating invite scenario
+        if (Meteor.user()) { // make sure user is logged in, either admin generating an invite or user using an invite
+            var count = invitations.find({
+                _id: inviteCode,
+                //TODO: Add usergroup/permission level to invitation search
+                validFor: {$in: [Meteor.user().emails[0].address, Meteor.userId(), "Any"]},
+                used: false
+            }).count();
+            if (count > 0 || applyToId) {//(applyToId && Meteor.user().profile.role == "Administrator")) { //TODO: Also check if user is admin before continuing
+                invitations.update({_id: inviteCode}, {
+                    $set: {
+                        used: true,
+                        appliedTo: applyToId || Meteor.userId()
+                    }
+                });
+                Meteor.users.update({_id: applyToId || Meteor.userId()}, {
+                    $set: {
+                        "profile.inviteCode": inviteCode
+                    }
+                });
+                return true;
+                /* removed block, a user will always be logged in when validating an invitation, either an admin during generate and apply or the user themselves
+                 else {
+                 Meteor.users.update({'emails.address': searchMail}, {
+                 $set: {
+                 "profile.inviteCode": inviteCode
+                 }
+                 });
+                 }*/
+            } else {
+                return false;
+            }
         }
     },
     setUpAccount: function (firstName, lastName, email, password, confirmPass) {
