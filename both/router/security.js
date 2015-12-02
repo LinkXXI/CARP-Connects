@@ -8,7 +8,7 @@ Router.onBeforeAction(function () {
         this.next();
     }
 }, {
-    except: ['Login', 'ForgotPassword']
+    except: ['Login', 'ForgotPassword', 'Signup']
 });
 
 /**
@@ -25,7 +25,7 @@ Router.onBeforeAction(function () {
         }
     },
     {
-        except: ['Login', 'ForgotPassword', 'Incomplete', 'AccountLocked', 'ApplyInvitation']
+        except: ['Login', 'ForgotPassword', 'Signup', 'Incomplete', 'AccountLocked', 'ApplyInvitation']
     }
 );
 
@@ -39,7 +39,7 @@ Router.onBeforeAction(function () {
         }
     },
     {
-        except: ['Login', 'ForgotPassword', 'AccountLocked']
+        except: ['Login', 'ForgotPassword', 'Signup', 'AccountLocked']
     });
 
 /**

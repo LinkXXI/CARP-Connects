@@ -76,7 +76,7 @@ Meteor.methods({
 
             //NOTE: New user is now logged in.
             if (inviteCode) {
-                var result = Meteor.call("validateInvitation", inviteCode, userId, email);
+                var result = Meteor.call("validateInvitation", inviteCode, null, email);
                 if (!result) {
                     //TODO: Handle Error
                 }

@@ -60,10 +60,10 @@ Template.invitation.helpers({
         var edit = Session.get('edit-invite');
         return edit._id === this._id;
     },
-    profilePath: function(userId) {
+    profilePath: function (userId) {
         var user = Meteor.users.find({_id: userId}).count();
         if (user) {
-            return Router.routes.AccountView.path({_id:userId});
+            return Router.routes.AccountView.path({_id: userId});
         } else { // not a userId, just return a null path
             return "#!";
         }
@@ -75,7 +75,6 @@ Template.invitation.helpers({
         } else { // not a userId, just return the string (ex: Dev_ENV)
             return userId;
         }
-
     }
 });
 

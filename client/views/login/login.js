@@ -42,7 +42,7 @@ Template.login.events({
     "click #signup": function () {
         $('#signup-modal').openModal();
     },
-    "click #passreset": function(e) {
+    "click #passreset": function (e) {
         e.preventDefault();
         $('#passreset-modal').openModal();
     },
@@ -79,8 +79,19 @@ Template.login.created = function () {
     verifyEmail();
 };
 
-Template.login.onRendered(function() {
-    if (Router.current().route.getName() === "ForgotPassword") {
-        $('#forgotpasswordnew-modal').openModal();
+Template.login.onRendered(function () {
+    switch (Router.current().route.getName()) {
+        case "ForgotPassword":
+            $('#forgotpasswordnew-modal').openModal();
+            break;
+        case "Signup":
+                this.find('#signup-invite-code').defaultValue = this.data.inviteId;
+            console.log(this);
+                var label = this.find('#signup-invite-code-label');
+                label.className = label.className + " active";
+                $('#signup-modal').openModal();
+            break;
+        default:
+            break;
     }
 });

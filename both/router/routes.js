@@ -32,6 +32,17 @@ Router.route('/login/:token/forgot', {
     }
 });
 
+Router.route('/login/:inviteId/signup', {
+    name: 'Signup',
+    template: 'login',
+    waitOn: function () {
+        return [];
+    },
+    data: function () {
+        return {inviteId: this.params.inviteId};
+    }
+});
+
 Router.route('/accounts/:_id/edit', {
     name: 'AccountEdit',
     template: 'accountEdit',
