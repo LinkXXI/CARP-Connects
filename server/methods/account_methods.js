@@ -37,7 +37,7 @@ Meteor.methods({
             return false;
         }
     },
-    setUpAccount: function (firstName, lastName, email, password, confirmPass, inviteCode) {
+    setUpAccount: function (firstName, lastName, email, password, confirmPass) {
         /*
          This regex can be used to restrict passwords to a length of 8 to 20 aplhanumeric characters and select special characters. The password also can not start with a digit, underscore or special character and must contain at least one digit.
          ^(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,20}
@@ -74,13 +74,13 @@ Meteor.methods({
         if (userId) {
             Accounts.sendVerificationEmail(userId); // added because Accounts.config did not work
 
-            //NOTE: New user is now logged in.
-            if (inviteCode) {
-                var result = Meteor.call("validateInvitation", inviteCode, null, email);
-                if (!result) {
+            //if (inviteCode) { removed block after implementing login fix, above logic works for logged in users now, invitation is validated after login on client side
+                //return inviteCode;
+                //var result = Meteor.call("validateInvitation", inviteCode, null, email);
+                //if (!result) {
                     //TODO: Handle Error
-                }
-            }
+                //}
+            //}
         }
     },
     "resendVerificationEmail": function (user, index) {

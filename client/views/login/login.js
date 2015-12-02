@@ -22,7 +22,7 @@ Template.login.events({
         var confirmPassword = $(e.target).find("#signup-confirm-password").val();
         var inviteCode = $(e.target).find('#signup-invite-code').val();
 
-        Meteor.call('setUpAccount', first, last, email, password, confirmPassword, inviteCode, function (err, data) {
+        Meteor.call('setUpAccount', first, last, email, password, confirmPassword, function (err, data) {
             if (err) {
                 console.log(err);
                 sAlert.error(SIGNUP_ERROR);
@@ -32,6 +32,7 @@ Template.login.events({
                 } else {
                     $('#signup-modal').closeModal();
                     Meteor.loginWithPassword(email, password, function () {
+                        Meteor.call("validateInvitation", inviteCode, null, email); // moved call here to work when user logged in
                         Router.go('/');
                         sAlert.success(SIGNUP_SUCCESS);
                     });
@@ -86,7 +87,6 @@ Template.login.onRendered(function () {
             break;
         case "Signup":
                 this.find('#signup-invite-code').defaultValue = this.data.inviteId;
-            console.log(this);
                 var label = this.find('#signup-invite-code-label');
                 label.className = label.className + " active";
                 $('#signup-modal').openModal();
