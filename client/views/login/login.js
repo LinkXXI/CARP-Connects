@@ -32,7 +32,7 @@ Template.login.events({
                 } else {
                     $('#signup-modal').closeModal();
                     Meteor.loginWithPassword(email, password, function () {
-                        Meteor.call("validateInvitation", inviteCode, null, email); // moved call here to work when user logged in
+                        Meteor.call("validateInvitation", inviteCode, null); // moved call here to work when user logged in
                         Router.go('/');
                         sAlert.success(SIGNUP_SUCCESS);
                     });

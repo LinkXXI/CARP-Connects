@@ -1,10 +1,8 @@
 Meteor.methods({
-    "validateInvitation": function (inviteCode, applyToId, signupMail) {
+    "validateInvitation": function (inviteCode, applyToId) {
         var searchMail;
-        if (Meteor.user()) {
+        if (!applyToId && Meteor.user()) { // either check if it's not generate invite scenario
             searchMail = Meteor.user().emails[0].address;
-        } else if (signupMail) {
-            searchMail = signupMail;
         }
         var count = invitations.find({
             _id: inviteCode,
@@ -12,27 +10,27 @@ Meteor.methods({
             validFor: {$in: [searchMail, Meteor.userId(), "Any"]},
             used: false
         }).count();
-        if (count > 0 || applyToId) {//(applyToId && Meteor.user().profile.role == "Administrator")) { //TODO: Also check if user is admin before continuing
+        if ((count > 0 || applyToId) && Meteor.user()) {//(applyToId && Meteor.user().profile.role == "Administrator")) { //TODO: Also check if user is admin before continuing
             invitations.update({_id: inviteCode}, {
                 $set: {
                     used: true,
                     appliedTo: applyToId || Meteor.userId()
                 }
             });
-            if (Meteor.user()) {
-                Meteor.users.update({_id: applyToId || Meteor.userId()}, {
-                    $set: {
-                        "profile.inviteCode": inviteCode
-                    }
-                });
-                return true;
-            } else {
-                Meteor.users.update({'emails.address': searchMail}, {
-                    $set: {
-                        "profile.inviteCode": inviteCode
-                    }
-                });
-            }
+            Meteor.users.update({_id: applyToId || Meteor.userId()}, {
+                $set: {
+                    "profile.inviteCode": inviteCode
+                }
+            });
+            return true;
+            /* removed block, a user will always be logged in when validating an invitation, either an admin during generate and apply or the user themselves
+             else {
+             Meteor.users.update({'emails.address': searchMail}, {
+             $set: {
+             "profile.inviteCode": inviteCode
+             }
+             });
+             }*/
         } else {
             return false;
         }
@@ -75,11 +73,11 @@ Meteor.methods({
             Accounts.sendVerificationEmail(userId); // added because Accounts.config did not work
 
             //if (inviteCode) { removed block after implementing login fix, above logic works for logged in users now, invitation is validated after login on client side
-                //return inviteCode;
-                //var result = Meteor.call("validateInvitation", inviteCode, null, email);
-                //if (!result) {
-                    //TODO: Handle Error
-                //}
+            //return inviteCode;
+            //var result = Meteor.call("validateInvitation", inviteCode, null, email);
+            //if (!result) {
+            //TODO: Handle Error
+            //}
             //}
         }
     },
