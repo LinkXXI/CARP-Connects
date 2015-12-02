@@ -285,7 +285,7 @@ Router.route('/config', {
     }
 });
 
-Router.route('/dw', {
+Router.route('/documents', {
     name: 'DocumentWorkspace',
     template: 'documentWorkspace',
     waitOn: function () {
