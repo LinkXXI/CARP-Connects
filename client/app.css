@@ -24,10 +24,11 @@
     }
 }
 
-/* adds scroll bar to all pages to prevent header contents from moving left right due to the scroll bar */
+/* adds scroll bar to all pages to prevent header contents from moving left right due to the scroll bar, caused issues in mobile had to remove
 html {
     overflow-y: scroll;
 }
+*/
 
 main {
     /* a little bit of padding for content */
