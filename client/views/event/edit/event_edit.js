@@ -34,6 +34,9 @@ Template.eventEdit.onDestroyed(function () {
 var allTasks;
 
 Template.eventEdit.helpers({
+    'eventOwner': function () {
+        return Meteor.users.findOne({_id: this.owner});
+    },
     'themes': function () {
         return themes.find({}, {sort: {name: 1}});
     },

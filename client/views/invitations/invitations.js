@@ -4,12 +4,12 @@ Template.invitations.events({
         addModal.openModal({
             ready: function () {
                 addModal.find('.tabs').tabs();
-                if(!Session.get('select-init')){
+                if (!Session.get('select-init')) {
                     addModal.find('select').material_select();
                     Session.set('select-init', true);
                 }
             },
-            complete: function(){
+            complete: function () {
                 $('#addModal').find("select option:first").attr('selected', 'selected');
             }
         });
@@ -21,16 +21,16 @@ Template.invitations.events({
 
         switch (addModal.find('.active').html()) {
             case "Existing User":
-               // val = {value: addModal.find('select').val(), type: "existing"};
-                Meteor.call("createInviteForUser", addModal.find('select').val(), false, function(err, data){
-                    
+                // val = {value: addModal.find('select').val(), type: "existing"};
+                Meteor.call("createInviteForUser", addModal.find('select').val(), false, function (err, data) {
+
                 });
                 break;
             case "New User":
                 var emailEl = addModal.find('#email');
                 var sendEl = addModal.find('#sendEmail');
                 Meteor.call("createInviteForEmail", emailEl.val(), (sendEl.val() === "on"), function (err, data) {
-                    
+
                 });
                 break;
         }
@@ -59,6 +59,22 @@ Template.invitation.helpers({
     edit: function () {
         var edit = Session.get('edit-invite');
         return edit._id === this._id;
+    },
+    profilePath: function (userId) {
+        var user = Meteor.users.find({_id: userId}).count();
+        if (user) {
+            return Router.routes.AccountView.path({_id: userId});
+        } else { // not a userId, just return a null path
+            return "#!";
+        }
+    },
+    name: function (userId) {
+        var user = Meteor.users.findOne({_id: userId});
+        if (user) {
+            return user.profile.firstName + " " + user.profile.lastName;
+        } else { // not a userId, just return the string (ex: Dev_ENV)
+            return userId;
+        }
     }
 });
 
@@ -66,7 +82,7 @@ Template.invitation.events({
     "click #edit": function (e) {
         //console.log(e.target.id);
         if (Session.get('edit-invite')._id !== "none") {
-            cancelEdits(Session.get('edit-invite')._id,this._id);
+            cancelEdits(Session.get('edit-invite')._id, this._id);
         } else {
             Session.set("edit-invite", {_id: this._id})
         }
@@ -74,7 +90,7 @@ Template.invitation.events({
     "click #cancel": function (e) {
         cancelEdits(this._id);
     },
-    "click #delete": function(e){
+    "click #delete": function (e) {
         Session.set('idToDelete', this._id);
         $('#deleteModal').openModal();
         //Meteor.call("removeInvitation", this._id);
@@ -84,19 +100,19 @@ Template.invitation.events({
 Template.invitations.created = function () {
     Session.set('edit-invite', {_id: "none"})
 };
-Template.invitations.destroyed = function (){
+Template.invitations.destroyed = function () {
     Session.set('select-init', undefined);
 };
 
-var cancelEdits = function(currentId, nextId){
-    if(Session.get(currentId + "-edits")) {
+var cancelEdits = function (currentId, nextId) {
+    if (Session.get(currentId + "-edits")) {
         $('#cancelModal').openModal({
             complete: function () {
                 if (Session.get('cancel-edit')) {
                     Session.set('edit-invite', {_id: "none"});
                     Session.set(currentId + '-edits', undefined);
                     //TODO: Other cancel important stuff
-                    if(nextId){
+                    if (nextId) {
                         Session.set('edit-invite', {_id: nextId});
                     }
                 } else {
@@ -107,7 +123,7 @@ var cancelEdits = function(currentId, nextId){
                 Session.set('cancel-edit', undefined);
             }
         });
-    }else{
+    } else {
         Session.set('edit-invite', {_id: "none"});
     }
 };

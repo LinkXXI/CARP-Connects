@@ -1,0 +1,37 @@
+<template name="message">
+    <li class="collection-item {{isUnreadColor}}">
+        <div class="left">
+            {{isToOrFrom}} <a href="/accounts/{{user._id}}">{{user.profile.firstName}} {{user.profile.lastName}}</a>
+        </div>
+        <div id="message-action-buttons" class="right" style="position: relative;">
+            {{#if isUnread}}
+            <a class="mark-read-message-button btn-flat tooltipped"
+               data-position="bottom"
+               style="position: absolute; top: -10px; right: 30px; padding:0;margin:0;"
+               data-delay="50"
+               data-tooltip="Mark as Read">
+                <i class="mdi-content-drafts"></i>
+            </a>
+            {{/if}}
+            <a class="delete-message-button btn-flat tooltipped"
+               data-position="bottom"
+               style="position: absolute; top: -10px; right: 0; padding:0;margin:0;"
+               data-delay="50"
+               data-tooltip="Delete Message">
+                <i class="mdi-content-clear"></i>
+            </a>
+        </div>
+        <div class="clearfix"></div>
+        <div class="message-subject-link left">
+            <a href="{{pathFor 'MessageView' this._id}}">{{this.subject}}</a>
+        </div>
+        <div class="right" style="font-size: 10px">
+            {{formatDateMDYT this.createdAt}}
+        </div>
+        {{#if this.linkedTask}}
+            <div class="clearfix"></div>
+            <b>Task:</b> <a href="/tasks/{{this.linkedTask}}">{{task.name}}</a>
+        {{/if}}
+        <div class="clearfix"></div>
+    </li>
+</template>

@@ -111,5 +111,4 @@ Meteor.methods({
             return false;
         }
     }
-})
-;
+});

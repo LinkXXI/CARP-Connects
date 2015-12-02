@@ -1,0 +1,13 @@
+{
+  "Message": {
+    "_id": "Meteor generated",
+    "type": "string - Incoming or Outgoing (we need 2 copies of each message)",
+    "subject": "string",
+    "body": "string",
+    "read": "boolean",
+    "from": "string - used id",
+    "to": "string - user id",
+    "createdAt": "date",
+    "linkedTask": "string - task id of a task help request"
+  }
+}

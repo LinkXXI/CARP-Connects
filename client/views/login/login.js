@@ -22,7 +22,7 @@ Template.login.events({
         var confirmPassword = $(e.target).find("#signup-confirm-password").val();
         var inviteCode = $(e.target).find('#signup-invite-code').val();
 
-        Meteor.call('setUpAccount', first, last, email, password, confirmPassword, inviteCode, function (err, data) {
+        Meteor.call('setUpAccount', first, last, email, password, confirmPassword, function (err, data) {
             if (err) {
                 console.log(err);
                 sAlert.error(SIGNUP_ERROR);
@@ -32,6 +32,7 @@ Template.login.events({
                 } else {
                     $('#signup-modal').closeModal();
                     Meteor.loginWithPassword(email, password, function () {
+                        Meteor.call("validateInvitation", inviteCode, null); // moved call here to work when user logged in
                         Router.go('/');
                         sAlert.success(SIGNUP_SUCCESS);
                     });
@@ -42,7 +43,7 @@ Template.login.events({
     "click #signup": function () {
         $('#signup-modal').openModal();
     },
-    "click #passreset": function(e) {
+    "click #passreset": function (e) {
         e.preventDefault();
         $('#passreset-modal').openModal();
     },
@@ -79,8 +80,18 @@ Template.login.created = function () {
     verifyEmail();
 };
 
-Template.login.onRendered(function() {
-    if (Router.current().route.getName() === "ForgotPassword") {
-        $('#forgotpasswordnew-modal').openModal();
+Template.login.onRendered(function () {
+    switch (Router.current().route.getName()) {
+        case "ForgotPassword":
+            $('#forgotpasswordnew-modal').openModal();
+            break;
+        case "Signup":
+                this.find('#signup-invite-code').defaultValue = this.data.inviteId;
+                var label = this.find('#signup-invite-code-label');
+                label.className = label.className + " active";
+                $('#signup-modal').openModal();
+            break;
+        default:
+            break;
     }
 });

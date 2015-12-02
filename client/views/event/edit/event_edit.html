@@ -21,6 +21,17 @@
             </div>
             <div class="input-field col s4">
             </div>
+            <div class="input-field col s3">
+                <input id="event-owner" type="text" value="{{eventOwner.profile.firstName}} {{eventOwner.profile.lastName}}" disabled>
+                <label class="active" for="event-budget">Event Owner</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <textarea id="description" class="validate materialize-textarea">{{description}}</textarea>
+                <label class="active" for="description">Description<i class="mdi-editor-mode-edit right"></i></label>
+            </div>
             <div class="col s3">
                 <label for="theme">Theme</label>
                 <select class="validate browser-default" id="theme">
@@ -29,13 +40,6 @@
                         <option value="{{_id}}" {{isOptionSelected _id ../theme}}>{{name}}</option>
                     {{/each}}
                 </select>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="input-field col s6">
-                <textarea id="description" class="validate materialize-textarea">{{description}}</textarea>
-                <label class="active" for="description">Description<i class="mdi-editor-mode-edit right"></i></label>
             </div>
         </div>
 

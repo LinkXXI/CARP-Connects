@@ -32,6 +32,17 @@ Router.route('/login/:token/forgot', {
     }
 });
 
+Router.route('/login/:inviteId/signup', {
+    name: 'Signup',
+    template: 'login',
+    waitOn: function () {
+        return [];
+    },
+    data: function () {
+        return {inviteId: this.params.inviteId};
+    }
+});
+
 Router.route('/accounts/:_id/edit', {
     name: 'AccountEdit',
     template: 'accountEdit',
@@ -251,7 +262,7 @@ Router.route('/invitations', {
         ]
     },
     data: function () {
-        invitations.find();
+        return invitations.find();
     }
 });
 
@@ -263,7 +274,7 @@ Router.route('/applyInvite/:_id', {
     }
 });
 
-Router.route('/users', {
+Router.route('/users/manage', {
     name: 'UserManagement',
     template: 'userManagement',
     waitOn: function () {
@@ -285,13 +296,59 @@ Router.route('/config', {
     }
 });
 
-Router.route('/dw', {
-    name: 'DocumentWorkspace',
-    template: 'documentWorkspace',
+Router.route('/documents', {
+    name: 'Documents',
+    template: 'documents',
+    waitOn: function () {
+        return [];
+    }
+});
+
+Router.route('/messages', {
+    name: 'Messages',
+    template: 'messages',
     waitOn: function () {
         return [
-            Meteor.subscribe('Vendors'),
-            Meteor.subscribe('Venues')
+            Meteor.subscribe('AllUsers'),
+            Meteor.subscribe('Tasks')
         ]
+    }
+});
+
+Router.route('/messages/create', {
+    name: 'MessageCreate',
+    template: 'messageCreate',
+    waitOn: function () {
+        return [
+            Meteor.subscribe('AllUsers')
+        ]
+    }
+});
+
+Router.route('/messages/view/:_id', {
+    name: 'MessageView',
+    template: 'messageView',
+    waitOn: function () {
+        return [
+            Meteor.subscribe('AllUsers'),
+            Meteor.subscribe('OneMessage', this.params._id)
+        ]
+    },
+    data: function () {
+        return messages.findOne({_id: this.params._id});
+    }
+});
+
+Router.route('/messages/reply/:_id', {
+    name: 'MessageReply',
+    template: 'messageReply',
+    waitOn: function () {
+        return [
+            Meteor.subscribe('AllUsers'),
+            Meteor.subscribe('OneMessage', this.params._id)
+        ]
+    },
+    data: function () {
+        return messages.findOne({_id: this.params._id});
     }
 });

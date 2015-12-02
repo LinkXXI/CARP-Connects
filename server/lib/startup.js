@@ -1,7 +1,9 @@
 Meteor.startup(function () {
+    /* had to manually send verification email after createuser, below code did not work
     Accounts.config({
         sendVerificationEmail: true
     });
+    */
 
     var smtp = {
         username: 'carp.connects.test@gmail.com',
@@ -28,7 +30,7 @@ Meteor.startup(function () {
         if (invitation) {
             return "Click the link to verify your email. You will be logged in automatically!\n\n" + url + "\n\n" +
                 "Your invitation code is: " + invitation._id + "\n" +
-                "<a href='" + process.env.ROOT_URL + "applyInvite/" + invitation._id + "'>Click Here</a> to apply the invite to your account, or enter the above code manually once you log in.";
+                "<a href='" + Router.routes.ApplyInvitation.url({_id: invitation._id}) + "'>Click Here</a> to apply the invite to your account, or enter the above code manually once you log in.";
         } else {
             return "Click the link to verify your email. You will be logged in automatically!\n\n" + url;
         }

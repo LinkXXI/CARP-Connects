@@ -35,6 +35,9 @@ TASK_CREATED_SUCCESS = "A task was successfully created.";
 TASK_EDITED_SUCCESS = "Task was successfully edited, please save the event for it to take effect.";
 TASK_DELETED_SUCCESS = "The task has been marked for deletion, please save your changes.";
 
+TASK_HELP_REQUEST_SUCCESS = "A message has been sent to the event owner asking for help with the task.";
+TASK_HELP_REQUEST_ERROR = "There was an error creating a task help request.";
+
 LOGIN_ERROR = "You have entered the wrong username/password combination, please try again.";
 LOGOUT = "You have been logged out.";
 SIGNUP_SUCCESS = "You have successfully signed up for an account.";
@@ -48,3 +51,15 @@ ACCOUNT_CHANGE_PASSWORD_SUCCESS = "Password changed successfully.";
 ACCOUNT_CHANGE_PASSWORD_NO_MATCH = "New passwords do not match.";
 
 ADMIN_ONLY_ERROR = "This is an admin function. This access attempt has been logged and reported.";
+
+MESSAGE_VIEW_NO_PERMISSION_ERROR = "You do not have the required permission to view this message.";
+MESSAGE_DELETE_SUCCESS = "The message has been successfully deleted.";
+MESSAGE_DELETE_FAILED = "Message could not be removed.";
+MESSAGE_DELETE_ERROR = "An error occurred removing a message.";
+
+MESSAGE_MARK_READ_SUCCESS = "The message has been successfully marked as read.";
+MESSAGE_MARK_READ_FAILED = "Message could not be marked as read.";
+MESSAGE_MARK_READ_ERROR = "An error occurred marking a message as read.";
+
+MESSAGE_SEND_SUCCESS = "The message has been successfully sent.";
+MESSAGE_SEND_ERROR = "An error occurred sending a message.";

@@ -12,8 +12,8 @@ Template.calendar.onCreated(function () {
 
 Template.calendar.onRendered(function () {
     // add legend button to fullcalendar and initialize
-    $('.fc-right').append('<a href="#!" class="btn-flat dropdown-button no-margin-bot" data-activates="legend">Legend<i class="mdi-navigation-arrow-drop-down right"></i></a>');
-    $('.dropdown-button').dropdown({
+    $('.fc-right').append('<a href="#!" id="calendarLegend" class="btn-flat dropdown-button no-margin-bot" data-activates="legend">Legend<i class="mdi-navigation-arrow-drop-down right"></i></a>');
+    $('#calendarLegend').dropdown({
         inDuration: 300,
         outDuration: 225,
         constrain_width: false, // Does not change width of dropdown to that of the activator

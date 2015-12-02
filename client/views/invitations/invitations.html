@@ -106,7 +106,7 @@
                     <label for="checkUsed"></label>
                 </p>
             </td>
-            <td>{{generatedBy}}</td>
+            <td><a href="{{profilePath generatedBy}}">{{name generatedBy}}</a></td>
             <td>
                 {{redeemList}} <span class='green-text'>{{redeemEdits}}</span>
                 <button class="btn-floating waves-effect waves-light red" style="float:right" id="addEligible">+
@@ -128,9 +128,9 @@
                     <label for="checkUsed"></label>
                 </p>
             </td>
-            <td>{{generatedBy}}</td>
+            <td><a href="{{profilePath generatedBy}}">{{name generatedBy}}</a></td>
             <td>{{redeemList}}</td>
-            <td><a href="{{pathFor 'Account'}}/{{appliedTo}}">{{userName}}</a></td>
+            <td><a href="{{profilePath appliedTo}}">{{name appliedTo}}</a></td>
             <!--td>
                 {{#if appliedTo}}
                     <button class="btn waves-effect waves-light disabled" disabled>Edit</button>

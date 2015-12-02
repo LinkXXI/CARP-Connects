@@ -1,50 +1,46 @@
 Meteor.methods({
-    "validateInvitation": function (inviteCode, applyToId, signupMail) {
-        var searchMail;
-        if(Meteor.user()){
-            searchMail = Meteor.user().emails[0].address;
-        }else if(signupMail){
-            searchMail = signupMail;
-        }
-        var count = invitations.find({
-            _id: inviteCode,
-            //TODO: Add usergroup/permission level to invitation search
-            validFor: { $in: [searchMail, Meteor.userId(), "Any"]},
-            used: false
-        }).count();
-        if (count > 0 || applyToId){//(applyToId && Meteor.user().profile.role == "Administrator")) { //TODO: Also check if user is admin before continuing
-            invitations.update({_id: inviteCode}, {
-                $set: {
-                    used:true,
-                    appliedTo: applyToId || Meteor.userId()
-                }
-            });
-            if(Meteor.user()) {
+    "validateInvitation": function (inviteCode, applyToId) { // applyToId = generating invite scenario
+        if (Meteor.user()) { // make sure user is logged in, either admin generating an invite or user using an invite
+            var count = invitations.find({
+                _id: inviteCode,
+                //TODO: Add usergroup/permission level to invitation search
+                validFor: {$in: [Meteor.user().emails[0].address, Meteor.userId(), "Any"]},
+                used: false
+            }).count();
+            if (count > 0 || applyToId) {//(applyToId && Meteor.user().profile.role == "Administrator")) { //TODO: Also check if user is admin before continuing
+                invitations.update({_id: inviteCode}, {
+                    $set: {
+                        used: true,
+                        appliedTo: applyToId || Meteor.userId()
+                    }
+                });
                 Meteor.users.update({_id: applyToId || Meteor.userId()}, {
                     $set: {
                         "profile.inviteCode": inviteCode
                     }
                 });
                 return true;
-            }else{
-                Meteor.users.update({'emails.address': searchMail}, {
-                    $set: {
-                        "profile.inviteCode": inviteCode
-                    }
-                });
+                /* removed block, a user will always be logged in when validating an invitation, either an admin during generate and apply or the user themselves
+                 else {
+                 Meteor.users.update({'emails.address': searchMail}, {
+                 $set: {
+                 "profile.inviteCode": inviteCode
+                 }
+                 });
+                 }*/
+            } else {
+                return false;
             }
-        }else{
-            return false;
         }
     },
-    setUpAccount: function (firstName, lastName, email, password, confirmPass, inviteCode) {
+    setUpAccount: function (firstName, lastName, email, password, confirmPass) {
         /*
          This regex can be used to restrict passwords to a length of 8 to 20 aplhanumeric characters and select special characters. The password also can not start with a digit, underscore or special character and must contain at least one digit.
          ^(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,20}
          */
 
         if (password !== confirmPass) {
-            return {result:false,element:"password"};
+            return {result: false, element: "password"};
         }
 
         //TODO: Debug/find functioning REGEX
@@ -54,15 +50,15 @@ Meteor.methods({
         //}
 
         if (!firstName || !lastName) {
-            return {result:false,element: (!firstName) ? "firstName":"lastName"};
+            return {result: false, element: (!firstName) ? "firstName" : "lastName"};
         }
 
-        Accounts.createUser({
+        var userId = Accounts.createUser({
             email: email,
             password: password,
-            profile:{
-                permissions:{
-                    role:'incomplete'
+            profile: {
+                permissions: {
+                    role: 'incomplete'
                 },
                 firstName: firstName,
                 lastName: lastName,
@@ -71,27 +67,31 @@ Meteor.methods({
             }
         });
 
-        //NOTE: New user is now logged in.
-        if (inviteCode) {
-            var result = Meteor.call("validateInvitation", inviteCode, null, email);
-            if(!result){
-                //TODO: Handle Error
-            }
+        if (userId) {
+            Accounts.sendVerificationEmail(userId); // added because Accounts.config did not work
+
+            //if (inviteCode) { removed block after implementing login fix, above logic works for logged in users now, invitation is validated after login on client side
+            //return inviteCode;
+            //var result = Meteor.call("validateInvitation", inviteCode, null, email);
+            //if (!result) {
+            //TODO: Handle Error
+            //}
+            //}
         }
     },
-    "resendVerificationEmail": function(user, index){
-        if(Meteor.user()) {
+    "resendVerificationEmail": function (user, index) {
+        if (Meteor.user()) {
             if (user && index) {
                 Accounts.sendVerificationEmail(user._id, user.emails[parseInt(index)].address);
             } else {
                 Accounts.sendVerificationEmail(Meteor.userId());
             }
-        }else{
+        } else {
             return false;
         }
     },
-    "updateAccount": function(userId, userAttributes) {
-        if(Meteor.user() && userId) {
+    "updateAccount": function (userId, userAttributes) {
+        if (Meteor.user() && userId) {
             //TODO: meteor add audit-argument-checks
             /*
              check(userAttributes, {
@@ -101,7 +101,7 @@ Meteor.methods({
              "profile.skills": String
              });
              */
-            Meteor.users.update(userId, {$set: userAttributes}, function(error) {
+            Meteor.users.update(userId, {$set: userAttributes}, function (error) {
                 if (error) {
                     return error;
                 }
@@ -118,13 +118,13 @@ Meteor.methods({
             }
         });
     },
-    "updateEmails": function(userId, email) {
-        if(Meteor.user() && userId) {
+    "updateEmails": function (userId, email) {
+        if (Meteor.user() && userId) {
             //TODO: meteor add audit-argument-checks
             /*
              check(email, {
-                 "emails.address": String,
-                 "emails.verified": Boolean
+             "emails.address": String,
+             "emails.verified": Boolean
              });
              */
             if (email) {
@@ -135,8 +135,8 @@ Meteor.methods({
             return false;
         }
     },
-    "removeEmails": function(userId, email) {
-        if(Meteor.user() && userId) {
+    "removeEmails": function (userId, email) {
+        if (Meteor.user() && userId) {
             //TODO: meteor add audit-argument-checks
             /*
              check(email, {
@@ -152,17 +152,20 @@ Meteor.methods({
             return false;
         }
     },
-    updatePhones: function(userId, phone) {
-        if(Meteor.user() && userId) {
+    updatePhones: function (userId, phone) {
+        if (Meteor.user() && userId) {
             // editable for current user and Administrator, make sure current phone added is only primary number
             if (phone.primary) {
-                Meteor.users.update({_id:userId, "profile.phones.primary" : true}, {$set: {"profile.phones.$.primary" : false}}, function(error) {
+                Meteor.users.update({
+                    _id: userId,
+                    "profile.phones.primary": true
+                }, {$set: {"profile.phones.$.primary": false}}, function (error) {
                     if (error) {
                         return error;
                     }
                 });
             }
-            Meteor.users.update(userId, {$push: {"profile.phones":phone}}, function(error) {
+            Meteor.users.update(userId, {$push: {"profile.phones": phone}}, function (error) {
                 if (error) {
                     return error;
                 }
@@ -173,9 +176,9 @@ Meteor.methods({
         }
     },
     disableAccount: function (accountId) {
-        Meteor.users.update({_id:accountId}, {$set:{'profile.accountLocked':true}});
+        Meteor.users.update({_id: accountId}, {$set: {'profile.accountLocked': true}});
     },
-    enableAccount: function(accountId){
-        Meteor.users.update({_id:accountId},{$set:{'profile.accountLocked':false}});
+    enableAccount: function (accountId) {
+        Meteor.users.update({_id: accountId}, {$set: {'profile.accountLocked': false}});
     }
 });

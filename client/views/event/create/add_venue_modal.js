@@ -3,7 +3,16 @@
  */
 Template.addVenueModal.events({
     'click #address-search-modal-button': function (e) {
-        $('#address-search-modal').openModal();
+        $('#address-search-modal').openModal({
+            complete: function () {
+                // callback when modal is closed
+                Session.set('autofillReturnPage', undefined);
+                delete Session.keys['autofillReturnPage'];
+            }
+        });
+
+        // what autofill results will be binded to
+        Session.set('autofillReturnPage', 'addVenueModal');
     },
     'click #cancel-add-venue-button': function (e) {
         closeAndResetModal('#add-venue-modal');

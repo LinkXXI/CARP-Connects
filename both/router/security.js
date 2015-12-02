@@ -8,7 +8,7 @@ Router.onBeforeAction(function () {
         this.next();
     }
 }, {
-    except: ['Login', 'ForgotPassword']
+    except: ['Login', 'ForgotPassword', 'Signup']
 });
 
 /**
@@ -25,7 +25,7 @@ Router.onBeforeAction(function () {
         }
     },
     {
-        except: ['Login', 'ForgotPassword', 'Incomplete', 'AccountLocked', 'ApplyInvitation']
+        except: ['Login', 'ForgotPassword', 'Signup', 'Incomplete', 'AccountLocked', 'ApplyInvitation']
     }
 );
 
@@ -39,7 +39,7 @@ Router.onBeforeAction(function () {
         }
     },
     {
-        except: ['Login', 'ForgotPassword', 'AccountLocked']
+        except: ['Login', 'ForgotPassword', 'Signup', 'AccountLocked']
     });
 
 /**
@@ -106,6 +106,21 @@ Router.onBeforeAction(function () {
     },
     {
         only: ['Reports', 'TaskReport', 'Invitations', 'UserManagement', 'Configuration']
+    }
+);
+
+Router.onBeforeAction(function () {
+        var role = Meteor.user().profile.permissions.role;
+        var message = messages.findOne(this.params._id);
+        if (Meteor.userId() === message.to || role === "Admin") {
+            this.next();
+        } else {
+            sAlert.error(MESSAGE_VIEW_NO_PERMISSION_ERROR);
+            Router.go('Messages');
+        }
+    },
+    {
+        only: ['MessageView', 'MessageReply']
     }
 );
 
