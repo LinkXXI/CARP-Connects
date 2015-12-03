@@ -34,7 +34,9 @@ Template.taskCard.helpers({
         }
     },
     'isEditable': function () {
-        if (Router.current().route.getName() === 'EventEdit' || Session.get('pastEventId') != undefined) {
+        if (Router.current().route.getName() === 'EventEdit' ||
+            Router.current().route.getName() === 'EventCreate' ||
+            Session.get('pastEventId') != undefined) {
             return true;
         } else {
             return false;
