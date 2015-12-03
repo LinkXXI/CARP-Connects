@@ -54,7 +54,7 @@ Template.eventView.helpers({
         return tasksBudget;
     },
     'budgetTotal': function () {
-        var eventBudget = Session.get("eventBudget") == undefined ? 0 : Session.get("eventBudget");
+        var eventBudget = Session.get("eventBudget") || "0";
         eventBudget = parseFloat(eventBudget).toFixed(2);
         return eventBudget;
     },

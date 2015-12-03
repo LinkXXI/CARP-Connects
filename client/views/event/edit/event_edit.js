@@ -105,12 +105,12 @@ Template.eventEdit.helpers({
         return notInSessionTasks;
     },
     'budgetTasks': function () {
-        var total = Session.get("tasksBudget") == undefined ? "0" : Session.get("tasksBudget");
+        var total = Session.get("tasksBudget") || "0";
         total = parseFloat(total).toFixed(2);
         return total;
     },
     'budgetTotal': function () {
-        var total = Session.get("eventBudget") == undefined ? "0" : Session.get("eventBudget");
+        var total = Session.get("eventBudget") || "0";
         total = parseFloat(total).toFixed(2);
         return total;
     },
