@@ -65,6 +65,17 @@ Router.route('/accounts/:_id', {
     }
 });
 
+Router.route('/accounts', {
+    name: 'Accounts',
+    template: 'accountViewAll',
+    waitOn: function () {
+        return Meteor.subscribe('AllUsers');
+    },
+    data: function () {
+        return Meteor.users.find();
+    }
+});
+
 Router.route('/calendar', {
     name: 'Calendar',
     template: 'calendar',
@@ -263,7 +274,7 @@ Router.route('/applyInvite/:_id', {
     }
 });
 
-Router.route('/users', {
+Router.route('/users/manage', {
     name: 'UserManagement',
     template: 'userManagement',
     waitOn: function () {
@@ -285,14 +296,11 @@ Router.route('/config', {
     }
 });
 
-Router.route('/dw', {
-    name: 'DocumentWorkspace',
-    template: 'documentWorkspace',
+Router.route('/documents', {
+    name: 'Documents',
+    template: 'documents',
     waitOn: function () {
-        return [
-            Meteor.subscribe('Vendors'),
-            Meteor.subscribe('Venues')
-        ]
+        return [];
     }
 });
 

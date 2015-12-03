@@ -35,18 +35,7 @@ Template.profile.helpers({
         return Router.routes.AccountView.path({_id:Meteor.userId()});
     },
     role: function () {
-        var role = Meteor.user().profile.permissions.role;
-        if (role) {
-            switch (role) {
-                case "Admin":
-                    return "Administrator";
-                case "user":
-                    return "Volunteer";
-                default:
-                    return role;
-            }
-        }
-        return "";
+        return formattedRoleText(Meteor.user().profile.permissions.role);
     },
     'hasNewIncomingMessages': function () {
         var userId = Meteor.userId();
