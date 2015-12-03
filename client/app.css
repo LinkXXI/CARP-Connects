@@ -198,3 +198,28 @@ main .custom-wrapper {
 #breadcrumb-nav {
     padding-left: 20px;
 }
+
+
+/* Materialize classes, manually added since our version doesn't have */
+.breadcrumb {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.7); }
+.breadcrumb:before {
+    content: '\E5CC';
+    color: rgba(255, 255, 255, 0.7);
+    vertical-align: top;
+    display: inline-block;
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 25px;
+    margin: 0 10px 0 8px;
+    -webkit-font-smoothing: antialiased; }
+.breadcrumb:first-child:before {
+    display: none; }
+.breadcrumb:last-child {
+    color: #fff; }
+
+nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons {
+ display: block;
+    font-size: 2rem; }
