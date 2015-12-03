@@ -14,18 +14,18 @@
         <h2>{{this.name}}</h2>
 
         <form id="view-event-form">
-            <div class="row">
-                <div class="col s12 center">
-                    {{#if isActiveEvent}}
+            {{#if isActiveEvent}}
+                <div class="row">
+                    <div class="col s12 center">
                         <a href="{{pathFor 'EventEdit'}}" class="waves-effect waves-light btn" id="edit-event-button">
                             <i class="mdi-content-send right"></i>Work on event
                         </a>
                         <a href="{{pathFor 'EventPublish'}}" class="publish-event-button waves-effect waves-light btn">
                             <i class="mdi-editor-publish right"></i>Publish Event
                         </a>
-                    {{/if}}
+                    </div>
                 </div>
-            </div>
+            {{/if}}
             <div class="row">
                 <div class="col s12">
                     <p>Date/Time</p>
