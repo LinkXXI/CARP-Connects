@@ -1,42 +1,56 @@
 <template name="taskReport">
-    <h2>Task Breakdown Report</h2>
 
-    <p>The data in this report is up to date as of: {{ formatDate timestamp }}</p>
-
-    <div class="row green lighten-4 round-corners" style="padding-bottom: 1em;">
-        <div class="col s6">
-            <p><b>Event Name</b></p>
-            <span>{{this.name}}</span>
+    <nav id="breadcrumb-nav" class="blue darken-1">
+        <div class="nav-wrapper">
+            <div class="col s12">
+                <a href="{{pathFor 'Index'}}">Home</a> >
+                <a href="{{pathFor 'Reports'}}">Reports</a> >
+                Task Breakdown Report
+            </div>
         </div>
-        <div class="col s4">
-            <p><b>Date/Time of Event</b></p>
-            <span>{{formatDate this.dateTime}}</span>
+    </nav>
+
+    <div class="custom-wrapper">
+        <h2>Task Breakdown Report</h2>
+
+        <p>The data in this report is up to date as of: {{ formatDate timestamp }}</p>
+
+        <div class="row green lighten-4 round-corners" style="padding-bottom: 1em;">
+            <div class="col s6">
+                <p><b>Event Name</b></p>
+                <span>{{this.name}}</span>
+            </div>
+            <div class="col s4">
+                <p><b>Date/Time of Event</b></p>
+                <span>{{formatDate this.dateTime}}</span>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col s7">
-            {{> highchartsHelper chartId="taskReport" chartObject=taskReportChart}}
-        </div>
-        <div class="col s5">
-            <div class="card-panel col s10 grey lighten-4">
-                <h4>Detailed Report</h4>
+        <div class="row">
+            <div class="col s7">
+                {{> highchartsHelper chartId="taskReport" chartObject=taskReportChart}}
+            </div>
+            <div class="col s5">
+                <div class="card-panel col s10 grey lighten-4">
+                    <h4>Detailed Report</h4>
 
-                <p>
-                    <b>Tasks Not Started:</b> {{notStartedTaskCount}}
-                </p>
+                    <p>
+                        <b>Tasks Not Started:</b> {{notStartedTaskCount}}
+                    </p>
 
-                <p>
-                    <b>Tasks In Progress:</b> {{inProgressTaskCount}}
-                </p>
+                    <p>
+                        <b>Tasks In Progress:</b> {{inProgressTaskCount}}
+                    </p>
 
-                <p>
-                    <b>Completed Tasks:</b> {{completeTaskCount}}
-                </p>
+                    <p>
+                        <b>Completed Tasks:</b> {{completeTaskCount}}
+                    </p>
 
-                <p>
-                    <b>Total Tasks:</b> {{allTaskCount}}
-                </p>
+                    <p>
+                        <b>Total Tasks:</b> {{allTaskCount}}
+                    </p>
+                </div>
             </div>
         </div>
     </div>
+
 </template>

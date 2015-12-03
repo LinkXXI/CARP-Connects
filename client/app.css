@@ -35,11 +35,6 @@ main {
     margin: 0;
 }
 
-main > div.row {
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
 /* Used for calendar */
 iframe {
     width: 100%;
@@ -195,6 +190,12 @@ img.valign {
     font-weight: bold;
 }
 
+main .custom-wrapper {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
 #breadcrumb-nav {
     padding-left: 20px;
 }
+

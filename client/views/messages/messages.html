@@ -1,45 +1,57 @@
 <template name="messages">
 
-    <h2>My Messages</h2>
-
-    <div class="col s12 center">
-        <a href="{{pathFor 'MessageCreate'}}" class="waves-effect waves-light btn">
-            <i class="mdi-communication-email right"></i>Compose
-        </a>
-    </div>
-    <div class="clearfix"></div>
-
-    <div class="row">
-        <div class="col s6">
-            <ul class="collection">
-                <li class="collection-header">
-                    <i class="mdi-content-inbox small"></i>
-                    <h4 style="display: inline;">Inbox</h4> (Total: {{inboxTotalMessagesCount}}, Unread: {{inboxUnreadMessagesCount}})
-                </li>
-                {{#if hasIncomingMessages}}
-                    {{#each inboxMessages}}
-                        {{> message}}
-                    {{/each}}
-                {{else}}
-                    <li class="collection-item">You have no incoming messages.</li>
-                {{/if}}
-            </ul>
+    <nav id="breadcrumb-nav" class="blue darken-1">
+        <div class="nav-wrapper">
+            <div class="col s12">
+                <a href="{{pathFor 'Index'}}">Home</a> >
+                My Messages
+            </div>
         </div>
+    </nav>
 
-        <div class="col s6">
-            <ul class="collection">
-                <li class="collection-header">
-                    <i class="mdi-content-send small"></i>
-                    <h4 style="display: inline;">Sent Items</h4> (Total: {{sentMessagesCount}})
-                </li>
-                {{#if hasOutgoingMessages}}
-                    {{#each sentMessages}}
-                        {{> message}}
-                    {{/each}}
-                {{else}}
-                    <li class="collection-item">You have no outgoing messages.</li>
-                {{/if}}
-            </ul>
+    <div class="custom-wrapper">
+        <h2>My Messages</h2>
+
+        <div class="col s12 center">
+            <a href="{{pathFor 'MessageCreate'}}" class="waves-effect waves-light btn">
+                <i class="mdi-communication-email right"></i>Compose
+            </a>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col s6">
+                <ul class="collection">
+                    <li class="collection-header">
+                        <i class="mdi-content-inbox small"></i>
+                        <h4 style="display: inline;">Inbox</h4> (Total: {{inboxTotalMessagesCount}},
+                        Unread: {{inboxUnreadMessagesCount}})
+                    </li>
+                    {{#if hasIncomingMessages}}
+                        {{#each inboxMessages}}
+                            {{> message}}
+                        {{/each}}
+                    {{else}}
+                        <li class="collection-item">You have no incoming messages.</li>
+                    {{/if}}
+                </ul>
+            </div>
+
+            <div class="col s6">
+                <ul class="collection">
+                    <li class="collection-header">
+                        <i class="mdi-content-send small"></i>
+                        <h4 style="display: inline;">Sent Items</h4> (Total: {{sentMessagesCount}})
+                    </li>
+                    {{#if hasOutgoingMessages}}
+                        {{#each sentMessages}}
+                            {{> message}}
+                        {{/each}}
+                    {{else}}
+                        <li class="collection-item">You have no outgoing messages.</li>
+                    {{/if}}
+                </ul>
+            </div>
         </div>
     </div>
 

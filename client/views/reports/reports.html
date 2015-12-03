@@ -1,28 +1,38 @@
 <template name="reports">
-        <div class="row">
-            <h2>View Reports</h2>
 
-            <form id="reports-form">
-                <div class="row">
-                    <div class="col s4">
-                        <label>Report Type</label>
-                        <select class="validate browser-default" id="reports">
-                            <option value="" disabled selected>Select a report</option>
-                            <option value="task">Task Breakdown Report</option>
-                            <option value="eventStats">Event Statistics Report</option>
-                            <option value="invitation">Invitation Report</option>
-                        </select>
-                    </div>
-                    <div id="event" class="col s4">
-                        <label>Event</label>
-                        <select class="validate browser-default" id="events">
-                            <option value="" disabled selected>Choose an event</option>
-                            {{#each events}}
-                                <option value="{{this._id}}">{{this.name}}</option>
-                            {{/each}}
-                        </select>
-                    </div>
-                </div>
-            </form>
+    <nav id="breadcrumb-nav" class="blue darken-1">
+        <div class="nav-wrapper">
+            <div class="col s12">
+                <a href="{{pathFor 'Index'}}">Home</a> >
+                Reports
+            </div>
         </div>
+    </nav>
+
+    <div class="custom-wrapper">
+        <h2>View Reports</h2>
+
+        <form id="reports-form">
+            <div class="row">
+                <div class="col s4">
+                    <label>Report Type</label>
+                    <select class="validate browser-default" id="reports">
+                        <option value="" disabled selected>Select a report</option>
+                        <option value="task">Task Breakdown Report</option>
+                        <option value="eventStats">Event Statistics Report</option>
+                        <option value="invitation">Invitation Report</option>
+                    </select>
+                </div>
+                <div id="event" class="col s4">
+                    <label>Event</label>
+                    <select class="validate browser-default" id="events">
+                        <option value="" disabled selected>Choose an event</option>
+                        {{#each events}}
+                            <option value="{{this._id}}">{{this.name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+        </form>
+    </div>
 </template>

@@ -1,5 +1,15 @@
 <template name="documentWorkspace">
 
+    <nav id="breadcrumb-nav" class="blue darken-1">
+        <div class="nav-wrapper">
+            <div class="col s12">
+                <a href="{{pathFor 'Index'}}">Home</a> >
+                Document Workspace
+            </div>
+        </div>
+    </nav>
+
+    <div class="custom-wrapper">
     <h2>Document Workspace</h2>
 
     <div id="authorize-div" style="display: none">
@@ -10,6 +20,6 @@
         </button>
     </div>
     <pre id="output"></pre>
-
+</div>
 
 </template>

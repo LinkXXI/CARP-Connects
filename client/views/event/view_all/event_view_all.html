@@ -1,10 +1,21 @@
 <template name="eventViewAll">
 
-    <h2>View All Events</h2>
+    <nav id="breadcrumb-nav" class="blue darken-1">
+        <div class="nav-wrapper">
+            <div class="col s12">
+                <a href="{{pathFor 'Index'}}">Home</a> >
+                Events
+            </div>
+        </div>
+    </nav>
 
-    <div id="event-table">
-        {{> filterStatus}}
-        {{> reactiveTable collection=allEvents settings=tableSettings class="table bordered striped highlight"}}
+    <div class="custom-wrapper">
+        <h2>View All Events</h2>
+
+        <div id="event-table">
+            {{> filterStatus}}
+            {{> reactiveTable collection=allEvents settings=tableSettings class="table bordered striped highlight"}}
+        </div>
     </div>
 
 </template>

@@ -85,7 +85,7 @@ Router.route('/tasks/:_id', {
     waitOn: function () {
         return [
             Meteor.subscribe('OneTask', this.params._id),
-            Meteor.subscribe('OneEvent', this.event),
+            Meteor.subscribe('Events'),
             Meteor.subscribe('AllUsers'),
             Meteor.subscribe('Vendors'),
             Meteor.subscribe('Venues')
