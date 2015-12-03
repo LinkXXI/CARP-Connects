@@ -30,8 +30,12 @@ html {
 }
 */
 
-main :not(:first-child) {
+main {
     /* a little bit of padding for content */
+    margin: 0;
+}
+
+main > div.row {
     margin-left: 10px;
     margin-right: 10px;
 }
