@@ -11,6 +11,7 @@ Template.importPastEventModal.events({
         e.preventDefault();
         var pastEventId = $(e.target).find('#past-event option:selected').val();
         Session.set('pastEventId', pastEventId);
+
         var modal = $('#import-past-event-modal');
         modal.closeModal();
         modal.find('form')[0].reset();

@@ -10,7 +10,10 @@ Template.eventView.onRendered(function() {
     
     if (Router.current().route.getName() === "EventPublish") {
         this.$('#eventpublish-modal').openModal();
-    }   
+    }
+
+    var budget = $("#event-budget").text();
+    Session.set("eventBudget", budget);
 });
 
 Template.eventView.helpers({
@@ -37,6 +40,36 @@ Template.eventView.helpers({
     },
     'eventStatus': function () {
         return this.status === "Active" ? "Current Event" : "Past Event";
+    },
+    'budgetTasks': function () {
+        var eventTasks = tasks.find({event: this._id}).fetch();
+        var tasksBudget = 0;
+        $.each(eventTasks, function (j, task) {
+            tasksBudget += parseFloat(task.budget);
+        });
+        tasksBudget = parseFloat(tasksBudget).toFixed(2);
+
+        Session.set("tasksBudget", tasksBudget);
+
+        return tasksBudget;
+    },
+    'budgetTotal': function () {
+        var eventBudget = Session.get("eventBudget") == undefined ? 0 : Session.get("eventBudget");
+        eventBudget = parseFloat(eventBudget).toFixed(2);
+        return eventBudget;
+    },
+    'budgetStatusColor': function () {
+        var color = "";
+        var eventBudget = parseFloat(Session.get("eventBudget") == undefined ? 0 : Session.get("eventBudget"));
+        var tasksBudget = parseFloat(Session.get("tasksBudget") == undefined ? 0 : Session.get("tasksBudget"));
+        if (tasksBudget == eventBudget) {
+            color = "green";
+        } else if (tasksBudget < eventBudget) {
+            color = "green";
+        } else {
+            color = "red";
+        }
+        return color;
     }
 });
 

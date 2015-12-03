@@ -4,10 +4,6 @@
 Template.eventCreate.onRendered(function () {
     $('#datetime').datetimepicker({});
 
-//    $("#event-budget").change(function () {
-//        $("#budget-total").html($("#event-budget").val());
-//    });
-
     $('.tooltipped').tooltip({delay: 50});
 });
 
@@ -24,7 +20,13 @@ Template.eventCreate.onDestroyed(function () {
     delete Session.keys['tasksToDelete'];
     Session.set('venueId', undefined);
     delete Session.keys['venueId'];
+    Session.set("eventBudget", undefined);
+    delete Session.keys['eventBudget'];
+    Session.set("tasksBudget", undefined);
+    delete Session.keys['tasksBudget'];
 });
+
+var budgetTasks, budgetTotal;
 
 Template.eventCreate.helpers({
     'themes': function () {
@@ -61,6 +63,10 @@ Template.eventCreate.helpers({
             Session.set('pastTasks', eventTasks);
             var venueId = event.venue;
             Session.set('venueId', venueId);
+
+            var budget = event.totalBudget;
+            Session.set("eventBudget", budget);
+
             return event;
         }
     },
@@ -69,10 +75,53 @@ Template.eventCreate.helpers({
     },
     'isVenueSelected': function () {
         return Session.get('venueId');
+    },
+    'budgetTasks': function () {
+        var pastTasks = Session.get('pastTasks') != undefined ? Session.get('pastTasks') : new Array();
+        var newTasks = Session.get('tasks') != undefined ? Session.get('tasks') : new Array();
+        var pastTasksTotal = 0;
+        var newTasksTotal = 0;
+
+        $.each(pastTasks, function(i, pastTask) {
+            pastTasksTotal += parseFloat(pastTask.budget);
+        });
+
+        $.each(newTasks, function(i, newTask) {
+            newTasksTotal += parseFloat(newTask.budget);
+        });
+
+        var total = pastTasksTotal + newTasksTotal;
+        total = parseFloat(total).toFixed(2);
+
+        Session.set("tasksBudget", total);
+
+        return total;
+    },
+    'budgetTotal': function () {
+        var total = Session.get("eventBudget") == undefined ? "0" : Session.get("eventBudget");
+        total = parseFloat(total).toFixed(2);
+        return total;
+    },
+    'budgetStatusColor': function () {
+        var color = "";
+        var eventBudget = parseFloat(Session.get("eventBudget") == undefined ? 0 : Session.get("eventBudget"));
+        var tasksBudget = parseFloat(Session.get("tasksBudget") == undefined ? 0 : Session.get("tasksBudget"));
+        if (tasksBudget == eventBudget) {
+            color = "green";
+        } else if (tasksBudget < eventBudget) {
+            color = "green";
+        } else {
+            color = "red";
+        }
+        return color;
     }
 });
 
 Template.eventCreate.events({
+    'keyup #event-budget': function () {
+        var budget = $("#event-budget").val();
+        Session.set("eventBudget", budget);
+    },
     "click #import-past-event-button": function (e) {
         $('#import-past-event-modal').openModal();
     },

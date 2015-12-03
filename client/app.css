@@ -199,6 +199,9 @@ main .custom-wrapper {
     padding-left: 20px;
 }
 
+#budget-card {
+    color: white;
+}
 
 /* Materialize classes, manually added since our version doesn't have */
 .breadcrumb {

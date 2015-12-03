@@ -97,6 +97,17 @@
                         <i class="mdi-content-add"></i>
                     </a>
                 </div>
+                <div class="col s3 offset-s6">
+                    <div id="budget-card" class="card-panel {{budgetStatusColor}} center">
+                        <span>Budget Status</span>
+                        <br>
+                        <span>$</span>
+                        <span id="budget-tasks-display">{{budgetTasks}}</span>
+                        <span>/</span>
+                        <span>$</span>
+                        <span id="budget-total-display">{{budgetTotal}}</span>
+                    </div>
+                </div>
             </div>
             {{#if hasNewTasks}}
                 <div class="row green lighten-5 round-corners">

@@ -13,11 +13,10 @@ Template.eventEdit.onRendered(function () {
      step: 25
      });*/
 
-    $("#event-budget").change(function () {
-        $("#budget-total").html($("#event-budget").val());
-    });
-
     $('.tooltipped').tooltip({delay: 50});
+
+    var budget = $("#event-budget").val();
+    Session.set("eventBudget", budget);
 });
 
 Template.eventEdit.onDestroyed(function () {
@@ -29,10 +28,13 @@ Template.eventEdit.onDestroyed(function () {
     delete Session.keys['tasksToDelete'];
     Session.set('venueId', undefined);
     delete Session.keys['venueId'];
+    Session.set("eventBudget", undefined);
+    delete Session.keys['eventBudget'];
+    Session.set("tasksBudget", undefined);
+    delete Session.keys['tasksBudget'];
 });
 
 var allTasks;
-
 Template.eventEdit.helpers({
     'eventOwner': function () {
         return Meteor.users.findOne({_id: this.owner});
@@ -56,7 +58,7 @@ Template.eventEdit.helpers({
         // this returns an array of tasks in the db minus tasks in Session tasksToDelete
         var updatedDbTasks = $.grep(dbTasks, function (obj) {
             var isADeleteMatch = true;
-            $.each(tasksToDelete, function(i, task) {
+            $.each(tasksToDelete, function (i, task) {
                 if (task === obj._id) {
                     // the task id matches an item in the tasksToDelete array, so we don't return the Task in the new dbTasks array
                     isADeleteMatch = false;
@@ -69,12 +71,12 @@ Template.eventEdit.helpers({
         var notInSessionTasks = new Array();
         var mergedTasks = new Array();
         // pass unique db task objects to the new merged array.  if the _id matches any session task objects, dont add it
-        $.each(updatedDbTasks, function(i, dbTask) {
+        $.each(updatedDbTasks, function (i, dbTask) {
             var isDupe = false;
-            $.each(sessionTasks, function(j, sessionTask) {
-               if (dbTask._id === sessionTask._id) {
+            $.each(sessionTasks, function (j, sessionTask) {
+                if (dbTask._id === sessionTask._id) {
                     isDupe = true;
-               }
+                }
             });
             if (!isDupe) {
                 // we only want to push tasks that don't have a matching id in session Tasks
@@ -92,12 +94,46 @@ Template.eventEdit.helpers({
         // allTasks is passed to the eventUpdate server method call
         allTasks = mergedTasks;
 
+        // pass the tasks total budget to a session var for later re-use
+        var tasksBudget = 0;
+        $.each(mergedTasks, function (i, task) {
+            tasksBudget += parseFloat(task.budget);
+        });
+        Session.set("tasksBudget", tasksBudget);
+
         // this returns notInSessionTasks because we only want to display db tasks, not all
         return notInSessionTasks;
+    },
+    'budgetTasks': function () {
+        var total = Session.get("tasksBudget") == undefined ? "0" : Session.get("tasksBudget");
+        total = parseFloat(total).toFixed(2);
+        return total;
+    },
+    'budgetTotal': function () {
+        var total = Session.get("eventBudget") == undefined ? "0" : Session.get("eventBudget");
+        total = parseFloat(total).toFixed(2);
+        return total;
+    },
+    'budgetStatusColor': function () {
+        var color = "";
+        var eventBudget = parseFloat(Session.get("eventBudget") == undefined ? 0 : Session.get("eventBudget"));
+        var tasksBudget = parseFloat(Session.get("tasksBudget") == undefined ? 0 : Session.get("tasksBudget"));
+        if (tasksBudget == eventBudget) {
+            color = "green";
+        } else if (tasksBudget < eventBudget) {
+            color = "green";
+        } else {
+            color = "red";
+        }
+        return color;
     }
 });
 
 Template.eventEdit.events({
+    'keyup #event-budget': function () {
+        var budget = $("#event-budget").val();
+        Session.set("eventBudget", budget);
+    },
     'click #add-venue-button': function (e) {
         $('#add-venue-modal').openModal();
     },
@@ -152,7 +188,7 @@ Template.eventEdit.events({
             Router.go('EventView', {_id: eventId});
         });
     },
-    'change #venue': function(e) {
+    'change #venue': function (e) {
         var venueId = $('#venue option:selected').val();
         Session.set('venueId', venueId);
     }
