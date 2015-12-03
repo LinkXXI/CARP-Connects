@@ -53,18 +53,11 @@ var sendInvitationMessage = function (address, inviteId) {
         to: address,
         from: Accounts.emailTemplates.from,
         subject: "You've been invited to CARP Connects!",
-        html: "Here is your invitation code for CARP Connects: " + inviteId + "<br/><br/>" + "If you have not signed up yet, please click on the following link to sign up: " + "<a href='" + Router.routes.Signup.url({inviteId: inviteId}) + "'>" + Router.routes.Signup.url({inviteId: inviteId}) + "</a><br/>" +
-        "If you have already signed up and logged in, please click the following link to apply it to your account: " + "<a href='" + Router.routes.ApplyInvitation.url({_id: inviteId}) + "'>" + Router.routes.ApplyInvitation.url({_id: inviteId}) + "</a>"
+        html: "Hello,<br>"
+        + "Here is your invitation code for CARP Connects: " + inviteId + "<br/><br/>"
+        + "If you have not signed up yet, please click on the following link to sign up: "
+        + "<a href='" + Router.routes.Signup.url({inviteId: inviteId}) + "'>" + Router.routes.Signup.url({inviteId: inviteId}) + "</a><br/>"
+        + "If you have already signed up and logged in, please click the following link to apply it to your account: " + "<a href='" + Router.routes.ApplyInvitation.url({_id: inviteId}) + "'>" + Router.routes.ApplyInvitation.url({_id: inviteId}) + "</a><br><br>"
+        + "The " + Accounts.emailTemplates.siteName + " Team"
     });
 };
-/*
- var sendTaskHelpRequestMessage = function (address, inviteId) {
- Email.send({
- to: address,
- from: Accounts.emailTemplates.from,
- subject: "You've been invited to CARP Connects!",
- text: "Here is your invitation code for CARP Connects: " + inviteId + "\n\n" + "If you have not signed up yet, please click on the following link to sign up: " + Router.routes.Signup.url({inviteId: inviteId}) + "\n" +
- "If you have already signed up and logged in, <a href='" + Router.routes.ApplyInvitation.url({_id: inviteId}) + "'>Click Here</a> to apply it to your account."
- });
- };
- */

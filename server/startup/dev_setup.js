@@ -113,7 +113,7 @@ Meteor.startup(function () {
                 "totalBudget": "2500.00",
                 "theme": theme2,
                 "status": "Complete",
-                "dateTime": "2015-11-25T18:00:00",
+                "dateTime": "2015-12-25T18:00:00",
                 "venue": venue1
             });
             tasks.insert({
@@ -121,7 +121,7 @@ Meteor.startup(function () {
                 "description": "Hire a caterer for 50-75 people",
                 "notes": "In talks with caterer, waiting on an estimate",
                 "userIdAssignedTo": "1",
-                "dateTime": "2015-11-20T16:00:00",
+                "dateTime": "2015-12-20T16:00:00",
                 "taskType": "Vendor",
                 "vendor": vendor1,
                 "budget": "350.00",
@@ -133,7 +133,7 @@ Meteor.startup(function () {
                 "description": "Approximately 100 guests are attending, please book a hall to accommodate this in the Oakville area.",
                 "notes": "Take a look at the venue we used last time",
                 "userIdAssignedTo": "1",
-                "dateTime": "2015-11-21T16:00:00",
+                "dateTime": "2015-12-21T16:00:00",
                 "taskType": "Custom",
                 "vendor": "",
                 "budget": "1000.00",
@@ -145,7 +145,7 @@ Meteor.startup(function () {
                 "description": "A Subject Matter Expert (SME) is required in the field of financial planning.",
                 "notes": "Do a Google search to see if we can find anyone nearby",
                 "userIdAssignedTo": "1",
-                "dateTime": "2015-11-22T16:00:00",
+                "dateTime": "2015-12-22T16:00:00",
                 "taskType": "Vendor",
                 "vendor": vendor2,
                 "budget": "200.00",
@@ -159,7 +159,7 @@ Meteor.startup(function () {
                 "totalBudget": "2500.00",
                 "theme": theme5,
                 "status": "Complete",
-                "dateTime": "2015-11-28T19:00:00",
+                "dateTime": "2015-12-28T19:00:00",
                 "venue": venue2
             });
             tasks.insert({
@@ -167,7 +167,7 @@ Meteor.startup(function () {
                 "description": "Hire a caterer for 50-75 people",
                 "notes": "In talks with caterer, waiting on an estimate",
                 "userIdAssignedTo": "1",
-                "dateTime": "2015-11-25T17:00:00",
+                "dateTime": "2015-12-25T17:00:00",
                 "taskType": "Vendor",
                 "vendor": vendor1,
                 "budget": "350.00",
@@ -181,7 +181,7 @@ Meteor.startup(function () {
                 "totalBudget": "1500.00",
                 "theme": theme1,
                 "status": "Active",
-                "dateTime": "2015-11-30T18:00:00",
+                "dateTime": "2015-12-30T18:00:00",
                 "venue": venue3
             });
             tasks.insert({
@@ -189,7 +189,7 @@ Meteor.startup(function () {
                 "description": "Approximately 100 guests are attending, please book a hall to accommodate this in the Oakville area.",
                 "notes": "Take a look at the venue we used last time",
                 "userIdAssignedTo": "1",
-                "dateTime": "2015-11-25T16:00:00",
+                "dateTime": "2015-12-25T16:00:00",
                 "taskType": "Custom",
                 "vendor": "",
                 "budget": "1000.00",
@@ -201,7 +201,7 @@ Meteor.startup(function () {
                 "description": "Hire a caterer for 50-75 people",
                 "notes": "In talks with caterer, waiting on an estimate",
                 "userIdAssignedTo": "1",
-                "dateTime": "2015-11-26T17:00:00",
+                "dateTime": "2015-12-26T17:00:00",
                 "taskType": "Vendor",
                 "vendor": vendor1,
                 "budget": "500.00",
@@ -213,7 +213,7 @@ Meteor.startup(function () {
                 "description": "A Subject Matter Expert (SME) is required in the field of financial planning.",
                 "notes": "Do a Google search to see if we can find anyone nearby",
                 "userIdAssignedTo": "1",
-                "dateTime": "2015-11-27T16:00:00",
+                "dateTime": "2015-12-27T16:00:00",
                 "taskType": "Custom",
                 "vendor": "",
                 "budget": "300.00",

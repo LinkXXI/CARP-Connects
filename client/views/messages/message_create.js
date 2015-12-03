@@ -41,7 +41,6 @@ Template.messageCreate.events({
             }
             else {
                 sAlert.success(MESSAGE_SEND_SUCCESS);
-                //TODO: send email
                 Router.go('Messages');
             }
         });
