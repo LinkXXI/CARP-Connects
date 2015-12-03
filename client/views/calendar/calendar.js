@@ -29,15 +29,13 @@ function mapCalendarEvents(eventsArr) {
     if (eventsArr) {
         $.each(eventsArr, function (i, event) {
             var eventTasks = tasks.find({event: event._id}).fetch();
-            if (event.status == "Complete") {
-                calendarEvents.push({
-                    title: event.name,
-                    start: event.dateTime,
-                    url: Router.routes.EventView.path({_id: event._id}),
-                    color: "#99CCFF",
-                    allDay: false
-                });
-            }
+            calendarEvents.push({
+                title: event.name,
+                start: event.dateTime,
+                url: Router.routes.EventView.path({_id: event._id}),
+                color: event.status == "Complete" ? "#99CCFF" : "#9C27B0",
+                allDay: false
+            });
             if (eventTasks.length > 0) {
                 $.each(eventTasks, function (j, task) {
                     if (event.status != "Complete") {

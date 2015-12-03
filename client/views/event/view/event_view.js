@@ -39,7 +39,7 @@ Template.eventView.helpers({
         return this.status === "Active";
     },
     'eventStatus': function () {
-        return this.status === "Active" ? "Current Event" : "Past Event";
+        return this.status === "Complete" ? "Published Event" : "Incomplete Event";
     },
     'budgetTasks': function () {
         var eventTasks = tasks.find({event: this._id}).fetch();
