@@ -51,3 +51,13 @@ Template.messageCreate.events({
         $.find('#create-message-form')[0].reset();
     }
 });
+
+Template.userOption.helpers({
+    selected: function () {
+        if (Router.current().route.getName() === "MessageCreateForUser") {
+            if (this._id === Template.parentData().userId) {
+                return {selected: true};
+            }
+        }
+    }
+});
