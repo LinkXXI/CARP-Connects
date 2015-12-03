@@ -1,4 +1,16 @@
 <template name="accountEdit">
+
+    <nav id="breadcrumb-nav" class="blue">
+        <div class="nav-wrapper">
+            <div class="col s12">
+                <a href="{{pathFor 'Index'}}">Home</a> >
+                <a href="{{pathFor 'Accounts'}}">Users</a> >
+                <a href="{{pathFor 'AccountView' this._id}}">My Profile</a> >
+                <a class="breadcrumb">Edit</a>
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
         <h3 class="center">Edit Profile</h3>
 

@@ -1,15 +1,19 @@
 <template name="index">
-    <div class="row">
-        <div class="col s12 m7 l8" id="card-content">
-            {{#each this}}
-                {{>eventCard}}
-            {{/each}}
-        </div>
-        <div class="col s12 m5 l4">
-            {{> calendar calendarEvents}}
-            {{> assignedTasksCollection}}
+
+    <div class="custom-wrapper">
+        <div class="row">
+            <div class="col s12 m7 l8" id="card-content">
+                {{#each this}}
+                    {{>eventCard}}
+                {{/each}}
+            </div>
+            <div class="col s12 m5 l4">
+                {{> calendar calendarEvents}}
+                {{> assignedTasksCollection}}
+            </div>
         </div>
     </div>
+
 </template>
 
 <template name="assignedTasksCollection">

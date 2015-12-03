@@ -1,23 +1,35 @@
 <template name="userManagement">
-    <h2>User Management</h2>
-    <table>
-        <thead>
-        <tr>
-            <th>User</th>
-            <th>Created On</th>
-            <th>Primary Email</th>
-            <th>Profile Complete</th>
-            <th>Invite Code Applied</th>
-            <th>Permissions</th>
-            <th>Options</th>
-        </tr>
-        </thead>
-        <tbody>
-        {{#each users}}
-            {{>user}}
-        {{/each}}
-        </tbody>
-    </table>
+
+    <nav id="breadcrumb-nav" class="blue">
+        <div class="nav-wrapper">
+            <div class="col s12">
+                <a href="{{pathFor 'Index'}}">Home</a> >
+                User Management
+            </div>
+        </div>
+    </nav>
+
+    <div class="custom-wrapper">
+        <h2>User Management</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>User</th>
+                <th>Created On</th>
+                <th>Primary Email</th>
+                <th>Profile Complete</th>
+                <th>Invite Code Applied</th>
+                <th>Permissions</th>
+                <th>Options</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each users}}
+                {{>user}}
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
 </template>
 
 <template name="user">
@@ -74,7 +86,8 @@
         </div>
         <div class="modal-footer">
             <a href="" class="modal-action modal-close waves-effect waves-green btn-flat" id="savePermissions">Save</a>
-            <a href="" class="modal-action modal-close waves-effect waves-green btn-flat" id="cancelPermissions">Cancel</a>
+            <a href="" class="modal-action modal-close waves-effect waves-green btn-flat"
+               id="cancelPermissions">Cancel</a>
         </div>
     </div>
     <tr>
@@ -130,4 +143,5 @@
 
         </div>
     </div>
+
 </template>

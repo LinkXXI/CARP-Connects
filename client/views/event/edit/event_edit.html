@@ -1,115 +1,130 @@
 <template name="eventEdit">
 
-    <h2>Edit Event Details</h2>
-
-    <form id="edit-event-form">
-        <div class="row">
-            <div class="input-field col s6">
-                <input type="text" class="validate" id="event-name" value="{{name}}" required>
-                <label class="active" for="event-name">Event Name</label>
-            </div>
-            <div class="input-field col s3">
-                <input type="text" class="validate" id="datetime" value="{{formatDateMDYT dateTime}}" required>
-                <label class="active" for="datetime">Date/Time</label>
+    <nav id="breadcrumb-nav" class="blue">
+        <div class="nav-wrapper">
+            <div class="col s12">
+                <a href="{{pathFor 'Index'}}">Home</a> >
+                <a href="{{pathFor 'Events'}}">Events</a> >
+                <a href="{{pathFor 'EventView' this._id }}">{{this.name}}</a> >
+                Edit Event
             </div>
         </div>
+    </nav>
 
-        <div class="row">
-            <div class="input-field col s2">
-                <input id="event-budget" type="text" class="validate" value="{{totalBudget}}" required>
-                <label class="active" for="event-budget">Event Budget ($)</label>
-            </div>
-            <div class="input-field col s4">
-            </div>
-            <div class="input-field col s3">
-                <input id="event-owner" type="text" value="{{eventOwner.profile.firstName}} {{eventOwner.profile.lastName}}" disabled>
-                <label class="active" for="event-budget">Event Owner</label>
-            </div>
-        </div>
+    <div class="custom-wrapper">
+        <h2>Edit Event Details</h2>
 
-        <div class="row">
-            <div class="input-field col s6">
-                <textarea id="description" class="validate materialize-textarea">{{description}}</textarea>
-                <label class="active" for="description">Description<i class="mdi-editor-mode-edit right"></i></label>
-            </div>
-            <div class="col s3">
-                <label for="theme">Theme</label>
-                <select class="validate browser-default" id="theme">
-                    <option value="" disabled selected>Choose an option</option>
-                    {{#each themes}}
-                        <option value="{{_id}}" {{isOptionSelected _id ../theme}}>{{name}}</option>
-                    {{/each}}
-                </select>
-            </div>
-        </div>
-
-        <div class="row valign-wrapper">
-            <div class="col s4">
-                <label for="venue">Venue</label>
-                <select class="validate browser-default" id="venue">
-                    <option value="" disabled selected>Choose a venue</option>
-                    {{#each venues}}
-                        <option value="{{_id}}" {{isOptionSelected _id ../venue}}>{{name}}</option>
-                    {{/each}}
-                </select>
-
-            </div>
-            <div class="input-field col s1">
-                <a id="add-venue-button"
-                   class="btn-floating tooltipped right-align"
-                   data-position="bottom"
-                   data-delay="50"
-                   data-tooltip="Add Venue">
-                    <i class="mdi-content-add"></i>
-                </a>
-            </div>
-        </div>
-        <div class="row map">
-            <!-- Venue Map -->
-            <iframe {{mapAttributesFromVenueSelect}}></iframe>
-        </div>
-
-        <hr>
-        <div class="row valign-wrapper">
-            <div class="col s2">
-                <span class="header">Tasks</span>
-            </div>
-            <div class="col s1">
-                <a id="add-task-button"
-                   class="btn-floating tooltipped right-align"
-                   data-position="bottom"
-                   data-delay="50"
-                   data-tooltip="Add Task">
-                    <i class="mdi-content-add"></i>
-                </a>
-            </div>
-        </div>
-        {{#if hasNewTasks}}
-            <div class="row green lighten-5 round-corners">
-                <div class="col s6">
-                    <h5>New or Updated Tasks</h5>
+        <form id="edit-event-form">
+            <div class="row">
+                <div class="input-field col s6">
+                    <input type="text" class="validate" id="event-name" value="{{name}}" required>
+                    <label class="active" for="event-name">Event Name</label>
                 </div>
-                {{#each sessionTasks}}
+                <div class="input-field col s3">
+                    <input type="text" class="validate" id="datetime" value="{{formatDateMDYT dateTime}}" required>
+                    <label class="active" for="datetime">Date/Time</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s2">
+                    <input id="event-budget" type="text" class="validate" value="{{totalBudget}}" required>
+                    <label class="active" for="event-budget">Event Budget ($)</label>
+                </div>
+                <div class="input-field col s4">
+                </div>
+                <div class="input-field col s3">
+                    <input id="event-owner" type="text"
+                           value="{{eventOwner.profile.firstName}} {{eventOwner.profile.lastName}}" disabled>
+                    <label class="active" for="event-budget">Event Owner</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s6">
+                    <textarea id="description" class="validate materialize-textarea">{{description}}</textarea>
+                    <label class="active" for="description">Description<i
+                            class="mdi-editor-mode-edit right"></i></label>
+                </div>
+                <div class="col s3">
+                    <label for="theme">Theme</label>
+                    <select class="validate browser-default" id="theme">
+                        <option value="" disabled selected>Choose an option</option>
+                        {{#each themes}}
+                            <option value="{{_id}}" {{isOptionSelected _id ../theme}}>{{name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+
+            <div class="row valign-wrapper">
+                <div class="col s4">
+                    <label for="venue">Venue</label>
+                    <select class="validate browser-default" id="venue">
+                        <option value="" disabled selected>Choose a venue</option>
+                        {{#each venues}}
+                            <option value="{{_id}}" {{isOptionSelected _id ../venue}}>{{name}}</option>
+                        {{/each}}
+                    </select>
+
+                </div>
+                <div class="input-field col s1">
+                    <a id="add-venue-button"
+                       class="btn-floating tooltipped right-align"
+                       data-position="bottom"
+                       data-delay="50"
+                       data-tooltip="Add Venue">
+                        <i class="mdi-content-add"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="row map">
+                <!-- Venue Map -->
+                <iframe {{mapAttributesFromVenueSelect}}></iframe>
+            </div>
+
+            <hr>
+            <div class="row valign-wrapper">
+                <div class="col s2">
+                    <span class="header">Tasks</span>
+                </div>
+                <div class="col s1">
+                    <a id="add-task-button"
+                       class="btn-floating tooltipped right-align"
+                       data-position="bottom"
+                       data-delay="50"
+                       data-tooltip="Add Task">
+                        <i class="mdi-content-add"></i>
+                    </a>
+                </div>
+            </div>
+            {{#if hasNewTasks}}
+                <div class="row green lighten-5 round-corners">
+                    <div class="col s6">
+                        <h5>New or Updated Tasks</h5>
+                    </div>
+                    {{#each sessionTasks}}
+                        {{> taskCard}}
+                    {{/each}}
+                </div>
+            {{/if}}
+            <div class="row">
+                {{#each tasks}}
                     {{> taskCard}}
                 {{/each}}
             </div>
-        {{/if}}
-        <div class="row">
-            {{#each tasks}}
-                {{> taskCard}}
-            {{/each}}
-        </div>
-        <div class="row">
-            <div class="col s12 center">
-                <button type="submit" class="waves-effect waves-light btn" id="create-event-button">
-                    <i class="mdi-content-send right"></i>Save
-                </button>
-                <a href="{{pathFor 'EventView'}}" class="waves-effect waves-light btn">
-                    <i class="mdi-navigation-cancel right"></i>Cancel
-                </a>
+            <div class="row">
+                <div class="col s12 center">
+                    <button type="submit" class="waves-effect waves-light btn" id="create-event-button">
+                        <i class="mdi-content-send right"></i>Save
+                    </button>
+                    <a href="{{pathFor 'EventView'}}" class="waves-effect waves-light btn">
+                        <i class="mdi-navigation-cancel right"></i>Cancel
+                    </a>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 
     {{> addVenueModal}}
 

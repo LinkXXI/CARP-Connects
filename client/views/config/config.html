@@ -1,6 +1,17 @@
 <template name="configuration">
 
-    <h2>Site Configuration</h2>
+    <nav id="breadcrumb-nav" class="blue">
+        <div class="nav-wrapper">
+            <div class="col s12">
+                <a href="{{pathFor 'Index'}}">Home</a> >
+                Site Configuration
+            </div>
+        </div>
+    </nav>
+
+    <div class="custom-wrapper">
+
+        <h2>Site Configuration</h2>
 
         <div class="card-panel col s4 grey lighten-4 left">
             <div class="row">
@@ -94,6 +105,7 @@
                 </a>
             </div>
         </div>
+    </div>
 
     {{> addThemeModal}}
 

@@ -1,36 +1,53 @@
 <template name="messageReply">
 
-    <h2>Reply to Message</h2>
+    <nav id="breadcrumb-nav" class="blue">
+        <div class="nav-wrapper">
+            <div class="col s12">
+                <a href="{{pathFor 'Index'}}">Home</a> >
+                <a href="{{pathFor 'Messages'}}">My Messages</a> >
+                <a href="{{pathFor 'MessageView' _id}}">{{this.subject}}</a> >
+                Reply to Message
+            </div>
+        </div>
+    </nav>
 
-    <form id="reply-message-form">
-        <div class="row">
-            <div class="col s6">
-                <p>To: <span><a href="/accounts/{{this.from}}">{{from.profile.firstName}} {{from.profile.lastName}}</a></span></p>
+    <div class="custom-wrapper">
+        <h2>Reply to Message</h2>
+
+        <form id="reply-message-form">
+            <div class="row">
+                <div class="col s6">
+                    <p>To: <span><a
+                            href="/accounts/{{this.from}}">{{from.profile.firstName}} {{from.profile.lastName}}</a></span>
+                    </p>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s6">
-                <input type="text" class="validate" id="message-subject" required>
-                <label for="event-name">Subject</label>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input type="text" class="validate valid" id="message-subject" value="RE: {{this.subject}}"
+                           required>
+                    <label class="active" for="event-name">Subject</label>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <textarea id="message-body" class="materialize-textarea"></textarea>
-                <label for="message-body">Message<i class="mdi-editor-mode-edit right"></i></label>
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea id="message-body" class="materialize-textarea"></textarea>
+                    <label for="message-body">Message<i class="mdi-editor-mode-edit right"></i></label>
+                </div>
             </div>
-        </div>
-        <div class="row col s12">
-            <div class="col s4 center offset-s2">
-                <button id="submit-reply-message-button" class="waves-effect waves-light btn" type="submit">
-                    <i class="mdi-content-send right"></i>Send
-                </button>
+            <div class="row col s12">
+                <div class="col s4 center offset-s2">
+                    <button id="submit-reply-message-button" class="waves-effect waves-light btn" type="submit">
+                        <i class="mdi-content-send right"></i>Send
+                    </button>
+                </div>
+                <div class="col s4 center">
+                    <a id="clear-reply-message-button" class="waves-effect waves-light btn" type="button">
+                        <i class="mdi-navigation-cancel right"></i>Clear
+                    </a>
+                </div>
             </div>
-            <div class="col s4 center">
-                <a id="clear-reply-message-button" class="waves-effect waves-light btn" type="button">
-                    <i class="mdi-navigation-cancel right"></i>Clear
-                </a>
-            </div>
-        </div>
-    </form>
+        </form>
+    </div>
+
 </template>

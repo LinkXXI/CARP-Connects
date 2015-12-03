@@ -1,49 +1,64 @@
 <template name="messageView">
 
-    <h2>View Message</h2>
+    <nav id="breadcrumb-nav" class="blue">
+        <div class="nav-wrapper">
+            <div class="col s12">
+                <a href="{{pathFor 'Index'}}">Home</a> >
+                <a href="{{pathFor 'Messages'}}">My Messages</a> >
+                {{this.subject}}
+            </div>
+        </div>
+    </nav>
 
-    <form id="view-event-form">
-        <div class="row">
-            <div class="col s4">
-                <p>From</p>
-                <span><a href="/accounts/{{from._id}}">{{from.profile.firstName}} {{from.profile.lastName}}</a></span>
-            </div>
-            <div class="col s4">
-                <p>Date</p>
-                <span>{{formatDateShort this.createdAt}}</span>
-            </div>
-            <div class="col s4">
-                <a href="/messages/reply/{{this._id}}" class="waves-effect waves-light btn" id="reply-message-button">
-                    <i class="mdi-content-reply right"></i>Reply
-                </a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s8">
-                <p>Subject</p>
-                <span>{{this.subject}}</span>
-            </div>
-            <div class="col s4">
-                <a class="waves-effect waves-light btn" id="delete-message-button">
-                    <i class="mdi-action-delete right"></i>Delete
-                </a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s8">
-                <p>Message</p>
-                <span>{{this.body}}</span>
-            </div>
-            {{#if this.linkedTask}}
+    <div class="custom-wrapper">
+
+        <h2>View Message</h2>
+
+        <form id="view-event-form">
+            <div class="row">
                 <div class="col s4">
-                    <span style="color: #f00; font-weight: bold;">There is a task linked to this message</span>
-                    <br>
-                    <a href="/tasks/{{this.linkedTask}}" class="waves-effect waves-light btn">
-                        <i class="mdi-action-confirm right"></i>Go to Task
+                    <p>From</p>
+                    <span><a
+                            href="/accounts/{{from._id}}">{{from.profile.firstName}} {{from.profile.lastName}}</a></span>
+                </div>
+                <div class="col s4">
+                    <p>Date</p>
+                    <span>{{formatDateShort this.createdAt}}</span>
+                </div>
+                <div class="col s4">
+                    <a href="/messages/reply/{{this._id}}" class="waves-effect waves-light btn"
+                       id="reply-message-button">
+                        <i class="mdi-content-reply right"></i>Reply
                     </a>
                 </div>
-            {{/if}}
-        </div>
-    </form>
+            </div>
+            <div class="row">
+                <div class="col s8">
+                    <p>Subject</p>
+                    <span>{{this.subject}}</span>
+                </div>
+                <div class="col s4">
+                    <a class="waves-effect waves-light btn" id="delete-message-button">
+                        <i class="mdi-action-delete right"></i>Delete
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s8">
+                    <p>Message</p>
+                    <span>{{this.body}}</span>
+                </div>
+                {{#if this.linkedTask}}
+                    <div class="col s4">
+                        <span style="color: #f00; font-weight: bold;">There is a task linked to this message</span>
+                        <br>
+                        <a href="/tasks/{{this.linkedTask}}" class="waves-effect waves-light btn">
+                            <i class="mdi-action-confirm right"></i>Go to Task
+                        </a>
+                    </div>
+                {{/if}}
+            </div>
+        </form>
+    </div>
 
 </template>

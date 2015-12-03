@@ -1,46 +1,55 @@
 <template name="messageCreate">
 
-    <h2>Compose a Message</h2>
+    <nav id="breadcrumb-nav" class="blue">
+        <div class="nav-wrapper">
+            <div class="col s12">
+                <a href="{{pathFor 'Index'}}">Home</a> >
+                <a href="{{pathFor 'Messages'}}">My Messages</a> >
+                Compose Message
+            </div>
+        </div>
+    </nav>
 
-    <form id="create-message-form">
-        <div class="row">
-            <div class="col s4">
-                <label for="message-to">To</label>
-                <select class="browser-default" id="message-to" required>
-                    <option value="" disabled selected>Choose a user</option>
-                    {{#each users}}
-                        {{> userOption}}
-                    {{/each}}
-                </select>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s6">
-                <input type="text" class="validate" id="message-subject" required>
-                <label for="event-name">Subject</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <textarea id="message-body" class="materialize-textarea"></textarea>
-                <label for="message-body">Message<i class="mdi-editor-mode-edit right"></i></label>
-            </div>
-        </div>
-        <div class="row col s12">
-            <div class="col s4 center offset-s2">
-                <button id="submit-create-message-button" class="waves-effect waves-light btn" type="submit">
-                    <i class="mdi-content-send right"></i>Send
-                </button>
-            </div>
-            <div class="col s4 center">
-                <a id="clear-create-message-button" class="waves-effect waves-light btn" type="button">
-                    <i class="mdi-navigation-cancel right"></i>Clear
-                </a>
-            </div>
-        </div>
-    </form>
-</template>
+    <div class="custom-wrapper">
+        <h2>Compose a Message</h2>
 
-<template name="userOption">
-    <option value="{{this._id}}" {{selected}}>{{this.profile.firstName}} {{this.profile.lastName}}</option>
+        <form id="create-message-form">
+            <div class="row">
+                <div class="col s4">
+                    <label for="message-to">To</label>
+                    <select class="browser-default" id="message-to" required>
+                        <option value="" disabled selected>Choose a user</option>
+                        {{#each users}}
+                            <option value="{{this._id}}">{{this.profile.firstName}} {{this.profile.lastName}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input type="text" class="validate" id="message-subject" required>
+                    <label for="event-name">Subject</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea id="message-body" class="materialize-textarea"></textarea>
+                    <label for="message-body">Message<i class="mdi-editor-mode-edit right"></i></label>
+                </div>
+            </div>
+            <div class="row col s12">
+                <div class="col s4 center offset-s2">
+                    <button id="submit-create-message-button" class="waves-effect waves-light btn" type="submit">
+                        <i class="mdi-content-send right"></i>Send
+                    </button>
+                </div>
+                <div class="col s4 center">
+                    <a id="clear-create-message-button" class="waves-effect waves-light btn" type="button">
+                        <i class="mdi-navigation-cancel right"></i>Clear
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+
 </template>

@@ -1,14 +1,20 @@
 <template name="calendar">
-    <div style="margin-top: 15px; margin-bottom: 15px">
-        {{> fullcalendar options}}
+
+    <div class="custom-wrapper">
+        <div style="margin-top: 15px; margin-bottom: 15px">
+            {{> fullcalendar options}}
+        </div>
+
+        <ul id="legend" class="dropdown-content">
+            <li style="background-color: #EF4444"><a href="#!" style="color:black" class="hyperlink-no-style">My
+                Assigned
+                Tasks</a></li>
+            <li style="background-color: #99CC99"><a href="#!" style="color:black" class="hyperlink-no-style">Other
+                Tasks In
+                Progress</a></li>
+            <li style="background-color: #99CCFF"><a href="#!" style="color:black" class="hyperlink-no-style">Current
+                Events</a></li>
+        </ul>
     </div>
 
-    <ul id="legend" class="dropdown-content">
-        <li style="background-color: #EF4444"><a href="#!" style="color:black" class="hyperlink-no-style">My Assigned
-            Tasks</a></li>
-        <li style="background-color: #99CC99"><a href="#!" style="color:black" class="hyperlink-no-style">Other Tasks In
-            Progress</a></li>
-        <li style="background-color: #99CCFF"><a href="#!" style="color:black" class="hyperlink-no-style">Current
-            Events</a></li>
-    </ul>
 </template>
