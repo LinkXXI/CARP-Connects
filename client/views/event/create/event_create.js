@@ -98,7 +98,7 @@ Template.eventCreate.helpers({
         return total;
     },
     'budgetTotal': function () {
-        var total = Session.get("eventBudget") == undefined ? "0" : Session.get("eventBudget");
+        var total = Session.get("eventBudget") || "0";
         total = parseFloat(total).toFixed(2);
         return total;
     },
