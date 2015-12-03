@@ -12,17 +12,13 @@
     </nav>
 
     <div class="custom-wrapper">
-        <h2>View Task Details</h2>
+        <h2>{{this.name}}</h2>
 
         <form id="view-task-form">
 
             <div class="row">
                 <div class="col s6">
-                    <p>Task Name</p>
-                    <span>{{this.name}}</span>
-                </div>
-                <div class="col s4">
-                    <p>Date/Time</p>
+                    <p>Due Date/Time</p>
                     <span>{{formatDate this.dateTime}}</span>
                 </div>
             </div>
