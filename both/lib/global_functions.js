@@ -29,6 +29,22 @@ compareName = function compareName(a, b) {
     return 0;
 };
 
+formattedRoleText = function(role) {
+    if (role) {
+        switch (role) {
+            case "Admin":
+                return "Administrator";
+            case "user":
+                return "Volunteer";
+            case "incomplete":
+                return "Incomplete Profile";
+            default:
+                return role;
+        }
+    }
+    return "";
+}
+
 checkPermissions = function(permissionFlag){
     var permissions = Meteor.user().profile.permissions;
     if(permissions.role === "Admin"){
