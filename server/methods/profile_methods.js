@@ -42,7 +42,7 @@ var sendTaskHelpRequestEmail = function (address, outgoingMessage) {
         + "You have a task help request.<br><br>"
         + from.profile.firstName + " " + from.profile.lastName + " needs help with the task: " + task.name + "<br>"
         + "You can work on the event the task belongs to by clicking on the url below:<br>"
-        + "<a href='" + Router.routes.EventEdit.url({_id: task.event}) + "'>" + Router.routes.EventEdit.url({_id: task.event}) + "</a>.<br><br>"
+        + "<a href='" + Router.routes.EventEdit.url({_id: task.event}) + "'>" + Router.routes.EventEdit.url({_id: task.event}) + "</a><br><br>"
         + "The " + Accounts.emailTemplates.siteName + " Team"
     });
 };
