@@ -20,7 +20,7 @@
                     <select class="browser-default" id="message-to" required>
                         <option value="" disabled selected>Choose a user</option>
                         {{#each users}}
-                            <option value="{{this._id}}">{{this.profile.firstName}} {{this.profile.lastName}}</option>
+                            {{> userOption}}
                         {{/each}}
                     </select>
                 </div>
@@ -52,4 +52,8 @@
         </form>
     </div>
 
+</template>
+
+<template name="userOption">
+    <option value="{{this._id}}" {{selected}}>{{this.profile.firstName}} {{this.profile.lastName}}</option>
 </template>
