@@ -25,8 +25,8 @@ Meteor.methods({
             validFor: [userID],
             invitationSent: sendMail
         });
-        if(sendMail){
-            sendMail(Meteor.users.find({_id:userID}).emails[0].address);
+        if (sendMail) {
+            sendMail(Meteor.users.find({_id: userID}).emails[0].address);
         }
         return inviteId;
     },
@@ -44,7 +44,7 @@ Meteor.methods({
         return inviteId;
     },
     removeInvitation: function (inviteId) {
-        invitations.remove({_id:inviteId});
+        invitations.remove({_id: inviteId});
     }
 });
 
@@ -53,17 +53,18 @@ var sendInvitationMessage = function (address, inviteId) {
         to: address,
         from: Accounts.emailTemplates.from,
         subject: "You've been invited to CARP Connects!",
-        html: "Here is your invitation code for CARP Connects: " + inviteId + "\n\n" + "If you have not signed up yet, please click on the following link to sign up: " + Router.routes.Signup.url({inviteId: inviteId}) + "\n" +
-        "If you have already signed up and logged in, <a href='" + Router.routes.ApplyInvitation.url({_id: inviteId}) + "'>Click Here</a> to apply it to your account."
+        html: "Here is your invitation code for CARP Connects: " + inviteId + "<br/><br/>" + "If you have not signed up yet, please click on the following link to sign up: " + "<a href='" + Router.routes.Signup.url({inviteId: inviteId}) + "'>" + Router.routes.Signup.url({inviteId: inviteId}) + "</a><br/>" +
+        "If you have already signed up and logged in, please click the following link to apply it to your account: " + "<a href='" + Router.routes.ApplyInvitation.url({_id: inviteId}) + "'>" + Router.routes.ApplyInvitation.url({_id: inviteId}) + "</a>"
     });
 };
-
-var sendTaskHelpRequestMessage = function (address, inviteId) {
-    Email.send({
-        to: address,
-        from: Accounts.emailTemplates.from,
-        subject: "You've been invited to CARP Connects!",
-        text: "Here is your invitation code for CARP Connects: " + inviteId + "\n\n" + "If you have not signed up yet, please click on the following link to sign up: " + Router.routes.Signup.url({inviteId: inviteId}) + "\n" +
-        "If you have already signed up and logged in, <a href='" + Router.routes.ApplyInvitation.url({_id: inviteId}) + "'>Click Here</a> to apply it to your account."
-    });
-};
+/*
+ var sendTaskHelpRequestMessage = function (address, inviteId) {
+ Email.send({
+ to: address,
+ from: Accounts.emailTemplates.from,
+ subject: "You've been invited to CARP Connects!",
+ text: "Here is your invitation code for CARP Connects: " + inviteId + "\n\n" + "If you have not signed up yet, please click on the following link to sign up: " + Router.routes.Signup.url({inviteId: inviteId}) + "\n" +
+ "If you have already signed up and logged in, <a href='" + Router.routes.ApplyInvitation.url({_id: inviteId}) + "'>Click Here</a> to apply it to your account."
+ });
+ };
+ */

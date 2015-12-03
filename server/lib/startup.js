@@ -1,9 +1,9 @@
 Meteor.startup(function () {
     /* had to manually send verification email after createuser, below code did not work
-    Accounts.config({
-        sendVerificationEmail: true
-    });
-    */
+     Accounts.config({
+     sendVerificationEmail: true
+     });
+     */
 
     var smtp = {
         username: 'carp.connects.test@gmail.com',
@@ -18,7 +18,7 @@ Meteor.startup(function () {
     Accounts.emailTemplates.verifyEmail.subject = function (user) {
         return "Confirm your Email for CARP Connects";
     };
-    Accounts.emailTemplates.verifyEmail.text = function (user, url) {
+    Accounts.emailTemplates.verifyEmail.html = function (user, url) {
         var userId = user._id;
         var address = user.emails[0].address;
 
@@ -28,11 +28,11 @@ Meteor.startup(function () {
         });
 
         if (invitation) {
-            return "Click the link to verify your email. You will be logged in automatically!\n\n" + url + "\n\n" +
-                "Your invitation code is: " + invitation._id + "\n" +
-                "<a href='" + Router.routes.ApplyInvitation.url({_id: invitation._id}) + "'>Click Here</a> to apply the invite to your account, or enter the above code manually once you log in.";
+            return "Click the link to verify your email. You will be logged in automatically!<br/><br/><a href='" + url + "'>" + url + "</a><br/><br/>" +
+                "Your invitation code is: " + invitation._id + "<br/>" +
+                "To apply the invite to your account, please login and click on the following link: <a href='" + Router.routes.ApplyInvitation.url({_id: invitation._id}) + "'>" + Router.routes.ApplyInvitation.url({_id: invitation._id}) + "</a>";
         } else {
-            return "Click the link to verify your email. You will be logged in automatically!\n\n" + url;
+            return "Click the link to verify your email. You will be logged in automatically!<br/>" + url;
         }
 
     };
