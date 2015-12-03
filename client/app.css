@@ -30,7 +30,7 @@ html {
 }
 */
 
-main {
+main :not(:first-child) {
     /* a little bit of padding for content */
     margin-left: 10px;
     margin-right: 10px;
@@ -189,4 +189,8 @@ img.valign {
 
 #view-message-form p {
     font-weight: bold;
+}
+
+#breadcrumb-nav {
+    padding-left: 20px;
 }

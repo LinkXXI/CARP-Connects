@@ -1,9 +1,9 @@
 <template name="accountEdit">
 
-    <nav>
+    <nav id="breadcrumb-nav">
         <div class="nav-wrapper">
             <div class="col s12">
-                <a href="{{pathFor 'Index'}}" class="breadcrumb">Home</a> >
+                <a href="{{pathFor 'Index'}}">Home</a> >
                 <a href="{{pathFor 'Accounts'}}" class="breadcrumb">Users</a> >
                 <a href="{{pathFor 'AccountView' this._id}}" class="breadcrumb">{{this.profile.firstName}} {{this.profile.lastName}}</a>
             </div>
