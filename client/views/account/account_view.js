@@ -2,12 +2,17 @@ Template.accountView.helpers({
     editAllowed: function() {
         return Meteor.userId() === this._id || checkPermissions("");
     },
+    notCurrentUser: function() {
+        return Meteor.userId() !== this._id;
+    },
     changePassword: function() {
         return Meteor.userId() === this._id; //allow password change since user profile is for current user
     },
     profilePicAttr: function() {
+        var pic = this.services && this.services.google && this.services.google.picture;
         return {
-            src: this.services.google.picture,
+            src: pic || "",
+            //alt: "",
             class: "circle responsive-img"
         };
     }

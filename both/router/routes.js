@@ -315,6 +315,19 @@ Router.route('/messages', {
     }
 });
 
+Router.route('/messages/create/:_id', { // user id
+    name: 'MessageCreateForUser',
+    template: 'messageCreate',
+    waitOn: function () {
+        return [
+            Meteor.subscribe('AllUsers')
+        ]
+    },
+    data: function() {
+        return {userId: this.params._id};
+    }
+});
+
 Router.route('/messages/create', {
     name: 'MessageCreate',
     template: 'messageCreate',

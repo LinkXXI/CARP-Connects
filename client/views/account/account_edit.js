@@ -11,9 +11,10 @@ Template.accountEdit.helpers({
         return {checked: "checked", disabled: "disabled"};
     },
     profilePicAttr: function() {
+        var pic = this.services && this.services.google && this.services.google.picture;
         return {
-            src: this.services.google.picture,
-            alt: "",
+            src: pic || "",
+            //alt: "",
             class: "circle responsive-img"
         };
     }

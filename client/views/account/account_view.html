@@ -89,9 +89,14 @@
             {{/if}}
         </div>
         {{#if editAllowed}}
-            <a href="{{pathFor 'AccountEdit'}}" class="btn waves-effect waves-light" type="submit">Edit<i
+            <a href="{{pathFor 'AccountEdit'}}" class="btn waves-effect waves-light">Edit<i
                     class="mdi-editor-mode-edit right"></i>
             </a>
+            {{#if notCurrentUser}}
+                <a href="{{pathFor 'MessageCreateForUser'}}" class="btn waves-effect waves-light">Message<i
+                        class="mdi-communication-email right"></i>
+                </a>
+            {{/if}}
             {{#if changePassword}}
                 <button id="passchange" class="btn waves-effect waves-light modal-trigger" type="button"
                         name="passchange">
