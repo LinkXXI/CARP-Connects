@@ -8,7 +8,7 @@ Template.account.helpers({
             for (var i=0;i<phones.length;i++) {
                 var phone = phones[i];
                 if (phone.primary) {
-                    return phone.type + ": " + phone.number;
+                    return phonetypes.findOne({_id:phone.type}).type + ": " + phone.number;
                 }
             }
         }

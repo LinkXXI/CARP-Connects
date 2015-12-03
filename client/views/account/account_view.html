@@ -74,7 +74,7 @@
                         {{#each profile.phones}}
                             <tr>
                                 <td>{{number}}</td>
-                                <td>{{type}}</td>
+                                <td>{{getPhoneType type}}</td>
                                 {{#if primary}}
                                     <td>
                                         <input type="checkbox" id="phone-primary-{{@index}}" checked disabled/>

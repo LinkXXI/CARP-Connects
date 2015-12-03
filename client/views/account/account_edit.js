@@ -1,6 +1,6 @@
 Template.accountEdit.helpers({
     phoneType: function() {
-        return Enumeration.phoneType;
+        return phonetypes.find();
     },
     isOnlyPhone: function() {
         if (this.profile.phones) {
@@ -25,7 +25,7 @@ Template.phone.helpers({
         if (this.primary) return "checked";
     },
     phoneType: function() {
-        return Enumeration.phoneType;
+        return phonetypes.find();
     }
 });
 

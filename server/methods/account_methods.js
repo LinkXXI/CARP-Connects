@@ -180,5 +180,28 @@ Meteor.methods({
     },
     enableAccount: function (accountId) {
         Meteor.users.update({_id: accountId}, {$set: {'profile.accountLocked': false}});
+    },
+    phonetypeInsert: function (phonetype) {
+        //TODO: check permission using same logic as security.js
+        var newId = phonetypes.insert(phonetype);
+        if (newId) {
+            return true;
+        } else {
+            return false;
+        }
+    },
+    phonetypeDelete: function (phoneTypeId) {
+        var count = Meteor.users.find({
+            "profile.phones.type": phoneTypeId
+        }).count();
+        if (count === 0) {
+            phonetypes.remove(
+                {_id: phoneTypeId}
+            );
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 });

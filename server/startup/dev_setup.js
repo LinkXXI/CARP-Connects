@@ -18,6 +18,12 @@ Meteor.startup(function () {
                 "name": "Community"
             });
         }
+        if (phonetypes.find().count() == 0) {
+            phonetypes.insert({type: "Home"});
+            phonetypes.insert({type: "Cell"});
+            phonetypes.insert({type: "Work"});
+            phonetypes.insert({type: "Other"});
+        }
         var vendor1, vendor2;
         var venue1, venue2;
         if (vendors.find().count() == 0) {

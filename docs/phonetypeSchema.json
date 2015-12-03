@@ -1,0 +1,6 @@
+{
+  "Phonetype": {
+    "_id": "Meteor Generated",
+    "type": "string - phone type (ex. home)"
+  }
+}

@@ -60,3 +60,7 @@ Meteor.publish("Messages", function (userId) {
 Meteor.publish("OneMessage", function (messageId) {
     return messages.find({_id: messageId});
 });
+
+Meteor.publish("PhoneTypes", function () {
+    return phonetypes.find({}, {sort: {name: 1}});
+});

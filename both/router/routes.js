@@ -47,7 +47,10 @@ Router.route('/accounts/:_id/edit', {
     name: 'AccountEdit',
     template: 'accountEdit',
     waitOn: function () {
-        return Meteor.subscribe('OneUser', this.params._id);
+        return [
+            Meteor.subscribe('OneUser', this.params._id),
+            Meteor.subscribe('PhoneTypes')
+        ];
     },
     data: function () {
         return Meteor.users.findOne({_id: this.params._id});
@@ -58,7 +61,10 @@ Router.route('/accounts/:_id', {
     name: 'AccountView',
     template: 'accountView',
     waitOn: function () {
-        return Meteor.subscribe('OneUser', this.params._id);
+        return [
+            Meteor.subscribe('OneUser', this.params._id),
+            Meteor.subscribe('PhoneTypes')
+        ];
     },
     data: function () {
        return Meteor.users.findOne({_id: this.params._id});
@@ -69,7 +75,10 @@ Router.route('/accounts', {
     name: 'Accounts',
     template: 'accountViewAll',
     waitOn: function () {
-        return Meteor.subscribe('AllUsers');
+        return [
+            Meteor.subscribe('AllUsers'),
+            Meteor.subscribe('PhoneTypes')
+        ];
     },
     data: function () {
         return Meteor.users.find();
@@ -291,7 +300,8 @@ Router.route('/config', {
         return [
             Meteor.subscribe('Vendors'),
             Meteor.subscribe('Venues'),
-            Meteor.subscribe('Themes')
+            Meteor.subscribe('Themes'),
+            Meteor.subscribe('PhoneTypes')
         ]
     }
 });

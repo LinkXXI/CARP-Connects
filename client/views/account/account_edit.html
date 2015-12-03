@@ -140,7 +140,7 @@
                             <select id="phone-type-new" class="browser-default" required>
                                 <option value="" disabled selected>Choose your option</option>
                                 {{#each phoneType}}
-                                    <option value="{{this}}">{{this}}</option>
+                                    <option value="{{_id}}">{{type}}</option>
                                 {{/each}}
                             </select>
                         </div>
@@ -222,7 +222,7 @@
             <select id="phone-type-{{index}}" class="browser-default">
                 <option value="" disabled selected>Choose your option</option>
                 {{#each phoneType}}
-                    <option value="{{this}}" {{isOptionSelected this ../type}}>{{this}}</option>
+                    <option value="{{_id}}" {{isOptionSelected _id ../type}}>{{type}}</option>
                 {{/each}}
             </select>
         </td>

@@ -43,6 +43,12 @@ Template.registerHelper('hasValueMarkActive', function(value) {
     }
 });
 
+Template.registerHelper('getPhoneType', function(phoneTypeId) {
+    if (phoneTypeId) {
+        return phonetypes.findOne({_id:phoneTypeId}).type;
+    }
+});
+
 Template.registerHelper('mapAttributes', function () {
     var venue = venues.findOne({_id: this.venue});
     var zoom = 13;

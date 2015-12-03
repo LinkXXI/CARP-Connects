@@ -50,6 +50,13 @@ ACCOUNT_CHANGE_PASSWORD_ERROR = "Current password was entered incorrectly.";
 ACCOUNT_CHANGE_PASSWORD_SUCCESS = "Password changed successfully.";
 ACCOUNT_CHANGE_PASSWORD_NO_MATCH = "New passwords do not match.";
 
+PHONETYPE_INSERT_SUCCESS = "A phone type was successfully created.";
+PHONETYPE_INSERT_ERROR = "An error occurred creating a phone type.";
+PHONETYPE_DELETE_SUCCESS = "A phone type was successfully removed.";
+PHONETYPE_DELETE_FAILED = "Phone type could not be removed because it's currently in use by at least one user.";
+PHONETYPE_DELETE_ERROR = "An error occurred removing a phone type.";
+PHONETYPE_DELETE_NONESELECTED = "Please choose a phone type from the list.";
+
 ADMIN_ONLY_ERROR = "This is an admin function. This access attempt has been logged and reported.";
 
 MESSAGE_VIEW_NO_PERMISSION_ERROR = "You do not have the required permission to view this message.";
