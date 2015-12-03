@@ -3,10 +3,10 @@
     <nav id="breadcrumb-nav" class="blue">
         <div class="nav-wrapper">
             <div class="col s12">
-                <a href="{{pathFor 'Index'}}">Home</a> >
-                <a href="{{pathFor 'Events'}}">Events</a> >
-                <a href="{{pathFor 'EventView' this._id }}">{{this.name}}</a> >
-                Edit Event
+                <a href="{{pathFor 'Index'}}" class="breadcrumb">Home</a>
+                <a href="{{pathFor 'Events'}}" class="breadcrumb">Events</a>
+                <a href="{{pathFor 'EventView' this._id }}" class="breadcrumb">{{this.name}}</a>
+                <a class="breadcrumb">Edit Event</a>
             </div>
         </div>
     </nav>
