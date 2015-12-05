@@ -177,7 +177,6 @@ Template.taskCard.events({
                     }
                     else {
                         sAlert.success(TASK_HELP_REQUEST_SUCCESS);
-                        //TODO: send email
                     }
                 });
             }

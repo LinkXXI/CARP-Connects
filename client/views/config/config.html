@@ -4,14 +4,27 @@
         <div class="nav-wrapper">
             <div class="col s12">
                 <a href="{{pathFor 'Index'}}" class="breadcrumb">Home</a>
-                <a class="breadcrumb">Site Configuration</a>
+                <a class="breadcrumb">Configuration</a>
             </div>
         </div>
     </nav>
 
     <div class="custom-wrapper">
 
-        <h2>Site Configuration</h2>
+        <h4>Task Configuration</h4>
+
+        <ul class="collection">
+            <li class="collection-item">
+                <input type="checkbox" id="config-task-create-email" />
+                <label for="config-task-create-email">Send an email to task assignee when task is created or assigned to them.</label>
+            </li>
+            <li class="collection-item">
+                <input type="checkbox" id="config-task-help-email" />
+                <label for="config-task-help-email">Send an email to event owner when task help request initiated.</label>
+            </li>
+        </ul>
+
+        <h4>Site Configuration</h4>
 
         <div class="row">
             <div class="col s12 m6 l4">

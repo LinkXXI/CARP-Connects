@@ -227,7 +227,17 @@ Meteor.startup(function () {
                 generatedBy: "Dev_ENV",
                 appliedTo: undefined,
                 validFor: ["Any"]
-            })
+            });
+        }
+        if (configuration.find().count() == 0) {
+            configuration.insert({
+                "name" : "config-task-create-email",
+                "value" : false
+            });
+            configuration.insert({
+                "name" : "config-task-help-email",
+                "value" : false
+            });
         }
     }
 });

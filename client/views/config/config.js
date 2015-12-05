@@ -3,9 +3,63 @@
  */
 Template.configuration.onRendered(function () {
     $('.tooltipped').tooltip({delay: 50});
+
+    var configItemId, taskHelpEmailConfig;
+
+    configItemId = 'config-task-create-email';
+    taskHelpEmailConfig = configuration.findOne({name: configItemId});
+    // if the value field is set to true, mark it as checked in the UI
+    if (taskHelpEmailConfig.value){
+        $('#' + configItemId).prop('checked', true);
+    } else {
+        $('#' + configItemId).prop('checked', false);
+    }
+
+    configItemId = 'config-task-help-email';
+    taskHelpEmailConfig = configuration.findOne({name: configItemId});
+    // if the value field is set to true, mark it as checked in the UI
+    if (taskHelpEmailConfig.value){
+        $('#' + configItemId).prop('checked', true);
+    } else {
+        $('#' + configItemId).prop('checked', false);
+    }
 });
 
 Template.configuration.events({
+    'click #config-task-create-email': function (e) {
+        var id = $(e.target).attr('id');
+        var configItem = '#' + id;
+        var isChecked = $(configItem).is(':checked');
+        Meteor.call('upsertConfigItem', id, isChecked, function (err, data) {
+            if (err) {
+                sAlert.error(CONFIG_ERROR);
+                console.log(err);
+            }
+            else {
+                // not sure if we need to display info messages here
+                if (isChecked) {
+                    sAlert.info(CONFIG_ITEM_SET);
+                }
+            }
+        })
+    },
+    'click #config-task-help-email': function (e) {
+        var id = $(e.target).attr('id');
+        var configItem = '#' + id;
+        var isChecked = $(configItem).is(':checked');
+        Meteor.call('upsertConfigItem', id, isChecked, function (err, data) {
+            if (err) {
+                sAlert.error(CONFIG_ERROR);
+                console.log(err);
+            }
+            else {
+                // not sure if we need to display info messages here
+                if (isChecked) {
+                    sAlert.info(CONFIG_ITEM_SET);
+                }
+            }
+        })
+    },
     'click #add-theme-button': function (e) {
         $('#add-theme-modal').openModal();
     },

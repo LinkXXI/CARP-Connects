@@ -6,11 +6,12 @@ Meteor.methods({
         //TODO: check permission using same logic as security.js
         messages.insert(outgoingMessage);
         messages.insert(incomingMessage);
+
+        var taskHelpEmailConfig = configuration.findOne({name: 'config-task-help-email'});
         // send email to event owner about linked task
-        if (outgoingMessage.linkedTask) {
-            var to = Meteor.users.findOne({_id: outgoingMessage.to});
-            var email = to.emails[0].address;
-            sendTaskHelpRequestEmail(email, outgoingMessage);
+        // check if there is a linked task and the config value to send email for help requests is set to true
+        if (outgoingMessage.linkedTask && taskHelpEmailConfig.value) {
+            sendTaskHelpRequestEmail(outgoingMessage);
         }
     },
     messageDelete: function (messageId) {
@@ -30,15 +31,16 @@ Meteor.methods({
 });
 
 
-var sendTaskHelpRequestEmail = function (address, outgoingMessage) {
+var sendTaskHelpRequestEmail = function (email, outgoingMessage) {
     var task = tasks.findOne({_id: outgoingMessage.linkedTask});
     var from = Meteor.users.findOne({_id: outgoingMessage.from});
     var to = Meteor.users.findOne({_id: outgoingMessage.to});
+    var email = to.emails[0].address;
     Email.send({
-        to: address,
+        to: email,
         from: Accounts.emailTemplates.from,
         subject: "You have a task help request from " + from.profile.firstName + " " + from.profile.lastName,
-        html: "Hello " + to.profile.firstName + " " + to.profile.lastName + ",<br>"
+        html: "Hello " + to.profile.firstName + " " + to.profile.lastName + ",<br><br>"
         + "You have a task help request.<br><br>"
         + from.profile.firstName + " " + from.profile.lastName + " needs help with the task: " + task.name + "<br>"
         + "You can work on the event the task belongs to by clicking on the url below:<br>"

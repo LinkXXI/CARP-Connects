@@ -45,6 +45,9 @@ Meteor.methods({
     },
     removeInvitation: function (inviteId) {
         invitations.remove({_id: inviteId});
+    },
+    upsertConfigItem: function (item, value) {
+        configuration.upsert( { name: item }, {$set: { value: value } });
     }
 });
 
@@ -53,7 +56,7 @@ var sendInvitationMessage = function (address, inviteId) {
         to: address,
         from: Accounts.emailTemplates.from,
         subject: "You've been invited to CARP Connects!",
-        html: "Hello,<br>"
+        html: "Hello,<br><br>"
         + "Here is your invitation code for CARP Connects: " + inviteId + "<br/><br/>"
         + "If you have not signed up yet, please click on the following link to sign up: "
         + "<a href='" + Router.routes.Signup.url({inviteId: inviteId}) + "'>" + Router.routes.Signup.url({inviteId: inviteId}) + "</a><br/>"

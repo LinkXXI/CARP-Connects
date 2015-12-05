@@ -64,3 +64,7 @@ Meteor.publish("OneMessage", function (messageId) {
 Meteor.publish("PhoneTypes", function () {
     return phonetypes.find({}, {sort: {name: 1}});
 });
+
+Meteor.publish("Configuration", function () {
+    return configuration.find();
+});

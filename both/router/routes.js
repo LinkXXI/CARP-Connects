@@ -301,7 +301,8 @@ Router.route('/config', {
             Meteor.subscribe('Vendors'),
             Meteor.subscribe('Venues'),
             Meteor.subscribe('Themes'),
-            Meteor.subscribe('PhoneTypes')
+            Meteor.subscribe('PhoneTypes'),
+            Meteor.subscribe('Configuration')
         ]
     }
 });

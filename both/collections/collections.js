@@ -6,3 +6,4 @@ vendors = new Mongo.Collection("vendors");
 themes = new Mongo.Collection("themes");
 messages = new Mongo.Collection("messages");
 phonetypes = new Mongo.Collection("phonetypes");
+configuration = new Mongo.Collection("configuration");
