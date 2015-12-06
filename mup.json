@@ -1,6 +1,7 @@
 {
   // Server authentication info
   "servers": [
+    /* Sheridan server, commented out for faster deployment for now
     {
       "host": "142.55.49.124",
       "username": "meteorup",
@@ -12,6 +13,7 @@
         "ROOT_URL": "http://cs24.sheridanc.on.ca"
       }
     },
+    */
     {
       "host": "167.88.43.207",
       "username": "user",
