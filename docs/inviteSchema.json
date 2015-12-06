@@ -3,6 +3,7 @@
     "_id": "meteor generated ID, sent to user",
     "used": "BOOL",
     "generatedBy": "Who generated the invite",
+    "invitationSent": "BOOL, email sent",
     "appliedTo": "User it is applied to",
     "validFor": [ "String Array", "Any", "user ID", "permission level", "usergroup", "email"]
   }
