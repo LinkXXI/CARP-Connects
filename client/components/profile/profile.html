@@ -31,11 +31,11 @@
             {{/if}}
             <img {{profilePicAttr}} style="max-width: 48px;"/>
         </div>
-        <div class="col s9" style="display:inline-block;">
+        <div class="col s9" style="display:inline-block;width:200px">
             <a href="#!" id="dropdown-button-large" class="dropdown-button" style="display:inline-block"
                data-activates="profile-dropdown-large">
                 <span style="display:inline-block;height:inherit;vertical-align:middle;">
-                    <span style="line-height:normal;float:left">{{name}}</span>
+                    <span class="truncate" style="max-width:140px;line-height:normal; float:left">{{name}}</span>
                     <span style="line-height:normal;clear:left;float:left;display:inline-block;font-size:12px;">{{role}}</span>
                 </span>
                 <i class="mdi-navigation-arrow-drop-down right" style="margin-left:5px"></i>

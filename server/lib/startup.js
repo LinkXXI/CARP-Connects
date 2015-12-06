@@ -38,7 +38,7 @@ Meteor.startup(function () {
     };
 
     AccountsMerge.onMerge = function (winner, loser) {
-        //tet googleLinked to true for user.
+        //set googleLinked to true for user.
         Meteor.users.update(
             {_id: winner._id},
             {
@@ -47,6 +47,25 @@ Meteor.startup(function () {
                 }
             }
         );
+
+        if (!loser.emails) { // emails is created when user account made in Meteor, merged user accounts do not have the array
+            // Remove the merged (losing) user from the DB
+            //Meteor.users.remove(loser._id); // this breaks google login currently, can't remove the original merged id
+        } else { // update merged user id to invalidate google linkage
+            Meteor.users.update(
+                {_id: loser._id},
+                {
+                    $set: {
+                        'profile.googleLinked': false
+                    },
+                    $unset: {
+                        mergedWith: 1
+                    }
+                }
+            );
+        }
+
+
     };
 
     ServiceConfiguration.configurations.upsert(

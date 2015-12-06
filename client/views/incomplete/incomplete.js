@@ -54,17 +54,21 @@ Template.incomplete.events({
 
 Template.incomplete.helpers({
     completed: function () {
-        if (Meteor.user()) {
+        if (Meteor.user() && Meteor.user().emails) { // add emails check to fix error: Exception in template helper: TypeError: Cannot read property '0' of undefined
             if ((Meteor.user().emails[0].verified && Meteor.user().profile.inviteCode && Meteor.user().profile.googleLinked)) {
                 Meteor.call('updatePermissions', null, {
                     role:"user"
                 });
                 Router.go('/');
+            } else { // make sure no role is given (this handles scenarios where googleLinked was changed to false for example)
+                Meteor.call('updatePermissions', null, {
+                    role:"incomplete"
+                });
             }
         }
     },
     emailValidated: function () {
-        if (Meteor.user()) {
+        if (Meteor.user() && Meteor.user().emails) { // add emails check to fix error: Exception in template helper: TypeError: Cannot read property '0' of undefined
             return !!Meteor.user().emails[0].verified
         }
     },

@@ -24,7 +24,7 @@ Template.profile.onRendered(function () {
 Template.profile.helpers({
     profilePicAttr: function () {
         return {
-            src: userSubscription.ready() && Meteor.user().profile.googleLinked ? Meteor.user().services.google.picture : "",
+            src: userSubscription.ready() && Meteor.user().services && Meteor.user().services.google && Meteor.user().services.google.picture ? Meteor.user().services.google.picture : "",
             class: "circle responsive-img valign"
         };
     },
