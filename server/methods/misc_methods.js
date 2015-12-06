@@ -19,16 +19,20 @@ Meteor.methods({
             });
     },
     createInviteForUser: function (userID, sendMail) {
-        var inviteId = invitations.insert({
-            used: false,
-            generatedBy: Meteor.userId(),
-            validFor: [userID],
-            invitationSent: sendMail
-        });
-        if (sendMail) {
-            sendMail(Meteor.users.find({_id: userID}).emails[0].address);
+        var user = Meteor.users.findOne({_id: userID});
+        if (user) {
+            var inviteId = invitations.insert({
+                used: false,
+                generatedBy: Meteor.userId(),
+                validFor: [user._id],
+                invitationSent: sendMail
+            });
+            if (sendMail) {
+                sendInvitationMessage(user.emails[0].address, inviteId)
+            }
+            return inviteId;
         }
-        return inviteId;
+        return false;
     },
     createInviteForEmail: function (email, sendMail) {
         var inviteId = invitations.insert({

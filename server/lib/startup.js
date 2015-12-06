@@ -30,9 +30,11 @@ Meteor.startup(function () {
         if (invitation) {
             return "Click the link to verify your email. You will be logged in automatically!<br/><br/><a href='" + url + "'>" + url + "</a><br/><br/>" +
                 "Your invitation code is: " + invitation._id + "<br/>" +
-                "To apply the invite to your account, please login and click on the following link: <a href='" + Router.routes.ApplyInvitation.url({_id: invitation._id}) + "'>" + Router.routes.ApplyInvitation.url({_id: invitation._id}) + "</a>";
+                "To apply the invite to your account, please login and click on the following link: <a href='" + Router.routes.ApplyInvitation.url({_id: invitation._id}) + "'>" + Router.routes.ApplyInvitation.url({_id: invitation._id}) + "</a>" +
+                "<br><br>The " + Accounts.emailTemplates.siteName + " Team";
         } else {
-            return "Click the link to verify your email. You will be logged in automatically!<br/>" + url;
+            return "Click the link to verify your email. You will be logged in automatically!<br/><br/><a href='" + url + "'>" + url + "</a>" +
+                "<br><br>The " + Accounts.emailTemplates.siteName + " Team";
         }
 
     };

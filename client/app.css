@@ -15,6 +15,11 @@
     ul.side-nav.fixed:hover {
         overflow-y: auto;
     }
+
+    /* fix click drag-target closes side nav when side nav fixed */
+    .drag-target {
+        display: none;
+    }
 }
 
 /* Changes cursor to pointer when in mobile and tablet mode when hovers over sidenav */

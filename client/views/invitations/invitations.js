@@ -16,20 +16,21 @@ Template.invitations.events({
     },
     'click #add-add': function () {
         var addModal = $('#addModal');
-
-        var val;
+        //var val;
 
         switch (addModal.find('.active').html()) {
             case "Existing User":
                 // val = {value: addModal.find('select').val(), type: "existing"};
-                Meteor.call("createInviteForUser", addModal.find('select').val(), false, function (err, data) {
+                var userId = addModal.find('#invite-existing-select option:selected').val();
+                var sendEl = addModal.find('#sendEmail-existing');
+                Meteor.call("createInviteForUser", userId, sendEl.is(':checked'), function (err, data) {
 
                 });
                 break;
             case "New User":
-                var emailEl = addModal.find('#email');
-                var sendEl = addModal.find('#sendEmail');
-                Meteor.call("createInviteForEmail", emailEl.val(), (sendEl.val() === "on"), function (err, data) {
+                var emailEl = addModal.find('#email-new');
+                var sendEl = addModal.find('#sendEmail-new');
+                Meteor.call("createInviteForEmail", emailEl.val(), sendEl.is(':checked'), function (err, data) {
 
                 });
                 break;
@@ -50,11 +51,22 @@ Template.invitations.helpers({
 });
 
 Template.invitation.helpers({
+    checkSent: function () {
+        return !!this.invitationSent;
+    },
     checkUsed: function () {
         return this.used;
     },
     redeemList: function () {
-        return this.validFor[0]
+        var user = Meteor.users.findOne({_id: this.validFor[0]});
+        if (user) {
+            return Spacebars.SafeString($('<a>',{
+                text: user.profile.firstName + " " + user.profile.lastName,
+                title: user.emails[0].verified ? "Email verified" : "Email is not verified",
+                href: Router.routes.AccountView.path({_id: user._id})
+            }).prop('outerHTML'));
+        }
+        return this.validFor[0]; // not a userId, just return the value (most likely an email)
     },
     edit: function () {
         var edit = Session.get('edit-invite');
