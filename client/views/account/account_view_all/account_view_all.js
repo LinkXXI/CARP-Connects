@@ -12,9 +12,15 @@ Template.account.helpers({
                 }
             }
         }
-
     },
     role: function() {
         return formattedRoleText(this.profile.permissions.role);
+    },
+    profilePicAttr: function () {
+        return {
+            src: this.services.google.picture || "",
+            style: 'width: 48px;',
+            class: "circle responsive-img valign left"
+        };
     }
 });

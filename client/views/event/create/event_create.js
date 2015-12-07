@@ -26,8 +26,6 @@ Template.eventCreate.onDestroyed(function () {
     delete Session.keys['tasksBudget'];
 });
 
-var budgetTasks, budgetTotal;
-
 Template.eventCreate.helpers({
     'themes': function () {
         return themes.find({}, {sort: {name: 1}});

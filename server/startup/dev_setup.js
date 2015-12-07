@@ -236,7 +236,7 @@ Meteor.startup(function () {
             });
             configuration.insert({
                 "name" : "config-task-help-email",
-                "value" : false
+                "value" : true
             });
         }
     }

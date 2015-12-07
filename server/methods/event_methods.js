@@ -72,7 +72,6 @@ Meteor.methods({
                 }
             }
         }
-        // }
     },
     eventPublish: function (event) {
         // var hasIncompleteTasks = !!tasks.find({event: event._id, status: {$ne:"Complete"}}).count();

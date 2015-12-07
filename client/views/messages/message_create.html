@@ -14,17 +14,39 @@
         <h2>Compose a Message</h2>
 
         <form id="create-message-form">
-            <div class="row">
-                <div class="col s4">
-                    <label for="message-to">To</label>
-                    <select class="browser-default" id="message-to" required>
+            <div class="row valign-wrapper">
+                <div class="col s1 valign">
+                    To:
+                </div>
+                <div class="col s3">
+                    <select class="browser-default" id="message-to">
                         <option value="" disabled selected>Choose a user</option>
                         {{#each users}}
                             {{> userOption}}
                         {{/each}}
                     </select>
                 </div>
+                <div class="col s7 offset-s1">
+                    <input type="checkbox" id="message-send-email" />
+                    <label for="message-send-email">Send email also?</label>
+                </div>
             </div>
+            {{#if messageToUsers}}
+                <div class="row">
+                    <div id="message-to-users" class="col s12">
+                        {{#each messageToUsers}}
+                            <div class="chip">
+                                <img src="{{toUser.services.google.picture}}" alt="{{toUser.profile.firstName}} {{toUser.profile.lastName}}">
+                                {{toUser.profile.firstName}} {{toUser.profile.lastName}}
+                                <a class="remove-user-button btn-flat"
+                                   style="padding:0; margin:0;">
+                                    <i class="mdi-content-clear" style="padding:0; margin:0;"></i>
+                                </a>
+                            </div>
+                        {{/each}}
+                    </div>
+                </div>
+            {{/if}}
             <div class="row">
                 <div class="input-field col s6">
                     <input type="text" class="validate" id="message-subject" required>
@@ -33,7 +55,7 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <textarea id="message-body" class="materialize-textarea"></textarea>
+                    <textarea id="message-body" class="materialize-textarea validate"></textarea>
                     <label for="message-body">Message<i class="mdi-editor-mode-edit right"></i></label>
                 </div>
             </div>

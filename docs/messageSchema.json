@@ -6,7 +6,10 @@
     "body": "string",
     "read": "boolean",
     "from": "string - used id",
-    "to": "string - user id",
+    "to": [
+      {"_id": "string - user id"},
+      {"_id": "string - user id"}
+      ],
     "createdAt": "date",
     "linkedTask": "string - task id of a task help request"
   }

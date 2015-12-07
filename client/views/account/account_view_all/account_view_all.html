@@ -13,11 +13,11 @@
         <h2>Users</h2>
 
         <div class="row">
-            <div class="col s12 m12 l10">
-                <table>
+            <div class="col s12 m12 l12">
+                <table class="striped">
                     <thead>
                     <tr>
-                        <th>User</th>
+                        <th class="center">User</th>
                         <th>Primary Email</th>
                         <th>Primary Phone</th>
                         <th>Role</th>
@@ -36,7 +36,15 @@
 
 <template name="account">
     <tr>
-        <td><a href="{{pathFor 'AccountView'}}">{{profile.firstName}} {{profile.lastName}}</a></td>
+        <td>
+            <a href="{{pathFor 'AccountView'}}" class="valign-wrapper">
+                {{#if profile.googleLinked}}
+                    <img {{profilePicAttr}}/>
+                {{/if}}
+                <div class="left valign"
+                     style="margin: 0 10px; overflow: hidden;">{{profile.firstName}} {{profile.lastName}}</div>
+            </a>
+        </td>
         <td><a href="mailto:{{primaryEmail}}">{{primaryEmail}}</a></td>
         <td>{{primaryPhone}}</td>
         <td>{{role}}</td>
