@@ -9,7 +9,7 @@ Template.login.events({
                 console.log(err);
                 sAlert.error(LOGIN_ERROR);
             } else {
-                Router.go('/');
+                //Router.go('/'); // don't need, by default goes to index
             }
         })
     },

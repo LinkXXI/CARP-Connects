@@ -3,7 +3,8 @@
  */
 Router.onBeforeAction(function () {
     if (!Meteor.userId()) {
-        Router.go('/login');
+        //Router.go('/login');
+        this.render('Login'); // to keep the url for redirect after login
     } else {
         this.next();
     }
