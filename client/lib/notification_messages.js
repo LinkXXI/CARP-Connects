@@ -71,5 +71,8 @@ MESSAGE_MARK_READ_ERROR = "An error occurred marking a message as read.";
 MESSAGE_SEND_SUCCESS = "The message has been successfully sent.";
 MESSAGE_SEND_ERROR = "An error occurred sending a message.";
 
+MESSAGE_ADD_USER_ALREADY_IN_LIST = "The user cannot be added because they're already in the list";
+MESSAGE_ERROR_NO_RECIPIENTS = "Please choose at least one user to send the message to and try again.";
+
 CONFIG_ERROR = "An error occurred setting this configuration item.";
 CONFIG_ITEM_SET = "The configuration item has been set";

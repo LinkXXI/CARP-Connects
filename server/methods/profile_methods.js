@@ -2,10 +2,34 @@
  * Created by Sergio on 12/1/2015.
  */
 Meteor.methods({
-    messageInsert: function (outgoingMessage, incomingMessage) {
-        //TODO: check permission using same logic as security.js
+    messageInsert: function (message, messageToUsers) {
+        //console.log("Message");
+        //console.log(message);
+        //console.log("User list:");
+        //console.log(messageToUsers);
+
+        // insert outgoing message first
+        var outgoingMessage = _.extend(message, {
+            type: "Outgoing",
+            read: true,
+            cc: messageToUsers
+        });
+
+        //console.log("Outgoing Message");
+        //console.log(outgoingMessage);
+
         messages.insert(outgoingMessage);
-        messages.insert(incomingMessage);
+
+        // insert all the incoming messages
+        for (var i = 0; i < messageToUsers.length; i++) {
+            var incomingMessage = _.extend(message, {
+                type: "Incoming",
+                read: false,
+                to: messageToUsers[i],
+                cc: messageToUsers
+            });
+            messages.insert(incomingMessage);
+        }
 
         var taskHelpEmailConfig = configuration.findOne({name: 'config-task-help-email'});
         // send email to event owner about linked task
