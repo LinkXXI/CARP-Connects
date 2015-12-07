@@ -3,7 +3,8 @@
  */
 Router.onBeforeAction(function () {
     if (!Meteor.userId()) {
-        Router.go('/login');
+        //Router.go('/login');
+        this.render('Login'); // to keep the url for redirect after login
     } else {
         this.next();
     }
@@ -51,7 +52,7 @@ Router.onBeforeAction(function () {
             this.next();
         } else {
             sAlert.error(ACCOUNT_EDIT_NO_PERMISSION_ERROR);
-            Router.go('/');
+            Router.go('AccountView', {_id: this.params._id});
         }
     },
     {
@@ -64,7 +65,7 @@ Router.onBeforeAction(function () {
         var taskList = tasks.find().fetch();
         var assignedToTask = false;
         $.each(taskList, function (i, task) {
-            if(task.userIdAssignedTo == Meteor.userId()){
+            if (task.userIdAssignedTo == Meteor.userId()) {
                 assignedToTask = true;
             }
         });
@@ -73,7 +74,7 @@ Router.onBeforeAction(function () {
         } else {
             //history.go(-1);
             sAlert.error(EVENT_EDIT_NO_PERMISSION_ERROR);
-            Router.go('/');
+            Router.go('EventView', {_id: this.params._id});
         }
     },
     {
@@ -87,7 +88,7 @@ Router.onBeforeAction(function () {
         } else {
             //history.go(-1);
             sAlert.error(EVENT_PUBLISH_NO_PERMISSION_ERROR);
-            Router.go('/');
+            Router.go('EventView', {_id: this.params._id});
         }
     },
     {
