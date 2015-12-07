@@ -1,0 +1,11 @@
+ul .user-list { margin: 0px; padding: 0px; display: inline; }
+ul .user-list li:after { content: ","; }
+ul .user-list li:last-child:after { content: ""; }
+
+ul .user-list li {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    white-space: nowrap;
+    display: inline;
+}

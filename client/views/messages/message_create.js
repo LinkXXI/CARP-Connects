@@ -19,7 +19,7 @@ Template.messageCreate.helpers({
         var messageToUsers = Session.get('messageToUsers') || new Array();
         return messageToUsers;
     },
-    'toUser': function () {
+    'user': function () {
         var user = Meteor.users.findOne({_id: this._id});
         return user;
     }
@@ -28,7 +28,7 @@ Template.messageCreate.helpers({
 Template.messageCreate.events({
     'change #message-to': function (e) {
         var id = $(e.currentTarget).find(':selected').val();
-        console.log(id);
+        //console.log(id);
         var messageToUsers = Session.get('messageToUsers') || new Array();
         var result = $.grep(messageToUsers, function(obj){
             return obj._id === id;
@@ -45,7 +45,7 @@ Template.messageCreate.events({
             };
             messageToUsers.push(userInfo);
         }
-        console.log(messageToUsers);
+        //console.log(messageToUsers);
         Session.set('messageToUsers', messageToUsers);
         $('#message-to').prop('selectedIndex', 0);
     },

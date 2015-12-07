@@ -17,9 +17,12 @@
         <form id="reply-message-form">
             <div class="row">
                 <div class="col s6">
-                    <p>To: <span><a
-                            href="/accounts/{{this.from}}">{{from.profile.firstName}} {{from.profile.lastName}}</a></span>
-                    </p>
+                    <p>To</p>
+                    <div class="chip">
+                        <img src="{{from.services.google.picture}}"
+                             alt="{{from.profile.firstName}} {{from.profile.lastName}}">
+                        {{from.profile.firstName}} {{from.profile.lastName}}
+                    </div>
                 </div>
             </div>
             <div class="row">

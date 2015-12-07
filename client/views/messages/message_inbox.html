@@ -1,0 +1,59 @@
+<template name="messageInbox">
+    <li class="collection-item {{isUnreadColor}}">
+        <a class="message-link" href="{{pathFor 'MessageView' this._id}}" style="
+        display: block;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;">
+            <div class="left">
+                <div class="chip">
+                    <img src="{{user.services.google.picture}}"
+                         alt="{{user.profile.firstName}} {{user.profile.lastName}}">
+                    {{user.profile.firstName}} {{user.profile.lastName}}
+                </div>
+            </div>
+        </a>
+
+        <div class="message-action-buttons right" style="position: relative;">
+            {{#if isUnread}}
+                <a class="mark-read-message-button btn-flat tooltipped"
+                   data-position="bottom"
+                   style="position: absolute; top: -10px; right: 30px; padding:0;margin:0;"
+                   data-delay="50"
+                   data-tooltip="Mark as Read">
+                    <i class="mdi-content-drafts"></i>
+                </a>
+            {{/if}}
+            <a class="delete-message-button btn-flat tooltipped"
+               data-position="bottom"
+               style="position: absolute; top: -10px; right: 0; padding:0;margin:0;"
+               data-delay="50"
+               data-tooltip="Delete Message">
+                <i class="mdi-content-clear"></i>
+            </a>
+        </div>
+        <div class="clearfix"></div>
+
+        <a class="message-link" href="{{pathFor 'MessageView' this._id}}" style="
+        display: block;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;">
+            <div class="message-subject-link left">
+                {{this.subject}}
+            </div>
+            <div class="right" style="font-size: 10px">
+                {{formatDateMDYT this.createdAt}}
+            </div>
+        </a>
+        {{#if this.linkedTask}}
+            <div class="clearfix"></div>
+            <b>Task:</b> <a href="/tasks/{{this.linkedTask}}">{{task.name}}</a>
+        {{/if}}
+        <div class="clearfix"></div>
+    </li>
+</template>

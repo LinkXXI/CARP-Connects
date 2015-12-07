@@ -5,8 +5,9 @@ Template.messageView.helpers({
     'from': function () {
         return Meteor.users.findOne({_id: this.from});
     },
-    'to': function () {
-        return Meteor.users.findOne({_id: this.to});
+    'user': function () {
+        var user = Meteor.users.findOne({_id: this._id});
+        return user;
     }
 });
 

@@ -137,6 +137,13 @@ Template.taskCard.events({
         var eventOwner = Meteor.users.findOne({_id: eventOwnerId});
         var eventOwnerFirstName = eventOwner.profile.firstName === "" ? "" : eventOwner.profile.firstName;
         var eventOwnerLastName = eventOwner.profile.lastName === "" ? "" : eventOwner.profile.lastName;
+
+        var messageToUsers = new Array();
+        var to = {
+            _id: eventOwnerId
+        };
+        messageToUsers.push(to);
+
         //console.log(userId);
         new Confirmation({
             message: "The event owner is " + eventOwnerFirstName + " " + eventOwnerLastName +
@@ -149,27 +156,14 @@ Template.taskCard.events({
             // ok is true if the user clicked on "ok", false otherwise
             if (ok) {
                 var createdAt = new Date();
-                var outgoingMessage = {
-                    type: "Outgoing",
+                var message = {
                     subject: "Task help request from " + userFirstName + " " + userLastName,
                     body: "Task help request from " + userFirstName + " " + userLastName,
-                    read: true,
                     from: userId,
-                    to: eventOwnerId,
                     createdAt: createdAt,
                     linkedTask: taskId
                 };
-                var incomingMessage = {
-                    type: "Incoming",
-                    subject: "Help request from " + userFirstName + " " + userLastName,
-                    body: "Help request from " + userFirstName + " " + userLastName,
-                    read: false,
-                    from: userId,
-                    to: eventOwnerId,
-                    createdAt: createdAt,
-                    linkedTask: taskId
-                };
-                Meteor.call('messageInsert', outgoingMessage, incomingMessage, function (error) {
+                Meteor.call('messageInsert', message, messageToUsers, function (error) {
                     // display the error to the user and abort
                     if (error) {
                         sAlert.error(TASK_HELP_REQUEST_ERROR);

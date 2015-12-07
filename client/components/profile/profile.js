@@ -42,7 +42,7 @@ Template.profile.helpers({
         return messages.find({
                 $and: [
                     { type: "Incoming" },
-                    { to: userId },
+                    { toSingleUser: userId },
                     { read: false }
                 ]
             }).count() > 0;
@@ -52,7 +52,7 @@ Template.profile.helpers({
         return messages.find({
             $and: [
                 { type: "Incoming" },
-                { to: userId },
+                { toSingleUser: userId },
                 { read: false }
             ]
         }).count();

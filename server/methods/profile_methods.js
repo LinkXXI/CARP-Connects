@@ -12,7 +12,7 @@ Meteor.methods({
         var outgoingMessage = _.extend(message, {
             type: "Outgoing",
             read: true,
-            cc: messageToUsers
+            to: messageToUsers
         });
 
         //console.log("Outgoing Message");
@@ -25,8 +25,8 @@ Meteor.methods({
             var incomingMessage = _.extend(message, {
                 type: "Incoming",
                 read: false,
-                to: messageToUsers[i],
-                cc: messageToUsers
+                to: messageToUsers,
+                toSingleUser: messageToUsers[i]._id
             });
             messages.insert(incomingMessage);
         }
@@ -55,10 +55,10 @@ Meteor.methods({
 });
 
 
-var sendTaskHelpRequestEmail = function (email, outgoingMessage) {
+var sendTaskHelpRequestEmail = function (outgoingMessage) {
     var task = tasks.findOne({_id: outgoingMessage.linkedTask});
     var from = Meteor.users.findOne({_id: outgoingMessage.from});
-    var to = Meteor.users.findOne({_id: outgoingMessage.to});
+    var to = Meteor.users.findOne({_id: outgoingMessage.toSingleUser});
     var email = to.emails[0].address;
     Email.send({
         to: email,

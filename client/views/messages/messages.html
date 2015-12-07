@@ -27,9 +27,9 @@
                         <h4 style="display: inline;">Inbox</h4> (Total: {{inboxTotalMessagesCount}},
                         Unread: {{inboxUnreadMessagesCount}})
                     </li>
-                    {{#if hasIncomingMessages}}
+                    {{#if inboxTotalMessagesCount}}
                         {{#each inboxMessages}}
-                            {{> message}}
+                            {{> messageInbox}}
                         {{/each}}
                     {{else}}
                         <li class="collection-item">You have no incoming messages.</li>
@@ -43,9 +43,9 @@
                         <i class="mdi-content-send small"></i>
                         <h4 style="display: inline;">Sent Items</h4> (Total: {{sentMessagesCount}})
                     </li>
-                    {{#if hasOutgoingMessages}}
+                    {{#if sentMessagesCount}}
                         {{#each sentMessages}}
-                            {{> message}}
+                            {{> messageOutbox}}
                         {{/each}}
                     {{else}}
                         <li class="collection-item">You have no outgoing messages.</li>

@@ -7,7 +7,7 @@ Template.messages.helpers({
         return messages.find({
                 $and: [
                     {type: "Incoming"},
-                    {to: userId}
+                    {toSingleUser: userId}
                 ]
             }, {sort: {createdAt: -1}}
         );
@@ -17,7 +17,7 @@ Template.messages.helpers({
         return messages.find({
                 $and: [
                     {type: "Incoming"},
-                    {to: userId}
+                    {toSingleUser: userId}
                 ]
             }).count();
     },
@@ -27,7 +27,7 @@ Template.messages.helpers({
             $and: [
                 {type: "Incoming"},
                 {read: false},
-                {to: userId}
+                {toSingleUser: userId}
             ]
         }).count();
     },
@@ -49,24 +49,6 @@ Template.messages.helpers({
                     {from: userId}
                 ]
             }).count();
-    },
-    'hasIncomingMessages': function () {
-        var userId = Meteor.userId();
-        return messages.find({
-                $and: [
-                    {type: "Incoming"},
-                    {to: userId}
-                ]
-            }).count() > 0;
-    },
-    'hasOutgoingMessages': function () {
-        var userId = Meteor.userId();
-        return messages.find({
-                $and: [
-                    {type: "Outgoing"},
-                    {from: userId}
-                ]
-            }).count() > 0;
     },
     'hasALinkedTask': function () {
         return this.linkedTask;

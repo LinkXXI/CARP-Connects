@@ -1,43 +1,26 @@
 /**
  * Created by Sergio on 12/1/2015.
  */
-Template.message.onRendered(function () {
+Template.messageInbox.onRendered(function () {
     $('.tooltipped').tooltip({delay: 50});
 });
 
-Template.message.helpers({
+Template.messageInbox.helpers({
     'isUnread': function() {
         return !this.read;
     },
     'isUnreadColor': function() {
         return !this.read ? "green lighten-5" : "";
     },
-    'isToOrFrom': function() {
-        var value;
-        if (this.type === "Outgoing") {
-            value = "To: ";
-        } else if (this.type === "Incoming") {
-            value = "From: ";
-        }
-        return value;
-    },
     'user': function() {
-        var userId = Meteor.userId();
-        var user;
-        // we only want to see messages sent from ourselves and to ourselves
-        if (this.from === userId) {
-            user = this.to;
-        } else if (this.to === userId) {
-            user = this.from;
-        }
-        return Meteor.users.findOne({ _id: user });
+        return Meteor.users.findOne({ _id: this.from });
     },
     'task': function() {
         return tasks.findOne({_id: this.linkedTask });
     }
 });
 
-Template.message.events({
+Template.messageInbox.events({
     'click .delete-message-button': function (e) {
         var messageId = this._id;
         new Confirmation({

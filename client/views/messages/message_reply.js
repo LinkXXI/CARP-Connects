@@ -14,30 +14,25 @@ Template.messageReply.helpers({
 Template.messageReply.events({
     'submit #reply-message-form': function (e) {
         e.preventDefault();
+        var messageToUsers = new Array();
+        var to = {
+            _id: this.from
+        };
+        messageToUsers.push(to);
+
         var subject = $(e.target).find('#message-subject').val();
         var body = $(e.target).find('#message-body').val();
         var from = Meteor.userId();
-        var to = this.from;
         var createdAt = new Date();
-        var outgoingMessage = {
-            type: "Outgoing",
+
+        var message = {
             subject: subject,
             body: body,
-            read: true,
             from: from,
-            to: to,
             createdAt: createdAt
         };
-        var incomingMessage = {
-            type: "Incoming",
-            subject: subject,
-            body: body,
-            read: false,
-            from: from,
-            to: to,
-            createdAt: createdAt
-        };
-        Meteor.call('messageInsert', outgoingMessage, incomingMessage, function (error) {
+
+        Meteor.call('messageInsert', message, messageToUsers, function (error) {
             // display the error to the user and abort
             if (error) {
                 sAlert.error(MESSAGE_SEND_ERROR);
