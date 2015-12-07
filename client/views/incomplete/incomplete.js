@@ -53,22 +53,27 @@ Template.incomplete.events({
 Template.incomplete.helpers({
     completed: function () {
         if (Meteor.user() && Meteor.user().emails) { // add emails check to fix error: Exception in template helper: TypeError: Cannot read property '0' of undefined
+            var role = Meteor.user().profile.permissions.role;
+            var permissions = Meteor.user().profile.permissions;
+
             if (Meteor.user().emails[0].verified &&
                 Meteor.user().profile.inviteCode &&
                 Meteor.user().profile.googleLinked &&
                 Meteor.user().services &&
                 Meteor.user().services.google) { // do a sanity check for services.google as well, required to check if google is truly linked on the account
-                if (Meteor.user().profile.permissions.role != "Admin") { // avoid modifying Admin users
-                    Meteor.call('updatePermissions', Meteor.userId(), {
-                        role: "user"
+                if (role != "Admin" && role == "incomplete") { // avoid modifying Admin users, and only modify users who have an incomplete profile
+                    _.extend(permissions, {
+                        role: "user" // default all users with incomplete role to the user role
                     });
+                    Meteor.call('updatePermissions', Meteor.userId(), permissions);
                 }
                 Router.go('/');
             } else { // make sure no role is given (this handles scenarios where googleLinked was changed to false for example)
-                if (Meteor.user().profile.permissions.role != "Admin") { // avoid modifying Admin users
-                    Meteor.call('updatePermissions', Meteor.userId(), {
+                if (role != "Admin") { // avoid modifying Admin users
+                    _.extend(permissions, {
                         role: "incomplete"
                     });
+                    Meteor.call('updatePermissions', Meteor.userId(), permissions);
                 }
             }
         }
