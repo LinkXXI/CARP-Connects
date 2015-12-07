@@ -22,6 +22,12 @@ Template.messageCreate.helpers({
     'user': function () {
         var user = Meteor.users.findOne({_id: this._id});
         return user;
+    },
+    'chipImgSrc': function () {
+        var user = Meteor.users.findOne({_id: this._id});
+        return {
+            src: user.services.google.picture ? user.services.google.picture : "/images/bluehead.png",
+        };
     }
 });
 

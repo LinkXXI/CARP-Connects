@@ -5,11 +5,12 @@
     "subject": "string",
     "body": "string",
     "read": "boolean",
-    "from": "string - used id",
+    "from": "string - user id",
     "to": [
       {"_id": "string - user id"},
       {"_id": "string - user id"}
       ],
+    "toSingleUser": "string - user id",
     "createdAt": "date",
     "linkedTask": "string - task id of a task help request"
   }

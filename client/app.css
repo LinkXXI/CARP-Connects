@@ -251,7 +251,3 @@ nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons {
     width: 32px;
     border-radius: 50%;
 }
-
-.message-link .message-action-buttons {
-    pointer-events: none;
-}

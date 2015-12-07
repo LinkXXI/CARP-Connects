@@ -17,6 +17,12 @@ Template.messageInbox.helpers({
     },
     'task': function() {
         return tasks.findOne({_id: this.linkedTask });
+    },
+    'chipImgSrc': function () {
+        var user = Meteor.users.findOne({_id: this.from});
+        return {
+            src: user.services.google.picture ? user.services.google.picture : "/images/bluehead.png",
+        };
     }
 });
 

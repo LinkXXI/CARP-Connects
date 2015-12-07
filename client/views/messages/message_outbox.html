@@ -18,12 +18,14 @@
             </a>
         </div>
         <div class="clearfix"></div>
-        <div class="message-subject-link left">
-            <a href="{{pathFor 'MessageView' this._id}}">{{this.subject}}</a>
-        </div>
-        <div class="right" style="font-size: 10px">
-            {{formatDateMDYT this.createdAt}}
-        </div>
+        <a href="{{pathFor 'MessageView' this._id}}">
+            <div class="message-subject-link left">
+                {{this.subject}}
+            </div>
+            <div class="right" style="font-size: 10px">
+                {{formatDateMDYT this.createdAt}}
+            </div>
+        </a>
         {{#if this.linkedTask}}
             <div class="clearfix"></div>
             <b>Task:</b> <a href="/tasks/{{this.linkedTask}}">{{task.name}}</a>

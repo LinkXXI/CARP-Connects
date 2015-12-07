@@ -36,7 +36,7 @@
                     <div id="message-to-users" class="col s12">
                         {{#each messageToUsers}}
                             <div class="chip">
-                                <img src="{{user.services.google.picture}}" alt="{{user.profile.firstName}} {{user.profile.lastName}}">
+                                <img {{chipImgSrc}} alt="{{user.profile.firstName}} {{user.profile.lastName}}">
                                 {{user.profile.firstName}} {{user.profile.lastName}}
                                 <a class="remove-user-button btn-flat"
                                    style="padding:0; margin:0;">
