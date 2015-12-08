@@ -38,7 +38,9 @@ Template.configuration.events({
             else {
                 // not sure if we need to display info messages here
                 if (isChecked) {
-                    sAlert.info(CONFIG_ITEM_SET);
+                    sAlert.info(CONFIG_ITEM_ENABLED);
+                } else if (!isChecked) {
+                    sAlert.info(CONFIG_ITEM_DISABLED);
                 }
             }
         })

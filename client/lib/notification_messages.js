@@ -75,4 +75,5 @@ MESSAGE_ADD_USER_ALREADY_IN_LIST = "The user cannot be added because they're alr
 MESSAGE_ERROR_NO_RECIPIENTS = "Please choose at least one user to send the message to and try again.";
 
 CONFIG_ERROR = "An error occurred setting this configuration item.";
-CONFIG_ITEM_SET = "The configuration item has been set";
+CONFIG_ITEM_ENABLED = "The configuration item has been enabled";
+CONFIG_ITEM_DISABLED = "The configuration item has been disabled";

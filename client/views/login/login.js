@@ -9,7 +9,7 @@ Template.login.events({
                 console.log(err);
                 sAlert.error(LOGIN_ERROR);
             } else {
-                //Router.go('/'); // don't need, by default goes to index
+                Router.go('/'); // don't need, by default goes to index -- was not auto re-directing for me
             }
         })
     },
