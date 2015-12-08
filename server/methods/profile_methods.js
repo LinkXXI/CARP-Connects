@@ -2,7 +2,7 @@
  * Created by Sergio on 12/1/2015.
  */
 Meteor.methods({
-    messageInsert: function (message, messageToUsers) {
+    messageInsert: function (message, messageToUsers, sendEmail) {
         //console.log("Message");
         //console.log(message);
         //console.log("User list:");

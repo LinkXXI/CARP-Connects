@@ -10,17 +10,46 @@
     </nav>
 
     <div class="custom-wrapper">
-        <h2>Messages</h2>
-
-        <div class="col s12 center">
-            <a href="{{pathFor 'MessageCreate'}}" class="waves-effect waves-light btn">
-                <i class="mdi-communication-email right"></i>Compose
-            </a>
+        <div class="hide-on-med-and-up">
+            <div class="row">
+                <div class="col s12 center">
+                    <h2 style="margin-bottom: 0;">Messages</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 center">
+                    <a href="{{pathFor 'MessageCreate'}}" class="waves-effect waves-light btn no-margin-bot">
+                        <i class="mdi-communication-email right"></i>Compose
+                    </a>
+                </div>
+            </div>
         </div>
-        <div class="clearfix"></div>
+        <div class="hide-on-small-only">
+            <div class="row valign-wrapper">
+                <div class="col s12 m8">
+                    <h2 style="margin-bottom: 0;">Messages</h2>
+                </div>
+                <div class="col s12 m4">
+                    <div class="valign right">
+                        <a href="{{pathFor 'MessageCreate'}}" class="waves-effect waves-light btn no-margin-bot">
+                            <i class="mdi-communication-email right"></i>Compose
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="row">
-            <div class="col s6">
+            <div class="col s12">
+                <ul class="tabs">
+                    <li class="tab col s3" id="inbox-tab"><a href="#test1">Inbox</a></li>
+                    <li class="tab col s3" id="sent-items-tab"><a href="#test2">Sent Items</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12" id="inbox-div">
                 <ul class="collection">
                     <li class="collection-header">
                         <i class="mdi-content-inbox small"></i>
@@ -37,7 +66,7 @@
                 </ul>
             </div>
 
-            <div class="col s6">
+            <div class="col s12" id="sent-items-div">
                 <ul class="collection">
                     <li class="collection-header">
                         <i class="mdi-content-send small"></i>

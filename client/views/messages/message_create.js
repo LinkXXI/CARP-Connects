@@ -69,6 +69,7 @@ Template.messageCreate.events({
         e.preventDefault();
         // make sure we have at least 1 user in the recipient list
         var messageToUsers = Session.get('messageToUsers') || new Array();
+        //console.log(messageToUsers);
         if (messageToUsers.length <= 0) {
             $('#message-to').focus();
             sAlert.error(MESSAGE_ERROR_NO_RECIPIENTS);
@@ -86,7 +87,9 @@ Template.messageCreate.events({
             createdAt: createdAt
         };
 
-        Meteor.call('messageInsert', message, messageToUsers, function (error) {
+        var sendEmail = $('#message-send-email').is(':checked');
+
+        Meteor.call('messageInsert', message, messageToUsers, sendEmail, function (error) {
             // display the error to the user and abort
             if (error) {
                 sAlert.error(MESSAGE_SEND_ERROR);

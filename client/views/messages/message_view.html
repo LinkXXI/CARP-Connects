@@ -17,12 +17,20 @@
         <form id="view-event-form">
 
             <div class="row">
+                {{#if isIncoming}}
                 <div class="col s4">
                     <a href="/messages/reply/{{this._id}}" class="waves-effect waves-light btn"
                        id="reply-message-button">
                         <i class="mdi-content-reply right"></i>Reply
                     </a>
                 </div>
+                    <div class="col s4">
+                        <a href="{{pathFor 'MessageReplyAll' _id=this._id}}" class="waves-effect waves-light btn"
+                           id="reply-all-message-button">
+                            <i class="mdi-content-reply-all right"></i>Reply All
+                        </a>
+                    </div>
+                {{/if}}
                 <div class="col s4">
                     <a class="waves-effect waves-light btn" id="delete-message-button">
                         <i class="mdi-action-delete right"></i>Delete
@@ -43,7 +51,7 @@
                 <div class="col s4">
                     <p>From</p>
                     <div class="chip">
-                        <img {{chipImgSrc}} alt="{{from.profile.firstName}} {{from.profile.lastName}}">
+                        <img {{chipImgSrcFrom}} alt="{{from.profile.firstName}} {{from.profile.lastName}}">
                         {{from.profile.firstName}} {{from.profile.lastName}}
                     </div>
                 </div>
@@ -58,8 +66,7 @@
                     <p>To</p>
                     {{#each this.to}}
                         <div class="chip">
-                            <img src="{{user.services.google.picture}}"
-                                 alt="{{user.profile.firstName}} {{user.profile.lastName}}">
+                            <img {{chipImgSrcUser}} alt="{{user.profile.firstName}} {{user.profile.lastName}}">
                             {{user.profile.firstName}} {{user.profile.lastName}}
                         </div>
                     {{/each}}

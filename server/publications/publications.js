@@ -54,7 +54,7 @@ Meteor.publish("Themes", function () {
 });
 
 Meteor.publish("Messages", function (userId) {
-    return messages.find({ $or: [ {to: userId}, {from: userId} ] });
+    return messages.find({ $or: [ {toSingleUser: userId}, {from: userId} ] });
 });
 
 Meteor.publish("OneMessage", function (messageId) {

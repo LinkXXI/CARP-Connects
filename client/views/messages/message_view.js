@@ -1,6 +1,24 @@
 /**
  * Created by Sergio on 12/1/2015.
  */
+Template.messageView.onRendered(function () {
+    //mark the message as read
+        var messageId = this.data._id;
+        Meteor.call('messageMarkRead', messageId, function (error, result) {
+            // display the error to the user and abort
+            if (error) {
+                //sAlert.error(MESSAGE_MARK_READ_ERROR);
+                return throwError(error.reason);
+            }
+            else if (result) {
+                //sAlert.success(MESSAGE_MARK_READ_SUCCESS);
+            }
+            else if (!result) {
+                //sAlert.error(MESSAGE_MARK_READ_FAILED);
+            }
+        });
+});
+
 Template.messageView.helpers({
     'from': function () {
         return Meteor.users.findOne({_id: this.from});
@@ -9,11 +27,20 @@ Template.messageView.helpers({
         var user = Meteor.users.findOne({_id: this._id});
         return user;
     },
-    'chipImgSrc': function () {
+    'chipImgSrcFrom': function () {
         var user = Meteor.users.findOne({_id: this.from});
         return {
-            src: user.services.google.picture ? user.services.google.picture : "/images/bluehead.png",
+            src: user.profile.googleLinked ? user.services.google.picture : "/images/bluehead.png",
         };
+    },
+    'chipImgSrcUser': function () {
+        var user = Meteor.users.findOne({_id: this._id});
+        return {
+            src: user.profile.googleLinked ? user.services.google.picture : "/images/bluehead.png",
+        };
+    },
+    'isIncoming': function () {
+        return this.type === "Incoming";
     }
 });
 

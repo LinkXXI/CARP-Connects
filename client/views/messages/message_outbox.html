@@ -1,14 +1,23 @@
 <template name="messageOutbox">
-    <li class="collection-item {{isUnreadColor}}">
-        <div class="left">
-            To:
-            <ul class="user-list">
+    <li class="collection-item hoverable-message {{isUnreadColor}}">
+        <a class="message-link" href="{{pathFor 'MessageView' this._id}}" style="
+        display: block;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;">
+            <div class="col s10 left">
                 {{#each this.to}}
-                    <li><a href="/accounts/{{user._id}}">{{user.profile.firstName}} {{user.profile.lastName}}</a></li>
+                    <div class="chip">
+                        <img {{chipImgSrc}} alt="{{user.profile.firstName}} {{user.profile.lastName}}">
+                        {{user.profile.firstName}} {{user.profile.lastName}}
+                    </div>
                 {{/each}}
-            </ul>
-        </div>
-        <div class="message-action-buttons right" style="position: relative;">
+            </div>
+        </a>
+
+        <div class="col s2 message-action-buttons right" style="position: relative;">
             <a class="delete-message-button btn-flat tooltipped"
                data-position="bottom"
                style="position: absolute; top: -10px; right: 0; padding:0;margin:0;"
@@ -17,12 +26,22 @@
                 <i class="mdi-content-clear"></i>
             </a>
         </div>
+
         <div class="clearfix"></div>
-        <a href="{{pathFor 'MessageView' this._id}}">
-            <div class="message-subject-link left">
+
+        <a class="message-link" href="{{pathFor 'MessageView' this._id}}" style="
+                display: block;
+                margin: 0;
+                padding: 0;
+                position: relative;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;">
+            <div class="col s10 left" style="padding-top: 10px; font-size: 14px;">
                 {{this.subject}}
             </div>
-            <div class="right" style="font-size: 10px">
+            <div class="col s2 right" style="padding-top: 10px; font-size: 10px; text-align: right;">
                 {{formatDateMDYT this.createdAt}}
             </div>
         </a>

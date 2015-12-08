@@ -39,22 +39,24 @@ Template.profile.helpers({
     },
     'hasNewIncomingMessages': function () {
         var userId = Meteor.userId();
-        return messages.find({
+        var hasNewMessages = messages.find({
                 $and: [
                     { type: "Incoming" },
                     { toSingleUser: userId },
                     { read: false }
                 ]
             }).count() > 0;
+        return hasNewMessages;
     },
     'newIncomingMessageCount': function () {
         var userId = Meteor.userId();
-        return messages.find({
+        var count = messages.find({
             $and: [
                 { type: "Incoming" },
                 { toSingleUser: userId },
                 { read: false }
             ]
         }).count();
+        return count;
     }
 });

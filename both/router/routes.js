@@ -376,3 +376,17 @@ Router.route('/messages/reply/:_id', {
         return messages.findOne({_id: this.params._id});
     }
 });
+
+Router.route('/messages/reply_all/:_id', {
+    name: 'MessageReplyAll',
+    template: 'messageReplyAll',
+    waitOn: function () {
+        return [
+            Meteor.subscribe('AllUsers'),
+            Meteor.subscribe('OneMessage', this.params._id)
+        ]
+    },
+    data: function () {
+        return messages.findOne({_id: this.params._id});
+    }
+});

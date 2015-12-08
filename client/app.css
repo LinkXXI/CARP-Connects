@@ -251,3 +251,7 @@ nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons {
     width: 32px;
     border-radius: 50%;
 }
+
+.hoverable-message:hover {
+    background-color: #e3f2fd;
+}

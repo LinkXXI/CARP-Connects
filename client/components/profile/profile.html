@@ -3,7 +3,7 @@
         <div class="col s12" style="display:inline-block;">
             <a href="#!" id="dropdown-button-mobile" class="dropdown-button" style="display:inline-block"
                data-activates="profile-dropdown-mobile">
-                {{#if hasNewIncomingMessages}}
+                {{#if newIncomingMessageCount}}
                     <div class="new-msg-circle-mobile"></div>
                         <div class="new-msg-count-mobile">
                             {{newIncomingMessageCount}}
@@ -21,7 +21,7 @@
     </div>
     <div class="row right no-margin-bot hide-on-med-and-down">
         <div class="col s3" style="display:inline-block; position: relative;">
-            {{#if hasNewIncomingMessages}}
+            {{#if newIncomingMessageCount}}
                 <div class="new-msg-circle"></div>
                 <a href="{{pathFor "Messages"}}" class="hyperlink-no-style">
                     <div class="new-msg-count">
