@@ -9,7 +9,8 @@
                 height: 100%;
                 top: 0;
                 left: 0;">
-            <div class="col s10 left">
+            <div class="col s10 left valign-wrapper">
+                <p class="left valign black-text" style="margin-right: 5px;">From:</p>
                 <div class="chip">
                     <img {{chipImgSrc}} alt="{{user.profile.firstName}} {{user.profile.lastName}}">
                     {{user.profile.firstName}} {{user.profile.lastName}}
@@ -47,10 +48,10 @@
                 height: 100%;
                 top: 0;
                 left: 0;">
-            <div class="col s10 left" style="padding-top: 10px; font-size: 14px;">
+            <div class="col s10 left" style="font-size: 14px;">
                 {{this.subject}}
             </div>
-            <div class="col s2 right" style="padding-top: 10px; font-size: 10px; text-align: right;">
+            <div class="col s2 right black-text" style="font-size: 10px; text-align: right;">
                 {{formatDateMDYT this.createdAt}}
             </div>
         </a>
