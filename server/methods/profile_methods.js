@@ -28,13 +28,10 @@ Meteor.methods({
                 to: messageToUsers,
                 toSingleUser: messageToUsers[i]._id
             });
-            var msgId = messages.insert(incomingMessage);
-            var message = _.extend(incomingMessage, {
-                _id: msgId
-            });
+            messages.insert(incomingMessage);
             if (sendEmail) {
                 // send email to with message details
-                sendMessageEmail(message);
+                sendMessageEmail(incomingMessage);
             }
         }
 
@@ -94,7 +91,7 @@ var sendMessageEmail = function (message) {
         + "Message:<br><br>"
         + message.body + "<br><br>"
         + "You can view your messages at the link below: <br>"
-        + "<a href='" + Router.routes.MessageView.url({_id: message._id}) + "'>" + Router.routes.MessageView.url({_id: message._id}) + "</a><br><br>"
+        + "<a href='" + Router.routes.Messages.url() + "'>" + Router.routes.Messages.url() + "</a><br><br>"
         + "The " + Accounts.emailTemplates.siteName + " Team"
     });
 };
