@@ -113,7 +113,7 @@ Router.onBeforeAction(function () {
 Router.onBeforeAction(function () {
         var role = Meteor.user().profile.permissions.role;
         var message = messages.findOne(this.params._id);
-        if (Meteor.userId() === message.to || role === "Admin") {
+        if (Meteor.userId() === message.toSingleUser || role === "Admin") {
             this.next();
         } else {
             sAlert.error(MESSAGE_VIEW_NO_PERMISSION_ERROR);
