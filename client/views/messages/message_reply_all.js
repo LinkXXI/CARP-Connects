@@ -67,7 +67,9 @@ Template.messageReplyAll.events({
             createdAt: createdAt
         };
 
-        Meteor.call('messageInsert', message, messageToUsers, function (error) {
+        var sendEmail = $('#message-send-email').is(':checked');
+
+        Meteor.call('messageInsert', message, messageToUsers, sendEmail, function (error) {
             // display the error to the user and abort
             if (error) {
                 sAlert.error(MESSAGE_SEND_ERROR);

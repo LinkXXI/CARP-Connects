@@ -26,10 +26,6 @@
                         {{/each}}
                     </select>
                 </div>
-                <div class="col s7 offset-s1">
-                    <input type="checkbox" id="message-send-email" />
-                    <label for="message-send-email">Send email also?</label>
-                </div>
             </div>
             {{#if messageToUsers}}
                 <div class="row">
@@ -47,10 +43,14 @@
                     </div>
                 </div>
             {{/if}}
-            <div class="row">
+            <div class="row valign-wrapper">
                 <div class="input-field col s6">
                     <input type="text" class="validate" id="message-subject" required>
                     <label for="event-name">Subject</label>
+                </div>
+                <div class="col s5 offset-s1 valign">
+                    <input type="checkbox" id="message-send-email" />
+                    <label for="message-send-email">Send as email to recipient</label>
                 </div>
             </div>
             <div class="row">

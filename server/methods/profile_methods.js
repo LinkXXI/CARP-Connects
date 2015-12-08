@@ -28,7 +28,14 @@ Meteor.methods({
                 to: messageToUsers,
                 toSingleUser: messageToUsers[i]._id
             });
-            messages.insert(incomingMessage);
+            var msgId = messages.insert(incomingMessage);
+            var message = _.extend(incomingMessage, {
+                _id: msgId
+            });
+            if (sendEmail) {
+                // send email to with message details
+                sendMessageEmail(message);
+            }
         }
 
         var taskHelpEmailConfig = configuration.findOne({name: 'config-task-help-email'});
@@ -69,6 +76,25 @@ var sendTaskHelpRequestEmail = function (outgoingMessage) {
         + from.profile.firstName + " " + from.profile.lastName + " needs help with the task: " + task.name + "<br>"
         + "You can work on the event the task belongs to by clicking on the url below:<br>"
         + "<a href='" + Router.routes.EventEdit.url({_id: task.event}) + "'>" + Router.routes.EventEdit.url({_id: task.event}) + "</a><br><br>"
+        + "The " + Accounts.emailTemplates.siteName + " Team"
+    });
+};
+
+var sendMessageEmail = function (message) {
+    var from = Meteor.users.findOne({_id: message.from});
+    var to = Meteor.users.findOne({_id: message.toSingleUser});
+    var toEmail = to.emails[0].address;
+    var fromEmail = from.emails[0].address;
+    Email.send({
+        to: toEmail,
+        from: fromEmail,
+        subject: message.subject,
+        html: "Hello " + to.profile.firstName + " " + to.profile.lastName + ",<br><br>"
+        + "You have a new message from: " + from.profile.firstName + " " + from.profile.lastName + ".<br><br>"
+        + "Message:<br><br>"
+        + message.body + "<br><br>"
+        + "You can view your messages at the link below: <br>"
+        + "<a href='" + Router.routes.MessageView.url({_id: message._id}) + "'>" + Router.routes.MessageView.url({_id: message._id}) + "</a><br><br>"
         + "The " + Accounts.emailTemplates.siteName + " Team"
     });
 };

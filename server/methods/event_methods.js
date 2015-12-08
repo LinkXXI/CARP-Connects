@@ -149,20 +149,17 @@ Meteor.methods({
 });
 
 var sendTaskCreateEmail = function (task) {
-        var to = Meteor.users.findOne({_id: task.userIdAssignedTo});
-        var email = to.emails[0].address;
-        Email.send({
-                to: email,
-                from: Accounts.emailTemplates.from,
-                subject: "You have been assigned to the task " + task.name,
-                html: "Hello " + to.profile.firstName + " " + to.profile.lastName + ",<br><br>"
-                + "You have been assigned to a task.<br>"
-                + "The due date set been set as " + formatDateShort(task.dateTime) + "<br><br>"
-                + "You can work on the task by clicking on the url below:<br>"
-                + "<a href='" + Router.routes.TaskView.url({_id: task._id}) + "'>" + Router.routes.TaskView.url({_id: task._id}) + "</a><br><br>"
-                + "The " + Accounts.emailTemplates.siteName + " Team"
-            }
-        )
-        ;
-    }
-    ;
+    var to = Meteor.users.findOne({_id: task.userIdAssignedTo});
+    var email = to.emails[0].address;
+    Email.send({
+        to: email,
+        from: Accounts.emailTemplates.from,
+        subject: "You have been assigned to the task " + task.name,
+        html: "Hello " + to.profile.firstName + " " + to.profile.lastName + ",<br><br>"
+        + "You have been assigned to the task: " + task.name + ".<br>"
+        + "The due date set been set as " + formatDateShort(task.dateTime) + "<br><br>"
+        + "You can work on the task by clicking on the url below:<br>"
+        + "<a href='" + Router.routes.TaskView.url({_id: task._id}) + "'>" + Router.routes.TaskView.url({_id: task._id}) + "</a><br><br>"
+        + "The " + Accounts.emailTemplates.siteName + " Team"
+    });
+};
