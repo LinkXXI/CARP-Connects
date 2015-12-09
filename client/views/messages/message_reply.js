@@ -7,7 +7,7 @@ Template.messageReply.helpers({
         return from;
     },
     'users': function () {
-        return Meteor.users.find({"profile.permissions.role": {$not: "incomplete"}}, {sort: {name: -1}});
+        return Meteor.users.find({}, {sort: {name: -1}});
     }
 });
 

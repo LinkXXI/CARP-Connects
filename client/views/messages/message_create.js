@@ -13,7 +13,7 @@ Template.messageCreate.onDestroyed(function () {
 
 Template.messageCreate.helpers({
     'users': function () {
-        return Meteor.users.find({"profile.permissions.role": {$not: "incomplete"}}, {sort: {name: -1}});
+        return Meteor.users.find({"profile.permissions.role": {$ne: "incomplete"}}, {sort: {name: -1}});
     },
     'messageToUsers': function () {
         var messageToUsers = Session.get('messageToUsers') || new Array();
