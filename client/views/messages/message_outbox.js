@@ -20,8 +20,10 @@ Template.messageOutbox.helpers({
     },
     'chipImgSrc': function () {
         var user = Meteor.users.findOne({_id: this._id});
+        var pic = user.services && user.services.google && user.services.google.picture;
+
         return {
-            src: user.profile.googleLinked ? user.services.google.picture : "/images/bluehead.png",
+            src: pic || "/images/defaultphoto.jpg",
         };
     }
 });

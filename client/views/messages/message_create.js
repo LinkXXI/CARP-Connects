@@ -25,8 +25,9 @@ Template.messageCreate.helpers({
     },
     'chipImgSrc': function () {
         var user = Meteor.users.findOne({_id: this._id});
+        var pic = user.services && user.services.google && user.services.google.picture;
         return {
-            src: user.services.google.picture ? user.services.google.picture : "/images/bluehead.png",
+            src: pic || "/images/defaultphoto.jpg",
         };
     }
 });

@@ -17,8 +17,9 @@ Template.account.helpers({
         return formattedRoleText(this.profile.permissions.role);
     },
     profilePicAttr: function () {
+        var pic = this.services && this.services.google && this.services.google.picture;
         return {
-            src: this.services.google.picture || "",
+            src: pic || "/images/defaultphoto.jpg",
             style: 'width: 48px;',
             class: "circle responsive-img valign left"
         };

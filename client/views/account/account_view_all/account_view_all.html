@@ -38,9 +38,8 @@
     <tr>
         <td>
             <a href="{{pathFor 'AccountView'}}" class="valign-wrapper">
-                {{#if profile.googleLinked}}
-                    <img {{profilePicAttr}}/>
-                {{/if}}
+                <img {{profilePicAttr}}/>
+
                 <div class="left valign"
                      style="margin: 0 10px; overflow: hidden;">{{profile.firstName}} {{profile.lastName}}</div>
             </a>
