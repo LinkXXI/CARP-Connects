@@ -9,7 +9,9 @@ Template.login.events({
                 console.log(err);
                 sAlert.error(LOGIN_ERROR);
             } else {
-                Router.go('/'); // don't need, by default goes to index -- was not auto re-directing for me
+                if(Router.current().route.getName() == 'Login') {
+                    Router.go('/'); // redirect if current url is login, otherwise show the page requested in the url
+                }
             }
         })
     },
