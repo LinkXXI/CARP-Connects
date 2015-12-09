@@ -2,8 +2,8 @@ Template.accountView.helpers({
     editAllowed: function() {
         return Meteor.userId() === this._id || checkPermissions("");
     },
-    notCurrentUser: function() {
-        return Meteor.userId() !== this._id;
+    messageAllowed: function() {
+        return Meteor.userId() !== this._id && this.profile.permissions.role !== "incomplete";
     },
     changePassword: function() {
         return Meteor.userId() === this._id; //allow password change since user profile is for current user
