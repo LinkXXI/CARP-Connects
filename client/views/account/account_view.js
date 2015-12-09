@@ -11,7 +11,7 @@ Template.accountView.helpers({
     profilePicAttr: function() {
         var pic = this.services && this.services.google && this.services.google.picture;
         return {
-            src: pic || "",
+            src: pic || "/images/defaultphoto.jpg",
             //alt: "",
             class: "circle responsive-img"
         };
