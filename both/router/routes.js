@@ -3,7 +3,7 @@ Router.route('/', {
     template: 'index',
     waitOn: function () {
         return [
-            Meteor.subscribe('Events'),
+            Meteor.subscribe('CurrentEvents'),
             Meteor.subscribe('Tasks'),
             Meteor.subscribe('Venues')
         ]

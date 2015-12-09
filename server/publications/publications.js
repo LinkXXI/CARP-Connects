@@ -6,6 +6,10 @@ Meteor.publish("PastEvents", function () {
     return events.find({ status: "Complete" }, {sort: {name: 1}});
 });
 
+Meteor.publish("CurrentEvents", function () {
+    return events.find({ status: "Active" }, {sort: {name: 1}});
+});
+
 Meteor.publish("Tasks", function () {
     return tasks.find();
 });
