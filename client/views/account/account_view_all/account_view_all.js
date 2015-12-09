@@ -18,7 +18,7 @@ Template.account.helpers({
     },
     profilePicAttr: function () {
         return {
-            src: this.services.google.picture || "",
+            src: user.profile.googleLinked ? user.services.google.picture : "/images/bluehead.png",
             style: 'width: 48px;',
             class: "circle responsive-img valign left"
         };

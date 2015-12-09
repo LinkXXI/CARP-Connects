@@ -7,7 +7,7 @@ Template.messageReplyAll.helpers({
         return from;
     },
     'users': function () {
-        return Meteor.users.find({}, {sort: {name: 1}});
+        return Meteor.users.find({role: {$ne: "incomplete"}}, {sort: {name: 1}});
     },
     'replyAllUsers': function () {
         //console.log(this);
